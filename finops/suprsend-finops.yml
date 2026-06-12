@@ -1,0 +1,70 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+provider: SuprSend
+providerId: suprsend
+created: '2026-06-12'
+modified: '2026-06-12'
+billingModel: notification-based
+description: >-
+  SuprSend bills based on notification volume (messages sent across all channels)
+  rather than API requests or monthly active users. Each plan includes a monthly
+  notification quota. Overage is billed per 1,000 additional notifications at
+  rates that vary by plan tier. Annual billing provides approximately 9% cost
+  savings versus monthly billing on paid plans.
+focusColumns:
+  - ChargePeriodStart
+  - ChargePeriodEnd
+  - ServiceName
+  - SKUPriceID
+  - PricingQuantity
+  - PricingUnit
+  - BilledCost
+  - EffectiveCost
+  - InvoiceIssuerName
+meters:
+  - name: Notifications Sent
+    metric: notifications
+    unit: notification
+    description: >-
+      Count of notification messages delivered across all channels (email, SMS,
+      push, in-app, WhatsApp, Slack, MS Teams) within the billing period.
+    billingImpact: included-in-quota-then-overage
+    plans:
+      - planName: Free
+        includedUnits: 10000
+        overageRate: null
+        overageUnit: null
+      - planName: Essentials
+        includedUnits: 50000
+        overageRate: 0.002
+        overageUnit: per-notification
+      - planName: Business
+        includedUnits: 50000
+        overageRate: 0.005
+        overageUnit: per-notification
+      - planName: Enterprise
+        includedUnits: custom
+        overageRate: custom
+        overageUnit: per-notification
+principles:
+  - name: Visibility
+    description: >-
+      SuprSend provides real-time notification logs and a delivery dashboard
+      allowing teams to track notification volume and identify unexpected spikes
+      that could lead to overage charges. Integration with Datadog, New Relic,
+      and OpenTelemetry enables cost observability within existing monitoring stacks.
+    actions:
+      - Monitor monthly notification consumption via the SuprSend dashboard logs
+      - Set up alerting for delivery anomalies that signal unexpected volume growth
+      - Use test mode to validate workflows without consuming production notification quota
+  - name: Optimization
+    description: >-
+      Optimize notification spend by leveraging smart channel routing to avoid
+      redundant multi-channel sends, using digest and batch features to consolidate
+      notifications, and right-sizing plan tier against actual monthly notification volume.
+    actions:
+      - Use smart channel routing to send to the most effective single channel per user
+      - Enable notification batching and digest features to reduce total send count
+      - Review monthly notification volume against plan quota and adjust tier accordingly
+      - Use annual billing to reduce per-month costs by approximately 9%
+      - Limit bulk workflow triggers to eligible use cases; use broadcast for large lists

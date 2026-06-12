@@ -1,0 +1,134 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+provider: SuprSend
+providerId: suprsend
+created: '2026-06-12'
+modified: '2026-06-12'
+reconciled: true
+type: freemium
+url: https://www.suprsend.com/pricing
+plans:
+  - name: Free
+    description: >-
+      Free tier for getting started with SuprSend. No credit card required.
+      Includes all notification channels and unlimited team members.
+    type: free
+    price: 0
+    currency: USD
+    billingPeriod: monthly
+    quotas:
+      - name: Monthly Notifications
+        metric: notifications
+        limit: 10000
+        timeFrame: monthly
+        type: quota
+    features:
+      - name: All Notification Channels
+        type: boolean
+        value: true
+      - name: Unlimited Team Members
+        type: boolean
+        value: true
+      - name: SuprSend Branding on In-App Feed
+        type: boolean
+        value: true
+  - name: Essentials
+    description: >-
+      Entry-level paid plan for growing teams. Removes SuprSend branding from
+      in-app notification feed. Includes overage billing for additional notifications.
+    type: paid
+    price: 110
+    currency: USD
+    billingPeriod: monthly
+    annualPrice: 100
+    annualBillingTotal: 1200
+    quotas:
+      - name: Monthly Notifications
+        metric: notifications
+        limit: 50000
+        timeFrame: monthly
+        type: quota
+    metered:
+      - name: Overage Notifications
+        metric: notifications_overage
+        price: 2.00
+        unit: 1000
+        currency: USD
+    features:
+      - name: All Notification Channels
+        type: boolean
+        value: true
+      - name: Unlimited Team Members
+        type: boolean
+        value: true
+      - name: SuprSend Branding Removed
+        type: boolean
+        value: true
+  - name: Business
+    description: >-
+      Popular plan for scaling teams. Includes advanced workflow features and
+      user preference management. Higher overage rate reflects premium feature set.
+    type: paid
+    price: 275
+    currency: USD
+    billingPeriod: monthly
+    annualPrice: 250
+    annualBillingTotal: 3000
+    quotas:
+      - name: Monthly Notifications
+        metric: notifications
+        limit: 50000
+        timeFrame: monthly
+        type: quota
+    metered:
+      - name: Overage Notifications
+        metric: notifications_overage
+        price: 5.00
+        unit: 1000
+        currency: USD
+    features:
+      - name: All Notification Channels
+        type: boolean
+        value: true
+      - name: Unlimited Team Members
+        type: boolean
+        value: true
+      - name: Advanced Workflows
+        type: boolean
+        value: true
+      - name: User Preferences Management
+        type: boolean
+        value: true
+      - name: SuprSend Branding Removed
+        type: boolean
+        value: true
+  - name: Enterprise
+    description: >-
+      Custom pricing for large organizations requiring volume discounts, dedicated
+      support, HIPAA/BAA compliance, or self-hosted deployment options.
+    type: enterprise
+    price: custom
+    currency: USD
+    billingPeriod: custom
+    quotas:
+      - name: Monthly Notifications
+        metric: notifications
+        limit: custom
+        timeFrame: monthly
+        type: quota
+    features:
+      - name: All Notification Channels
+        type: boolean
+        value: true
+      - name: Volume Discounts
+        type: boolean
+        value: true
+      - name: Dedicated Support
+        type: boolean
+        value: true
+      - name: HIPAA/BAA Compliance
+        type: boolean
+        value: true
+      - name: Self-Hosted Option
+        type: boolean
+        value: true

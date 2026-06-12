@@ -1,0 +1,38 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+provider: SuprSend
+providerId: suprsend
+created: '2026-06-12'
+modified: '2026-06-12'
+notes: >-
+  SuprSend does not publish explicit numeric rate limits in their public documentation.
+  The platform states it does not charge per request and maintains a "generous fair limit"
+  on request volume. Abnormally high request rates (typically caused by bugs or
+  misconfigurations) trigger outreach from the SuprSend team rather than automatic
+  hard blocking. The REST API returns HTTP 202 on accepted workflow triggers.
+  A hard limit of 100 recipients per single workflow trigger API call is documented.
+retryAfter: Retry-After
+throttled: 429
+limits:
+  - scope: workflow-trigger
+    metric: recipients_per_request
+    limit: 100
+    timeFrame: per-request
+    notes: >-
+      Maximum 100 recipients allowed in a single workflow trigger API call.
+      For larger audiences use List or Broadcast features instead.
+  - scope: bulk-operations
+    metric: recipients_per_bulk_trigger
+    limit: 1000
+    timeFrame: per-request
+    notes: >-
+      For bulk notification needs exceeding 100 recipients, SuprSend recommends
+      using the list and broadcast features which are optimized for large audiences.
+  - scope: global
+    metric: requests
+    limit: fair-use
+    timeFrame: rolling
+    notes: >-
+      No hard numeric rate limit is publicly documented. SuprSend enforces
+      a fair-use policy and proactively contacts customers experiencing
+      unusually high request volumes to ensure service continuity.

@@ -1,0 +1,96 @@
+aid: suprsend
+name: SuprSend
+description: >-
+  SuprSend is a notification infrastructure platform that enables engineering teams to build,
+  manage, and scale multi-channel notifications through a single unified API. It supports
+  delivery across email, SMS, push notifications, in-app inbox, WhatsApp, Slack, and
+  Microsoft Teams without requiring separate integrations for each channel. The platform
+  provides workflow orchestration, template management, user preference management, smart
+  channel routing with vendor fallback, and real-time delivery logs. SuprSend also offers
+  a Management API for programmatic control of workflows and templates, a CLI for asset
+  synchronization, and an MCP server enabling AI agents to interact with notification
+  infrastructure through tool calling.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Notifications
+  - Multi-Channel
+  - Email
+  - SMS
+  - Push Notifications
+  - In-App Inbox
+  - WhatsApp
+  - Slack
+  - Notification Infrastructure
+  - Workflow Automation
+  - Template Management
+url: https://raw.githubusercontent.com/api-evangelist/suprsend/refs/heads/main/apis.yml
+created: '2026-06-12'
+modified: '2026-06-12'
+specificationVersion: '0.19'
+apis:
+  - aid: suprsend:rest-api
+    name: SuprSend REST API
+    description: >-
+      The SuprSend REST API allows developers to programmatically trigger notification
+      workflows, manage users and subscribers, send broadcast notifications, and access
+      delivery logs. Authentication uses workspace key and secret credentials. The API
+      returns HTTP 202 on successful workflow triggers and supports up to 100 recipients
+      per single workflow trigger call.
+    humanURL: https://docs.suprsend.com/reference/overview
+    baseURL: https://hub.suprsend.com
+    tags:
+      - Notifications
+      - Workflows
+      - Multi-Channel
+      - REST
+    properties:
+      - type: Documentation
+        url: https://docs.suprsend.com/reference/overview
+      - type: PostmanCollection
+        url: https://docs.suprsend.com/docs/developer/overview
+  - aid: suprsend:management-api
+    name: SuprSend Management API
+    description: >-
+      The SuprSend Management API provides programmatic control over workspace assets
+      including workflows, templates, and other SuprSend configuration resources.
+      It uses service tokens for authentication rather than workspace keys, and
+      enables CI/CD integration for deploying notification configurations.
+    humanURL: https://docs.suprsend.com/docs/developer/overview
+    baseURL: https://hub.suprsend.com
+    tags:
+      - Management
+      - Workflows
+      - Templates
+      - Configuration
+    properties:
+      - type: Documentation
+        url: https://docs.suprsend.com/docs/developer/overview
+common:
+  - type: Website
+    url: https://www.suprsend.com/
+  - type: Documentation
+    url: https://docs.suprsend.com/docs
+  - type: GitHubOrganization
+    url: https://github.com/suprsend
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/suprsend/
+  - type: X
+    url: https://x.com/suprsend
+  - type: Blog
+    url: https://www.suprsend.com/blog
+  - type: Changelog
+    url: https://docs.suprsend.com/changelog
+  - type: Pricing
+    url: https://www.suprsend.com/pricing
+  - type: StatusPage
+    url: https://status.suprsend.com/
+  - type: Plans
+    url: plans/suprsend-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/suprsend-rate-limits.yml
+  - type: FinOps
+    url: finops/suprsend-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
