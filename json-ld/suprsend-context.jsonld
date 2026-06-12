@@ -1,0 +1,152 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "ss": "https://www.suprsend.com/vocab#",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+
+    "Workspace": "ss:Workspace",
+    "Workflow": "ss:Workflow",
+    "WorkflowTrigger": "ss:WorkflowTrigger",
+    "Broadcast": "ss:Broadcast",
+    "Event": "ss:Event",
+    "Template": "ss:Template",
+    "TemplateVariant": "ss:TemplateVariant",
+    "SubscriberList": "ss:SubscriberList",
+    "Subscriber": "ss:Subscriber",
+    "Tenant": "ss:Tenant",
+    "Object": "ss:Object",
+    "PreferenceCategory": "ss:PreferenceCategory",
+    "ChannelPreference": "ss:ChannelPreference",
+    "DeliveryLog": "ss:DeliveryLog",
+    "DigestNode": "ss:DigestNode",
+    "DelayNode": "ss:DelayNode",
+    "BatchNode": "ss:BatchNode",
+    "BranchNode": "ss:BranchNode",
+    "TransformNode": "ss:TransformNode",
+    "SendEmailNode": "ss:SendEmailNode",
+    "SendSmsNode": "ss:SendSmsNode",
+    "SendWhatsappNode": "ss:SendWhatsappNode",
+    "SendMobilePushNode": "ss:SendMobilePushNode",
+    "SendInboxNode": "ss:SendInboxNode",
+    "SendWebpushNode": "ss:SendWebpushNode",
+    "SendSlackNode": "ss:SendSlackNode",
+    "SendMsTeamsNode": "ss:SendMsTeamsNode",
+
+    "workspace_key": {
+      "@id": "ss:workspaceKey",
+      "@type": "xsd:string"
+    },
+    "distinct_id": {
+      "@id": "ss:distinctId",
+      "@type": "xsd:string"
+    },
+    "list_id": {
+      "@id": "ss:listId",
+      "@type": "xsd:string"
+    },
+    "list_name": {
+      "@id": "ss:listName",
+      "@type": "xsd:string"
+    },
+    "tenant_id": {
+      "@id": "ss:tenantId",
+      "@type": "xsd:string"
+    },
+    "tenant_name": {
+      "@id": "ss:tenantName",
+      "@type": "xsd:string"
+    },
+    "template_slug": {
+      "@id": "ss:templateSlug",
+      "@type": "xsd:string"
+    },
+    "workflow_slug": {
+      "@id": "ss:workflowSlug",
+      "@type": "xsd:string"
+    },
+    "event_name": {
+      "@id": "ss:eventName",
+      "@type": "xsd:string"
+    },
+    "channel": {
+      "@id": "ss:channel",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "ss:status",
+      "@type": "xsd:string"
+    },
+    "is_restricted": {
+      "@id": "ss:isRestricted",
+      "@type": "xsd:boolean"
+    },
+    "is_unsubscribed": {
+      "@id": "ss:isUnsubscribed",
+      "@type": "xsd:boolean"
+    },
+    "recipients": {
+      "@id": "ss:recipients",
+      "@container": "@set"
+    },
+    "data": {
+      "@id": "ss:data"
+    },
+    "properties": {
+      "@id": "ss:properties"
+    },
+    "nodes": {
+      "@id": "ss:nodes",
+      "@container": "@list"
+    },
+    "idempotency_key": {
+      "@id": "ss:idempotencyKey",
+      "@type": "xsd:string"
+    },
+    "created_at": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "updated_at": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    },
+    "name": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "description": {
+      "@id": "schema:description",
+      "@type": "xsd:string"
+    },
+    "logo": {
+      "@id": "schema:logo",
+      "@type": "@id"
+    },
+    "primary_color": {
+      "@id": "ss:primaryColor",
+      "@type": "xsd:string"
+    },
+    "secondary_color": {
+      "@id": "ss:secondaryColor",
+      "@type": "xsd:string"
+    },
+    "object_type": {
+      "@id": "ss:objectType",
+      "@type": "xsd:string"
+    },
+    "category_slug": {
+      "@id": "ss:categorySlug",
+      "@type": "xsd:string"
+    },
+    "variant_id": {
+      "@id": "ss:variantId",
+      "@type": "xsd:string"
+    },
+    "version": {
+      "@id": "ss:version",
+      "@type": "xsd:string"
+    }
+  }
+}

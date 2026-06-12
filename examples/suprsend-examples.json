@@ -1,0 +1,190 @@
+[
+  {
+    "name": "Trigger a Workflow",
+    "description": "Trigger a named workflow for a single recipient with data payload.",
+    "method": "POST",
+    "path": "/{workspace_key}/trigger/",
+    "headers": {
+      "Authorization": "Bearer YOUR_API_KEY",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "name": "order-shipped",
+      "data": {
+        "order_id": "ORD-1234",
+        "customer_name": "Jane Smith",
+        "tracking_url": "https://track.example.com/ORD-1234"
+      },
+      "recipients": [
+        {
+          "distinct_id": "user_abc123",
+          "$email": "jane@example.com",
+          "$sms": "+14155552671",
+          "$whatsapp": "+14155552671"
+        }
+      ]
+    },
+    "response": {
+      "status": 202,
+      "body": {
+        "status": "success",
+        "status_code": 202,
+        "message": "Message queued"
+      }
+    }
+  },
+  {
+    "name": "Trigger an Event",
+    "description": "Pass an event to SuprSend to trigger workflows associated with that event.",
+    "method": "POST",
+    "path": "/event/",
+    "headers": {
+      "Authorization": "Bearer YOUR_API_KEY",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "distinct_id": "user_abc123",
+      "event": "order_placed",
+      "properties": {
+        "order_id": "ORD-5678",
+        "amount": 99.99
+      }
+    },
+    "response": {
+      "status": 202,
+      "body": {
+        "status": "success",
+        "status_code": 202,
+        "message": "Event queued"
+      }
+    }
+  },
+  {
+    "name": "Trigger a Broadcast",
+    "description": "Send a broadcast notification to a subscriber list.",
+    "method": "POST",
+    "path": "/{workspace_key}/broadcast/",
+    "headers": {
+      "Authorization": "Bearer YOUR_API_KEY",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "list_id": "marketing-list",
+      "template": "weekly-newsletter",
+      "data": {
+        "subject": "This Week at Acme",
+        "headline": "New Features Released"
+      }
+    },
+    "response": {
+      "status": 202,
+      "body": {
+        "status": "success",
+        "status_code": 202,
+        "message": "Broadcast queued"
+      }
+    }
+  },
+  {
+    "name": "Create or Update a User",
+    "description": "Create a user profile or update an existing user's properties.",
+    "method": "POST",
+    "path": "/v1/object/users/{id}/",
+    "headers": {
+      "Authorization": "Bearer YOUR_API_KEY",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "$email": "jane@example.com",
+      "$sms": "+14155552671",
+      "$whatsapp": "+14155552671",
+      "name": "Jane Smith",
+      "plan": "pro"
+    },
+    "response": {
+      "status": 202,
+      "body": {
+        "status": "success",
+        "status_code": 202
+      }
+    }
+  },
+  {
+    "name": "Create a Subscriber List",
+    "description": "Create a new subscriber list for sending bulk notifications.",
+    "method": "POST",
+    "path": "/v1/subscriber_list/",
+    "headers": {
+      "Authorization": "Bearer YOUR_API_KEY",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "list_id": "vip-customers",
+      "list_name": "VIP Customers"
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "list_id": "vip-customers",
+        "list_name": "VIP Customers",
+        "status": "created"
+      }
+    }
+  },
+  {
+    "name": "Get User Preferences",
+    "description": "Fetch notification preferences for a specific user across all categories.",
+    "method": "GET",
+    "path": "/v1/user/{distinct_id}/preference/",
+    "headers": {
+      "Authorization": "Bearer YOUR_API_KEY"
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "distinct_id": "user_abc123",
+        "channel_preferences": [
+          {
+            "channel": "email",
+            "is_restricted": false
+          },
+          {
+            "channel": "sms",
+            "is_restricted": false
+          }
+        ],
+        "categories": [
+          {
+            "category": "marketing",
+            "is_unsubscribed": false,
+            "channel_preferences": []
+          }
+        ]
+      }
+    }
+  },
+  {
+    "name": "Create or Update a Tenant",
+    "description": "Create a new tenant or update existing tenant settings for white-labeling.",
+    "method": "POST",
+    "path": "/v1/tenant/{tenant_id}/",
+    "headers": {
+      "Authorization": "Bearer YOUR_API_KEY",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "tenant_name": "Acme Corp",
+      "logo": "https://cdn.acme.com/logo.png",
+      "primary_color": "#FF5733",
+      "secondary_color": "#C70039"
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "tenant_id": "acme-corp",
+        "tenant_name": "Acme Corp",
+        "status": "created"
+      }
+    }
+  }
+]

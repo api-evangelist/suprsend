@@ -49,6 +49,8 @@ apis:
         url: https://docs.suprsend.com/reference/overview
       - type: PostmanCollection
         url: https://docs.suprsend.com/docs/developer/overview
+      - type: OpenAPI
+        url: openapi/suprsend-rest-api-openapi.yml
   - aid: suprsend:management-api
     name: SuprSend Management API
     description: >-
@@ -91,6 +93,14 @@ common:
     url: rate-limits/suprsend-rate-limits.yml
   - type: FinOps
     url: finops/suprsend-finops.yml
+  - type: JSONSchema
+    url: json-schema/suprsend-schema.json
+  - type: Examples
+    url: examples/suprsend-examples.json
+  - type: Vocabulary
+    url: vocabulary/suprsend-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/suprsend-context.jsonld
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

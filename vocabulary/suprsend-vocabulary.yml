@@ -1,0 +1,154 @@
+vocabulary:
+  - term: workspace
+    definition: >-
+      A logical container within SuprSend that holds all API keys, templates,
+      workflows, and users. Each workspace corresponds to a product or
+      environment (e.g., production, staging).
+
+  - term: workspace_key
+    definition: >-
+      The public identifier for a SuprSend workspace, used in API URLs and
+      request authentication. Paired with the workspace secret to authenticate
+      REST API calls.
+
+  - term: distinct_id
+    definition: >-
+      A unique string identifier for a user or subscriber within a workspace.
+      Developers supply this value; it typically maps to an internal user ID.
+
+  - term: workflow
+    definition: >-
+      A directed graph of nodes defining the logic for delivering a
+      notification, including delay, batching, branching, channel selection,
+      and message rendering. Workflows are triggered by events or API calls.
+
+  - term: workflow_trigger
+    definition: >-
+      An API call or event that initiates the execution of a workflow for one
+      or more recipients. Single triggers support up to 100 recipients per
+      call.
+
+  - term: broadcast
+    definition: >-
+      A bulk notification sent to all subscribers in a list. Broadcasts use
+      the same workflow execution model but target an entire subscriber list
+      rather than individually specified recipients.
+
+  - term: event
+    definition: >-
+      A named occurrence in the caller's system (e.g., order_placed, payment_failed)
+      that is forwarded to SuprSend. Events can be linked to workflows to
+      automatically trigger notifications.
+
+  - term: template
+    definition: >-
+      A versioned, channel-specific content definition that controls the
+      subject, body, and design of a notification message. Templates may
+      include Liquid or Handlebars variable substitution.
+
+  - term: template_variant
+    definition: >-
+      A specific version of a template for a given channel (email, SMS, push,
+      etc.). Multiple variants allow A/B testing or locale-specific content.
+
+  - term: channel
+    definition: >-
+      A delivery medium for notifications. SuprSend supports email, SMS,
+      push notifications, in-app inbox, WhatsApp, Slack, and Microsoft Teams.
+
+  - term: subscriber_list
+    definition: >-
+      A named collection of user distinct_ids used as the target for broadcast
+      notifications. Lists can be managed via API or synced in bulk.
+
+  - term: tenant
+    definition: >-
+      A sub-account or customer organization within a multi-tenant product.
+      Tenants can have their own branding (logo, colors) and notification
+      preference defaults.
+
+  - term: object
+    definition: >-
+      A non-user entity in SuprSend (e.g., a team, project, or device) that
+      can receive notifications and maintain notification preferences. Objects
+      have a type and an ID.
+
+  - term: preference_category
+    definition: >-
+      A named grouping used to let end-users control which types of
+      notifications they receive. Categories correspond to marketing,
+      transactional, alerts, etc.
+
+  - term: channel_preference
+    definition: >-
+      A per-channel opt-in or opt-out setting for a user, tenant, or object.
+      Channel preferences override default delivery behavior.
+
+  - term: smart_routing
+    definition: >-
+      A SuprSend feature that automatically selects the best available channel
+      to reach a recipient, falling back to secondary channels if the primary
+      channel fails or is unavailable.
+
+  - term: vendor_fallback
+    definition: >-
+      The automatic switch to a secondary provider when a primary vendor for
+      a delivery channel (e.g., an ESP or SMS gateway) experiences an error
+      or degraded performance.
+
+  - term: delivery_log
+    definition: >-
+      A real-time record of notification dispatch attempts, delivery status,
+      and engagement events (opens, clicks) for each message sent through
+      SuprSend.
+
+  - term: management_api
+    definition: >-
+      A separate SuprSend API surface that provides programmatic CRUD access
+      to workspace assets such as workflows, templates, and preference
+      categories. Uses service token authentication rather than workspace keys.
+
+  - term: service_token
+    definition: >-
+      A long-lived authentication credential used with the Management API.
+      Service tokens are created in the SuprSend dashboard under Account
+      Settings and are scoped to management operations.
+
+  - term: mcp_server
+    definition: >-
+      A Model Context Protocol (MCP) server provided by SuprSend that exposes
+      notification infrastructure as tools callable by AI agents and LLM-based
+      workflows.
+
+  - term: digest_node
+    definition: >-
+      A workflow node that aggregates multiple incoming events into a single
+      batched notification, reducing notification volume for high-frequency
+      events.
+
+  - term: delay_node
+    definition: >-
+      A workflow node that introduces a time-based pause before proceeding to
+      the next node. Delays can be fixed durations or scheduled to fire at a
+      specific time window.
+
+  - term: batch_node
+    definition: >-
+      A workflow node similar to digest that groups events in a time window
+      before sending a consolidated notification.
+
+  - term: branch_node
+    definition: >-
+      A workflow node that routes execution down different paths based on
+      conditional logic evaluated against event data or user properties.
+
+  - term: transform_node
+    definition: >-
+      A workflow node that applies data transformation logic to the payload
+      before passing it to downstream nodes.
+
+  - term: idempotency_key
+    definition: >-
+      An optional client-supplied unique key attached to a workflow trigger
+      or broadcast request. SuprSend uses this key to deduplicate retried
+      requests and prevent duplicate notification delivery.
