@@ -81,7 +81,7 @@ common:
     url: https://x.com/suprsend
   - type: Blog
     url: https://www.suprsend.com/blog
-  - type: Changelog
+  - type: ChangeLog
     url: https://docs.suprsend.com/changelog
   - type: Pricing
     url: https://www.suprsend.com/pricing

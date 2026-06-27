@@ -2,13 +2,13 @@
   "repo": "suprsend",
   "feeds": [
     {
-      "source": "https://x.com/suprsend",
-      "feed_url": "https://x.com/suprsend",
-      "title": "",
-      "saved": 0,
-      "method": "none"
+      "source": "https://www.suprsend.com/blog",
+      "feed_url": "",
+      "saved": 8,
+      "method": "agent-scrape"
     }
   ],
-  "post_count": 0,
-  "fetched": "2026-06-14T20:42:17Z"
+  "post_count": 8,
+  "fetched": "2026-06-27T13:13:23Z",
+  "agent_pulled": "2026-06-27"
 }
