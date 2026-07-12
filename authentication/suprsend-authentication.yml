@@ -1,0 +1,34 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/suprsend-rest-api-openapi.yml
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - header
+schemes:
+- name: BearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: API_Key
+  description: Pass as `Bearer <API_KEY>`. Get API Key from SuprSend dashboard Developers ->
+    API Keys section.
+  sources:
+  - openapi/suprsend-rest-api-openapi.yml
+- name: ServiceTokenAuth
+  type: apiKey
+  in: header
+  parameter: ServiceToken <token>
+  description: You can get Service Token from [SuprSend dashboard -> Account Settings -> Service
+    Tokens](https://app.suprsend.com/en/account-settings/service-tokens) section.
+  sources:
+  - openapi/suprsend-rest-api-openapi.yml
+- name: sec0
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: Bearer authentication header of the form `Bearer <token>`, where <token> is your
+    auth token.
+  sources:
+  - openapi/suprsend-rest-api-openapi.yml

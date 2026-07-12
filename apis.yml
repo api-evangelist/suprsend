@@ -69,6 +69,12 @@ apis:
       - type: Documentation
         url: https://docs.suprsend.com/docs/developer/overview
 common:
+  - type: TrustCenter
+    url: security/suprsend-trust-center.yml
+  - type: DomainSecurity
+    url: security/suprsend-domain-security.yml
+  - type: Authentication
+    url: authentication/suprsend-authentication.yml
   - type: Website
     url: https://www.suprsend.com/
   - type: Documentation

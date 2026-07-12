@@ -1,0 +1,28 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.suprsend.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 10 15:03:07 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: docs.suprsend.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 12 01:43:38 2026 GMT
+  hsts: true
+  hsts_max_age: 63072000
+- host: hub.suprsend.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Aug 20 18:17:07 2026 GMT
+  hsts: null
+domains:
+- domain: suprsend.com
+  dnssec: true
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: reject
