@@ -1,0 +1,486 @@
+openapi: 3.1.1
+info:
+  title: SuprSend Broadcast Ws Public Key API
+  description: APIs supported on suprsend platform
+  version: 1.2.2
+servers:
+- url: https://hub.suprsend.com
+security:
+- sec0: []
+- BearerAuth: []
+tags:
+- name: Ws Public Key
+paths:
+  /v1/{workspace}/ws_public_key/:
+    get:
+      summary: List Workspace Public Keys
+      description: List public keys for this workspace. Public keys are used by client-side SDKs.
+      operationId: list-workspace-public-keys
+      servers:
+      - url: https://management-api.suprsend.com
+      security:
+      - ServiceTokenAuth: []
+      x-codeSamples:
+      - lang: cURL
+        label: List Workspace Public Keys
+        source: "curl -X GET \"https://management-api.suprsend.com/v1/{workspace}/ws_public_key/\" \\\n  --header 'Authorization: ServiceToken <SERVICE_TOKEN>' \\\n  --header 'Content-Type: application/json'\n"
+      parameters:
+      - in: path
+        name: workspace
+        required: true
+        schema:
+          type: string
+        description: Workspace slug (e.g. `staging`, `production`).
+      responses:
+        '200':
+          description: Successfully retrieved public keys.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagementWorkspacePublicKeyListResponse'
+              example:
+                meta:
+                  count: 2
+                  limit: 10
+                  offset: 0
+                results:
+                - id: ws_pubk_exampleId01
+                  api_key: SS.PUBK.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+                  name: web-app
+                  allowed_domains: null
+                  is_secure_mode_enabled: false
+                  is_deleted: false
+                  is_default: false
+                  created_at: '2026-04-21T11:12:23.557360Z'
+                  created_by:
+                    name: System User
+                    email: org_XXXXXXXXXXXXXXXXXXXXXX@systemuser.suprsend.com
+                  rotated_at: null
+                  rotated_by: null
+                  updated_at: '2026-04-21T11:12:23.557406Z'
+                  updated_by: null
+                - id: ws_pubk_exampleId02
+                  api_key: SS.PUBK.yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy
+                  name: default
+                  allowed_domains: null
+                  is_secure_mode_enabled: false
+                  is_deleted: false
+                  is_default: true
+                  created_at: '2024-08-27T10:54:03.512045Z'
+                  created_by: null
+                  rotated_at: '2026-04-15T17:59:45.634355Z'
+                  rotated_by:
+                    name: System User
+                    email: org_XXXXXXXXXXXXXXXXXXXXXX@systemuser.suprsend.com
+                  updated_at: '2026-04-15T17:59:45.634452Z'
+                  updated_by:
+                    name: System User
+                    email: org_XXXXXXXXXXXXXXXXXXXXXX@systemuser.suprsend.com
+        '401':
+          $ref: '#/components/responses/AuthenticationError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+      tags:
+      - Ws Public Key
+    post:
+      summary: Create Workspace Public Key
+      description: Create a new public key for this workspace. Public keys can be safely distributed to client SDKs.
+      operationId: create-workspace-public-key
+      servers:
+      - url: https://management-api.suprsend.com
+      security:
+      - ServiceTokenAuth: []
+      x-codeSamples:
+      - lang: cURL
+        label: Create Workspace Public Key
+        source: "curl -X POST \"https://management-api.suprsend.com/v1/{workspace}/ws_public_key/\" \\\n  --header 'Authorization: ServiceToken <SERVICE_TOKEN>' \\\n  --header 'Content-Type: application/json' \\\n  --data '{\"name\":\"web-app\",\"description\":\"Browser integration\"}'\n"
+      parameters:
+      - in: path
+        name: workspace
+        required: true
+        schema:
+          type: string
+        description: Workspace slug (e.g. `staging`, `production`).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkspacePublicKeyCreateRequest'
+            example:
+              name: web-app
+              description: Browser integration
+      responses:
+        '201':
+          description: Public key created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagementWorkspacePublicKey'
+              example:
+                id: ws_pubk_exampleId01
+                api_key: SS.PUBK.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+                name: web-app
+                allowed_domains: null
+                is_secure_mode_enabled: false
+                is_deleted: false
+                is_default: false
+                created_at: '2026-04-21T12:31:18.943398Z'
+                created_by:
+                  name: System User
+                  email: org_XXXXXXXXXXXXXXXXXXXXXX@systemuser.suprsend.com
+                rotated_at: null
+                rotated_by: null
+                updated_at: '2026-04-21T12:31:18.943443Z'
+                updated_by: null
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/AuthenticationError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+      tags:
+      - Ws Public Key
+  /v1/{workspace}/ws_public_key/{public_key_id}/:
+    patch:
+      summary: Enable/Disable Secure Mode on Public Key
+      description: Enable or disable secure mode on an existing public key (e.g. `ws_pubk_...`).
+      operationId: patch-workspace-public-key
+      servers:
+      - url: https://management-api.suprsend.com
+      security:
+      - ServiceTokenAuth: []
+      x-codeSamples:
+      - lang: cURL
+        label: Patch Workspace Public Key
+        source: "curl -X PATCH \"https://management-api.suprsend.com/v1/{workspace}/ws_public_key/{public_key_id}/\" \\\n  --header 'Authorization: ServiceToken <SERVICE_TOKEN>' \\\n  --header 'Content-Type: application/json' \\\n  --data '{\"is_secure_mode_enabled\":true}'\n"
+      parameters:
+      - in: path
+        name: workspace
+        required: true
+        schema:
+          type: string
+        description: Workspace slug (e.g. `staging`, `production`).
+      - in: path
+        name: public_key_id
+        required: true
+        schema:
+          type: string
+        description: Public key identifier (e.g. `ws_pubk_...`).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkspacePublicKeyPatchRequest'
+            example:
+              is_secure_mode_enabled: true
+      responses:
+        '202':
+          description: Secure mode update accepted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagementWorkspacePublicKey'
+              example:
+                id: ws_pubk_exampleId01
+                api_key: SS.PUBK.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+                name: web-app
+                allowed_domains: null
+                is_secure_mode_enabled: true
+                is_deleted: false
+                is_default: false
+                created_at: '2026-04-21T13:08:29.144658Z'
+                created_by:
+                  name: Example User
+                  email: user@example.com
+                rotated_at: '2026-04-21T13:08:59.983999Z'
+                rotated_by:
+                  name: System User
+                  email: org_XXXXXXXXXXXXXXXXXXXXXX@systemuser.suprsend.com
+                updated_at: '2026-04-21T13:08:59.984183Z'
+                updated_by:
+                  name: System User
+                  email: org_XXXXXXXXXXXXXXXXXXXXXX@systemuser.suprsend.com
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/AuthenticationError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+      tags:
+      - Ws Public Key
+    delete:
+      summary: Delete Workspace Public Key
+      description: Delete a public key by its `id`.
+      operationId: delete-workspace-public-key
+      servers:
+      - url: https://management-api.suprsend.com
+      security:
+      - ServiceTokenAuth: []
+      x-codeSamples:
+      - lang: cURL
+        label: Delete Workspace Public Key
+        source: "curl -X DELETE \"https://management-api.suprsend.com/v1/{workspace}/ws_public_key/{public_key_id}/\" \\\n  --header 'Authorization: ServiceToken <SERVICE_TOKEN>'\n"
+      parameters:
+      - in: path
+        name: workspace
+        required: true
+        schema:
+          type: string
+        description: Workspace slug (e.g. `staging`, `production`).
+      - in: path
+        name: public_key_id
+        required: true
+        schema:
+          type: string
+        description: Public key identifier (e.g. `ws_pubk_...`).
+      responses:
+        '204':
+          description: Public key deleted - no response body.
+        '401':
+          $ref: '#/components/responses/AuthenticationError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+      tags:
+      - Ws Public Key
+  /v1/{workspace}/ws_public_key/{public_key_id}/rotate/:
+    patch:
+      summary: Rotate Workspace Public Key
+      description: Rotate public key material while keeping the same logical key record. Clients using the old material must switch to the new value.
+      operationId: rotate-workspace-public-key
+      servers:
+      - url: https://management-api.suprsend.com
+      security:
+      - ServiceTokenAuth: []
+      x-codeSamples:
+      - lang: cURL
+        label: Rotate Workspace Public Key
+        source: "curl -X PATCH \"https://management-api.suprsend.com/v1/{workspace}/ws_public_key/{public_key_id}/rotate/\" \\\n  --header 'Authorization: ServiceToken <SERVICE_TOKEN>'\n"
+      parameters:
+      - in: path
+        name: workspace
+        required: true
+        schema:
+          type: string
+        description: Workspace slug (e.g. `staging`, `production`).
+      - in: path
+        name: public_key_id
+        required: true
+        schema:
+          type: string
+        description: Public key identifier (e.g. `ws_pubk_...`).
+      responses:
+        '202':
+          description: Public key rotation accepted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagementWorkspacePublicKey'
+              example:
+                id: ws_pubk_exampleId01
+                api_key: SS.PUBK.zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+                name: web-app
+                allowed_domains: null
+                is_secure_mode_enabled: false
+                is_deleted: false
+                is_default: false
+                created_at: '2026-04-21T13:08:29.144658Z'
+                created_by:
+                  name: Example User
+                  email: user@example.com
+                rotated_at: '2026-04-21T13:08:59.983999Z'
+                rotated_by:
+                  name: System User
+                  email: org_XXXXXXXXXXXXXXXXXXXXXX@systemuser.suprsend.com
+                updated_at: '2026-04-21T13:08:59.984183Z'
+                updated_by:
+                  name: System User
+                  email: org_XXXXXXXXXXXXXXXXXXXXXX@systemuser.suprsend.com
+        '401':
+          $ref: '#/components/responses/AuthenticationError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+      tags:
+      - Ws Public Key
+components:
+  schemas:
+    ManagementWorkspacePublicKeyListResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/ManagementListMeta'
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ManagementWorkspacePublicKey'
+    ManagementActor:
+      type: object
+      description: Identity that performed an action (created, updated, rolled, deleted, rotated).
+      nullable: true
+      properties:
+        name:
+          type: string
+          description: Display name of the actor.
+          example: System User
+        email:
+          type: string
+          description: Email address of the actor.
+          example: user@example.com
+    ManagementWorkspacePublicKey:
+      type: object
+      description: Workspace public key used by client SDKs.
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the public key.
+          example: ws_pubk_exampleId01
+        api_key:
+          type: string
+          description: Public key value exposed to clients.
+          example: SS.PUBK.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+        name:
+          type: string
+          description: Label for the public key.
+          example: web-app
+        allowed_domains:
+          type: array
+          nullable: true
+          items:
+            type: string
+          description: Domains allowed to use this public key.
+        is_secure_mode_enabled:
+          type: boolean
+          description: Indicates whether secure mode is enabled for this key.
+        is_deleted:
+          type: boolean
+          description: Indicates whether the public key has been deleted.
+        is_default:
+          type: boolean
+          description: Indicates whether this is the default public key for the workspace.
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp when the public key was created.
+        created_by:
+          $ref: '#/components/schemas/ManagementActor'
+        rotated_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: Timestamp when the public key was last rotated.
+        rotated_by:
+          $ref: '#/components/schemas/ManagementActor'
+        updated_at:
+          type: string
+          format: date-time
+          description: Timestamp when the public key was last updated.
+        updated_by:
+          $ref: '#/components/schemas/ManagementActor'
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: HTTP status code
+        error_code:
+          type: string
+          description: Specific error code identifier
+        type:
+          type: string
+          description: Error type classification
+        message:
+          type: string
+          description: Human-readable error message
+        detail:
+          type: string
+          description: Additional error details
+    WorkspacePublicKeyCreateRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Label for the public key.
+          example: web-app
+        description:
+          type: string
+          nullable: true
+          description: Optional notes.
+    WorkspacePublicKeyPatchRequest:
+      type: object
+      required:
+      - is_secure_mode_enabled
+      properties:
+        is_secure_mode_enabled:
+          type: boolean
+          description: Enable or disable secure mode for this public key.
+    ManagementListMeta:
+      type: object
+      description: Pagination metadata (when applicable)
+      properties:
+        count:
+          type: integer
+          description: Total items matching the query
+        limit:
+          type: integer
+          nullable: true
+          description: Maximum number of results returned per page.
+        offset:
+          type: integer
+          nullable: true
+          description: Starting position of the returned results.
+  responses:
+    ValidationError:
+      description: Validation error - data validation failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFoundError:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            code: 404
+            error_code: not_found
+            type: NotFound
+            message: workspace 'demo' not found
+            detail: workspace 'demo' not found
+    AuthenticationError:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            code: 401
+            error_code: authentication_failed
+            type: AuthenticationFailed
+            message: Invalid service token.
+            detail: Invalid service token.
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API_Key
+      description: Pass as `Bearer <API_KEY>`. Get API Key from SuprSend dashboard Developers -> API Keys section.
+    ServiceTokenAuth:
+      type: apiKey
+      in: header
+      name: ServiceToken <token>
+      description: You can get Service Token from [SuprSend dashboard -> Account Settings -> Service Tokens](https://app.suprsend.com/en/account-settings/service-tokens) section.
+    sec0:
+      type: apiKey
+      in: header
+      name: Authorization
+      x-bearer-format: bearer
+      description: Bearer authentication header of the form `Bearer <token>`, where <token> is your auth token.
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+x-readme-fauxas: true

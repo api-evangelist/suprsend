@@ -1,0 +1,135 @@
+openapi: 3.1.1
+info:
+  title: SuprSend Broadcast Workflow Run API
+  description: APIs supported on suprsend platform
+  version: 1.2.2
+servers:
+- url: https://hub.suprsend.com
+security:
+- sec0: []
+- BearerAuth: []
+tags:
+- name: Workflow Run
+paths:
+  /v1/workflow_run/cancel/:
+    post:
+      summary: Cancel Workflow
+      security:
+      - BearerAuth: []
+      description: 'API to cancel a running workflow execution. You can cancel a workflow by passing any combination of filters in the request body. When multiple parameters are provided, they are **ANDed** together to narrow down the matching workflow runs.
+
+
+        For example, passing both `workflow_slug` and `recipients` will cancel only the workflow runs that match both the given slug and recipients.
+
+        '
+      operationId: cancel-workflow
+      x-codeSamples:
+      - lang: cURL
+        label: Cancel by execution_id
+        source: "curl --request POST \\\n  --url 'https://hub.suprsend.com/v1/workflow_run/cancel/' \\\n  --header 'Authorization: Bearer __your_api_key__' \\\n  --header 'Content-Type: application/json' \\\n  --data '{\n    \"execution_id\": \"dsl_xxxx-xxxx-xxxx-xxxx\"\n  }'\n"
+      - lang: cURL
+        label: Cancel by multiple filters
+        source: "curl --request POST \\\n  --url 'https://hub.suprsend.com/v1/workflow_run/cancel/' \\\n  --header 'Authorization: Bearer __your_api_key__' \\\n  --header 'Content-Type: application/json' \\\n  --data '{\n    \"recipients\": [\"user_123\"],\n    \"workflow_slug\": \"order-confirmation\"\n  }'\n"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: 'Filter parameters to identify workflow runs to cancel. At least one parameter must be provided. When multiple parameters are passed, they are **ANDed** together.
+
+                '
+              properties:
+                execution_id:
+                  type: string
+                  description: Unique execution identifier of the workflow run to cancel. You can find this in the workflow logs on the SuprSend dashboard.
+                  example: dsl_xxxx-xxxx-xxxx-xxxx
+                recipients:
+                  type: array
+                  description: List of recipient identifiers (distinct_id or contact info) whose workflow runs should be cancelled.
+                  items:
+                    type: string
+                  example:
+                  - user_123
+                  - user@example.com
+                idempotency_key:
+                  type: string
+                  description: Idempotency key that was passed when triggering the workflow. Use this to cancel a specific workflow triggered with a known idempotency key.
+                  example: a1b2c3d4-xxxx-xxxx-xxxx-ef0123456789
+                workflow_slug:
+                  type: string
+                  description: Slug of the workflow whose runs should be cancelled.
+                  example: order-confirmation
+      responses:
+        '200':
+          description: 200 - OK
+          content:
+            application/json:
+              examples:
+                Cancelled:
+                  summary: Workflow runs cancelled
+                  value:
+                    execution_ids:
+                    - dsl_xxxx-xxxx-xxxx-xxxx
+                NoMatch:
+                  summary: No matching workflow runs found
+                  value:
+                    execution_ids: []
+              schema:
+                type: object
+                properties:
+                  execution_ids:
+                    type: array
+                    description: List of workflow execution IDs that were successfully cancelled. Empty array if no matching workflow runs were found.
+                    items:
+                      type: string
+                      description: Unique execution identifier of the cancelled workflow run.
+                    example:
+                    - dsl_xxxx-xxxx-xxxx-xxxx
+        '400':
+          description: 400 - Bad Request
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    code: 400
+                    message: 'at least one filter is required: execution_id, recipients, idempotency_key'
+              schema:
+                type: object
+                description: Returned when the request body does not include at least one valid filter parameter.
+                properties:
+                  code:
+                    type: integer
+                    description: HTTP status code of the error.
+                    example: 400
+                  message:
+                    type: string
+                    description: Human-readable error message describing the issue.
+                    example: 'at least one filter is required: execution_id, recipients, idempotency_key'
+      deprecated: false
+      tags:
+      - Workflow Run
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API_Key
+      description: Pass as `Bearer <API_KEY>`. Get API Key from SuprSend dashboard Developers -> API Keys section.
+    ServiceTokenAuth:
+      type: apiKey
+      in: header
+      name: ServiceToken <token>
+      description: You can get Service Token from [SuprSend dashboard -> Account Settings -> Service Tokens](https://app.suprsend.com/en/account-settings/service-tokens) section.
+    sec0:
+      type: apiKey
+      in: header
+      name: Authorization
+      x-bearer-format: bearer
+      description: Bearer authentication header of the form `Bearer <token>`, where <token> is your auth token.
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+x-readme-fauxas: true

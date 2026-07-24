@@ -1,0 +1,124 @@
+openapi: 3.1.1
+info:
+  title: SuprSend Broadcast API
+  description: APIs supported on suprsend platform
+  version: 1.2.2
+servers:
+- url: https://hub.suprsend.com
+security:
+- sec0: []
+- BearerAuth: []
+tags:
+- name: Broadcast
+paths:
+  /{workspace_key}/broadcast/:
+    post:
+      summary: Trigger Broadcast
+      security:
+      - BearerAuth: []
+      description: API to trigger broadcast notification to list users.
+      operationId: trigger-broadcast
+      x-codeSamples:
+      - lang: cURL
+        label: Trigger Broadcast
+        source: "curl -X POST \"https://hub.suprsend.com/{workspace_key}/broadcast/\" \\\n  --header 'Authorization: Bearer __YOUR_API_KEY__' \\\n  --header 'Content-Type: application/json' \\\n  --data '{\n    \"list_id\": \"_list_id_\",\n    \"template\": \"_template_slug_\",\n    \"notification_category\": \"transactional\",\n    \"data\": {\n      \"user_name\": \"John Doe\",\n      \"product_name\": \"Premium Plan\"\n    }\n  }'\n"
+      parameters:
+      - name: workspace_key
+        in: path
+        description: unique identifier of your workspace
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - list_id
+              - template
+              - notification_category
+              properties:
+                list_id:
+                  type: string
+                  description: unique identifier to user list that you want to send broadcast messages to.
+                  default: _list_id_
+                template:
+                  type: string
+                  description: Unique slug name of the template created on SuprSend dashboard. You can get this by clicking on the clipboard icon next to the Template name on SuprSend templates page.
+                  default: _template_slug_
+                notification_category:
+                  type: string
+                  description: Category in which your notification belongs. You can understand more about them in the [Notification Category](https://docs.suprsend.com/docs/notification-category) documentation
+                  default: transactional
+                channels:
+                  type: array
+                  description: If set, broadcast will be sent only on the channels defined here irrespective of communication channels present in user profile.
+                  items:
+                    type: string
+                data:
+                  type: object
+                  properties: {}
+                  description: Mock data to replace the template variables.
+                delay:
+                  type: string
+                  description: Broadcast will be halted for the time mentioned in delay, and become active once the delay period is over. Format - `XXdXXhXXmXXs` or if its number (n) then delay is in seconds (n)
+                trigger_at:
+                  type: string
+                  description: Trigger broadcast on a specific date-time. Format - date string in ISO 8601 e.g. "2022-08-27T20:14:51.643Z"
+                  format: date
+                tenant_id:
+                  type: string
+                  description: string identifier of the tenant this broadcast is associated with
+      responses:
+        '202':
+          description: 202 - Accepted
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: Ok
+              schema:
+                type: object
+                description: Confirmation that the broadcast request was accepted for processing.
+                properties:
+                  message:
+                    type: string
+                    description: Status message indicating the broadcast was accepted.
+                    example: Accepted - OK
+        '400':
+          description: 400 - Bad Request
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: BAD REQUEST
+              schema:
+                type: string
+                description: Error in case the API request is missing mandatory fields.
+      deprecated: false
+      tags:
+      - Broadcast
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API_Key
+      description: Pass as `Bearer <API_KEY>`. Get API Key from SuprSend dashboard Developers -> API Keys section.
+    ServiceTokenAuth:
+      type: apiKey
+      in: header
+      name: ServiceToken <token>
+      description: You can get Service Token from [SuprSend dashboard -> Account Settings -> Service Tokens](https://app.suprsend.com/en/account-settings/service-tokens) section.
+    sec0:
+      type: apiKey
+      in: header
+      name: Authorization
+      x-bearer-format: bearer
+      description: Bearer authentication header of the form `Bearer <token>`, where <token> is your auth token.
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+x-readme-fauxas: true

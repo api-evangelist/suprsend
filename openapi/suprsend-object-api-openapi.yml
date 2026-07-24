@@ -1,0 +1,2419 @@
+openapi: 3.1.1
+info:
+  title: SuprSend Broadcast Object API
+  description: APIs supported on suprsend platform
+  version: 1.2.2
+servers:
+- url: https://hub.suprsend.com
+security:
+- sec0: []
+- BearerAuth: []
+tags:
+- name: Object
+paths:
+  /v1/object/{object_type}/{id}/:
+    post:
+      summary: Create / Update Objects
+      security:
+      - BearerAuth: []
+      description: API to upsert (create if not exists, update if exists) object by providing a unique object ID and type.
+      operationId: create-update-objects
+      parameters:
+      - name: id
+        in: path
+        description: Unique identifier of the object in your system
+        schema:
+          type: string
+        required: true
+      - name: object_type
+        in: path
+        description: Used to group similar objects together. Give plural namespace like teams, organizations, and roles.
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            example:
+              department: Engineering
+              $email:
+              - devs@example.com
+              $slack:
+              - channel: CXXXXXXXX
+                access_token: xoxb-XXXXXX
+            schema:
+              properties:
+                $email:
+                  type: array
+                  items:
+                    type: string
+                    format: email
+                  description: List of email addresses.
+                $sms:
+                  type: array
+                  items:
+                    type: string
+                  description: List of phone numbers for SMS
+                $whatsapp:
+                  type: array
+                  items:
+                    type: string
+                  description: List of phone numbers for WhatsApp
+                $inbox:
+                  type: array
+                  items:
+                    type: string
+                  description: List of inbox identifiers
+                $androidpush:
+                  type: array
+                  items:
+                    type: string
+                  description: List of Android Push tokens
+                $iospush:
+                  type: array
+                  items:
+                    type: string
+                  description: List of iOS Push tokens
+                $slack:
+                  type: array
+                  description: Slack channel configuration
+                  items:
+                    oneOf:
+                    - type: object
+                      title: Slack using email
+                      required:
+                      - email
+                      - access_token
+                      properties:
+                        email:
+                          type: string
+                          format: email
+                          description: User email address
+                          example: user@example.com
+                        access_token:
+                          type: string
+                          description: Slack bot access token
+                          example: xoxb-XXXXXXXX
+                    - type: object
+                      title: Slack using member ID
+                      required:
+                      - user_id
+                      - access_token
+                      properties:
+                        user_id:
+                          type: string
+                          description: Slack user ID (U/WXXXXXXXX format)
+                          example: U/WXXXXXXXX
+                        access_token:
+                          type: string
+                          description: Slack bot access token
+                          example: xoxb-XXXXXX
+                    - type: object
+                      title: Slack using channel
+                      required:
+                      - channel
+                      - access_token
+                      properties:
+                        channel:
+                          type: string
+                          description: Slack channel ID (CXXXXXXXX format)
+                          example: CXXXXXXXX
+                        access_token:
+                          type: string
+                          description: Slack bot access token
+                          example: xoxb-XXXXXX
+                    - type: object
+                      title: Slack using incoming webhook
+                      required:
+                      - incoming_webhook
+                      properties:
+                        incoming_webhook:
+                          type: object
+                          required:
+                          - url
+                          properties:
+                            url:
+                              type: string
+                              format: uri
+                              description: Slack incoming webhook URL
+                              example: https://hooks.slack.com/services/TXXXX/BXXXX/XXXXXXX
+                $ms_teams:
+                  type: array
+                  description: Microsoft Teams channel configuration
+                  items:
+                    oneOf:
+                    - type: object
+                      title: MS Teams using conversation ID
+                      required:
+                      - tenant_id
+                      - service_url
+                      - conversation_id
+                      properties:
+                        tenant_id:
+                          type: string
+                          description: Microsoft Teams tenant ID
+                          example: c1981ab2-9aaf-xxxx-xxxx
+                        service_url:
+                          type: string
+                          format: uri
+                          description: Microsoft Teams service URL
+                          example: https://smba.trafficmanager.net/amer
+                        conversation_id:
+                          type: string
+                          description: Microsoft Teams conversation ID
+                          example: 19:c1524d7c-a06f-456f-8abe-xxxx
+                    - type: object
+                      title: MS Teams using user ID
+                      required:
+                      - tenant_id
+                      - service_url
+                      - user_id
+                      properties:
+                        tenant_id:
+                          type: string
+                          description: Microsoft Teams tenant ID
+                          example: c1981ab2-9aaf-xxxx-xxxx
+                        service_url:
+                          type: string
+                          format: uri
+                          description: Microsoft Teams service URL
+                          example: https://smba.trafficmanager.net/amer
+                        user_id:
+                          type: string
+                          description: Microsoft Teams user ID
+                          example: 29:1nsLcmJ2RKtYH6Cxxxx-xxxx
+                    - type: object
+                      title: MS Teams using incoming webhook
+                      required:
+                      - incoming_webhook
+                      properties:
+                        incoming_webhook:
+                          type: object
+                          required:
+                          - url
+                          properties:
+                            url:
+                              type: string
+                              format: uri
+                              description: Microsoft Teams incoming webhook URL
+                              example: https://wnk1z.webhook.office.com/webhookb2/XXXXXXXXX
+                $timezone:
+                  type: string
+                  description: Object's timezone in [IANA format](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List)
+                  example: America/New_York
+                $locale:
+                  type: string
+                  description: Object's locale for [translating](https://suprsend.com/docs/translations) template content in SuprSend.
+                  example: en_GB
+      responses:
+        '201':
+          description: 201 - Created
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    object_type: departments
+                    id: engineering
+                    subscriptions_count: 0
+                    properties:
+                      $locale: en_GB
+                      department: Engineering
+                    created_at: '2025-04-06T10:00:37.893892+00:00'
+                    updated_at: '2025-04-06T10:00:37.893892+00:00'
+                    $email:
+                    - value: devs@example.com
+                      status: active
+                      perma_status: active
+                    $slack:
+                    - value:
+                        email_id: user@example.com
+                        access_token: xoxb-...
+                      status: active
+                      perma_status: active
+                    $inbox:
+                    - value: pO7w6x_HFZxCs30N4SHab05e3QIdB1e0xT2r4vQWjvM
+                      id_provider: suprsend
+                      status: active
+                      perma_status: active
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: unique identifier of the object
+                    example: engineering
+                  object_type:
+                    type: string
+                    description: Used to group similar objects together. Give plural namespace like teams, organizations, and roles.
+                    example: departments
+                  subscriptions_count:
+                    type: integer
+                    description: number of users/child objects subscribed to the object
+                    example: departments
+                  properties:
+                    type: object
+                    description: all user properties in key-value pair. SuprSend reserved properties start with $
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: Timestamp when the object was created.
+                    example: 2025-04-04 09:55:12.397856+00:00
+                  updated_at:
+                    type: string
+                    format: date-time
+                    description: Timestamp when the object was last updated.
+                    example: 2025-04-04 09:55:12.422388+00:00
+                  $<channel>:
+                    type: array
+                    description: List of active communication channels for the object.
+                    items:
+                      type: object
+                      properties:
+                        value:
+                          type: string
+                          description: channel value
+                        status:
+                          type: string
+                          description: Current status of the channel (active or inactive).
+                          example: active
+                        perma_status:
+                          type: string
+                          description: active/disabled. Perma_status is marked disabled in case of hard bounce on the channel.
+        '400':
+          description: 400 - Bad Request
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    code: 400
+                    message: invalid_request_error
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 400
+                  message:
+                    type: string
+                    description: Error message describing the missing resource.
+      deprecated: false
+      tags:
+      - Object
+    get:
+      summary: Fetch Object by id
+      security:
+      - BearerAuth: []
+      description: API to fetch Object details by passing object type and ID.
+      operationId: get-object-by-id
+      parameters:
+      - name: id
+        in: path
+        description: Unique identifier of the object in your system
+        schema:
+          type: string
+        required: true
+      - name: object_type
+        in: path
+        description: Used to group similar objects together. Give plural namespace like teams, organizations, and roles.
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: 200 - OK
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    object_type: departments
+                    id: engineering
+                    subscriptions_count: 0
+                    properties:
+                      $locale: en_GB
+                    created_at: '2025-04-06T10:00:37.893892+00:00'
+                    updated_at: '2025-04-06T10:00:37.893892+00:00'
+                    $inbox:
+                    - value: pO7w6x_HFZxCs30N4SHab05e3QIdB1e0xT2r4vQWjvM
+                      id_provider: suprsend
+                      status: active
+                      perma_status: active
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: unique identifier of the object
+                    example: engineering
+                  object_type:
+                    type: string
+                    description: Used to group similar objects together. Give plural namespace like teams, organizations, and roles.
+                    example: departments
+                  subscriptions_count:
+                    type: integer
+                    description: number of users/child objects subscribed to the object
+                    example: departments
+                  properties:
+                    type: object
+                    description: all user properties in key-value pair. SuprSend reserved properties start with $
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: Timestamp when the object was created.
+                    example: 2025-04-04 09:55:12.397856+00:00
+                  updated_at:
+                    type: string
+                    format: date-time
+                    description: Timestamp when the object was last updated.
+                    example: 2025-04-04 09:55:12.422388+00:00
+                  $<channel>:
+                    type: array
+                    description: List of active communication channels for the object.
+                    items:
+                      type: object
+                      properties:
+                        value:
+                          type: string
+                          description: channel value
+                        status:
+                          type: string
+                          description: Current status of the channel (active or inactive).
+                          example: active
+                        perma_status:
+                          type: string
+                          description: active/disabled. Perma_status is marked disabled in case of hard bounce on the channel.
+        '404':
+          description: 404 - Not Found
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    code: 404
+                    message: object 'obj_type/obj_id' not found
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 404
+                  message:
+                    type: string
+                    description: Error message describing the missing resource.
+      deprecated: false
+      tags:
+      - Object
+    delete:
+      summary: Delete an Object
+      security:
+      - BearerAuth: []
+      description: API to permanently delete an object by passing `object_type` and `id`.
+      operationId: delete-object
+      parameters:
+      - name: id
+        in: path
+        description: Unique identifier of the object in your system
+        schema:
+          type: string
+        required: true
+      - name: object_type
+        in: path
+        description: Used to group similar objects together. Give plural namespace like teams, organizations, and roles.
+        schema:
+          type: string
+        required: true
+      responses:
+        '204':
+          description: 204 - No Content
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: null
+        '404':
+          description: 404 - Not Found
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    code: 404
+                    message: object 'object_type/object_id' not found
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 404
+                  message:
+                    type: string
+                    description: Error message indicating object_id and type combination is not found
+      deprecated: false
+      tags:
+      - Object
+    patch:
+      summary: Edit Object Profile
+      security:
+      - BearerAuth: []
+      description: API to edit (add/remove) properties and communication-channels for an object.
+      operationId: edit-object-profile
+      x-codeSamples:
+      - lang: cURL
+        source: "curl -X PATCH \"https://hub.suprsend.com/v1/object/{object_type}/{id}/\" \\\n  --header 'Authorization: Bearer __YOUR_API_KEY__' \\\n  --header 'Content-Type: application/json' \\\n  --data '{\n    \"operations\": [\n      {\n        \"$set\": {\n          \"name\": \"Engineering Department\",\n          \"$locale\": \"en_GB\",\n          \"$timezone\": \"America/New_York\"\n        }\n      },\n      {\n        \"$append\": {\n          \"$email\": [\"team@example.com\"]\n        }\n      }\n    ]\n  }'\n"
+      parameters:
+      - name: object_type
+        in: path
+        description: Used to group similar objects together. Give plural namespace like teams, organizations, and roles.
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: Unique identifier of the object in your system
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                operations:
+                  type: array
+                  description: 'You can use the following operations to edit user profile.
+
+                    - `$set` to add/update a property
+
+                    - `$unset` to delete property/channel
+
+                    - `$append` to insert values in property/channel array
+
+                    - `$remove` to remove values from property/channel array
+
+                    - `$set_once` to remove immutable properties
+
+                    - `$increment` to increase/decrease integer values on further update
+
+                    '
+                  items:
+                    type: object
+                    properties:
+                      $set:
+                        type: object
+                        description: 'Use this to set user properties like name, location, locale, etc.
+
+                          Example: `{"team":"Engineering","$locale":"en_GB","$timezone":"America/New_York"}`
+
+                          '
+                        additionalProperties:
+                          type: string
+                      $unset:
+                        type: array
+                        description: 'Use this to delete channels or properties from user profile.
+
+                          Channels: `$email`, `$sms`, `$whatsapp`, `$androidpush`, `$iospush`, `$slack`, `$webpush`, `$ms_teams`
+
+                          Example: `["$sms", "$whatsapp", "name"]`
+
+                          '
+                        items:
+                          type: string
+                      $append:
+                        type: object
+                        description: 'Use this to add communication channels or update array properties in user profile. Available channel keys: `$email`, `$sms`, `$whatsapp`, `$androidpush`, `$iospush`, `$slack`, `$webpush`, `$ms_teams`
+
+                          Example: `{"$email":"team@example.com"}`
+
+                          '
+                        additionalProperties:
+                          type: string
+                      $remove:
+                        type: object
+                        description: 'Use this to remove communication channels or remove values from an array in user profile. Available channel keys: `$email`, `$sms`, `$whatsapp`, `$androidpush`, `$iospush`, `$slack`, `$webpush`, `$ms_teams`
+
+                          Example: `{"$email":"team@example.com"}`
+
+                          '
+                        additionalProperties:
+                          type: string
+                      $set_once:
+                        type: object
+                        description: 'Use this to set properties which are not set once and not changed on further updates.
+
+                          Example: `{"first_login_at":"2025-01-01T14:00:00Z"}`
+
+                          '
+                        additionalProperties:
+                          type: string
+                      $increment:
+                        type: object
+                        description: 'Use this to increase / decrease integer values on further updates
+
+                          Example: `{"login_count":1}`
+
+                          '
+                        additionalProperties:
+                          type: string
+      responses:
+        '200':
+          description: 200 - OK
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    object_type: departments
+                    id: engineering
+                    subscriptions_count: 0
+                    properties:
+                      $locale: en_GB
+                    created_at: '2025-04-06T10:00:37.893892+00:00'
+                    updated_at: '2025-04-06T10:00:37.893892+00:00'
+                    $inbox:
+                    - value: pO7w6x_HFZxCs30N4SHab05e3QIdB1e0xT2r4vQWjvM
+                      id_provider: suprsend
+                      status: active
+                      perma_status: active
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: unique identifier of the object
+                    example: engineering
+                  object_type:
+                    type: string
+                    description: Used to group similar objects together. Give plural namespace like teams, organizations, and roles.
+                    example: departments
+                  subscriptions_count:
+                    type: integer
+                    description: number of users/child objects subscribed to the object
+                    example: departments
+                  properties:
+                    type: object
+                    description: all user properties in key-value pair. SuprSend reserved properties start with $
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: Timestamp when the object was created.
+                    example: 2025-04-04 09:55:12.397856+00:00
+                  updated_at:
+                    type: string
+                    format: date-time
+                    description: Timestamp when the object was last updated.
+                    example: 2025-04-04 09:55:12.422388+00:00
+                  $<channel>:
+                    type: array
+                    description: List of active communication channels for the object.
+                    items:
+                      type: object
+                      properties:
+                        value:
+                          type: string
+                          description: channel value
+                        status:
+                          type: string
+                          description: Current status of the channel (active or inactive).
+                          example: active
+                        perma_status:
+                          type: string
+                          description: active/disabled. Perma_status is marked disabled in case of hard bounce on the channel.
+        '400':
+          description: 400 - Bad Request
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    code: 400
+                    message: Request body must not be empty
+      deprecated: false
+      tags:
+      - Object
+  /v1/object/{object_type}/{id}/subscription/:
+    post:
+      summary: Add Subscription
+      security:
+      - BearerAuth: []
+      description: API to add subscribers (users/child objects) to a given object, to notify subscribers when workflow is triggered on the parent object.
+      operationId: add-object-subscription
+      x-codeSamples:
+      - lang: cURL
+        source: "curl -X POST \"https://hub.suprsend.com/v1/object/{object_type}/{id}/subscription/\" \\\n  --header 'Authorization: Bearer __YOUR_API_KEY__' \\\n  --header 'Content-Type: application/json' \\\n  --data '{\n    \"recipients\": [\"user123\",\"user456\"],\n    \"properties\": {\n      \"role\": \"developer\"\n    }\n  }'\n"
+      parameters:
+      - name: id
+        in: path
+        description: Unique identifier of the object in your system
+        schema:
+          type: string
+        required: true
+      - name: object_type
+        in: path
+        description: Used to group similar objects together. Give plural namespace like teams, organizations, and roles.
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                recipients:
+                  type: array
+                  description: List of recipients to be notified. You can either add recipient as array of distinct_ids or array of recipient objects. You can add up to 100 recipients in a single API.
+                  items:
+                    oneOf:
+                    - type: object
+                      title: Add user
+                      description: '**Option 1: Add user subscription** - Add user subscription by passing user json. You can pass user distinct_ids in array as `["id1","id2"]` or as user object to identify recipient inline.'
+                      required:
+                      - distinct_id
+                      properties:
+                        distinct_id:
+                          type: string
+                          description: unique identifier of the user
+                          default: id1
+                        $email:
+                          type: array
+                          description: List of email addresses.
+                          items:
+                            type: string
+                        $sms:
+                          type: array
+                          description: List of SMS numbers.
+                          items:
+                            type: string
+                        $whatsapp:
+                          type: array
+                          description: List of WhatsApp numbers.
+                          items:
+                            type: string
+                        $inbox:
+                          type: array
+                          description: List of Inbox numbers.
+                          items:
+                            type: string
+                        $androidpush:
+                          type: array
+                          description: List of Android Push tokens.
+                          items:
+                            type: string
+                        $iospush:
+                          type: array
+                          description: List of iOS Push tokens.
+                          items:
+                            type: string
+                        $slack:
+                          type: array
+                          description: Slack channel configuration
+                          items:
+                            oneOf:
+                            - type: object
+                              title: Slack using email
+                              required:
+                              - email
+                              - access_token
+                              properties:
+                                email:
+                                  type: string
+                                  format: email
+                                  description: User email address
+                                  example: user@example.com
+                                access_token:
+                                  type: string
+                                  description: Slack bot access token
+                                  example: xoxb-XXXXXXXX
+                            - type: object
+                              title: Slack using member ID
+                              required:
+                              - user_id
+                              - access_token
+                              properties:
+                                user_id:
+                                  type: string
+                                  description: Slack user ID (U/WXXXXXXXX format)
+                                  example: U/WXXXXXXXX
+                                access_token:
+                                  type: string
+                                  description: Slack bot access token
+                                  example: xoxb-XXXXXX
+                            - type: object
+                              title: Slack using channel
+                              required:
+                              - channel
+                              - access_token
+                              properties:
+                                channel:
+                                  type: string
+                                  description: Slack channel ID (CXXXXXXXX format)
+                                  example: CXXXXXXXX
+                                access_token:
+                                  type: string
+                                  description: Slack bot access token
+                                  example: xoxb-XXXXXX
+                            - type: object
+                              title: Slack using incoming webhook
+                              required:
+                              - incoming_webhook
+                              properties:
+                                incoming_webhook:
+                                  type: object
+                                  required:
+                                  - url
+                                  properties:
+                                    url:
+                                      type: string
+                                      format: uri
+                                      description: Slack incoming webhook URL
+                                      example: https://hooks.slack.com/services/TXXXX/BXXXX/XXXXXXX
+                        $ms_teams:
+                          type: array
+                          description: Microsoft Teams channel configuration
+                          items:
+                            oneOf:
+                            - type: object
+                              title: MS Teams using conversation ID
+                              required:
+                              - tenant_id
+                              - service_url
+                              - conversation_id
+                              properties:
+                                tenant_id:
+                                  type: string
+                                  description: Microsoft Teams tenant ID
+                                  example: c1981ab2-9aaf-xxxx-xxxx
+                                service_url:
+                                  type: string
+                                  format: uri
+                                  description: Microsoft Teams service URL
+                                  example: https://smba.trafficmanager.net/amer
+                                conversation_id:
+                                  type: string
+                                  description: Microsoft Teams conversation ID
+                                  example: 19:c1524d7c-a06f-456f-8abe-xxxx
+                            - type: object
+                              title: MS Teams using user ID
+                              required:
+                              - tenant_id
+                              - service_url
+                              - user_id
+                              properties:
+                                tenant_id:
+                                  type: string
+                                  description: Microsoft Teams tenant ID
+                                  example: c1981ab2-9aaf-xxxx-xxxx
+                                service_url:
+                                  type: string
+                                  format: uri
+                                  description: Microsoft Teams service URL
+                                  example: https://smba.trafficmanager.net/amer
+                                user_id:
+                                  type: string
+                                  description: Microsoft Teams user ID
+                                  example: 29:1nsLcmJ2RKtYH6Cxxxx-xxxx
+                            - type: object
+                              title: MS Teams using incoming webhook
+                              required:
+                              - incoming_webhook
+                              properties:
+                                incoming_webhook:
+                                  type: object
+                                  required:
+                                  - url
+                                  properties:
+                                    url:
+                                      type: string
+                                      format: uri
+                                      description: Microsoft Teams incoming webhook URL
+                                      example: https://wnk1z.webhook.office.com/webhookb2/XXXXXXXXX
+                        $locale:
+                          type: string
+                          description: User's locale for [translating](https://suprsend.com/docs/translations) template content in SuprSend.
+                          example: en_GB
+                        $timezone:
+                          type: string
+                          description: in IANA timezone format e.g. 'America/Los_Angeles'
+                      additionalProperties:
+                        type: string
+                        description: You can pass other user properties to render dynamic template content in key-value pair as "user_prop1":"value1" . Extra properties will be set in subscriber profile (as subscriber properties) which can then be used in the template as $recipient.<property>.
+                    - type: object
+                      title: Add child object
+                      description: '**Option 2: Add object subscription** - Add other object as child subscriber to the parent object'
+                      required:
+                      - id
+                      - object_type
+                      properties:
+                        id:
+                          type: string
+                          description: Unique identifier of the object
+                          example: frontend
+                        object_type:
+                          type: string
+                          description: Type of the child object to subscribe.
+                      additionalProperties:
+                        type: string
+                        description: You can pass other user properties similar to recipient payload. It will be used when notification is sent to object channels as $recipient.<property>.
+                properties:
+                  type: object
+                  description: properties defining the relation between object and its subscribers. Can be referenced as `recipient.subscription.<key>` in workflow and template.
+                  example:
+                    role: developer
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    results:
+                    - properties:
+                        department: frontend
+                      user:
+                        distinct_id: _distinct_id_
+                        updated_at: '2025-04-05T10:33:33.629736+00:00'
+                      object:
+                        id: _object_id_
+                        object_type: _object_type_
+                        subscriptions_count: 10
+                        updated_at: '2025-04-06T11:00:24.257046+00:00'
+                      created_at: '2025-04-06T10:59:07.726336+00:00'
+                      updated_at: '2025-04-06T10:59:07.726336+00:00'
+              schema:
+                type: object
+                properties:
+                  user:
+                    type: object
+                    properties:
+                      distinct_id:
+                        type: string
+                        description: unique identifier of the user
+                        example: _distinct_id_
+                      updated_at:
+                        type: string
+                        format: date-time
+                        description: time when user was subscribed to this list
+                        example: 2025-04-04 09:55:12.422388+00:00
+                  object:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: unique identifier of the object
+                        example: frontend
+                      object_type:
+                        type: string
+                        description: type of object like teams, organizations, and roles. Used to group similar objects together.
+                        example: frontend
+                      subscriptions_count:
+                        type: integer
+                        description: number of users/child objects subscribed to this object
+                      updated_at:
+                        type: string
+                        format: date-time
+                        description: timestamp when subscription was first created
+                        example: 2025-04-04 09:55:12.422388+00:00
+                  properties:
+                    type: object
+                    description: object subscription properties, referred as `$recipient.subscription.<key>` in template or workflow.
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: Timestamp when the subscription was created.
+                    example: 2025-04-04 09:55:12.397856+00:00
+                  updated_at:
+                    type: string
+                    format: date-time
+                    description: Timestamp when the subscription was last updated.
+                    example: 2025-04-04 09:55:12.422388+00:00
+        '404':
+          description: 404 - Not Found
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    code: 404
+                    message: object 'object_type/id' not found
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 404
+                  message:
+                    type: string
+                    description: Error message indicating object_id and type combination is not found
+      deprecated: false
+      tags:
+      - Object
+    get:
+      summary: List Object Subscriptions
+      security:
+      - BearerAuth: []
+      description: API to fetch a paginated list of users or child objects subscribed to a given object.
+      operationId: list-object-subscriptions
+      parameters:
+      - name: id
+        in: path
+        description: Unique identifier of the object in your system
+        schema:
+          type: string
+        required: true
+      - name: object_type
+        in: path
+        description: Used to group similar objects together. Give plural namespace like teams, organizations, and roles.
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    meta:
+                      count: 3
+                      limit: 10
+                      has_prev: false
+                      before: null
+                      has_next: false
+                      after: null
+                    results:
+                    - properties: {}
+                      user: null
+                      object:
+                        id: devs
+                        object_type: teams
+                        subscriptions_count: 1
+                        updated_at: '2025-04-06T11:00:24.257046+00:00'
+                      created_at: '2025-04-06T11:00:24.260496+00:00'
+                      updated_at: '2025-04-06T11:00:24.260496+00:00'
+                    - properties:
+                        role: employee
+                      user:
+                        distinct_id: user_456
+                        updated_at: '2023-08-25T13:31:24.517819+00:00'
+                      object: null
+                      created_at: '2024-11-10T21:40:02.169501+00:00'
+                      updated_at: '2024-11-10T21:40:02.169501+00:00'
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      count:
+                        type: integer
+                        example: 1
+                        description: Total number of results.
+                      limit:
+                        type: integer
+                        example: 10
+                        description: Maximum number of results returned per request.
+                      has_prev:
+                        type: boolean
+                        description: Indicates if there are previous results.
+                      before:
+                        type: string
+                        description: Cursor for the previous page, if applicable.
+                      has_next:
+                        type: boolean
+                        description: Indicates if there are more results.
+                      after:
+                        type: string
+                        description: Cursor for the next page, if applicable.
+                  results:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        user:
+                          type: object
+                          properties:
+                            distinct_id:
+                              type: string
+                              description: unique identifier of the user
+                              example: _distinct_id_
+                            updated_at:
+                              type: string
+                              format: date-time
+                              description: time when user was subscribed to this list
+                              example: 2025-04-04 09:55:12.422388+00:00
+                        object:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              description: unique identifier of the object
+                              example: frontend
+                            object_type:
+                              type: string
+                              description: type of object like teams, organizations, and roles. Used to group similar objects together.
+                              example: frontend
+                            subscriptions_count:
+                              type: integer
+                              description: number of users/child objects subscribed to this object
+                            updated_at:
+                              type: string
+                              format: date-time
+                              description: timestamp when subscription was first created
+                              example: 2025-04-04 09:55:12.422388+00:00
+                        properties:
+                          type: object
+                          description: object subscription properties, referred as `$recipient.subscription.<key>` in template or workflow.
+                        created_at:
+                          type: string
+                          format: date-time
+                          example: 2025-04-04 09:55:12.397856+00:00
+                        updated_at:
+                          type: string
+                          format: date-time
+                          example: 2025-04-04 09:55:12.422388+00:00
+        '404':
+          description: 404 - Not Found
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    code: 404
+                    message: object 'obj_type/obj_id' not found
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    description: HTTP status code indicating the error.
+                  message:
+                    type: string
+                    description: Error message indicating object_id and type combination is not found
+      deprecated: false
+      tags:
+      - Object
+    delete:
+      summary: Remove Object Subscriptions
+      security:
+      - BearerAuth: []
+      description: API to remove object subscribers (users or child objects).
+      operationId: delete-object-subscriptions
+      parameters:
+      - name: id
+        in: path
+        description: Unique identifier of the object in your system
+        schema:
+          type: string
+        required: true
+      - name: object_type
+        in: path
+        description: Used to group similar objects together. Give plural namespace like teams, organizations, and roles.
+        schema:
+          type: string
+        required: true
+      - name: recipients
+        in: query
+        description: List of recipients to be notified. Provide recipient IDs as a comma-separated list (e.g., `id1,id2,id3`).
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                recipients:
+                  type: array
+                  description: List of recipients to be notified. You can either add recipient as array of distinct_ids or array of recipient objects. You can add up to 100 recipients in a single API.
+                  items:
+                    oneOf:
+                    - type: string
+                      description: Pass user distinct_ids in array as `["id1","id2"]`
+                    - type: object
+                      description: Pass object to be deleted in json
+                      required:
+                      - id
+                      - object_type
+                      properties:
+                        id:
+                          type: string
+                          description: Unique identifier of the object
+                          example: frontend
+                        object_type:
+                          type: string
+                          description: Type of the object to remove from subscriptions.
+      responses:
+        '204':
+          description: 204 - No Content
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: null
+        '404':
+          description: 404 - Not Found
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    code: 404
+                    message: object 'object_type/id' not found
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    description: Error code indicating a bad request.
+                  message:
+                    type: string
+                    description: Detailed error message explaining the issue.
+      deprecated: false
+      tags:
+      - Object
+  /v1/object/{object_type}/:
+    get:
+      summary: List Objects by type
+      security:
+      - BearerAuth: []
+      description: API to fetch paginated list of objects that belong to the specified `object_type`.
+      operationId: list-objects-by-type
+      parameters:
+      - name: object_type
+        in: path
+        description: Used to group similar objects together. Give plural namespace like teams, organizations, and roles.
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: 200 - OK
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    meta:
+                      count: 1
+                      limit: 10
+                      has_prev: false
+                      before: null
+                      has_next: false
+                      after: null
+                    results:
+                    - object_type: teams
+                      id: devs
+                      subscriptions_count: 1
+                      properties: {}
+                      created_at: '2024-11-04T09:30:05.141405+00:00'
+                      updated_at: '2025-04-06T11:00:24.257046+00:00'
+                      $inbox:
+                      - value: mwjNxXS-z5IvY6VwyXweG0mqc14WL-z9ctBlJ-4wx60
+                        id_provider: suprsend
+                        status: active
+                        perma_status: active
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      count:
+                        type: integer
+                        example: 1
+                        description: Total number of results returned.
+                      limit:
+                        type: integer
+                        example: 10
+                        description: Maximum number of results that can be returned.
+                      has_prev:
+                        type: boolean
+                        example: false
+                        description: Indicates if there are previous results.
+                      before:
+                        type: string
+                        nullable: true
+                        example: null
+                        description: Cursor for paginating to previous results.
+                      has_next:
+                        type: boolean
+                        example: false
+                        description: Indicates if there are more results.
+                      after:
+                        type: string
+                        nullable: true
+                        example: null
+                        description: Cursor for paginating to next results.
+                  results:
+                    type: array
+                    description: List of objects belonging to given object type. Response JSON is similar to object upsert API.
+                    items:
+                      type: object
+                      properties:
+                        object_type:
+                          type: string
+                          description: Type of the object.
+                          example: teams
+                        id:
+                          type: string
+                          description: Unique identifier of the object.
+                          example: devs
+                        subscriptions_count:
+                          type: integer
+                          description: Number of users or child objects subscribed to this object.
+                          example: 1
+                        properties:
+                          type: object
+                          additionalProperties: true
+                          description: additional object properties
+                          example: {}
+                        created_at:
+                          type: string
+                          format: date-time
+                          description: Timestamp when the object was created.
+                          example: '2024-11-04T09:30:05.141405+00:00'
+                        updated_at:
+                          type: string
+                          format: date-time
+                          description: Timestamp when the object was last updated.
+                          example: '2025-04-06T11:00:24.257046+00:00'
+                        $inbox:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              value:
+                                type: string
+                                example: mwjNxXS-z5IvY6VwyXweG0mqc14WL-z9ctBlJ-4wx60
+                              id_provider:
+                                type: string
+                                example: suprsend
+                              status:
+                                type: string
+                                example: active
+                              perma_status:
+                                type: string
+                                example: active
+      deprecated: false
+      tags:
+      - Object
+  /v1/object/{object_type}/{id}/preference/category/{category_slug}/:
+    patch:
+      summary: Category and Channel within Category
+      security:
+      - BearerAuth: []
+      description: API to update object preferences for a specific notification category.
+      operationId: object-preference-category
+      x-codeSamples:
+      - lang: cURL
+        label: Object Preference Category - Opt Out Channel
+        source: "curl -X PATCH \"https://hub.suprsend.com/v1/object/departments/engineering/preference/status-update-alert/\" \\\n  --header 'Authorization: Bearer __YOUR_API_KEY__' \\\n  --header 'Content-Type: application/json' \\\n  --data '{\n    \"preference\": \"opt_in\",\n    \"opt_out_channels\": [\"email\", \"slack\"]\n  }'\n"
+      parameters:
+      - name: tenant_id
+        in: query
+        description: to fetch user preferences for a particular tenant
+        schema:
+          type: string
+      - name: object_type
+        in: path
+        description: Used to group similar objects together. Give plural namespace like teams, organizations, and roles.
+        schema:
+          type: string
+        required: true
+      - name: id
+        in: path
+        description: Unique identifier of the object in your system
+        schema:
+          type: string
+        required: true
+      - name: category_slug
+        in: path
+        description: notification category slug. You can get this from Notification Categories page on SuprSend dashboard -> Settings page
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                preference:
+                  type: string
+                  description: 'choose one of the options: `opt_in` if the user has allowed notification in this category and `opt_out` if user wants to discontinue notification in this category'
+                  default: opt_in
+                opt_out_channels:
+                  type: array
+                  description: Add array of channels if user wants to unsubscribe from particular channels in this category. Add channels as `email`, `sms`, `whatsapp`, `androidpush`, `inbox`, `iospush`, `slack`, `webpush`
+                  items:
+                    type: string
+                opt_in_channels:
+                  type: array
+                  description: You can either pass opt_out_channels when user opts out from a channel in the category or opt_in_channels when user opts in to a channel in the category. Add channels as `email`, `sms`, `whatsapp`, `androidpush`, `inbox`, `iospush`, `slack`, `webpush`
+                  items:
+                    type: string
+      responses:
+        '202':
+          description: '202'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    name: Status Update Alert
+                    category: status-update-alert
+                    description: Send me updates when account status changes
+                    original_preference: opt_in
+                    preference: opt_in
+                    is_editable: true
+                    channels:
+                    - channel: email
+                      preference: opt_out
+                      is_editable: true
+                    - channel: ms_teams
+                      preference: opt_in
+                      is_editable: true
+                    - channel: slack
+                      preference: opt_out
+                      is_editable: true
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    description: preference category name
+                    example: Status Update Alert
+                  category:
+                    type: string
+                    description: unique preference category slug. You can get this by clicking on preference category name on Developers -> Preference categories page.
+                    example: status-update-alert
+                  description:
+                    type: string
+                    example: Send me updates when account status changes
+                  original_preference:
+                    type: string
+                    enum:
+                    - opt_in
+                    - opt_out
+                    description: default preference of the category
+                    example: opt_in
+                  preference:
+                    type: string
+                    enum:
+                    - opt_in
+                    - opt_out
+                    description: final user preference of the category
+                    example: opt_in
+                  is_editable:
+                    type: boolean
+                    description: false for categories where default preference is set to can't unsubscribe
+                    example: false
+                  channels:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        channel:
+                          type: string
+                          example: email
+                        preference:
+                          type: string
+                          enum:
+                          - opt_in
+                          - opt_out
+                          example: opt_in
+                        is_editable:
+                          type: boolean
+        '404':
+          description: 404 - Not Found
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    code: 404
+                    message: category '_category_slug_' not found
+              schema:
+                type: object
+                description: error code and message detailing the error
+      deprecated: false
+      tags:
+      - Object
+    get:
+      summary: Single Category
+      security:
+      - BearerAuth: []
+      description: API to fetch object preferences for a given category.
+      operationId: fetch-object-preference-single-category
+      parameters:
+      - name: object_type
+        in: path
+        description: Used to group similar objects together. Give plural namespace like teams, organizations, and roles.
+        schema:
+          type: string
+        required: true
+      - name: tenant_id
+        in: query
+        description: to fetch object preferences for a particular tenant
+        schema:
+          type: string
+      - name: show_opt_out_channels
+        in: query
+        description: set this flag to `true` if you want to fetch channel list for opt-out categories.
+        schema:
+          type: boolean
+          default: false
+      - name: id
+        in: path
+        description: Unique identifier of the object in your system
+        schema:
+          type: string
+        required: true
+      - name: category_slug
+        in: path
+        description: notification category slug. You can get this from Notification Categories page on SuprSend dashboard -> Settings page
+        schema:
+          type: string
+        required: true
+      - name: locale
+        in: query
+        description: 'Locale code (e.g., `es`, `fr`, `de`, `ja`, `es-AR`) to fetch preference translations in user''s locale. When provided, the API looks for category and section names and descriptions in the respective locale file.
+
+          If a translation is missing for the requested locale, the system automatically falls back in this order: `locale-region` (e.g., `es-AR`) → `locale` (e.g., `es`) → `en` (English - always available).
+
+          '
+        schema:
+          type: string
+        example: es
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    name: Newsletter
+                    category: newsletter
+                    description: Send me updates on new product updates
+                    original_preference: null
+                    preference: opt_in
+                    is_editable: false
+                    channels:
+                    - channel: email
+                      preference: opt_in
+                      is_editable: false
+                    - channel: ms_teams
+                      preference: opt_in
+                      is_editable: false
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: Newsletter
+                  category:
+                    type: string
+                    example: newsletter
+                  description:
+                    type: string
+                    example: Send me updates on new product updates
+                  original_preference:
+                    type: string
+                    enum:
+                    - opt_in
+                    - opt_out
+                    nullable: true
+                    example: null
+                  preference:
+                    type: string
+                    enum:
+                    - opt_in
+                    - opt_out
+                    example: opt_in
+                  is_editable:
+                    type: boolean
+                    example: false
+                  channels:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        channel:
+                          type: string
+                          description: channel name
+                          example: email
+                        preference:
+                          type: string
+                          enum:
+                          - opt_in
+                          - opt_out
+                          description: user preference for this channel (opt_in, opt_out)
+                          example: opt_in
+                        is_editable:
+                          type: boolean
+                          description: whether the user can edit this channel preference
+                          example: false
+        '404':
+          description: 404 - Not Found
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    code: 404
+                    message: category 'category_slug' not found
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 404
+                  message:
+                    type: string
+                    example: category 'category_slug' not found
+      deprecated: false
+      tags:
+      - Object
+  /v1/object/{object_type}/{id}/preference/channel_preference/:
+    patch:
+      summary: Overall Channel level
+      security:
+      - BearerAuth: []
+      description: API to update object preferences across all channels.
+      operationId: object-preference-channel
+      parameters:
+      - name: object_type
+        in: path
+        description: Used to group similar objects together. Give plural namespace like teams, organizations, and roles.
+        schema:
+          type: string
+        required: true
+      - name: tenant_id
+        in: query
+        description: to fetch user preferences for a particular tenant
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: Unique identifier of the object in your system
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                channel_preferences:
+                  type: array
+                  description: Use this to update channel level user preferences. Set `is_restricted - true` if the channel is opted_out by the user. This will only send critical notifications to the user which can't be opted out
+                  items:
+                    properties:
+                      channel:
+                        type: string
+                        description: Add channel as `email`, `inbox`, `sms`, `whatsapp`, `androidpush`, `slack`, `iospush`, `webpush`
+                        default: email
+                      is_restricted:
+                        type: boolean
+                        description: set `is_restricted = true` if user wants to receive notification in mandatory categories on this channel. Mandatory categories are `can't unsubscribe` categories and the above channel is added as `mandatory channel` in that category
+                        default: false
+                    type: object
+      responses:
+        '202':
+          description: '202'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    channel_preferences:
+                    - channel: email
+                      is_restricted: true
+                    - channel: inbox
+                      is_restricted: false
+              schema:
+                type: object
+                properties:
+                  channel_preferences:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        channel:
+                          type: string
+                          example: email
+                        is_restricted:
+                          type: boolean
+                          example: 'true'
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    code: 404
+                    message: object 'obj_type/obj_id' not found
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 404
+                  message:
+                    type: string
+                    example: object 'obj_type/obj_id' not found
+      deprecated: false
+      tags:
+      - Object
+    get:
+      summary: All Channels
+      security:
+      - BearerAuth: []
+      description: API to retrieve all channel preferences for a given object.
+      operationId: fetch-object-preference-all-channels
+      parameters:
+      - name: object_type
+        in: path
+        description: Used to group similar objects together. Give plural namespace like teams, organizations, and roles.
+        schema:
+          type: string
+        required: true
+      - name: tenant_id
+        in: query
+        description: to fetch object preferences for a particular tenant
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: Unique identifier of the object in your system
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    channel_preferences:
+                    - channel: androidpush
+                      is_restricted: false
+                    - channel: email
+                      is_restricted: false
+              schema:
+                type: object
+                properties:
+                  channel_preferences:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        channel:
+                          type: string
+                          description: channel name
+                          example: androidpush
+                        is_restricted:
+                          type: boolean
+                          description: True means notification will be sent in categories where this channel is marked as mandatory channel. False means opt_in on channel.
+        '404':
+          description: 404 - Not Found
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    code: 404
+                    message: object 'obj_type/obj_id' not found
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 404
+                  message:
+                    type: string
+                    example: object 'obj_type/obj_id' not found
+      deprecated: false
+      tags:
+      - Object
+  /v1/object/{object_type}/{id}/preference/:
+    get:
+      summary: Full Preference
+      security:
+      - BearerAuth: []
+      description: API to fetch object preferences across all channels and categories.
+      operationId: fetch-object-full-preference
+      parameters:
+      - name: object_type
+        in: path
+        description: Used to group similar objects together. Give plural namespace like teams, organizations, and roles.
+        schema:
+          type: string
+        required: true
+      - name: tenant_id
+        in: query
+        description: to fetch object preferences for a particular tenant
+        schema:
+          type: string
+      - name: show_opt_out_channels
+        in: query
+        description: set this flag to `true` if you want to fetch channel list for opt-out categories.
+        schema:
+          type: boolean
+          default: false
+      - name: id
+        in: path
+        description: Unique identifier of the object in your system
+        schema:
+          type: string
+        required: true
+      - name: tags
+        in: query
+        description: 'Filter preference categories with tags assigned to them. Used to filter preference categories relevant to the user on UI based on their roles, department or teams.
+
+          You can apply single tag filter like `tags=tag1` or build nested conditions using logical operators - `and`, `or`, `not`, `exists`.
+
+
+          Example:
+
+          ```
+
+          tags=admin
+
+          tags={"or":[{"and":["admin","sales"]},{"and":["admin","manager"]}]}
+
+          tags={"not":"admin"}
+
+          tags={"exists":true}
+
+          '
+        schema:
+          type: string
+      - name: locale
+        in: query
+        description: 'Locale code (e.g., `es`, `fr`, `de`, `ja`, `es-AR`) to fetch preference translations in user''s locale. When provided, the API looks for category and section names and descriptions in the respective locale file.
+
+          If a translation is missing for the requested locale, the system automatically falls back in this order: `locale-region` (e.g., `es-AR`) → `locale` (e.g., `es`) → `en` (English - always available).
+
+          '
+        schema:
+          type: string
+        example: es
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    sections:
+                    - subcategories:
+                      - name: Newsletter
+                        category: newsletter
+                        description: Send me updates on new product updates
+                        preference: opt_in
+                        is_editable: true
+                        channels:
+                        - channel: androidpush
+                          preference: opt_in
+                          is_editable: true
+                        - channel: email
+                          preference: opt_in
+                          is_editable: true
+                    channel_preferences:
+                    - channel: email
+                      is_restricted: false
+              schema:
+                type: object
+                properties:
+                  sections:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        subcategories:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              name:
+                                type: string
+                                example: Newsletter
+                              category:
+                                type: string
+                                example: newsletter
+                              description:
+                                type: string
+                                example: Send me updates on new product updates
+                              preference:
+                                type: string
+                                enum:
+                                - opt_in
+                                - opt_out
+                                example: opt_in
+                              is_editable:
+                                type: boolean
+                                description: false when category default preference is set to can't unsubscribe
+                              channels:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    channel:
+                                      type: string
+                                      example: email
+                                    preference:
+                                      type: string
+                                      enum:
+                                      - opt_in
+                                      - opt_out
+                                      example: opt_in
+                                    is_editable:
+                                      type: boolean
+                                      description: false when category default preference is set to can't unsubscribe
+                  channel_preferences:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        channel:
+                          type: string
+                          description: channel name
+                          example: androidpush
+                        is_restricted:
+                          type: boolean
+                          description: True means notification will be sent in categories where this channel is marked as mandatory channel. False means opt_in on channel.
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    code: 404
+                    message: object 'object_type/id' not found
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 404
+                  message:
+                    type: string
+                    example: object 'object_type/id' not found
+      deprecated: false
+      tags:
+      - Object
+    patch:
+      summary: Update Object Full Preference
+      security:
+      - BearerAuth: []
+      description: API to update object preferences across all channels and categories with translated names and descriptions in the response.
+      operationId: update-object-full-preference
+      parameters:
+      - name: object_type
+        in: path
+        description: Used to group similar objects together. Give plural namespace like teams, organizations, and roles.
+        schema:
+          type: string
+        required: true
+      - name: id
+        in: path
+        description: Unique identifier of the object in your system
+        schema:
+          type: string
+        required: true
+      - name: tenant_id
+        in: query
+        description: to update object preferences for a particular tenant
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                channel_preferences:
+                  type: array
+                  description: Use this to update channel level object preferences. Set `is_restricted - true` if the channel is opted_out. This will only send critical notifications which can't be opted out
+                  items:
+                    type: object
+                    properties:
+                      channel:
+                        type: string
+                        description: Add channel as `email`, `inbox`, `sms`, `whatsapp`, `androidpush`, `slack`, `iospush`, `webpush`
+                      is_restricted:
+                        type: boolean
+                        description: set `is_restricted = true` if object wants to receive notification in mandatory categories on this channel. Mandatory categories are `can't unsubscribe` categories and the above channel is added as `mandatory channel` in that category
+            examples:
+              Update Preferences:
+                value:
+                  channel_preferences:
+                  - channel: email
+                    is_restricted: false
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    sections:
+                    - name: null
+                      slug: null
+                      subcategories:
+                      - name: Promotion de remboursement
+                        category: refund-promotion
+                        description: mises à jour
+                        original_preference: null
+                        preference: opt_in
+                        is_editable: false
+                        channels:
+                        - channel: inbox
+                          preference: opt_in
+                          is_editable: false
+                    channel_preferences:
+                    - channel: inbox
+                      is_restricted: false
+              schema:
+                type: object
+                properties:
+                  sections:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          nullable: true
+                        slug:
+                          type: string
+                          nullable: true
+                        description:
+                          type: string
+                          nullable: true
+                        tags:
+                          type: array
+                          nullable: true
+                          items:
+                            type: string
+                        subcategories:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              name:
+                                type: string
+                              category:
+                                type: string
+                              description:
+                                type: string
+                                nullable: true
+                              tags:
+                                type: array
+                                nullable: true
+                                items:
+                                  type: string
+                              effective_tags:
+                                type: array
+                                nullable: true
+                                items:
+                                  type: string
+                              original_preference:
+                                type: string
+                                nullable: true
+                                enum:
+                                - opt_in
+                                - opt_out
+                                - cant_unsubscribe
+                              preference:
+                                type: string
+                                enum:
+                                - opt_in
+                                - opt_out
+                                - cant_unsubscribe
+                              is_editable:
+                                type: boolean
+                              channels:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    channel:
+                                      type: string
+                                    preference:
+                                      type: string
+                                      enum:
+                                      - opt_in
+                                      - opt_out
+                                    is_editable:
+                                      type: boolean
+                  channel_preferences:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        channel:
+                          type: string
+                        is_restricted:
+                          type: boolean
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    code: 404
+                    message: object 'object_type/id' not found
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 404
+                  message:
+                    type: string
+                    example: object 'object_type/id' not found
+      deprecated: false
+      tags:
+      - Object
+  /v1/object/{object_type}/{id}/preference/category/:
+    get:
+      summary: All Categories
+      security:
+      - BearerAuth: []
+      description: API to fetch user preferences across all categories.
+      operationId: fetch-object-preference-all-categories
+      parameters:
+      - name: object_type
+        in: path
+        description: Used to group similar objects together. Give plural namespace like teams, organizations, and roles.
+        schema:
+          type: string
+        required: true
+      - name: tenant_id
+        in: query
+        description: to fetch object preferences for a particular tenant
+        schema:
+          type: string
+      - name: show_opt_out_channels
+        in: query
+        description: set this flag to `true` if you want to fetch channel list for opt-out categories.
+        schema:
+          type: boolean
+          default: false
+      - name: id
+        in: path
+        description: Unique identifier of the object in your system
+        schema:
+          type: string
+        required: true
+      - name: tags
+        in: query
+        description: 'Filter preference categories with tags assigned to them. Used to filter preference categories relevant to the user on UI based on their roles, department or teams.
+
+          You can apply single tag filter like `tags=tag1` or build nested conditions using logical operators - `and`, `or`, `not`, `exists`.
+
+
+          Example:
+
+          ```
+
+          tags=admin
+
+          tags={"or":[{"and":["admin","sales"]},{"and":["admin","manager"]}]}
+
+          tags={"not":"admin"}
+
+          tags={"exists":true}
+
+          '
+        schema:
+          type: string
+      - name: locale
+        in: query
+        description: "Locale code (e.g., `es`, `fr`, `de`, `ja`, `es-AR`) to fetch preference translations in user's locale. When provided, the API looks for category and section names and descriptions in the respective locale file. \nIf a translation is missing for the requested locale, the system automatically falls back in this order: `locale-region` (e.g., `es-AR`) → `locale` (e.g., `es`) → `en` (English - always available).\n"
+        schema:
+          type: string
+        example: es
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    meta:
+                      count: 12
+                      limit: 10
+                      offset: 0
+                    results:
+                    - name: Newsletter
+                      category: newsletter
+                      description: Send me updates on new product updates
+                      original_preference: null
+                      preference: opt_in
+                      is_editable: false
+                      channels:
+                      - channel: email
+                        preference: opt_in
+                        is_editable: false
+                      - channel: ms_teams
+                        preference: opt_in
+                        is_editable: false
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      count:
+                        type: integer
+                        example: 12
+                      limit:
+                        type: integer
+                        example: 10
+                      offset:
+                        type: integer
+                        example: 0
+                  results:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          example: Newsletter
+                        category:
+                          type: string
+                          example: newsletter
+                        description:
+                          type: string
+                          example: Send me updates on new product updates
+                        original_preference:
+                          type: string
+                          enum:
+                          - opt_in
+                          - opt_out
+                          description: default preference of the category
+                          nullable: true
+                          example: null
+                        preference:
+                          type: string
+                          enum:
+                          - opt_in
+                          - opt_out
+                          example: opt_in
+                        is_editable:
+                          type: boolean
+                          description: false when category default preference is set to `can't unsubscribe`
+                          example: false
+                        channels:
+                          type: array
+                          description: channel level preference in the category
+                          items:
+                            type: object
+                            properties:
+                              channel:
+                                type: string
+                                description: channel name
+                                example: email
+                              preference:
+                                type: string
+                                enum:
+                                - opt_in
+                                - opt_out
+                                description: user preference for this channel (opt_in, opt_out)
+                                example: opt_in
+                              is_editable:
+                                type: boolean
+                                description: whether the user can edit this channel preference
+                                example: false
+        '404':
+          description: 404 - Not Found
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    code: 404
+                    message: object 'object_type/id' not found
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 404
+                  message:
+                    type: string
+                    example: object 'object_type/id' not found
+      deprecated: false
+      tags:
+      - Object
+  /v1/object/{object_type}/{id}/subscribed_to/object/:
+    get:
+      summary: Fetch Object subscriptions
+      security:
+      - BearerAuth: []
+      description: API to fetch a paginated list of all parent objects that the given child object is subscribed to.
+      operationId: fetch-object-subscriptions
+      parameters:
+      - name: id
+        in: path
+        description: Unique identifier of the object in your system
+        schema:
+          type: string
+        required: true
+      - name: object_type
+        in: path
+        description: Used to group similar objects together. Give plural namespace like teams, organizations, and roles.
+        schema:
+          type: string
+        required: true
+      - name: limit
+        in: query
+        description: number of results to be returned in API response
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: after
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    meta:
+                      count: 1
+                      limit: 10
+                      has_prev: false
+                      before: null
+                      has_next: false
+                      after: null
+                    results:
+                    - properties: {}
+                      object:
+                        id: frontend
+                        object_type: developer
+                        properties:
+                          name: frontend
+                          technology: react
+                        subscriptions_count: 3
+                        updated_at: '2024-11-10T21:41:02.673661+00:00'
+                      created_at: '2025-04-06T11:00:24.260496+00:00'
+                      updated_at: '2025-04-06T11:00:24.260496+00:00'
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      count:
+                        type: integer
+                        example: 1
+                        description: Total number of results.
+                      limit:
+                        type: integer
+                        example: 10
+                        description: Maximum number of results returned per request.
+                      has_prev:
+                        type: boolean
+                        description: Indicates if there are previous results.
+                      before:
+                        type: string
+                        description: Cursor for the previous page, if applicable.
+                      has_next:
+                        type: boolean
+                        description: Indicates if there are more results.
+                      after:
+                        type: string
+                        description: Cursor for the next page, if applicable.
+                  results:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        properties:
+                          type: object
+                          description: Subscription Properties
+                        object:
+                          type: object
+                          description: payload of the parent object
+                        created_at:
+                          type: string
+                          format: date-time
+                          example: '2024-11-10T21:40:02.169501+00:00'
+                          description: Timestamp when the record was created.
+                        updated_at:
+                          type: string
+                          format: date-time
+                          example: '2024-11-10T21:40:02.169501+00:00'
+                          description: Timestamp when the record was last updated.
+        '404':
+          description: 404 - Not Found
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    code: 404
+                    message: object 'obj_type/obj_id' not found
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    description: HTTP status code indicating the error.
+                  message:
+                    type: string
+                    description: Error message indicating object_id and type combination is not found
+      deprecated: false
+      tags:
+      - Object
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API_Key
+      description: Pass as `Bearer <API_KEY>`. Get API Key from SuprSend dashboard Developers -> API Keys section.
+    ServiceTokenAuth:
+      type: apiKey
+      in: header
+      name: ServiceToken <token>
+      description: You can get Service Token from [SuprSend dashboard -> Account Settings -> Service Tokens](https://app.suprsend.com/en/account-settings/service-tokens) section.
+    sec0:
+      type: apiKey
+      in: header
+      name: Authorization
+      x-bearer-format: bearer
+      description: Bearer authentication header of the form `Bearer <token>`, where <token> is your auth token.
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+x-readme-fauxas: true

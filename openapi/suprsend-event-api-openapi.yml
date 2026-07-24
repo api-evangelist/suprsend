@@ -1,0 +1,832 @@
+openapi: 3.1.1
+info:
+  title: SuprSend Broadcast Event API
+  description: APIs supported on suprsend platform
+  version: 1.2.2
+servers:
+- url: https://hub.suprsend.com
+security:
+- sec0: []
+- BearerAuth: []
+tags:
+- name: Event
+paths:
+  /event/:
+    post:
+      summary: Trigger an Event
+      security:
+      - BearerAuth: []
+      description: API to pass an event, which in turn triggers workflows where that event is defined as the trigger.
+      operationId: event-api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - distinct_id
+              - event
+              properties:
+                distinct_id:
+                  type: string
+                  description: distinct_id of recipient who should receive the notification
+                  default: _distinct_id_
+                event:
+                  type: string
+                  description: string identifier for the event like `product_purchased`
+                  default: _event_name_
+                properties:
+                  type: object
+                  description: Properties are used to render template or workflow variables in the trigger.
+                  properties:
+                    $attachments:
+                      type: array
+                      description: Use this key to pass email attachment in the trigger. You can either pass attachment as a public URL or as a base64-encoded file (limit < 50KB).
+                      items:
+                        oneOf:
+                        - type: object
+                          title: publicly accessible URL
+                          description: '**Option 1: Pass file as publicly accessible URL** (No limit on file size)'
+                          required:
+                          - url
+                          properties:
+                            url:
+                              type: string
+                              format: uri
+                              description: Publicly accessible URL of the file
+                              example: https://bitcoincore.org/bitcoin.pdf
+                            filename:
+                              type: string
+                              description: Filename to be shown in email
+                              example: billing.pdf
+                            ignore_if_error:
+                              type: boolean
+                              description: Ignore the attachment if it fails to load
+                        - type: object
+                          title: base64-encoded file
+                          description: Pass file as a **base-64 file** (supported limit < 50KB)
+                          required:
+                          - data
+                          properties:
+                            data:
+                              type: string
+                              description: Base64-encoded content of the file
+                            filename:
+                              type: string
+                              description: Filename to be shown in email
+                            contentType:
+                              type: string
+                              example: application/pdf
+                  additionalProperties:
+                    type: string
+                tenant_id:
+                  type: string
+                  description: string identifier of the tenant this event is associated with
+                $idempotency_key:
+                  type: string
+                  description: Idempotency key (valid for 24hours)
+            examples:
+              SHIPMENT ARRIVAL:
+                value:
+                  distinct_id: 0fxxx8f74-xxxx-41c5-8752-xxxcb6911fb08
+                  event: ON SHIPMENT ARRIVAL
+                  properties:
+                    amount: 3780$
+                    number: TRXC1034
+                    vehicle: Truck
+                    locations: San Francisco
+      responses:
+        '202':
+          description: 202 - Accepted
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: OK
+              schema:
+                type: object
+                description: Confirmation that the event was accepted for processing.
+                properties:
+                  message:
+                    type: string
+                    description: Status message indicating the event was accepted.
+                    example: OK
+      deprecated: false
+      tags:
+      - Event
+  /v1/{workspace}/event/:
+    get:
+      summary: List Events
+      description: Retrieve a list of events in a workspace.
+      operationId: list-events
+      servers:
+      - url: https://management-api.suprsend.com
+      security:
+      - ServiceTokenAuth: []
+      x-codeSamples:
+      - lang: cURL
+        label: List Events
+        source: "curl -X GET \"https://management-api.suprsend.com/v1/{workspace}/event/?limit=10&offset=0\" \\\n  --header 'Authorization: ServiceToken <token>' \\\n  --header 'Content-Type: application/json'\n"
+      parameters:
+      - in: path
+        name: workspace
+        required: true
+        schema:
+          type: string
+        description: Workspace slug (staging, production, etc.)
+      - in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 10
+        description: Number of events to return per page (max 100)
+      - in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+          minimum: 0
+          default: 0
+        description: Number of events to skip for pagination
+      responses:
+        '200':
+          description: Successfully retrieved list of events
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      count:
+                        type: integer
+                        description: Total number of events matching the query
+                        example: 15
+                      limit:
+                        type: integer
+                        description: Number of results returned per page
+                        example: 10
+                      offset:
+                        type: integer
+                        description: Offset value passed in the request
+                        example: 0
+                    description: Metadata related to pagination information
+                  results:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          description: Event name
+                          example: user_signup
+                        description:
+                          type: string
+                          description: Description of the event
+                          example: Triggered whenever a new user successfully signs up on the platform
+                        payload_schema:
+                          type: object
+                          properties:
+                            schema:
+                              type: string
+                              description: Linked schema identifier
+                              example: user_signup_v1
+                            version_no:
+                              type: integer
+                              description: Schema version number
+                              example: 1
+                        created_at:
+                          type: string
+                          format: date-time
+                          description: When the event was created
+                          example: '2025-08-27T09:30:57.945326Z'
+                        $schema:
+                          type: string
+                          description: JSON Schema reference for how the event API call should be structured
+                          example: https://schema.suprsend.com/event/v1/schema.json
+                    description: Array of events
+        '401':
+          $ref: '#/components/responses/AuthenticationError'
+          description: AuthenticationFailed - Invalid service token.
+      tags:
+      - Event
+    post:
+      summary: Create Event
+      description: Add events and their linked schemas in SuprSend
+      operationId: create-event
+      servers:
+      - url: https://management-api.suprsend.com
+      security:
+      - ServiceTokenAuth: []
+      x-codeSamples:
+      - lang: cURL
+        label: Create Event
+        source: "curl -X POST \"https://management-api.suprsend.com/v1/{workspace}/event/\" \\\n  --header 'Authorization: ServiceToken <token>' \\\n  --header 'Content-Type: application/json' \\\n  --data '{\n    \"name\": \"User Signup Event\",\n    \"description\": \"Triggered whenever a new user successfully signs up on the platform\",\n    \"payload_schema\": {\n      \"schema\": \"user_signup_v1\"\n    }\n  }'\n"
+      parameters:
+      - in: path
+        name: workspace
+        required: true
+        schema:
+          type: string
+        description: Workspace slug (staging, production, etc.)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - name
+              properties:
+                name:
+                  type: string
+                  description: Unique Identifier of the Event.
+                  example: User Signup Event
+                description:
+                  type: string
+                  description: Description of the event. Can be used to describe which action this event is linked to.
+                  example: Triggered whenever a new user successfully signs up on the platform
+                payload_schema:
+                  type: object
+                  required:
+                  - schema
+                  properties:
+                    schema:
+                      type: string
+                      description: Linked schema slug to validate event properties structure. You can create a schema via [Create Schema](/reference/create-schema) endpoint and then link it here.
+                      example: user_signup_v1
+                    version_no:
+                      type: integer
+                      description: Schema version number to link. By default, live version is always picked for validation.
+                      example: 1
+              example:
+                name: User Signup Event
+                description: Triggered whenever a new user successfully signs up on the platform
+                payload_schema:
+                  schema: user_signup_v1
+                  version_no: 1
+      responses:
+        '200':
+          description: Updated event details
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                name: user_signup
+                description: Triggered whenever a new user successfully signs up on the platform
+                payload_schema:
+                  schema: user_signup_v1
+                  version_no: 1
+                created_at: '2025-08-27T09:30:57.945326Z'
+                $schema: https://schema.suprsend.com/event/v1/schema.json
+        '400':
+          description: Invalid event format
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    description: HTTP status code
+                    example: 400
+                  error_code:
+                    type: string
+                    description: Error code identifier
+                    example: error
+                  type:
+                    type: string
+                    description: Error type
+                    example: ValidationError
+                  message:
+                    type: string
+                    description: Error message
+                    example: '{"name": ["This field is required."]}'
+                  detail:
+                    type: object
+                    description: Detailed error information
+                    example:
+                      name:
+                      - This field is required.
+              example:
+                code: 400
+                error_code: error
+                type: ValidationError
+                message: '{"name": ["This field is required."]}'
+                detail:
+                  name:
+                  - This field is required.
+        '401':
+          $ref: '#/components/responses/AuthenticationError'
+          description: AuthenticationFailed - Invalid service token.
+      tags:
+      - Event
+  /v1/{workspace}/event/{url_encoded_event_name}/:
+    get:
+      summary: Get Event Details
+      description: Fetch event details and its linked schema.
+      operationId: get-event
+      servers:
+      - url: https://management-api.suprsend.com
+      security:
+      - ServiceTokenAuth: []
+      x-codeSamples:
+      - lang: cURL
+        source: "curl -X GET \"https://management-api.suprsend.com/v1/{workspace}/event/{url_encoded_event_name}/\" \\\n  --header 'Authorization: ServiceToken <token>' \\\n  --header 'Content-Type: application/json'\n"
+      parameters:
+      - in: path
+        name: workspace
+        required: true
+        schema:
+          type: string
+        description: Workspace slug (staging, production, etc.)
+      - in: path
+        name: url_encoded_event_name
+        required: true
+        schema:
+          type: string
+        description: URL encoded event name. Example - `SHIPMENT%20ARRIVED`
+      responses:
+        '200':
+          description: Successfully retrieved event
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    description: Event name
+                    example: user_signup
+                  description:
+                    type: string
+                    description: Description of the event
+                    example: Triggered whenever a new user successfully signs up on the platform
+                  payload_schema:
+                    type: object
+                    properties:
+                      schema:
+                        type: string
+                        description: Linked schema slug
+                        example: user_signup_v1
+                      version_no:
+                        type: integer
+                        description: Linked schema version number. if `null`, live version will be picked for validation.
+                        example: 1
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: When the event was created
+                    example: '2025-08-27T09:30:57.945326Z'
+                  $schema:
+                    type: string
+                    description: JSON Schema reference for how the event API call should be structured.
+                    example: https://schema.suprsend.com/event/v1/schema.json
+                example:
+                  name: user_signup
+                  description: Triggered whenever a new user successfully signs up on the platform
+                  payload_schema:
+                    schema: user_signup_v1
+                    version_no: 1
+                  created_at: '2025-08-27T09:30:57.945326Z'
+                  $schema: https://schema.suprsend.com/event/v1/schema.json
+        '400':
+          description: Invalid event format
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    description: HTTP status code
+                    example: 400
+                  error_code:
+                    type: string
+                    description: Error code identifier
+                    example: error
+                  type:
+                    type: string
+                    description: Error type
+                    example: ValidationError
+                  message:
+                    type: string
+                    description: Error message
+                    example: '{"name": ["This field is required."]}'
+                  detail:
+                    type: object
+                    description: Detailed error information
+                    example:
+                      name:
+                      - This field is required.
+              example:
+                code: 400
+                error_code: error
+                type: ValidationError
+                message: '{"name": ["This field is required."]}'
+                detail:
+                  name:
+                  - This field is required.
+        '401':
+          $ref: '#/components/responses/AuthenticationError'
+          description: AuthenticationFailed - Invalid service token.
+      tags:
+      - Event
+    patch:
+      summary: Update Event
+      description: Update event description and its linked schema.
+      operationId: update-event
+      servers:
+      - url: https://management-api.suprsend.com
+      security:
+      - ServiceTokenAuth: []
+      x-codeSamples:
+      - lang: cURL
+        label: Update Event
+        source: "curl -X POST \"https://management-api.suprsend.com/v1/{workspace}/event/{url_encoded_event_name}/\" \\\n  --header 'Authorization: ServiceToken <token>' \\\n  --header 'Content-Type: application/json' \\\n  --data '{\n    \"description\": \"Triggered whenever a new user successfully signs up on the platform\",\n    \"payload_schema\": {\n      \"schema\": \"user_signup_v1\"\n    }\n  }'\n"
+      parameters:
+      - in: path
+        name: workspace
+        required: true
+        schema:
+          type: string
+        description: Workspace slug (staging, production, etc.)
+      - in: path
+        name: url_encoded_event_name
+        required: true
+        schema:
+          type: string
+        description: URL encoded event name
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                description:
+                  type: string
+                  description: Description of the event. Can be used to describe which action this event is linked to.
+                  example: Triggered whenever a new user successfully signs up on the platform
+                payload_schema:
+                  type: object
+                  required:
+                  - schema
+                  properties:
+                    schema:
+                      type: string
+                      description: Linked schema slug to validate event properties structure. You can create a schema via [Create Schema](/reference/create-schema) endpoint and then link it here.
+                      example: user_signup_v1
+                    version_no:
+                      type: integer
+                      description: Schema version number to link. By default, live version is always picked for validation.
+                      example: null
+              example:
+                description: Triggered whenever a new user successfully signs up on the platform
+                payload_schema:
+                  schema: user_signup_v1
+      responses:
+        '200':
+          description: Updated event details
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                name: user_signup
+                description: Triggered whenever a new user successfully signs up on the platform
+                payload_schema:
+                  schema: user_signup_v1
+                  version_no: 1
+                created_at: '2025-08-27T09:30:57.945326Z'
+                $schema: https://schema.suprsend.com/event/v1/schema.json
+        '400':
+          description: Invalid event format
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    description: HTTP status code
+                    example: 400
+                  error_code:
+                    type: string
+                    description: Error code identifier
+                    example: error
+                  type:
+                    type: string
+                    description: Error type
+                    example: ValidationError
+                  message:
+                    type: string
+                    description: Error message
+                    example: '{"payload_schema": ["Schema is required"]}'
+                  detail:
+                    type: object
+                    description: Detailed error information
+                    example:
+                      payload_schema:
+                      - Schema is required
+              example:
+                code: 400
+                error_code: error
+                type: ValidationError
+                message: '{"payload_schema": ["Schema is required"]}'
+                detail:
+                  payload_schema:
+                  - Schema is required
+        '401':
+          $ref: '#/components/responses/AuthenticationError'
+          description: AuthenticationFailed - Invalid service token.
+      tags:
+      - Event
+  /v1/{workspace}/event/{url_encoded_event_name}/linked_workflows/:
+    get:
+      summary: Get Linked Workflows
+      description: Fetch list of all workflows where this event is used
+      operationId: get-linked-workflows
+      servers:
+      - url: https://management-api.suprsend.com
+      security:
+      - ServiceTokenAuth: []
+      x-codeSamples:
+      - lang: cURL
+        label: Get Linked Workflows
+        source: "curl -X GET \"https://management-api.suprsend.com/v1/{workspace}/event/{url_encoded_event_name}/linked_workflows/\" \\\n  --header 'Authorization: ServiceToken <token>' \\\n  --header 'Content-Type: application/json'\n"
+      parameters:
+      - in: path
+        name: workspace
+        required: true
+        schema:
+          type: string
+        description: Workspace slug (staging, production, etc.)
+      - in: path
+        name: url_encoded_event_name
+        required: true
+        schema:
+          type: string
+        description: URL encoded event name. Example - `SHIPMENT%20ARRIVED`
+      responses:
+        '200':
+          description: Successfully retrieved linked workflows
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        slug:
+                          type: string
+                          description: Workflow slug where this event is used
+                          example: onboarding_series
+                        usage:
+                          type: array
+                          items:
+                            type: string
+                            description: Usage of the event in the workflow. Could be one of `Trigger Event`, `Wait Event` or `Success Metric Event`
+                            example: Wait Event
+              example:
+                results:
+                - slug: onboarding_series
+                  usage:
+                  - Trigger Event
+        '404':
+          description: Event not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    description: HTTP status code
+                    example: 404
+                  error_code:
+                    type: string
+                    description: Error code identifier
+                    example: not_found
+                  type:
+                    type: string
+                    description: Error type
+                    example: NotFound
+                  message:
+                    type: string
+                    description: Error message
+                    example: Event 'user_signup' not found in workspace 'staging'
+                  detail:
+                    type: string
+                    description: Detailed error information
+                    example: Event 'user_signup' not found in workspace 'staging'
+              example:
+                code: 404
+                error_code: not_found
+                type: NotFound
+                message: Event 'user_signup' not found in workspace 'staging'
+                detail: Event 'user_signup' not found in workspace 'staging'
+        '401':
+          $ref: '#/components/responses/AuthenticationError'
+          description: AuthenticationFailed - Invalid service token.
+      tags:
+      - Event
+  /v1/{workspace}/event/{url_encoded_event_name}/delink_schema/:
+    patch:
+      summary: Delink Schema from Event
+      description: Remove the linked schema from an event, making it schema-less. This allows the event to accept any payload structure without validation against a predefined schema.
+      operationId: delink-event-schema
+      servers:
+      - url: https://management-api.suprsend.com
+      security:
+      - ServiceTokenAuth: []
+      x-codeSamples:
+      - lang: cURL
+        label: Delink Schema from Event
+        source: "curl -X PATCH \"https://management-api.suprsend.com/v1/{workspace}/event/{url_encoded_event_name}/delink_schema/\" \\\n  --header 'Authorization: ServiceToken <token>' \\\n  --header 'Content-Type: application/json'\n"
+      parameters:
+      - in: path
+        name: workspace
+        required: true
+        schema:
+          type: string
+        description: Workspace slug (staging, production, etc.)
+      - in: path
+        name: url_encoded_event_name
+        required: true
+        schema:
+          type: string
+        description: URL encoded event name. Example - `SHIPMENT%20ARRIVED`
+      responses:
+        '200':
+          description: Successfully delinked schema from event
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    description: Event name
+                    example: user_signup
+                  description:
+                    type: string
+                    description: Description of the event
+                    example: Triggered whenever a new user successfully signs up on the platform
+                  payload_schema:
+                    type: null
+                    description: Schema has been delinked from the event
+                    example: null
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: When the event was created
+                    example: '2025-08-27T09:30:57.945326Z'
+                  $schema:
+                    type: string
+                    description: JSON Schema reference for how the event API call should be structured
+                    example: https://schema.suprsend.com/event/v1/schema.json
+                example:
+                  name: user_signup
+                  description: Triggered whenever a new user successfully signs up on the platform
+                  payload_schema: null
+                  created_at: '2025-08-27T09:30:57.945326Z'
+                  $schema: https://schema.suprsend.com/event/v1/schema.json
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    description: HTTP status code
+                    example: 400
+                  error_code:
+                    type: string
+                    description: Error code identifier
+                    example: error
+                  type:
+                    type: string
+                    description: Error type
+                    example: ValidationError
+                  message:
+                    type: string
+                    description: Error message
+                    example: Event does not have a linked schema to delink
+                  detail:
+                    type: object
+                    description: Detailed error information
+                    example:
+                      payload_schema:
+                      - Event does not have a linked schema to delink
+              example:
+                code: 400
+                error_code: error
+                type: ValidationError
+                message: Event does not have a linked schema to delink
+                detail:
+                  payload_schema:
+                  - Event does not have a linked schema to delink
+        '404':
+          description: Event not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    description: HTTP status code
+                    example: 404
+                  error_code:
+                    type: string
+                    description: Error code identifier
+                    example: not_found
+                  type:
+                    type: string
+                    description: Error type
+                    example: NotFound
+                  message:
+                    type: string
+                    description: Error message
+                    example: Event 'user_signup' not found in workspace 'staging'
+                  detail:
+                    type: string
+                    description: Detailed error information
+                    example: Event 'user_signup' not found in workspace 'staging'
+              example:
+                code: 404
+                error_code: not_found
+                type: NotFound
+                message: Event 'user_signup' not found in workspace 'staging'
+                detail: Event 'user_signup' not found in workspace 'staging'
+        '401':
+          $ref: '#/components/responses/AuthenticationError'
+          description: AuthenticationFailed - Invalid service token.
+      tags:
+      - Event
+components:
+  responses:
+    AuthenticationError:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            code: 401
+            error_code: authentication_failed
+            type: AuthenticationFailed
+            message: Invalid service token.
+            detail: Invalid service token.
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: HTTP status code
+        error_code:
+          type: string
+          description: Specific error code identifier
+        type:
+          type: string
+          description: Error type classification
+        message:
+          type: string
+          description: Human-readable error message
+        detail:
+          type: string
+          description: Additional error details
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API_Key
+      description: Pass as `Bearer <API_KEY>`. Get API Key from SuprSend dashboard Developers -> API Keys section.
+    ServiceTokenAuth:
+      type: apiKey
+      in: header
+      name: ServiceToken <token>
+      description: You can get Service Token from [SuprSend dashboard -> Account Settings -> Service Tokens](https://app.suprsend.com/en/account-settings/service-tokens) section.
+    sec0:
+      type: apiKey
+      in: header
+      name: Authorization
+      x-bearer-format: bearer
+      description: Bearer authentication header of the form `Bearer <token>`, where <token> is your auth token.
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+x-readme-fauxas: true

@@ -1,0 +1,428 @@
+openapi: 3.1.1
+info:
+  title: SuprSend Broadcast Ws Signing Key API
+  description: APIs supported on suprsend platform
+  version: 1.2.2
+servers:
+- url: https://hub.suprsend.com
+security:
+- sec0: []
+- BearerAuth: []
+tags:
+- name: Ws Signing Key
+paths:
+  /v1/{workspace}/ws_signing_key/:
+    get:
+      summary: List Workspace Signing Keys
+      description: List signing keys for this workspace. Signing keys are used to verify signed payloads.
+      operationId: list-workspace-signing-keys
+      servers:
+      - url: https://management-api.suprsend.com
+      security:
+      - ServiceTokenAuth: []
+      x-codeSamples:
+      - lang: cURL
+        label: List Workspace Signing Keys
+        source: "curl -X GET \"https://management-api.suprsend.com/v1/{workspace}/ws_signing_key/\" \\\n  --header 'Authorization: ServiceToken <SERVICE_TOKEN>' \\\n  --header 'Content-Type: application/json'\n"
+      parameters:
+      - in: path
+        name: workspace
+        required: true
+        schema:
+          type: string
+        description: Workspace slug (e.g. `staging`, `production`).
+      responses:
+        '200':
+          description: Successfully retrieved signing keys.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagementWorkspaceSigningKeyListResponse'
+              example:
+                meta:
+                  count: 2
+                  limit: 10
+                  offset: 0
+                results:
+                - id: ws_signk_exampleId01
+                  uid: signing_key_exampleUid01
+                  status: active
+                  allowed_domains: null
+                  expiry_at: null
+                  created_at: '2026-04-02T19:35:06.513406Z'
+                  created_by:
+                    name: Example User
+                    email: user@example.com
+                  rolled_at: null
+                  rolled_by: null
+                  deleted_at: null
+                  deleted_by: null
+                - id: ws_signk_exampleId02
+                  uid: signing_key_exampleUid02
+                  status: rolled
+                  allowed_domains: null
+                  expiry_at: null
+                  created_at: '2024-09-08T16:27:46.700367Z'
+                  created_by:
+                    name: Example User
+                    email: user@example.com
+                  rolled_at: '2026-04-02T19:35:06.503029Z'
+                  rolled_by:
+                    name: Example User
+                    email: user@example.com
+                  deleted_at: null
+                  deleted_by: null
+        '401':
+          $ref: '#/components/responses/AuthenticationError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+      tags:
+      - Ws Signing Key
+    post:
+      summary: Create Workspace Signing Key
+      description: 'Create a signing key for this workspace.
+
+
+        The `private_key_pem` and `private_key_base64` fields are returned **only once** at creation. Store them securely - they cannot be retrieved later.
+
+
+        Only **one active** signing key is allowed per workspace. To replace an existing active key, use the [Roll Workspace Signing Key](#operation/roll-workspace-signing-key) endpoint instead.
+
+        '
+      operationId: create-workspace-signing-key
+      servers:
+      - url: https://management-api.suprsend.com
+      security:
+      - ServiceTokenAuth: []
+      x-codeSamples:
+      - lang: cURL
+        label: Create Workspace Signing Key
+        source: "curl -X POST \"https://management-api.suprsend.com/v1/{workspace}/ws_signing_key/\" \\\n  --header 'Authorization: ServiceToken <SERVICE_TOKEN>' \\\n  --header 'Content-Type: application/json'\n"
+      parameters:
+      - in: path
+        name: workspace
+        required: true
+        schema:
+          type: string
+        description: Workspace slug (e.g. `staging`, `production`).
+      responses:
+        '201':
+          description: Signing key created. Private key material is returned once in this response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagementWorkspaceSigningKeyCreateResponse'
+              example:
+                id: ws_signk_exampleId01
+                uid: signing_key_exampleUid01
+                status: active
+                allowed_domains: null
+                expiry_at: null
+                private_key_pem: '-----BEGIN PRIVATE KEY-----
+
+                  ...redacted...
+
+                  -----END PRIVATE KEY-----
+
+                  '
+                private_key_base64: LS0tLS1CRUdJTi...redacted...
+                created_at: '2026-04-21T12:35:24.117631Z'
+                created_by:
+                  name: System User
+                  email: org_XXXXXXXXXXXXXXXXXXXXXX@systemuser.suprsend.com
+                rolled_at: null
+                rolled_by: null
+                deleted_at: null
+                deleted_by: null
+        '400':
+          description: Validation error - for example, an active signing key already exists.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                code: 400
+                error_code: error
+                type: ValidationError
+                message: '["only 1 active signing key is allowed"]'
+                detail:
+                - only 1 active signing key is allowed
+        '401':
+          $ref: '#/components/responses/AuthenticationError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+      tags:
+      - Ws Signing Key
+  /v1/{workspace}/ws_signing_key/{signing_key_uid}/:
+    delete:
+      summary: Delete Workspace Signing Key
+      description: Delete a signing key by its `uid` (e.g. `signing_key_20260421T123746`).
+      operationId: delete-workspace-signing-key
+      servers:
+      - url: https://management-api.suprsend.com
+      security:
+      - ServiceTokenAuth: []
+      x-codeSamples:
+      - lang: cURL
+        label: Delete Workspace Signing Key
+        source: "curl -X DELETE \"https://management-api.suprsend.com/v1/{workspace}/ws_signing_key/{signing_key_uid}/\" \\\n  --header 'Authorization: ServiceToken <SERVICE_TOKEN>'\n"
+      parameters:
+      - in: path
+        name: workspace
+        required: true
+        schema:
+          type: string
+        description: Workspace slug (e.g. `staging`, `production`).
+      - in: path
+        name: signing_key_uid
+        required: true
+        schema:
+          type: string
+        description: Signing key `uid` (e.g. `signing_key_...`).
+      responses:
+        '204':
+          description: Signing key deleted - no response body.
+        '401':
+          $ref: '#/components/responses/AuthenticationError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+      tags:
+      - Ws Signing Key
+  /v1/{workspace}/ws_signing_key/{signing_key_uid}/roll/:
+    post:
+      summary: Roll Workspace Signing Key
+      description: 'Roll a signing key. Generates a new signing key that replaces the existing active key. The previous key is marked `rolled`.
+
+
+        The new `private_key_pem` and `private_key_base64` are returned **only once** in this response - store them securely.
+
+        '
+      operationId: roll-workspace-signing-key
+      servers:
+      - url: https://management-api.suprsend.com
+      security:
+      - ServiceTokenAuth: []
+      x-codeSamples:
+      - lang: cURL
+        label: Roll Workspace Signing Key
+        source: "curl -X POST \"https://management-api.suprsend.com/v1/{workspace}/ws_signing_key/{signing_key_uid}/roll/\" \\\n  --header 'Authorization: ServiceToken <SERVICE_TOKEN>' \\\n  --header 'Content-Type: application/json'\n"
+      parameters:
+      - in: path
+        name: workspace
+        required: true
+        schema:
+          type: string
+        description: Workspace slug (e.g. `staging`, `production`).
+      - in: path
+        name: signing_key_uid
+        required: true
+        schema:
+          type: string
+        description: Signing key `uid` to roll (e.g. `signing_key_...`).
+      responses:
+        '201':
+          description: Signing key rolled. A new signing key is created and its private key material is returned once.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagementWorkspaceSigningKeyCreateResponse'
+              example:
+                id: ws_signk_exampleId02
+                uid: signing_key_exampleUid02
+                status: active
+                allowed_domains: null
+                expiry_at: null
+                private_key_pem: '-----BEGIN PRIVATE KEY-----
+
+                  ...redacted...
+
+                  -----END PRIVATE KEY-----
+
+                  '
+                private_key_base64: LS0tLS1CRUdJTi...redacted...
+                created_at: '2026-04-21T12:37:46.216734Z'
+                created_by:
+                  name: System User
+                  email: org_XXXXXXXXXXXXXXXXXXXXXX@systemuser.suprsend.com
+                rolled_at: null
+                rolled_by: null
+                deleted_at: null
+                deleted_by: null
+        '401':
+          $ref: '#/components/responses/AuthenticationError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+      tags:
+      - Ws Signing Key
+components:
+  schemas:
+    ManagementWorkspaceSigningKeyCreateResponse:
+      allOf:
+      - $ref: '#/components/schemas/ManagementWorkspaceSigningKey'
+      - type: object
+        properties:
+          private_key_pem:
+            type: string
+            description: PEM-encoded private key. Returned only at creation and on roll - store it securely and never commit to source control.
+            example: '-----BEGIN PRIVATE KEY-----
+
+              ...redacted...
+
+              -----END PRIVATE KEY-----
+
+              '
+          private_key_base64:
+            type: string
+            description: Base64-encoded private key. Returned only at creation and on roll.
+            example: LS0tLS1CRUdJTi...redacted...
+    ManagementWorkspaceSigningKeyListResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/ManagementListMeta'
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ManagementWorkspaceSigningKey'
+    ManagementActor:
+      type: object
+      description: Identity that performed an action (created, updated, rolled, deleted, rotated).
+      nullable: true
+      properties:
+        name:
+          type: string
+          description: Display name of the actor.
+          example: System User
+        email:
+          type: string
+          description: Email address of the actor.
+          example: user@example.com
+    ManagementWorkspaceSigningKey:
+      type: object
+      description: Signing key used to verify signed payloads.
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the signing key.
+          example: ws_signk_exampleId01
+        uid:
+          type: string
+          description: Signing key uid used in path parameters for roll/delete.
+          example: signing_key_exampleUid01
+        status:
+          type: string
+          description: Status of the signing key.
+          enum:
+          - active
+          - rolled
+        allowed_domains:
+          type: array
+          nullable: true
+          items:
+            type: string
+          description: Domains allowed to use this signing key.
+        expiry_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: Timestamp when the signing key expires.
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp when the signing key was created.
+        created_by:
+          $ref: '#/components/schemas/ManagementActor'
+        rolled_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: Timestamp when the signing key was rolled.
+        rolled_by:
+          $ref: '#/components/schemas/ManagementActor'
+        deleted_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: Timestamp when the signing key was deleted.
+        deleted_by:
+          $ref: '#/components/schemas/ManagementActor'
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: HTTP status code
+        error_code:
+          type: string
+          description: Specific error code identifier
+        type:
+          type: string
+          description: Error type classification
+        message:
+          type: string
+          description: Human-readable error message
+        detail:
+          type: string
+          description: Additional error details
+    ManagementListMeta:
+      type: object
+      description: Pagination metadata (when applicable)
+      properties:
+        count:
+          type: integer
+          description: Total items matching the query
+        limit:
+          type: integer
+          nullable: true
+          description: Maximum number of results returned per page.
+        offset:
+          type: integer
+          nullable: true
+          description: Starting position of the returned results.
+  responses:
+    NotFoundError:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            code: 404
+            error_code: not_found
+            type: NotFound
+            message: workspace 'demo' not found
+            detail: workspace 'demo' not found
+    AuthenticationError:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            code: 401
+            error_code: authentication_failed
+            type: AuthenticationFailed
+            message: Invalid service token.
+            detail: Invalid service token.
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API_Key
+      description: Pass as `Bearer <API_KEY>`. Get API Key from SuprSend dashboard Developers -> API Keys section.
+    ServiceTokenAuth:
+      type: apiKey
+      in: header
+      name: ServiceToken <token>
+      description: You can get Service Token from [SuprSend dashboard -> Account Settings -> Service Tokens](https://app.suprsend.com/en/account-settings/service-tokens) section.
+    sec0:
+      type: apiKey
+      in: header
+      name: Authorization
+      x-bearer-format: bearer
+      description: Bearer authentication header of the form `Bearer <token>`, where <token> is your auth token.
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+x-readme-fauxas: true

@@ -1,0 +1,1080 @@
+openapi: 3.1.1
+info:
+  title: SuprSend Broadcast Subscriber List API
+  description: APIs supported on suprsend platform
+  version: 1.2.2
+servers:
+- url: https://hub.suprsend.com
+security:
+- sec0: []
+- BearerAuth: []
+tags:
+- name: Subscriber List
+paths:
+  /v1/subscriber_list/{list_id}/subscriber/remove/:
+    post:
+      summary: Remove Subscribers from List
+      security:
+      - BearerAuth: []
+      description: API to remove users from a list by passing their distinct_ids.
+      operationId: remove-users-from-list
+      parameters:
+      - name: list_id
+        in: path
+        description: Unique string identifier of the list to which user needs to be updated
+        required: true
+        schema:
+          type: string
+          default: _list_id_
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                distinct_ids:
+                  type: array
+                  description: Array of subscriber_ids, uniquely identifying the subscribers to be removed from the list.
+                  default:
+                  - _distinct_id1_
+                  items:
+                    type: string
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    success: true
+                    affected_count: 0
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Indicates whether the operation was successful.
+                    example: true
+                  affected_count:
+                    type: integer
+                    description: Number of subscribers affected by the operation.
+                    example: 0
+                required:
+                - success
+                - affected_count
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    code: 404
+                    error_code: not_found
+                    type: NotFound
+                    message: 'list_id: _list_id_ not found'
+                    detail: 'list_id: _list_id_ not found'
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    description: HTTP status code.
+                    example: 404
+                  error_code:
+                    type: string
+                    description: Machine-readable error code.
+                    example: not_found
+                  type:
+                    type: string
+                    description: Error type classification.
+                    example: NotFound
+                  message:
+                    type: string
+                    description: Human-readable error message.
+                    example: 'list_id: _list_id_ not found'
+                  detail:
+                    type: string
+                    description: Detailed error information.
+                    example: 'list_id: _list_id_ not found'
+      deprecated: false
+      tags:
+      - Subscriber List
+  /v1/subscriber_list/:
+    get:
+      summary: Get all Lists
+      security:
+      - BearerAuth: []
+      description: API to fetch a paginated list of all lists created in your workspace.
+      operationId: get-all-lists
+      parameters:
+      - name: limit
+        in: query
+        description: number of results to be returned in API response
+        schema:
+          type: integer
+          default: 20
+      - name: offset
+        in: query
+        description: starting position of tenant list
+        schema:
+          type: integer
+          default: 0
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    meta:
+                      count: 53
+                      limit: 2
+                      offset: 0
+                    results:
+                    - drafts: null
+                      source: null
+                      status: active
+                      list_id: list_01
+                      list_name: sample list 01
+                      list_type: static_list
+                      created_at: '2025-04-04T07:33:06.943+00:00'
+                      updated_at: '2025-04-04T07:33:06.943+00:00'
+                      version_id: null
+                      is_readonly: false
+                      track_user_exit: false
+                      list_description: _some sample description_
+                      track_user_entry: false
+                      subscribers_count: 0
+                      requested_for_delete: false
+                    - drafts: null
+                      source: database_sync
+                      status: active
+                      list_id: list_02
+                      list_name: sample list 02
+                      list_type: static_list
+                      created_at: '2024-12-20T12:09:28.727+00:00'
+                      updated_at: '2025-04-04T07:32:32.127275+00:00'
+                      version_id: null
+                      is_readonly: false
+                      track_user_exit: true
+                      list_description: _some sample description_
+                      track_user_entry: true
+                      subscribers_count: 31
+                      requested_for_delete: false
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      count:
+                        type: integer
+                        description: Total number of lists available.
+                        example: 53
+                      limit:
+                        type: integer
+                        description: Maximum number of results per page.
+                        example: 2
+                      offset:
+                        type: integer
+                        description: Starting position of the results.
+                        example: 0
+                  results:
+                    type: array
+                    items:
+                      type: object
+                      description: List object similar to list upsert function.
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: Not Authenticated - could not find Workspace details
+              schema:
+                type: object
+                description: error message details
+      deprecated: false
+      tags:
+      - Subscriber List
+    post:
+      summary: Create a List
+      security:
+      - BearerAuth: []
+      description: API to create / manage lists to send notification to a bulk list of users.
+      operationId: create-list
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - list_id
+              properties:
+                list_id:
+                  type: string
+                  description: Unique string identifier of the list. Add an id which defines the type of users who are part of the list
+                  default: _list_id_
+                list_name:
+                  type: string
+                  description: Name of the List. Add a name which defines the type of users in the list
+                  default: _list_name_
+                list_description:
+                  type: string
+                  description: Brief description of the list and the type of users in it.
+                  default: _some sample description_
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    list_id: product_updates
+                    list_name: Product Update
+                    list_description: Users subscribed to the newsletter
+                    list_type: static_list
+                    subscribers_count: 3
+                    source: database_sync
+                    is_readonly: false
+                    status: active
+                    track_user_entry: false
+                    track_user_exit: false
+                    requested_for_delete: false
+                    created_at: '2024-02-21T19:10:01.906000Z'
+                    updated_at: '2025-04-04T07:25:43.186475Z'
+                    drafts: null
+              schema:
+                type: object
+                properties:
+                  list_id:
+                    type: string
+                    description: Unique identifier of the list.
+                    example: product_updates
+                  list_name:
+                    type: string
+                    description: Name of the list.
+                    example: Product Update
+                  list_description:
+                    type: string
+                    description: Brief description of the list.
+                    example: Users subscribed to the newsletter
+                  list_type:
+                    type: string
+                    description: Type of the list.
+                    enum:
+                    - static_list
+                    - query_based
+                  subscribers_count:
+                    type: integer
+                    description: number of users in the list
+                  source:
+                    type: string
+                    description: source info on how the list is updated
+                    example: database_sync
+                  is_readonly:
+                    type: boolean
+                    description: Indicates whether the list is read-only.
+                    example: false
+                  status:
+                    type: string
+                    description: Current status of the list (active or draft).
+                    example: active
+                  track_user_entry:
+                    type: boolean
+                    description: Event `$USER_ENTERED_LIST - <list_id>` is generated when user is added this list. Use this to trigger workflow on user entry.
+                  track_user_exit:
+                    type: boolean
+                    description: Event `$USER_EXITED_LIST - <list_id>` is generated when user is removed from this list. Use this to trigger workflow on user exit.
+                  requested_for_delete:
+                    type: boolean
+                    description: Indicates whether the list has been requested for deletion.
+                    example: false
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: Timestamp when the list was created.
+                    example: '2024-02-21T19:10:01.906000Z'
+                  updated_at:
+                    type: string
+                    format: date-time
+                    description: Timestamp when the list was last updated.
+                    example: '2025-04-04T07:25:43.186475Z'
+                  drafts:
+                    type: string
+                    nullable: true
+                    description: would show the draft list created to replace list users.
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    code: 400
+                    error_code: error
+                    type: ValidationError
+                    message: '{"list_id": ["This field may not be blank."]}'
+                    detail:
+                      list_id:
+                      - This field may not be blank.
+              schema:
+                type: object
+                description: error code and related message detailing out the error
+      deprecated: false
+      tags:
+      - Subscriber List
+  /v1/subscriber_list/{list_id}/subscriber/add/:
+    post:
+      summary: Add Users to List
+      security:
+      - BearerAuth: []
+      description: API to add users to the list by passing their distinct_ids.
+      operationId: add-subscribers-to-list
+      parameters:
+      - name: list_id
+        in: path
+        description: Unique string identifier of the list to which user needs to be updated
+        required: true
+        schema:
+          type: string
+          default: _list_id_
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                distinct_ids:
+                  type: array
+                  description: Array of subscriber_ids, uniquely identifying the subscribers to be added to the list.
+                  default:
+                  - _distinct_id1_
+                  items:
+                    type: string
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    success: true
+                    affected_count: 0
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Indicates whether the operation was successful.
+                    example: true
+                  affected_count:
+                    type: integer
+                    description: Number of subscribers affected by the operation.
+                    example: 2
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    code: 404
+                    error_code: not_found
+                    type: NotFound
+                    message: 'list_id: _list_id_ not found'
+                    detail: 'list_id: _list_id_ not found'
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    description: HTTP status code.
+                    example: 404
+                  error_code:
+                    type: string
+                    description: Machine-readable error code.
+                    example: not_found
+                  type:
+                    type: string
+                    description: Error type classification.
+                    example: NotFound
+                  message:
+                    type: string
+                    description: Human-readable error message.
+                    example: 'list_id: _list_id_ not found'
+                  detail:
+                    type: string
+                    description: Detailed error information.
+                    example: 'list_id: _list_id_ not found'
+      deprecated: false
+      tags:
+      - Subscriber List
+  /v1/subscriber_list/{list_id}/:
+    get:
+      summary: Get List configuration
+      security:
+      - BearerAuth: []
+      description: API to fetch list metadata like list type, count, source, and status. Doesn't include users in the list.
+      operationId: get-list
+      parameters:
+      - name: list_id
+        in: path
+        description: Unique string identifier of the list.
+        required: true
+        schema:
+          type: string
+          default: _list_id_
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    list_id: product_updates
+                    list_name: Product Update
+                    list_description: Users subscribed to the newsletter
+                    list_type: static_list
+                    subscribers_count: 3
+                    source: database_sync
+                    is_readonly: false
+                    status: active
+                    track_user_entry: false
+                    track_user_exit: false
+                    requested_for_delete: false
+                    created_at: '2024-02-21T19:10:01.906000Z'
+                    updated_at: '2025-04-04T07:25:43.186475Z'
+                    drafts: null
+              schema:
+                type: object
+                properties:
+                  list_id:
+                    type: string
+                    description: Unique identifier of the list.
+                    example: product_updates
+                  list_name:
+                    type: string
+                    description: Name of the list.
+                    example: Product Update
+                  list_description:
+                    type: string
+                    description: Brief description of the list.
+                    example: Users subscribed to the newsletter
+                  list_type:
+                    type: string
+                    description: Type of the list.
+                    enum:
+                    - static_list
+                    - query_based
+                  subscribers_count:
+                    type: integer
+                    description: number of users in the list
+                  source:
+                    type: string
+                    description: source info on how the list is updated
+                    example: database_sync
+                  is_readonly:
+                    type: boolean
+                    description: Indicates whether the list is read-only.
+                    example: false
+                  status:
+                    type: string
+                    description: Current status of the list (active or draft).
+                    example: active
+                  track_user_entry:
+                    type: boolean
+                    description: Event `$USER_ENTERED_LIST - <list_id>` is generated when user is added this list. Use this to trigger workflow on user entry.
+                  track_user_exit:
+                    type: boolean
+                    description: Event `$USER_EXITED_LIST - <list_id>` is generated when user is removed from this list. Use this to trigger workflow on user exit.
+                  requested_for_delete:
+                    type: boolean
+                    description: Indicates whether the list has been requested for deletion.
+                    example: false
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: Timestamp when the list was created.
+                    example: '2024-02-21T19:10:01.906000Z'
+                  updated_at:
+                    type: string
+                    format: date-time
+                    description: Timestamp when the list was last updated.
+                    example: '2025-04-04T07:25:43.186475Z'
+                  drafts:
+                    type: string
+                    nullable: true
+                    description: would show the draft list created to replace list users.
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    code: 404
+                    error_code: not_found
+                    type: NotFound
+                    message: 'list_id: list_id_01 not found'
+                    detail: 'list_id: list_id_01 not found'
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    description: HTTP status code.
+                    example: 404
+                  error_code:
+                    type: string
+                    description: Machine-readable error code.
+                    example: not_found
+                  type:
+                    type: string
+                    description: Error type classification.
+                    example: NotFound
+                  message:
+                    type: string
+                    description: Human-readable error message.
+                    example: 'list_id: list_id_01 not found'
+                  detail:
+                    type: string
+                    description: Detailed error information.
+                    example: 'list_id: list_id_01 not found'
+                required:
+                - code
+                - error_code
+                - type
+                - message
+                - detail
+      deprecated: false
+      tags:
+      - Subscriber List
+  /v1/subscriber_list/{list_id}/delete/:
+    patch:
+      summary: Delete List
+      security:
+      - BearerAuth: []
+      description: API to permanently delete a list.
+      operationId: delete-list
+      parameters:
+      - name: list_id
+        in: path
+        description: Unique string identifier of the list which you want to delete
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    success: true
+              schema:
+                type: object
+                description: Success message when the list is successfully deleted
+        '404':
+          description: 404 - Not Found
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    code: 404
+                    error_code: not_found
+                    type: NotFound
+                    message: 'list_id: <list_id> not found'
+                    detail: 'list_id: <list_id> not found'
+              schema:
+                type: object
+                description: Error message that the list requested for delete is not found
+      deprecated: false
+      tags:
+      - Subscriber List
+  /v1/subscriber_list/{list_id}/version/{version_id}/subscriber/add/:
+    post:
+      summary: Add Users to Draft List
+      security:
+      - BearerAuth: []
+      description: API to add users in the draft list by passing its `version_id` returned in [Start Sync](/reference/start-sync) API response.
+      operationId: add-subscribers-to-draft-list
+      parameters:
+      - name: list_id
+        in: path
+        description: Unique string identifier of the list to which user needs to be updated
+        schema:
+          type: string
+          default: _list_id_
+        required: true
+      - name: version_id
+        in: path
+        description: Unique string identifier of the draft version of the list to which user needs to be updated
+        schema:
+          type: string
+          default: __version_id__
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                distinct_ids:
+                  type: array
+                  description: Array of subscriber_ids, uniquely identifying the subscribers to be added to the list.
+                  default:
+                  - user1
+                  items:
+                    type: string
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    success: true
+                    affected_count: 0
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Indicates whether the operation was successful.
+                    example: true
+                  affected_count:
+                    type: integer
+                    description: Number of subscribers affected by the operation.
+                    example: 2
+        '404':
+          description: 404 - Not Found
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    code: 404
+                    error_code: not_found
+                    type: NotFound
+                    message: version_id 01JR6PCW8H9K3H40XZV4 not found for list_id 123
+                    detail: version_id 01JR6PCW8H9K3H40XZV4 not found for list_id 123
+              schema:
+                type: object
+                description: error code and message detailing the reason of failure
+      deprecated: false
+      tags:
+      - Subscriber List
+  /v1/subscriber_list/{list_id}/version/{version_id}/delete/:
+    patch:
+      summary: Delete Draft List
+      security:
+      - BearerAuth: []
+      description: API to delete draft version of the list. Use this to discard test or interim versions before publishing the final list.
+      operationId: delete-draft-list
+      parameters:
+      - name: list_id
+        in: path
+        description: Unique string identifier of the list which you want to delete
+        schema:
+          type: string
+        required: true
+      - name: version_id
+        in: path
+        description: Unique identifier of the draft version of the list which needs to be deleted
+        schema:
+          type: string
+          default: __version_id__
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    success: true
+              schema:
+                type: object
+        '404':
+          description: 404 - Not Found
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    code: 404
+                    error_code: not_found
+                    type: NotFound
+                    message: version_id 01JR6PCW8H9K3H40XZV4A5R not found for list_id _list_id_
+                    detail: version_id 01JR6PCW8H9K3H40XZV4A5R not found for list_id _list_id_
+              schema:
+                type: object
+                description: error code and related message
+      deprecated: false
+      tags:
+      - Subscriber List
+  /v1/subscriber_list/{list_id}/version/{version_id}/finish_sync/:
+    patch:
+      summary: Finish Sync
+      security:
+      - BearerAuth: []
+      description: API to finish sync and make the draft list version live.
+      operationId: finish-sync
+      parameters:
+      - name: list_id
+        in: path
+        description: Unique string identifier of the list
+        schema:
+          type: string
+          default: _list_id_
+        required: true
+      - name: version_id
+        in: path
+        description: Unique string identifier of the draft version of the list which needs to be made active(live)
+        schema:
+          type: string
+          default: __version_id__
+        required: true
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    list_id: _list_id_
+                    list_name: _list_name_
+                    list_description: a brief of what type of users are part of this list
+                    list_type: static_list
+                    subscribers_count: 0
+                    source: null
+                    is_readonly: false
+                    status: draft
+                    track_user_entry: false
+                    track_user_exit: false
+                    requested_for_delete: false
+                    created_at: '2025-04-06T23:18:59.601000Z'
+                    updated_at: '2025-04-06T23:18:59.601000Z'
+                    version_id: null
+              schema:
+                type: object
+                properties:
+                  version_id:
+                    type: string
+                    description: finish sync makes the draft version with the version_id live as well deletes the draft version.
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    code: 404
+                    error_code: not_found
+                    type: NotFound
+                    message: version_id 01JR6PCW8H9K3H40XZV4A5R not found for list_id _list_id_
+                    detail: version_id 01JR6PCW8H9K3H40XZV4A5R not found for list_id _list_id_
+              schema:
+                type: object
+                description: error code and related message
+      deprecated: false
+      tags:
+      - Subscriber List
+  /v1/subscriber_list/{list_id}/version/{version_id}/subscriber/remove/:
+    post:
+      summary: Remove Subscribers from Draft List
+      security:
+      - BearerAuth: []
+      description: API to remove users from the draft list by passing its `version_id` returned in [Start Sync](/reference/start-sync) API response.
+      operationId: remove-subscribers-from-draft-list
+      parameters:
+      - name: list_id
+        in: path
+        description: Unique string identifier of the list to which user needs to be updated
+        schema:
+          type: string
+          default: _list_id_
+        required: true
+      - name: version_id
+        in: path
+        description: Unique string identifier of the draft version of the list to which user needs to be updated
+        schema:
+          type: string
+          default: __version_id__
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                distinct_ids:
+                  type: array
+                  description: Array of subscriber_ids, uniquely identifying the subscribers to be removed from the list.
+                  default:
+                  - user1
+                  items:
+                    type: string
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    success: true
+                    affected_count: 0
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Indicates whether the operation was successful.
+                    example: true
+                  affected_count:
+                    type: integer
+                    description: Number of subscribers affected by the operation.
+                    example: 2
+        '404':
+          description: 404 - Not Found
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    code: 404
+                    error_code: not_found
+                    type: NotFound
+                    message: version_id 01JR6PCW8H9K3H40XZV4 not found for list_id 123
+                    detail: version_id 01JR6PCW8H9K3H40XZV4 not found for list_id 123
+              schema:
+                type: object
+                description: error code and message detailing the reason of failure
+      deprecated: false
+      tags:
+      - Subscriber List
+  /v1/subscriber_list/{list_id}/start_sync/:
+    post:
+      summary: Start Sync
+      security:
+      - BearerAuth: []
+      description: Creates an empty draft version of the list where you can update users to be replaced without affecting the live version.
+      operationId: start-sync
+      parameters:
+      - name: list_id
+        in: path
+        description: Unique identifier of the list on which the sync needs to start to create a draft version
+        schema:
+          type: string
+          default: _list_id_
+        required: true
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    list_id: _list_id_
+                    list_name: _list_name_
+                    list_description: a brief of what type of users are part of this list
+                    list_type: static_list
+                    subscribers_count: 0
+                    source: null
+                    is_readonly: false
+                    status: draft
+                    track_user_entry: false
+                    track_user_exit: false
+                    requested_for_delete: false
+                    created_at: '2025-04-06T23:18:59.601000Z'
+                    updated_at: '2025-04-06T23:18:59.601000Z'
+                    version_id: 01JR6PCW8H9K3H40XZV4A5R4KQ
+              schema:
+                type: object
+                properties:
+                  version_id:
+                    type: string
+                    description: start sync creates a draft version of the list with version_id. Use this version to update users in the draft list.
+        '400':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    code: 404
+                    error_code: not_found
+                    type: NotFound
+                    message: 'list_id: ff not found'
+                    detail: 'list_id: ff not found'
+              schema:
+                type: object
+                description: error code and message detailing the failure reason
+      deprecated: false
+      tags:
+      - Subscriber List
+  /v1/subscriber_list/{list_id}/subscriber/:
+    get:
+      summary: Get list subscribers
+      security:
+      - BearerAuth: []
+      description: API to fetch a cursor-based paginated list of all users in the list.
+      operationId: get-subscriber-list-users
+      parameters:
+      - name: list_id
+        in: path
+        description: The list_id of your subscriber list
+        schema:
+          type: string
+          default: list_id
+        required: true
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 20
+      - name: before
+        in: query
+        description: the 'id' before which the results need to be fetched
+        schema:
+          type: string
+      - name: after
+        in: query
+        description: the 'id' after which the results need to be fetched
+        schema:
+          type: string
+      - name: sort
+        in: query
+        description: 'the sort order, ascending or descending, here it''s decided by ''id'': ascending and ''-id'': descending'
+        schema:
+          type: string
+          default: -id
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    meta:
+                      limit: 2
+                      count: 10
+                      before: 01HAZ8CZ111111
+                      after: 01H9S626C33222222
+                      has_prev: true
+                      has_next: true
+                    results:
+                    - id: 01HENBBNXXXXXXXXXX
+                      distinct_id: distinct_id_1
+                      created_at: '2023-11-07T16:55:23.736016+00:00'
+                    - id: 01HENBYYYYYYYYYY
+                      distinct_id: distinct_id2
+                      created_at: '2023-11-07T16:55:23.751078+00:00'
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      limit:
+                        type: integer
+                        description: number of results to be returned in API response
+                        default: 20
+                      count:
+                        type: integer
+                        description: total number of users in the list
+                      before:
+                        type: string
+                        description: cursor of the previous page.
+                        example: 01HAZ8CZ111111
+                      after:
+                        type: string
+                        description: cursor of the next page.
+                        example: 01H9S626C33222222
+                      has_prev:
+                        type: boolean
+                        description: Indicates if there is a previous page.
+                      has_next:
+                        type: boolean
+                        description: Indicates if there is a next page.
+                  results:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: Indicates the subscription id
+                        distinct_id:
+                          type: string
+                          description: unique identifier of the user
+                          example: distinct_id_1
+                        created_at:
+                          type: string
+                          description: timestamp when this subscription was added
+                          example: '2023-11-07T16:55:23.736016+00:00'
+        '404':
+          description: 404 - Not Found
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    code: 404
+                    error_code: not_found
+                    type: NotFound
+                    message: 'list_id: fffd not found'
+                    detail: 'list_id: fffd not found'
+              schema:
+                type: object
+                description: error code and message detailing
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: text
+          code: 'curl --location ''https://hub.suprsend.com/v1/subscriber_list/list_id/subscriber/?&sort=id&limit=2&before=01HENBBNPJ65KH3AZ8CZFGDYP4'' \
+
+            --header ''Authorization: Bearer __YOUR_API_KEY__'''
+        samples-languages:
+        - text
+      tags:
+      - Subscriber List
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API_Key
+      description: Pass as `Bearer <API_KEY>`. Get API Key from SuprSend dashboard Developers -> API Keys section.
+    ServiceTokenAuth:
+      type: apiKey
+      in: header
+      name: ServiceToken <token>
+      description: You can get Service Token from [SuprSend dashboard -> Account Settings -> Service Tokens](https://app.suprsend.com/en/account-settings/service-tokens) section.
+    sec0:
+      type: apiKey
+      in: header
+      name: Authorization
+      x-bearer-format: bearer
+      description: Bearer authentication header of the form `Bearer <token>`, where <token> is your auth token.
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+x-readme-fauxas: true

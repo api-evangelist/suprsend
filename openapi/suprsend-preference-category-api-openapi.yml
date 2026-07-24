@@ -1,0 +1,1169 @@
+openapi: 3.1.1
+info:
+  title: SuprSend Broadcast Preference Category API
+  description: APIs supported on suprsend platform
+  version: 1.2.2
+servers:
+- url: https://hub.suprsend.com
+security:
+- sec0: []
+- BearerAuth: []
+tags:
+- name: Preference Category
+paths:
+  /v1/{workspace}/preference_category/:
+    get:
+      summary: Get Preference Category
+      description: Retrieve the current preference category for a workspace
+      operationId: get-category
+      servers:
+      - url: https://management-api.suprsend.com
+      security:
+      - ServiceTokenAuth: []
+      x-codeSamples:
+      - lang: cURL
+        label: Get Category
+        source: "curl -X GET \"https://management-api.suprsend.com/v1/{workspace}/preference_category/\" \\\n  --header \"Authorization: ServiceToken {token}\" \\\n  --header \"Content-Type: application/json\"\n"
+      parameters:
+      - in: path
+        name: workspace
+        required: true
+        schema:
+          type: string
+        description: Workspace slug (staging, production, etc.)
+        example: my-workspace
+      - in: query
+        name: mode
+        required: true
+        schema:
+          type: string
+          enum:
+          - live
+          - draft
+        description: Mode to retrieve categories. Use 'live' for active categories or 'draft' for current draft.
+        example: draft
+      responses:
+        '200':
+          description: Successfully retrieved preference category
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  $schema:
+                    type: string
+                    description: JSON schema reference for preference category structure
+                    example: https://schema.suprsend.com/preference_category/v1/schema.json
+                  root_categories:
+                    type: array
+                    description: Array of root preference categories
+                    items:
+                      type: object
+                      properties:
+                        root_category:
+                          type: string
+                          description: The root category classification for the preference category
+                          example: system
+                        sections:
+                          type: array
+                          description: Array of sections within the preference category. Can be empty if not yet configured.
+                          items:
+                            type: object
+                            properties:
+                              name:
+                                type: string
+                                description: Name of the section
+                                example: Account Updates
+                              description:
+                                type: string
+                                description: Description of what notifications this section covers
+                                example: Important account-related notifications
+                              tags:
+                                type: array
+                                description: Tags to organize and filter sections. Use lowercase, hyphenated values.
+                                items:
+                                  type: string
+                              categories:
+                                type: array
+                                description: Array of categories within this section. Can be empty if not yet configured.
+                                items:
+                                  type: object
+                                  properties:
+                                    category:
+                                      type: string
+                                      description: Unique identifier for the category
+                                      example: password-reset
+                                    name:
+                                      type: string
+                                      description: Display name for the category
+                                      example: Password Reset
+                                    description:
+                                      type: string
+                                      description: Description of what notifications this category covers
+                                    default_preference:
+                                      type: string
+                                      description: Default preference setting for this category
+                                      example: opt_in
+                                    default_mandatory_channels:
+                                      type: array
+                                      description: Channels that are mandatory for this category
+                                      items:
+                                        type: string
+                                      example:
+                                      - email
+                                    default_opt_in_channels:
+                                      type: array
+                                      nullable: true
+                                      description: Opt-in channels set to have selective opt-in channels instead of all channels when channel preference is opt_in or cant_unsubscribe.
+                                      items:
+                                        type: string
+                                      example: null
+                                    tags:
+                                      type: array
+                                      description: Tags to organize and filter categories. Use lowercase, hyphenated values (e.g., "user-management", "payment-alerts").
+                                      items:
+                                        type: string
+                                        pattern: ^[a-z0-9]+(-[a-z0-9]+)*$
+                  version_no:
+                    type: integer
+                    description: Version number field as an identifier to track the version
+                    example: 1
+                  status:
+                    type: string
+                    description: Current status of the preference category
+                    enum:
+                    - draft
+                    - active
+                  validation_result:
+                    type: object
+                    description: Result of validating the preference category
+                    properties:
+                      is_valid:
+                        type: boolean
+                        description: true if the preference category is valid, false if there are errors
+                      errors:
+                        type: array
+                        description: Array of error messages when validation fails
+                        items:
+                          type: string
+              example:
+                $schema: https://schema.suprsend.com/preference_category/v1/schema.json
+                root_categories:
+                - root_category: system
+                  sections: []
+                - root_category: transactional
+                  sections:
+                  - name: Task Updates
+                    categories:
+                    - category: tagged-to-me
+                      name: Tagged to Me
+                      description: Status Update or mentions on tasks assigned by me or tagged to me
+                      default_preference: opt_in
+                - root_category: promotional
+                  sections:
+                  - name: Product Updates
+                    categories:
+                    - category: newsletter
+                      name: Newsletter
+                      default_preference: opt_out
+                version_no: 15
+                status: draft
+                validation_result:
+                  is_valid: false
+                  errors:
+                  - 'it seems some subcategories have been deleted in this version, on which active workflows are configured. missing subcategories: ["chapter-added" "forecast" "onboarding-guide" "training-new"]'
+        '401':
+          description: ServiceToken not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 401
+                  message:
+                    type: string
+                    example: ServiceToken not found
+              example:
+                code: 401
+                message: ServiceToken not found
+        '404':
+          description: Workspace not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 404
+                  message:
+                    type: string
+                    example: 'workspace not found for slug/uid: workspace'
+              example:
+                code: 404
+                message: 'workspace not found for slug/uid: workspace'
+      tags:
+      - Preference Category
+    post:
+      summary: Update Preference Categories
+      description: Use this API to set preference categories to be used in workflow or to show on user preference page.
+      operationId: create-update-category
+      servers:
+      - url: https://management-api.suprsend.com
+      security:
+      - ServiceTokenAuth: []
+      x-codeSamples:
+      - lang: cURL
+        label: Create/Update Category
+        source: "curl -X POST \"https://management-api.suprsend.com/v1/{workspace}/preference_category/?commit=false\" \\\n  --header \"Authorization: ServiceToken {token}\" \\\n  --header \"Content-Type: application/json\" \\\n  --data '{\n    \"root_categories\": [\n      {\n        \"root_category\": \"system\"\n      },\n      {\n        \"root_category\": \"transactional\",\n        \"sections\": [\n          {\n            \"name\": \"Task Updates\",\n            \"categories\": [\n              {\n                \"category\": \"tagged-to-me\",\n                \"name\": \"Tagged to Me\",\n                \"description\": \"Status Update or mentions on tasks assigned by me or tagged to me\",\n                \"default_preference\": \"opt_in\"\n              }\n            ]\n          }\n        ]\n      },\n      {\n        \"root_category\": \"promotional\",\n        \"sections\": [\n          {\n            \"name\": \"Product Updates\",\n            \"categories\": [\n              {\n                \"category\": \"newsletter\",\n                \"name\": \"Newsletter\",\n                \"default_preference\": \"opt_out\"\n              }\n            ]\n          }\n        ]\n      }\n    ]\n  }'\n"
+      parameters:
+      - in: path
+        name: workspace
+        required: true
+        schema:
+          type: string
+        description: Workspace slug (staging, production, etc.)
+      - in: query
+        name: commit
+        schema:
+          type: boolean
+        description: Whether to commit changes immediately. Set to true to make changes live, false to save as draft.
+      - in: query
+        name: commit_message
+        schema:
+          type: string
+        description: Optional commit message describing the changes made. Required when commit=true.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                root_categories:
+                  type: array
+                  description: Array of root preference categories. Include all three root categories (system, transactional, promotional) even if empty.
+                  items:
+                    type: object
+                    properties:
+                      root_category:
+                        type: string
+                        description: Root category classification. system=critical notifications, transactional=user actions, promotional=marketing.
+                        enum:
+                        - system
+                        - transactional
+                        - promotional
+                      sections:
+                        type: array
+                        description: Sections group related categories. Users cannot set preferences at section level.
+                        items:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                              description: Name of the section displayed in the preference interface.
+                            description:
+                              type: string
+                              description: Description of what notifications this section covers.
+                            tags:
+                              type: array
+                              description: Tags to organize and filter sections. Use lowercase, hyphenated values (e.g., "security", "billing").
+                              items:
+                                type: string
+                            categories:
+                              type: array
+                              description: Categories that users can set preferences for.
+                              items:
+                                type: object
+                                properties:
+                                  category:
+                                    type: string
+                                    description: Unique identifier for the category. Use lowercase letters, numbers, and hyphens only.
+                                    pattern: ^[a-z0-9]+(-[a-z0-9]+)*$
+                                  name:
+                                    type: string
+                                    description: Display name for the category shown in the preference interface.
+                                  description:
+                                    type: string
+                                    description: Description of what notifications this category covers.
+                                  default_preference:
+                                    type: string
+                                    description: Default preference setting for this category.
+                                    enum:
+                                    - opt_in
+                                    - opt_out
+                                    - cant_unsubscribe
+                                  default_mandatory_channels:
+                                    type: array
+                                    description: Channels that users cannot unsubscribe from when default preference is cant_unsubscribe.
+                                    items:
+                                      type: string
+                                      enum:
+                                      - email
+                                      - sms
+                                      - whatsapp
+                                      - androidpush
+                                      - inbox
+                                      - iospush
+                                      - slack
+                                      - webpush
+                                  default_opt_in_channels:
+                                    type: array
+                                    nullable: true
+                                    description: Add channels that should be opted-in by default when preference is either `On` or `Can't Unsubscribe`. Set to null or do not pass this parameter to set all channels as opted-in. In case of `Can't Unsubscribe`, mandatory channels are opted-in by default.
+                                    items:
+                                      type: string
+                                      enum:
+                                      - email
+                                      - sms
+                                      - whatsapp
+                                      - androidpush
+                                      - inbox
+                                      - iospush
+                                      - slack
+                                      - webpush
+                                      - ms_teams
+                                  tags:
+                                    type: array
+                                    description: Tags to organize and filter categories. Use lowercase, hyphenated values (e.g., "user-management", "payment-alerts").
+                                    items:
+                                      type: string
+                                      pattern: ^[a-z0-9]+(-[a-z0-9]+)*$
+      responses:
+        '200':
+          description: Successfully created/updated preference category
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  $schema:
+                    type: string
+                    description: JSON schema reference for preference category structure
+                    example: https://schema.suprsend.com/preference_category/v1/schema.json
+                  root_categories:
+                    type: array
+                    description: Array of root preference categories
+                    items:
+                      type: object
+                      properties:
+                        root_category:
+                          type: string
+                          description: The root category classification for the preference category
+                          example: system
+                        sections:
+                          type: array
+                          description: Array of sections within the preference category
+                          items:
+                            type: object
+                            properties:
+                              name:
+                                type: string
+                                description: Name of the section
+                                example: Account Updates
+                              categories:
+                                type: array
+                                description: Array of categories within this section
+                                items:
+                                  type: object
+                                  properties:
+                                    category:
+                                      type: string
+                                      description: Unique identifier for the category
+                                      example: password-reset
+                                    name:
+                                      type: string
+                                      description: Display name for the category
+                                      example: Password Reset
+                                    default_preference:
+                                      type: string
+                                      description: Default preference setting for this category
+                                      example: opt_in
+                                    default_mandatory_channels:
+                                      type: array
+                                      description: Channels that are mandatory for this category
+                                      items:
+                                        type: string
+                                      example:
+                                      - email
+                                    default_opt_in_channels:
+                                      type: array
+                                      nullable: true
+                                      description: Channels that are included in the default "On" state when default preference is opt_in
+                                      items:
+                                        type: string
+                                      example: null
+                  status:
+                    type: string
+                    description: Current status of the preference category
+                    enum:
+                    - draft
+                    - active
+                    example: draft
+                  version_no:
+                    type: integer
+                    description: Version number of the preference category
+                    example: 3
+                  commit_message:
+                    type: string
+                    description: Commit message describing the changes that were made
+                    example: null
+                  committed_at:
+                    type: string
+                    format: date-time
+                    description: Timestamp when the changes were committed
+                    example: null
+                  validation_result:
+                    type: object
+                    description: Result of validating the preference category
+                    properties:
+                      is_valid:
+                        type: boolean
+                        description: true if the preference category is valid, false if there are errors
+                        example: true
+                      errors:
+                        type: array
+                        description: Array of error messages when validation fails
+                        items:
+                          type: string
+              example:
+                $schema: https://schema.suprsend.com/preference_category/v1/schema.json
+                root_categories:
+                - root_category: system
+                  sections: []
+                - root_category: transactional
+                  sections:
+                  - name: Task Updates
+                    description: null
+                    tags: null
+                    categories:
+                    - category: tagged-to-me
+                      name: Tagged to Me
+                      description: Status Update or mentions on tasks assigned by me or tagged to me
+                      default_preference: opt_in
+                      default_mandatory_channels: null
+                      default_opt_in_channels: null
+                      tags: null
+                - root_category: promotional
+                  sections:
+                  - name: Product Updates
+                    description: null
+                    tags: null
+                    categories:
+                    - category: newsletter
+                      name: Newsletter
+                      description: null
+                      default_preference: opt_out
+                      default_mandatory_channels: null
+                      default_opt_in_channels: null
+                      tags: null
+                version_no: 3
+                status: draft
+                commit_message: null
+                committed_at: null
+                validation_result:
+                  is_valid: true
+        '401':
+          description: ServiceToken not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 401
+                  message:
+                    type: string
+                    example: ServiceToken not found
+              example:
+                code: 401
+                message: ServiceToken not found
+        '404':
+          description: Workspace not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 404
+                  message:
+                    type: string
+                    example: 'workspace not found for slug/uid: workspace'
+              example:
+                code: 404
+                message: 'workspace not found for slug/uid: workspace'
+      tags:
+      - Preference Category
+  /v1/{workspace}/preference_category/commit/:
+    patch:
+      summary: Commit Preference Category
+      description: Commit draft changes to the preference category to make them live
+      operationId: commit-category
+      servers:
+      - url: https://management-api.suprsend.com
+      security:
+      - ServiceTokenAuth: []
+      x-codeSamples:
+      - lang: cURL
+        label: Commit Category
+        source: "curl -X PATCH \"https://management-api.suprsend.com/v1/{workspace}/preference_category/commit/?commit_message=Added%20password-reset%20category\" \\\n  --header \"Authorization: ServiceToken {token}\" \\\n  --header \"Content-Type: application/json\"\n"
+      parameters:
+      - in: path
+        name: workspace
+        required: true
+        schema:
+          type: string
+        description: Workspace slug (staging, production, etc.)
+      - in: query
+        name: commit_message
+        required: true
+        schema:
+          type: string
+        description: Commit message describing the changes being made live.
+      responses:
+        '200':
+          description: Successfully committed preference category
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  $schema:
+                    type: string
+                    description: JSON schema reference for preference category structure
+                    example: https://schema.suprsend.com/preference_category/v1/schema.json
+                  root_categories:
+                    type: array
+                    description: Array of root preference categories
+                    items:
+                      type: object
+                      properties:
+                        root_category:
+                          type: string
+                          description: The root category classification for the preference category
+                          example: system
+                        sections:
+                          type: array
+                          description: Array of sections within the preference category
+                          items:
+                            type: object
+                            properties:
+                              name:
+                                type: string
+                                description: Name of the section
+                                example: Account Updates
+                              categories:
+                                type: array
+                                description: Array of categories within this section
+                                items:
+                                  type: object
+                                  properties:
+                                    category:
+                                      type: string
+                                      description: Unique identifier for the category
+                                      example: password-reset
+                                    name:
+                                      type: string
+                                      description: Display name for the category
+                                      example: Password Reset
+                                    default_preference:
+                                      type: string
+                                      description: Default preference setting for this category
+                                      example: opt_in
+                  status:
+                    type: string
+                    description: Current status of the preference category
+                    enum:
+                    - draft
+                    - active
+                    example: active
+                  version_no:
+                    type: integer
+                    description: Version number of the preference category
+                    example: 2
+                  commit_message:
+                    type: string
+                    description: Commit message describing the changes that were made live
+                    example: Added password-reset category
+                  committed_at:
+                    type: string
+                    format: date-time
+                    description: Timestamp when the changes were committed
+                    example: '2025-10-03T09:52:55.273317+00:00'
+              example:
+                $schema: https://schema.suprsend.com/preference_category/v1/schema.json
+                root_categories:
+                - root_category: system
+                  sections:
+                  - name: Alerts
+                    description: null
+                    tags: null
+                    categories:
+                    - category: critical-updates
+                      name: Critical Updates
+                      description: Important system alerts requiring immediate attention
+                      default_preference: opt_in
+                      default_mandatory_channels: null
+                      default_opt_in_channels: null
+                      tags: null
+                - root_category: transactional
+                  sections:
+                  - name: Task Updates
+                    description: null
+                    tags: null
+                    categories:
+                    - category: tagged-to-me
+                      name: Tagged to Me
+                      description: Status updates or mentions on tasks assigned by me or tagged to me
+                      default_preference: opt_in
+                      default_mandatory_channels: null
+                      default_opt_in_channels: null
+                      tags: null
+                - root_category: promotional
+                  sections:
+                  - name: Product Updates
+                    description: null
+                    tags: null
+                    categories:
+                    - category: newsletter
+                      name: Newsletter
+                      description: null
+                      default_preference: opt_out
+                      default_mandatory_channels: null
+                      default_opt_in_channels: null
+                      tags: null
+                version_no: 2
+                status: active
+                commit_message: Added password-reset category
+                committed_at: '2025-10-03T09:52:55.273317+00:00'
+        '401':
+          description: ServiceToken not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 401
+                  message:
+                    type: string
+                    example: ServiceToken not found
+              example:
+                code: 401
+                message: ServiceToken not found
+        '404':
+          description: Workspace not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 404
+                  message:
+                    type: string
+                    example: 'workspace not found for slug/uid: workspace'
+              example:
+                code: 404
+                message: 'workspace not found for slug/uid: workspace'
+      tags:
+      - Preference Category
+  /v1/{workspace}/preference_category/translation/locale/:
+    get:
+      summary: List Category Translations
+      description: Returns all the locales for which translation is uploaded for preference categories.
+      operationId: list-category-translation-locales
+      servers:
+      - url: https://management-api.suprsend.com
+      security:
+      - ServiceTokenAuth: []
+      x-codeSamples:
+      - lang: cURL
+        label: List Translation
+        source: "curl -X GET \"https://management-api.suprsend.com/v1/{workspace}/preference_category/translation/locale/\" \\\n  --header \"Authorization: ServiceToken {token}\" \\\n  --header \"Content-Type: application/json\"\n"
+      parameters:
+      - in: path
+        name: workspace
+        required: true
+        schema:
+          type: string
+        description: Workspace slug (staging, production, etc.)
+        example: my-workspace
+      responses:
+        '200':
+          description: Successfully retrieved list of translation locales
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    description: Array of locale objects for which translations are available
+                    items:
+                      type: object
+                      properties:
+                        locale:
+                          type: string
+                          description: Locale code (e.g., en, es, es-AR)
+                          example: es
+              example:
+                results:
+                - locale: en
+                - locale: en-NA
+                - locale: es
+                - locale: es-AR
+                - locale: es-BO
+        '401':
+          description: ServiceToken not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 401
+                  message:
+                    type: string
+                    example: ServiceToken not found
+              example:
+                code: 401
+                message: ServiceToken not found
+        '404':
+          description: Workspace not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 404
+                  message:
+                    type: string
+                    example: 'workspace not found for slug/uid: workspace'
+              example:
+                code: 404
+                message: 'workspace not found for slug/uid: workspace'
+      tags:
+      - Preference Category
+  /v1/{workspace}/preference_category/translation/content/{locale}/:
+    get:
+      summary: Get Category Translation
+      description: Fetch translation content for a given locale for preference categories and sections.
+      operationId: get-category-translation
+      servers:
+      - url: https://management-api.suprsend.com
+      security:
+      - ServiceTokenAuth: []
+      x-codeSamples:
+      - lang: cURL
+        label: Get Translation
+        source: "curl -X GET \"https://management-api.suprsend.com/v1/{workspace}/preference_category/translation/content/{locale}/\" \\\n  --header \"Authorization: ServiceToken {token}\" \\\n  --header \"Content-Type: application/json\"\n"
+      parameters:
+      - in: path
+        name: workspace
+        required: true
+        schema:
+          type: string
+        description: Workspace slug (staging, production, etc.)
+        example: my-workspace
+      - in: path
+        name: locale
+        required: true
+        schema:
+          type: string
+        description: Locale code (e.g., es, fr, de, ja)
+        example: es
+      responses:
+        '200':
+          description: Successfully retrieved translation content
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  sections:
+                    type: object
+                    description: Translations for sections, keyed by section slug
+                    additionalProperties:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          nullable: true
+                          description: Translated section name
+                          example: Section Nik pour transactionnel
+                        description:
+                          type: string
+                          nullable: true
+                          description: Translated section description
+                          example: Description de la section Nik pour transactionnel
+                  categories:
+                    type: object
+                    description: Translations for categories, keyed by category slug
+                    additionalProperties:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          nullable: true
+                          description: Translated category name
+                          example: Sous-catégorie Nik
+                        description:
+                          type: string
+                          nullable: true
+                          description: Translated category description
+                          example: Sous-catégorie Nik 1
+              example:
+                sections:
+                  new-5:
+                    name: nouveau 5
+                    description: null
+                  nik-section-for-transactional:
+                    name: Section Nik pour transactionnel
+                    description: Description de la section Nik pour transactionnel
+                categories:
+                  nik-sub-category:
+                    name: Sous-catégorie Nik
+                    description: Sous-catégorie Nik 1
+                  amount-refunded:
+                    name: Montant remboursé
+                    description: null
+        '400':
+          description: Invalid or unsupported locale
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 400
+                  message:
+                    type: string
+                    example: 'invalid/unsupported locale: ''apl'''
+              example:
+                code: 400
+                message: 'invalid/unsupported locale: ''apl'''
+        '401':
+          description: ServiceToken not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 401
+                  message:
+                    type: string
+                    example: ServiceToken not found
+              example:
+                code: 401
+                message: ServiceToken not found
+        '404':
+          description: Workspace or translation not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 404
+                  message:
+                    type: string
+                    example: 'translation not found for locale: {locale}'
+              example:
+                code: 404
+                message: 'translation not found for locale: es'
+      tags:
+      - Preference Category
+    post:
+      summary: Add or Update Category Translation
+      description: Add or update translation content for a given locale for preference categories and sections.
+      operationId: add-category-translation
+      servers:
+      - url: https://management-api.suprsend.com
+      security:
+      - ServiceTokenAuth: []
+      x-codeSamples:
+      - lang: cURL
+        label: Add Translation
+        source: "curl -X POST \"https://management-api.suprsend.com/v1/{workspace}/preference_category/translation/content/{locale}/\" \\\n  --header \"Authorization: ServiceToken {token}\" \\\n  --header \"Content-Type: application/json\" \\\n  --data '{\n    \"sections\": {\n      \"account-updates\": {\n        \"name\": \"Actualizaciones de Cuenta\",\n        \"description\": \"Notificaciones importantes relacionadas con la cuenta\"\n      }\n    },\n    \"categories\": {\n      \"password-reset\": {\n        \"name\": \"Restablecimiento de Contraseña\",\n        \"description\": \"Notificaciones cuando se restablece la contraseña\"\n      }\n    }\n  }'\n"
+      parameters:
+      - in: path
+        name: workspace
+        required: true
+        schema:
+          type: string
+        description: Workspace slug (staging, production, etc.)
+        example: my-workspace
+      - in: path
+        name: locale
+        required: true
+        schema:
+          type: string
+        description: Locale code (e.g., es, fr, de, ja)
+        example: es
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sections:
+                  type: object
+                  description: Translations for sections, keyed by section slug
+                  additionalProperties:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        nullable: true
+                        description: Translated section name
+                        example: Section Nik pour transactionnel
+                      description:
+                        type: string
+                        nullable: true
+                        description: Translated section description
+                        example: Description de la section Nik pour transactionnel
+                categories:
+                  type: object
+                  description: Translations for categories, keyed by category slug
+                  additionalProperties:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        nullable: true
+                        description: Translated category name
+                        example: Sous-catégorie Nik
+                      description:
+                        type: string
+                        nullable: true
+                        description: Translated category description
+                        example: Sous-catégorie Nik 1
+            example:
+              sections:
+                account-updates:
+                  name: Actualizaciones de Cuenta
+                  description: Notificaciones importantes relacionadas con la cuenta
+              categories:
+                password-reset:
+                  name: Restablecimiento de Contraseña
+                  description: Notificaciones cuando se restablece la contraseña
+      responses:
+        '200':
+          description: Successfully added or updated translation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  sections:
+                    type: object
+                    description: Translations for sections, keyed by section slug
+                    additionalProperties:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          nullable: true
+                          description: Translated section name
+                        description:
+                          type: string
+                          nullable: true
+                          description: Translated section description
+                  categories:
+                    type: object
+                    description: Translations for categories, keyed by category slug
+                    additionalProperties:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          nullable: true
+                          description: Translated category name
+                        description:
+                          type: string
+                          nullable: true
+                          description: Translated category description
+              example:
+                sections:
+                  new-5:
+                    name: null
+                    description: null
+                  nik-section-for-transactional:
+                    name: null
+                    description: null
+                categories:
+                  nik-sub-category:
+                    name: null
+                    description: null
+                  amount-refunded:
+                    name: null
+                    description: null
+        '400':
+          description: Invalid or unsupported locale, or invalid translation data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 400
+                  message:
+                    type: string
+                    example: 'invalid/unsupported locale: ''apl'''
+              example:
+                code: 400
+                message: 'invalid/unsupported locale: ''apl'''
+        '401':
+          description: ServiceToken not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 401
+                  message:
+                    type: string
+                    example: ServiceToken not found
+              example:
+                code: 401
+                message: ServiceToken not found
+        '404':
+          description: Workspace not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 404
+                  message:
+                    type: string
+                    example: 'workspace not found for slug/uid: workspace'
+              example:
+                code: 404
+                message: 'workspace not found for slug/uid: workspace'
+      tags:
+      - Preference Category
+    delete:
+      summary: Delete Category Translation
+      description: Delete translation content for a given locale for preference categories and sections.
+      operationId: delete-category-translation
+      servers:
+      - url: https://management-api.suprsend.com
+      security:
+      - ServiceTokenAuth: []
+      x-codeSamples:
+      - lang: cURL
+        label: Delete Translation
+        source: "curl -X DELETE \"https://management-api.suprsend.com/v1/{workspace}/preference_category/translation/content/{locale}/\" \\\n  --header \"Authorization: ServiceToken {token}\" \\\n  --header \"Content-Type: application/json\"\n"
+      parameters:
+      - in: path
+        name: workspace
+        required: true
+        schema:
+          type: string
+        description: Workspace slug (staging, production, etc.)
+        example: my-workspace
+      - in: path
+        name: locale
+        required: true
+        schema:
+          type: string
+        description: Locale code (e.g., es, fr, de, ja)
+        example: es
+      responses:
+        '204':
+          description: Successfully deleted translation
+        '400':
+          description: Invalid or unsupported locale
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 400
+                  message:
+                    type: string
+                    example: 'invalid/unsupported locale: ''apl'''
+              example:
+                code: 400
+                message: 'invalid/unsupported locale: ''apl'''
+        '401':
+          description: ServiceToken not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 401
+                  message:
+                    type: string
+                    example: ServiceToken not found
+              example:
+                code: 401
+                message: ServiceToken not found
+        '404':
+          description: Workspace or translation not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 404
+                  message:
+                    type: string
+                    example: 'translation not found for locale: {locale}'
+              example:
+                code: 404
+                message: 'translation not found for locale: es'
+      tags:
+      - Preference Category
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API_Key
+      description: Pass as `Bearer <API_KEY>`. Get API Key from SuprSend dashboard Developers -> API Keys section.
+    ServiceTokenAuth:
+      type: apiKey
+      in: header
+      name: ServiceToken <token>
+      description: You can get Service Token from [SuprSend dashboard -> Account Settings -> Service Tokens](https://app.suprsend.com/en/account-settings/service-tokens) section.
+    sec0:
+      type: apiKey
+      in: header
+      name: Authorization
+      x-bearer-format: bearer
+      description: Bearer authentication header of the form `Bearer <token>`, where <token> is your auth token.
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+x-readme-fauxas: true

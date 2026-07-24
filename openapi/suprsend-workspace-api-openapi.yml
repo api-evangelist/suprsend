@@ -1,0 +1,258 @@
+openapi: 3.1.1
+info:
+  title: SuprSend Broadcast Workspace API
+  description: APIs supported on suprsend platform
+  version: 1.2.2
+servers:
+- url: https://hub.suprsend.com
+security:
+- sec0: []
+- BearerAuth: []
+tags:
+- name: Workspace
+paths:
+  /v1/workspace/:
+    get:
+      summary: List Workspaces
+      description: List all workspaces available in your account.
+      operationId: list-workspaces
+      servers:
+      - url: https://management-api.suprsend.com
+      security:
+      - ServiceTokenAuth: []
+      x-codeSamples:
+      - lang: cURL
+        label: List Workspaces
+        source: "curl -X GET \"https://management-api.suprsend.com/v1/workspace\" \\\n  --header 'Authorization: ServiceToken <SERVICE_TOKEN>' \\\n  --header 'Content-Type: application/json'\n"
+      responses:
+        '200':
+          description: Successfully retrieved workspaces.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagementWorkspaceListResponse'
+              example:
+                meta:
+                  count: 2
+                  limit: 10
+                  offset: 0
+                results:
+                - uid: wksp_exampleUid01
+                  slug: staging
+                  data_center: {}
+                  is_expired: false
+                  has_limit_reached: false
+                  name: Staging
+                  description: Development environment to test iterations internally
+                  mode: sandbox
+                - uid: wksp_exampleUid02
+                  slug: production
+                  data_center: {}
+                  is_expired: false
+                  has_limit_reached: false
+                  name: Production
+                  description: Final environment to send notifications to live users
+                  mode: production
+        '401':
+          $ref: '#/components/responses/AuthenticationError'
+      tags:
+      - Workspace
+    post:
+      summary: Create Workspace
+      description: Create a new workspace in your account.
+      operationId: create-workspace
+      servers:
+      - url: https://management-api.suprsend.com
+      security:
+      - ServiceTokenAuth: []
+      x-codeSamples:
+      - lang: cURL
+        label: Create Workspace
+        source: "curl -X POST \"https://management-api.suprsend.com/v1/workspace\" \\\n  --header 'Authorization: ServiceToken <SERVICE_TOKEN>' \\\n  --header 'Content-Type: application/json' \\\n  --data '{\"name\":\"my-workspace\",\"description\":\"Testing workspace API\"}'\n"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkspaceCreateRequest'
+            example:
+              name: my-workspace
+              description: Testing workspace API
+      responses:
+        '200':
+          description: Workspace created. Response returns the updated paginated list of workspaces in the account.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagementWorkspaceListResponse'
+              example:
+                meta:
+                  count: 3
+                  limit: 10
+                  offset: 0
+                results:
+                - uid: wksp_exampleUid01
+                  slug: staging
+                  data_center: {}
+                  is_expired: false
+                  has_limit_reached: false
+                  name: Staging
+                  description: Development environment to test iterations internally
+                  mode: sandbox
+                - uid: wksp_exampleUid02
+                  slug: production
+                  data_center: {}
+                  is_expired: false
+                  has_limit_reached: false
+                  name: Production
+                  description: Final environment to send notifications to live users
+                  mode: production
+                - uid: wksp_exampleUid03
+                  slug: my-workspace
+                  data_center: {}
+                  is_expired: false
+                  has_limit_reached: false
+                  name: my-workspace
+                  description: Testing workspace API
+                  mode: sandbox
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/AuthenticationError'
+      tags:
+      - Workspace
+components:
+  responses:
+    ValidationError:
+      description: Validation error - data validation failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    AuthenticationError:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            code: 401
+            error_code: authentication_failed
+            type: AuthenticationFailed
+            message: Invalid service token.
+            detail: Invalid service token.
+  schemas:
+    WorkspaceCreateRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Workspace name.
+          example: my-workspace
+        description:
+          type: string
+          nullable: true
+          description: Optional workspace description.
+          example: Testing workspace API
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: HTTP status code
+        error_code:
+          type: string
+          description: Specific error code identifier
+        type:
+          type: string
+          description: Error type classification
+        message:
+          type: string
+          description: Human-readable error message
+        detail:
+          type: string
+          description: Additional error details
+    ManagementWorkspace:
+      type: object
+      description: Workspace record returned by the Management API.
+      properties:
+        uid:
+          type: string
+          description: Unique workspace identifier.
+          example: wksp_exampleUid01
+        slug:
+          type: string
+          description: Workspace slug used in API paths (e.g. `staging`, `production`).
+          example: staging
+        data_center:
+          type: object
+          description: Data center metadata associated with the workspace.
+          additionalProperties: true
+        is_expired:
+          type: boolean
+          description: Indicates whether the workspace has expired.
+        has_limit_reached:
+          type: boolean
+          description: Indicates whether the workspace has reached its plan limit.
+        name:
+          type: string
+          description: Human-readable workspace name.
+          example: Staging
+        description:
+          type: string
+          nullable: true
+          description: Optional workspace description.
+        mode:
+          type: string
+          description: Workspace mode. **sandbox** is pre-created by SuprSend for early testing with pre-configured vendors, **staging** will be your testing workspace and **production** will be the one you'll use to send to your actual users.
+          enum:
+          - sandbox
+          - production
+    ManagementWorkspaceListResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/ManagementListMeta'
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ManagementWorkspace'
+    ManagementListMeta:
+      type: object
+      description: Pagination metadata (when applicable)
+      properties:
+        count:
+          type: integer
+          description: Total items matching the query
+        limit:
+          type: integer
+          nullable: true
+          description: Maximum number of results returned per page.
+        offset:
+          type: integer
+          nullable: true
+          description: Starting position of the returned results.
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API_Key
+      description: Pass as `Bearer <API_KEY>`. Get API Key from SuprSend dashboard Developers -> API Keys section.
+    ServiceTokenAuth:
+      type: apiKey
+      in: header
+      name: ServiceToken <token>
+      description: You can get Service Token from [SuprSend dashboard -> Account Settings -> Service Tokens](https://app.suprsend.com/en/account-settings/service-tokens) section.
+    sec0:
+      type: apiKey
+      in: header
+      name: Authorization
+      x-bearer-format: bearer
+      description: Bearer authentication header of the form `Bearer <token>`, where <token> is your auth token.
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+x-readme-fauxas: true

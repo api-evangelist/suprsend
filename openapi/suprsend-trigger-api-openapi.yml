@@ -1,0 +1,807 @@
+openapi: 3.1.1
+info:
+  title: SuprSend Broadcast Trigger API
+  description: APIs supported on suprsend platform
+  version: 1.2.2
+servers:
+- url: https://hub.suprsend.com
+security:
+- sec0: []
+- BearerAuth: []
+tags:
+- name: Trigger
+paths:
+  /{workspace_key}/trigger/:
+    post:
+      summary: Dynamic Workflow Trigger
+      security:
+      - BearerAuth: []
+      description: API to dynamically create and trigger a single step workflow.
+      operationId: dynamic-workflow-trigger
+      parameters:
+      - name: workspace_key
+        in: path
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - name
+              - template
+              - notification_category
+              - users
+              properties:
+                name:
+                  type: string
+                  description: Unique name of the workflow. The workflow name should be easily identifiable for your reference at a later stage. You can see workflow-related analytics on the workflow page (how many notifications were sent, delivered, clicked or interacted).
+                  default: _workflow_name_
+                template:
+                  type: string
+                  description: Unique slug of the template created on SuprSend dashboard. You can get this by clicking on the clipboard icon next to the Template name on SuprSend templates page.
+                  default: _template_slug_
+                notification_category:
+                  type: string
+                  description: Used to apply user category level [preferences]("/docs/user-preferences") on notification trigger.
+                  default: transactional
+                users:
+                  type: array
+                  description: Array object of target users.
+                  items:
+                    properties:
+                      distinct_id:
+                        type: string
+                        description: unique identifier of the user
+                        default: _distinct_id_
+                      $channels:
+                        type: array
+                        description: send notification on selected channels in user profile. Following channel keys can be used - email, sms, whatsapp, androidpush, iospush, slack, webpush
+                        default: []
+                        items:
+                          type: string
+                      $email:
+                        type: array
+                        description: To trigger notification on a particular email
+                        default: []
+                        items:
+                          type: string
+                      $sms:
+                        type: array
+                        description: Send SMS on a particular number.
+                        default: []
+                        items:
+                          type: string
+                      $whatsapp:
+                        type: array
+                        description: Send Whatsapp on a particular number.
+                        default: []
+                        items:
+                          type: string
+                      $androidpush:
+                        type: array
+                        description: Send androidpush on the given push token
+                        items:
+                          type: string
+                      $iospush:
+                        type: array
+                        description: Send iOSpush on the given push token
+                        items:
+                          type: string
+                      $slack:
+                        type: array
+                        description: Slack channel configuration
+                        items:
+                          oneOf:
+                          - type: object
+                            title: user email_id
+                            required:
+                            - email
+                            - access_token
+                            properties:
+                              email:
+                                type: string
+                                format: email
+                                description: User email address
+                                example: user@example.com
+                              access_token:
+                                type: string
+                                description: Slack bot access token
+                                example: xoxb-XXXXXXXX
+                          - type: object
+                            title: user member_id
+                            required:
+                            - user_id
+                            - access_token
+                            properties:
+                              user_id:
+                                type: string
+                                description: Slack user ID (U/WXXXXXXXX format)
+                                example: U/WXXXXXXXX
+                              access_token:
+                                type: string
+                                description: Slack bot access token
+                                example: xoxb-XXXXXXXX
+                          - type: object
+                            title: Slack channel
+                            required:
+                            - channel
+                            - access_token
+                            properties:
+                              channel:
+                                type: string
+                                description: Slack channel ID (CXXXXXXXX format)
+                                example: CXXXXXXXX
+                              access_token:
+                                type: string
+                                description: Slack bot access token
+                                example: xoxb-XXXXXX
+                          - type: object
+                            title: Using incoming webhook
+                            required:
+                            - incoming_webhook
+                            properties:
+                              incoming_webhook:
+                                type: object
+                                required:
+                                - url
+                                properties:
+                                  url:
+                                    type: string
+                                    format: uri
+                                    description: Slack incoming webhook URL
+                                    example: https://hooks.slack.com/services/TXXXX/BXXXX/XXXXXXX
+                      $ms_teams:
+                        type: array
+                        description: Microsoft Teams channel configuration
+                        items:
+                          oneOf:
+                          - type: object
+                            title: MS Teams using conversation ID
+                            required:
+                            - tenant_id
+                            - service_url
+                            - conversation_id
+                            properties:
+                              tenant_id:
+                                type: string
+                                description: Microsoft Teams tenant ID
+                                example: c1981ab2-9aaf-xxxx-xxxx
+                              service_url:
+                                type: string
+                                format: uri
+                                description: Microsoft Teams service URL
+                                example: https://smba.trafficmanager.net/amer
+                              conversation_id:
+                                type: string
+                                description: Microsoft Teams conversation ID
+                                example: 19:c1524d7c-a06f-456f-8abe-xxxx
+                          - type: object
+                            title: MS Teams using user ID
+                            required:
+                            - tenant_id
+                            - service_url
+                            - user_id
+                            properties:
+                              tenant_id:
+                                type: string
+                                description: Microsoft Teams tenant ID
+                                example: c1981ab2-9aaf-xxxx-xxxx
+                              service_url:
+                                type: string
+                                format: uri
+                                description: Microsoft Teams service URL
+                                example: https://smba.trafficmanager.net/amer
+                              user_id:
+                                type: string
+                                description: Microsoft Teams user ID
+                                example: 29:1nsLcmJ2RKtYH6Cxxxx-xxxx
+                          - type: object
+                            title: MS Teams using incoming webhook
+                            required:
+                            - incoming_webhook
+                            properties:
+                              incoming_webhook:
+                                type: object
+                                required:
+                                - url
+                                properties:
+                                  url:
+                                    type: string
+                                    format: uri
+                                    description: Microsoft Teams incoming webhook URL
+                                    example: https://wnk1z.webhook.office.com/webhookb2/XXXXXXXXX
+                    required:
+                    - distinct_id
+                    type: object
+                data:
+                  type: object
+                  description: variable data required to render dynamic template content or workflow properties like dynamic delay or channel override in send node.
+                  properties:
+                    $attachments:
+                      type: array
+                      description: Use this key to pass email attachment in the trigger. You can either pass attachment as a public URL or as a base64-encoded file (limit < 50KB).
+                      items:
+                        oneOf:
+                        - type: object
+                          title: publicly accessible URL
+                          description: Pass file as **publicly accessible URL** (No limit on file size)
+                          required:
+                          - url
+                          properties:
+                            url:
+                              type: string
+                              format: uri
+                              description: Publicly accessible URL of the file
+                              example: https://bitcoincore.org/bitcoin.pdf
+                            filename:
+                              type: string
+                              description: Filename to be shown in email
+                              example: billing.pdf
+                            ignore_if_error:
+                              type: boolean
+                              description: Ignore the attachment if it fails to load
+                        - type: object
+                          title: base64-encoded file
+                          description: Pass file as a **base-64 file** (supported limit < 50KB)
+                          required:
+                          - data
+                          properties:
+                            data:
+                              type: string
+                              description: Base64-encoded content of the file
+                            filename:
+                              type: string
+                              description: Filename to be shown in email
+                            contentType:
+                              type: string
+                              example: application/pdf
+                  additionalProperties:
+                    type: string
+                delivery:
+                  type: object
+                  description: delivery instructions for the workflow. You can set [Smart Delivery](https://docs.suprsend.com/docs/smart-delivery) preference by setting "smart":true
+                  properties:
+                    smart:
+                      type: boolean
+                      description: You can enable smart delivery by setting it true
+                      default: false
+                    success:
+                      type: string
+                      description: Success event for stopping further notification in case smart is set to true. You can set notification status like delivery, interaction or custom success event
+                      default: seen
+                    time_to_live:
+                      type: string
+                      description: 'Time window to define delay between subsequent channel trigger in case of smart delivery.
+
+                        Delay = `time_to_live / (number_of_channels - 1)`. Format - `XXdXXhXXmXXs` or if its number (n) then delay is in seconds (n)
+
+                        '
+                    mandatory_channels:
+                      type: array
+                      description: Channels on which notification has to be sent immediately in case of smart delivery. Following channel keys can be used - email, sms, whatsapp, androidpush, iospush, slack, webpush
+                      items:
+                        type: string
+                delay:
+                  type: string
+                  description: Workflow will be halted for the time mentioned in delay, and become active once the delay period is over. Format - `XXdXXhXXmXXs` or if its number (n) then delay is in seconds (n)
+                trigger_at:
+                  type: string
+                  description: Trigger workflow on a specific date-time. Format - date string in ISO 8601 e.g. "2022-08-27T20:14:51.643Z"
+                  format: date
+                tenant_id:
+                  type: string
+                  description: string identifier of the tenant this workflow is associated with
+                $idempotency_key:
+                  type: string
+                  description: Unique identifier of the request (deduplicates request for 24hrs)
+      x-codeSamples:
+      - lang: cURL
+        label: Dynamic Workflow Trigger
+        source: "curl -X POST \"https://hub.suprsend.com/{workspace_key}/dynamic-workflow/\" \\\n  --header 'Authorization: Bearer __YOUR_API_KEY__' \\\n  --header 'Content-Type: application/json' \\\n  --data '{\n    \"name\": \"Welcome Email Workflow\",\n    \"template\": \"welcome-email-template\",\n    \"notification_category\": \"transactional\",\n    \"users\": [\n      {\n        \"distinct_id\": \"user123\",\n        \"$email\": [\"user@example.com\"],\n        \"$channels\": [\"email\"]\n      }\n    ],\n    \"data\": {\n      \"user_name\": \"John Doe\",\n      \"welcome_message\": \"Welcome to our platform!\"\n    }\n  }'\n"
+      responses:
+        '202':
+          description: '202'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: Accepted - OK
+              schema:
+                type: string
+                example: Accepted - OK
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    status: fail
+                    message: BAD REQUEST
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: fail
+                    description: Indicates the failure status of the request.
+                  message:
+                    type: string
+                    example: BAD REQUEST
+                    description: Describes the reason for the failure.
+      deprecated: false
+      tags:
+      - Trigger
+  /trigger/:
+    post:
+      summary: Trigger Workflow (single or bulk)
+      security:
+      - BearerAuth: []
+      description: 'API to trigger multi-step workflow to one or more users/objects by passing workflow slug, via `POST /trigger/`.
+
+
+        Send a single JSON **object** to trigger one workflow, or an array of objects to trigger multiple workflows in one call.
+
+        '
+      operationId: trigger-workflow-api
+      x-codeSamples:
+      - lang: cURL
+        label: Trigger Workflow
+        source: "curl --request POST \\\n  --url 'https://hub.suprsend.com/trigger/' \\\n  --header 'Authorization: Bearer __your_api_key__' \\\n  --header 'Content-Type: application/json' \\\n  --data '{\n    \"workflow\": \"demo_notification_workflow\",\n    \"recipients\": [\n      {\n        \"distinct_id\": \"user123\",\n        \"$email\": [\"user@example.com\"]\n      }\n    ],\n    \"data\": {\n      \"user_name\": \"John Doe\",\n      \"welcome_message\": \"Welcome to our platform!\"\n    }\n  }'\n"
+      - lang: cURL
+        label: Bulk Trigger Workflows
+        source: "curl --request POST \\\n  --url 'https://hub.suprsend.com/trigger/' \\\n  --header 'Authorization: Bearer __your_api_key__' \\\n  --header 'Content-Type: application/json' \\\n  --data '[\n    {\n      \"workflow\": \"demo_notification_workflow\",\n      \"recipients\": [\n        {\n          \"distinct_id\": \"user123\",\n          \"$email\": [\"user@example.com\"]\n        }\n      ],\n      \"data\": {\n        \"user_name\": \"John Doe\",\n        \"welcome_message\": \"Welcome to our platform!\"\n      }\n    },\n    {\n      \"workflow\": \"demo_notification_workflow\",\n      \"recipients\": [\n        {\n          \"distinct_id\": \"user123\",\n          \"$email\": [\"user@example.com\"]\n        }\n      ],\n      \"data\": {\n        \"user_name\": \"John Doe\",\n        \"welcome_message\": \"Welcome to our platform!\"\n      }\n    }\n  ]'\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+              - title: Single workflow trigger
+                description: Send a single workflow trigger object as the request body.
+                $ref: '#/components/schemas/WorkflowTriggerSingleBody'
+              - title: Bulk workflow trigger
+                type: array
+                description: 'Send a JSON **array** of workflow trigger objects (instead of a single JSON **object**) to trigger multiple workflows in one request. Each array item uses the same payload structure as a single workflow trigger (see **Single workflow trigger**).
+
+
+                  Each record is independent - `workflow` (workflow slug), `recipients`, `tenant_id`, and `data` (including `data.$attachments` for email attachments) can all differ per record.
+
+
+                  **Limits:**
+
+                  - Maximum **800 KB** total request body size.
+
+                  - Maximum **100 records** per request. Behavior beyond these limits is undefined.
+
+
+                  **Rate limits:** A bulk request counts as **N calls** (one per record), not one call, against your rate limit.
+
+
+                  Returns **207 Multi-Status** with per-record outcomes. See the `207` response below.
+
+                  '
+                maxItems: 100
+                items:
+                  $ref: '#/components/schemas/WorkflowTriggerSingleBody'
+      responses:
+        '202':
+          description: 202 - Accepted (returned for single workflow trigger requests).
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    message_id: a1b2c3d4-e5f6-7890-abcd-ef0123456789
+                    status: success
+              schema:
+                type: object
+                description: All workflow requests will be accepted as long as the API request is correct. To verify if the execution was successful, check the 'Requests' tab under the 'Logs' section on the SuprSend dashboard.
+                properties:
+                  message_id:
+                    type: string
+                    description: Unique identifier of the message generated by SuprSend.
+                    example: a1b2c3d4-e5f6-7890-abcd-ef0123456789
+                  status:
+                    type: string
+                    example: success
+        '207':
+          description: 207 - Multi-Status (returned for bulk workflow trigger requests). Inspect each record's `status` and `error` for individual outcomes.
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    records:
+                    - status: success
+                      message_id: a1b2c3d4-e5f6-7890-abcd-ef0123456789
+                      status_code: 202
+                    - status: error
+                      status_code: 404
+                      error:
+                        message: workflow not found
+                        type: not_found
+                    status: success
+              schema:
+                type: object
+                description: Per-record outcomes for a bulk workflow trigger request. Each item in `records` corresponds to the workflow at the same index in the request array.
+                properties:
+                  records:
+                    type: array
+                    description: Per-record outcomes, in the same order as the request array.
+                    items:
+                      type: object
+                      properties:
+                        status:
+                          type: string
+                          enum:
+                          - success
+                          - error
+                          description: Per-record status. `success` means the workflow was accepted; `error` means it was rejected.
+                        status_code:
+                          type: integer
+                          description: Per-record HTTP-style status code (for example, `202` for accepted, `404` for workflow not found).
+                        message_id:
+                          type: string
+                          description: Unique identifier of the message generated by SuprSend. Present only when `status` is `success`.
+                        error:
+                          type: object
+                          description: Present only when `status` is `error`.
+                          properties:
+                            message:
+                              type: string
+                              description: Human-readable error message for the failed record.
+                            type:
+                              type: string
+                              description: Machine-readable error type (for example, `not_found`).
+                  status:
+                    type: string
+                    description: Top-level status returned by the API. Inspect each record's `status` and `error` to determine per-record outcomes.
+                    example: success
+        '400':
+          description: 400 - Bad Request
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    status: fail
+                    message: BAD REQUEST
+              schema:
+                type: object
+                description: This error would come if the API request format is incorrect.
+                properties:
+                  status:
+                    type: string
+                    example: fail
+                  message:
+                    type: string
+                    example: BAD REQUEST
+        '404':
+          description: 404 - Not Found
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    status: fail
+                    message: workflow 'workflow_slug' not found
+              schema:
+                type: object
+                description: This error would come if the workflow slug is not found.
+                properties:
+                  status:
+                    type: string
+                    example: fail
+                  message:
+                    type: string
+                    example: workflow 'workflow_slug' not found
+      deprecated: false
+      tags:
+      - Trigger
+components:
+  schemas:
+    WorkflowTriggerSingleBody:
+      type: object
+      description: A single workflow trigger payload. Send this object as-is for a single workflow trigger, or wrap multiple instances in a JSON array for a bulk trigger.
+      required:
+      - workflow
+      - recipients
+      properties:
+        workflow:
+          type: string
+          description: You can get workflow slug from workflow settings on SuprSend dashboard.
+          default: _workflow_slug_
+        recipients:
+          type: array
+          description: List of recipients to be notified. You can either add recipient as array of distinct_ids or array of recipient objects. You can add up to 100 recipients in a single API.
+          items:
+            oneOf:
+            - type: object
+              title: Identify user inline
+              description: You can pass user properties and channels inline in workflow trigger request. Properties and channels passed here also update in user profile on workflow trigger.
+              required:
+              - distinct_id
+              properties:
+                is_transient:
+                  type: boolean
+                  description: set `is_transient = true` to send notification to anonymous user. You don't need to pass `distinct_id` for anonymous sending.
+                distinct_id:
+                  type: string
+                  description: unique identifier of the user who needs to be notified
+                  default: id1
+                $channels:
+                  type: array
+                  items:
+                    type: string
+                    example: email
+                    description: channel to send notification to
+                    enum:
+                    - email
+                    - sms
+                    - inbox
+                    - androidpush
+                    - iospush
+                    - slack
+                    - ms_teams
+                    - webpush
+                    - whatsapp
+                $email:
+                  type: array
+                  items:
+                    type: string
+                    format: email
+                    example: john@example.com
+                $sms:
+                  type: array
+                  items:
+                    type: string
+                    example: '+1234567890'
+                $inbox:
+                  type: array
+                  items:
+                    type: string
+                    example: 4nlPk4t4kurG5kChxxxx
+                $androidpush:
+                  type: array
+                  items:
+                    type: string
+                    example: __android_push_token__
+                $iospush:
+                  type: array
+                  items:
+                    type: string
+                    example: __ios_push_token__
+                $slack:
+                  type: array
+                  description: Slack channel configuration
+                  items:
+                    oneOf:
+                    - type: object
+                      title: Slack using email
+                      required:
+                      - email
+                      - access_token
+                      properties:
+                        email:
+                          type: string
+                          format: email
+                          description: User email address
+                          example: user@example.com
+                        access_token:
+                          type: string
+                          description: Slack bot access token
+                          example: xoxb-XXXXXXXX
+                    - type: object
+                      title: Slack using member ID
+                      required:
+                      - user_id
+                      - access_token
+                      properties:
+                        user_id:
+                          type: string
+                          description: Slack user ID (U/WXXXXXXXX format)
+                          example: U/WXXXXXXXX
+                        access_token:
+                          type: string
+                          description: Slack bot access token
+                          example: xoxb-XXXXXX
+                    - type: object
+                      title: Slack using channel
+                      required:
+                      - channel
+                      - access_token
+                      properties:
+                        channel:
+                          type: string
+                          description: Slack channel ID (CXXXXXXXX format)
+                          example: CXXXXXXXX
+                        access_token:
+                          type: string
+                          description: Slack bot access token
+                          example: xoxb-XXXXXX
+                    - type: object
+                      title: Slack using incoming webhook
+                      required:
+                      - incoming_webhook
+                      properties:
+                        incoming_webhook:
+                          type: object
+                          required:
+                          - url
+                          properties:
+                            url:
+                              type: string
+                              format: uri
+                              description: Slack incoming webhook URL
+                              example: https://hooks.slack.com/services/TXXXX/BXXXX/XXXXXXX
+                $ms_teams:
+                  type: array
+                  description: Microsoft Teams channel configuration
+                  items:
+                    oneOf:
+                    - type: object
+                      title: MS Teams using conversation ID
+                      required:
+                      - tenant_id
+                      - service_url
+                      - conversation_id
+                      properties:
+                        tenant_id:
+                          type: string
+                          description: Microsoft Teams tenant ID
+                          example: c1981ab2-9aaf-xxxx-xxxx
+                        service_url:
+                          type: string
+                          format: uri
+                          description: Microsoft Teams service URL
+                          example: https://smba.trafficmanager.net/amer
+                        conversation_id:
+                          type: string
+                          description: Microsoft Teams conversation ID
+                          example: 19:c1524d7c-a06f-456f-8abe-xxxx
+                    - type: object
+                      title: MS Teams using user ID
+                      required:
+                      - tenant_id
+                      - service_url
+                      - user_id
+                      properties:
+                        tenant_id:
+                          type: string
+                          description: Microsoft Teams tenant ID
+                          example: c1981ab2-9aaf-xxxx-xxxx
+                        service_url:
+                          type: string
+                          format: uri
+                          description: Microsoft Teams service URL
+                          example: https://smba.trafficmanager.net/amer
+                        user_id:
+                          type: string
+                          description: Microsoft Teams user ID
+                          example: 29:1nsLcmJ2RKtYH6Cxxxx-xxxx
+                    - type: object
+                      title: MS Teams using incoming webhook
+                      required:
+                      - incoming_webhook
+                      properties:
+                        incoming_webhook:
+                          type: object
+                          required:
+                          - url
+                          properties:
+                            url:
+                              type: string
+                              format: uri
+                              description: Microsoft Teams incoming webhook URL
+                              example: https://wnk1z.webhook.office.com/webhookb2/XXXXXXXXX
+                $timezone:
+                  type: string
+                  example: America/New_York
+                $locale:
+                  type: string
+                  example: en_GB
+            - type: object
+              title: Notify object
+              required:
+              - id
+              - object_type
+              properties:
+                id:
+                  type: string
+                  description: Unique identifier of the object
+                  example: frontend
+                object_type:
+                  type: string
+                  description: Filename to be shown in email
+              additionalProperties:
+                type: string
+                description: You can pass other user properties similar to recipient payload. It will be used when notification is sent to object channels as $recipient.<property>.
+        actor:
+          type: object
+          description: Includes distinct_id and properties of the user who performed the action. You can use it for [cross-user notifications]("https://docs.suprsend.com/docs/trigger-workflow#sending-cross-user-notifications"). Actor properties can be added as `$actor.<prop>`.
+          properties:
+            is_transient:
+              type: boolean
+              description: set `is_transient = true` to pass anonymous actor. You don't need to pass `distinct_id` for anonymous user.
+            distinct_id:
+              type: string
+              description: unique identifier of the actor who performed the action
+              default: id1
+          additionalProperties:
+            type: string
+            description: You can pass additional actor properties as `"user_prop1":"value1"` . Extra properties will be update in user profile which can then be used in the template as `$actor.<property>`.
+        data:
+          type: object
+          description: variable data required to render dynamic template content or workflow properties like dynamic delay or channel override in send node.
+          properties:
+            $attachments:
+              type: array
+              description: Use this key to pass email attachment in the trigger. You can either pass attachment as a public URL or as a base64-encoded file (limit < 50KB).
+              items:
+                oneOf:
+                - type: object
+                  title: Pass Public URL
+                  description: Pass file as **publicly accessible URL** (No limit on file size)
+                  required:
+                  - url
+                  properties:
+                    url:
+                      type: string
+                      format: uri
+                      description: Publicly accessible URL of the file
+                      example: https://bitcoincore.org/bitcoin.pdf
+                    filename:
+                      type: string
+                      description: Filename to be shown in email
+                      example: billing.pdf
+                    ignore_if_error:
+                      type: boolean
+                      description: Ignore the attachment if it fails to load
+                - type: object
+                  title: Pass Base64 File Locally
+                  description: Pass file as a **base-64 file** (supported limit < 50KB)
+                  required:
+                  - data
+                  properties:
+                    data:
+                      type: string
+                      description: Base64-encoded content of the file
+                    filename:
+                      type: string
+                      description: Filename to be shown in email
+                    contentType:
+                      type: string
+                      example: application/pdf
+          additionalProperties:
+            type: string
+        tenant_id:
+          type: string
+          description: string identifier of the tenant/tenant this workflow is associated with. Used to trigger [multi-tenant](https://docs.suprsend.com/docs/tenant-workflows) notifications
+        $idempotency_key:
+          type: string
+          description: Idempotency_key (valid for 24hrs)
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API_Key
+      description: Pass as `Bearer <API_KEY>`. Get API Key from SuprSend dashboard Developers -> API Keys section.
+    ServiceTokenAuth:
+      type: apiKey
+      in: header
+      name: ServiceToken <token>
+      description: You can get Service Token from [SuprSend dashboard -> Account Settings -> Service Tokens](https://app.suprsend.com/en/account-settings/service-tokens) section.
+    sec0:
+      type: apiKey
+      in: header
+      name: Authorization
+      x-bearer-format: bearer
+      description: Bearer authentication header of the form `Bearer <token>`, where <token> is your auth token.
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+x-readme-fauxas: true

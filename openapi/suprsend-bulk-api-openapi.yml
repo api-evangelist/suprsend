@@ -1,0 +1,348 @@
+openapi: 3.1.1
+info:
+  title: SuprSend Broadcast Bulk API
+  description: APIs supported on suprsend platform
+  version: 1.2.2
+servers:
+- url: https://hub.suprsend.com
+security:
+- sec0: []
+- BearerAuth: []
+tags:
+- name: Bulk
+paths:
+  /v1/bulk/user/preference/:
+    patch:
+      summary: Bulk Update
+      security:
+      - BearerAuth: []
+      description: Bulk API to update channel and category-level notification preferences for multiple users in one request.
+      operationId: bulk-update-user-preference
+      parameters:
+      - name: tenant_id
+        in: query
+        description: to fetch user preferences for a particular tenant
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - distinct_ids
+              properties:
+                distinct_ids:
+                  type: array
+                  description: distinct_id of users whose preference need to be updated
+                  default:
+                  - id1
+                  - id2
+                  items:
+                    type: string
+                channel_preferences:
+                  type: array
+                  description: Use this to update channel level user preferences. Set `is_restricted - true` if the channel is opted_out by the user. This will only send critical notifications to the user which can't be opted out
+                  items:
+                    properties:
+                      channel:
+                        type: string
+                        description: Add channel as `email`, `inbox`, `sms`, `whatsapp`, `androidpush`, `slack`, `iospush`, `webpush`
+                        default: email
+                      is_restricted:
+                        type: boolean
+                        description: set `is_restricted = true` if user wants to receive notification in mandatory categories on this channel. Mandatory categories are `can't unsubscribe` categories and the above channel is added as `mandatory channel` in that category
+                        default: false
+                    type: object
+                categories:
+                  type: array
+                  description: Use this to user preference across categories and channels inside a category.
+                  items:
+                    properties:
+                      category:
+                        type: string
+                        description: notification category slug. You can get this from Notification Categories page on SuprSend dashboard -> Settings page
+                        default: _category_slug_
+                      preference:
+                        type: string
+                        description: 'choose one of the options: `opt_in` if the user has allowed notification in this category and `opt_out` if user wants to discontinue notification in this category'
+                        default: opt_in
+                      opt_out_channels:
+                        type: array
+                        description: Add array of channels if user wants to unsubscribe from particular channels in this category. Add channels as `email`, `sms`, `whatsapp`, `androidpush`, `inbox`, `iospush`, `slack`, `webpush`
+                        default: []
+                        items:
+                          type: string
+                      opt_in_channels:
+                        type: array
+                        description: You can either pass opt_out_channels when user opts out from a channel in the category or opt_in_channels when user opts in to a channel in the category. Add channels as `email`, `sms`, `whatsapp`, `androidpush`, `inbox`, `iospush`, `slack`, `webpush`
+                        default: []
+                        items:
+                          type: string
+                    type: object
+      responses:
+        '202':
+          description: '202'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    success: true
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    code: 404
+                    message: tenant '_tenant_id_' not found
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 404
+                  message:
+                    type: string
+                    example: tenant '_tenant_id_' not found
+      deprecated: false
+      tags:
+      - Bulk
+  /v1/bulk/user/preference/reset/:
+    patch:
+      summary: Reset
+      security:
+      - BearerAuth: []
+      description: API to reset user preference settings to default preference.
+      operationId: reset-user-preferences
+      parameters:
+      - name: tenant_id
+        in: query
+        description: to fetch user preferences for a particular tenant
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - distinct_ids
+              properties:
+                distinct_ids:
+                  type: array
+                  description: distinct_id of users whose preference needs to be reset
+                  default:
+                  - id1
+                  - id2
+                  items:
+                    type: string
+                reset_channel_preferences:
+                  type: boolean
+                  description: setting this to true will set all channel preference to default setting.
+                  default: true
+                reset_categories:
+                  type: boolean
+                  description: setting this to true will set all category preferences to default tenant preference.
+                  default: true
+      responses:
+        '202':
+          description: '202'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    success: true
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    code: 404
+                    message: tenant '_tenant_id_' not found
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 404
+                  message:
+                    type: string
+                    example: tenant '_tenant_id_' not found
+      deprecated: false
+      tags:
+      - Bulk
+  /v1/bulk/message/:
+    patch:
+      summary: Bulk Update Message Status
+      description: Change the status of messages by passing their id and notification action.
+      operationId: bulk-update-messages
+      security:
+      - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - messages
+              properties:
+                messages:
+                  type: array
+                  minItems: 1
+                  maxItems: 1000
+                  description: List of messages to update. No duplicate `message_id`s allowed.
+                  items:
+                    type: object
+                    required:
+                    - message_id
+                    - action
+                    properties:
+                      message_id:
+                        type: string
+                        description: Message-id to update.
+                      action:
+                        type: string
+                        enum:
+                        - seen
+                        - clicked
+                        - dismissed
+                        - read
+                        - unread
+                        - archived
+                        - unarchived
+                        description: "Action to apply to the message. Each action sets the corresponding status or flag.\n\n- `seen` - Mark the message as seen by the recipient. \n- `clicked` - Mark the message as clicked or interacted with. \n- `dismissed` - Mark the message as dismissed (cleared without taking action).\n- `read` - Mark the inbox message as read. Applicable for Inbox channel only. Also sets flag is_read = true.\n- `unread` - Revert a previously read inbox message back to unread. Applicable for Inbox channel only. Sets flag is_read = false.\n- `archived` - Archive the inbox message (sets the `is_archived` flag to true; status is preserved). Applicable for Inbox channel only.\n- `unarchived` - Unarchive a previously archived inbox message. (sets the `is_archived` flag to false; status is preserved). Applicable for Inbox channel only.\n\n**Status progression (one-way):** `triggered` → `sent_by_vendor` → `delivered` → `seen` → `read` -> `clicked` / `dismissed`. Once a message reaches a later status, it cannot be moved back to an earlier one - for example, marking a `clicked` message as `seen` will not change the status to `seen`.\n\n**Toggles (reversible):** `read` ↔ `unread` and `archived` ↔ `unarchived` flip independent flags and can be applied in either direction any number of times.\n"
+            examples:
+              mark-as-seen:
+                summary: Mark messages as seen
+                value:
+                  messages:
+                  - message_id: 01HVXXXXXXXXXXXXXXXXXXXX01
+                    action: seen
+                  - message_id: 01HVXXXXXXXXXXXXXXXXXXXX02
+                    action: seen
+              mixed-actions:
+                summary: Apply different actions in one call
+                value:
+                  messages:
+                  - message_id: 01HVXXXXXXXXXXXXXXXXXXXX01
+                    action: read
+                  - message_id: 01HVXXXXXXXXXXXXXXXXXXXX02
+                    action: archived
+      responses:
+        '202':
+          description: Bulk update accepted. Inspect each record's `status_code` and `error` for individual outcomes - a `null` `error` means success.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  records:
+                    type: array
+                    description: Per-message results, in the same order as the request.
+                    items:
+                      $ref: '#/components/schemas/BulkPatchItemResult'
+              example:
+                records:
+                - message_id: 01HVXXXXXXXXXXXXXXXXXXXX01
+                  status_code: 202
+                  error: null
+                - message_id: 01HVXXXXXXXXXXXXXXXXXXXX02
+                  status_code: 404
+                  error:
+                    type: not_found
+                    message: not found
+      deprecated: false
+      tags:
+      - Bulk
+components:
+  schemas:
+    BulkPatchItemResult:
+      type: object
+      description: Per-message outcome from the bulk patch endpoint. Success is implied by a null `error` field.
+      properties:
+        message_id:
+          type: string
+          description: Message-id to update.
+        status_code:
+          type: integer
+          description: 'Per-item status code:
+
+            - `202` - success
+
+            - `404` - `not_found`
+
+            - `422` - `status_blocked` or `action_not_supported`
+
+            - `500` - `internal_error`
+
+            '
+        error:
+          type: object
+          nullable: true
+          description: Null on success, populated on failure.
+          required:
+          - type
+          - message
+          properties:
+            type:
+              type: string
+              description: 'Machine-readable key for why the item failed:
+
+                - `not_found` - message_id not found in this workspace
+
+                - `status_blocked` - message is in a terminal state (`trigger_failed`, `trigger_blocked`, `failure_by_vendor`, `not_to_be_triggered`) that cannot be overridden
+
+                - `action_not_supported` - action is invalid for the message''s channel (for example, `dismissed` on inbox, `read` on sms)
+
+                - `internal_error` - Internal error at SuprSend end. Reach out to support if you get this error code.
+
+                '
+              enum:
+              - not_found
+              - status_blocked
+              - action_not_supported
+              - internal_error
+            message:
+              type: string
+              description: Human-readable detail. Do not parse programmatically.
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API_Key
+      description: Pass as `Bearer <API_KEY>`. Get API Key from SuprSend dashboard Developers -> API Keys section.
+    ServiceTokenAuth:
+      type: apiKey
+      in: header
+      name: ServiceToken <token>
+      description: You can get Service Token from [SuprSend dashboard -> Account Settings -> Service Tokens](https://app.suprsend.com/en/account-settings/service-tokens) section.
+    sec0:
+      type: apiKey
+      in: header
+      name: Authorization
+      x-bearer-format: bearer
+      description: Bearer authentication header of the form `Bearer <token>`, where <token> is your auth token.
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+x-readme-fauxas: true

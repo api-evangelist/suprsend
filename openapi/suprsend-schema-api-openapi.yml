@@ -1,0 +1,788 @@
+openapi: 3.1.1
+info:
+  title: SuprSend Broadcast Schema API
+  description: APIs supported on suprsend platform
+  version: 1.2.2
+servers:
+- url: https://hub.suprsend.com
+security:
+- sec0: []
+- BearerAuth: []
+tags:
+- name: Schema
+paths:
+  /v1/{workspace}/schema/:
+    get:
+      summary: List Schemas
+      description: Retrieve a list of schemas in a workspace.
+      operationId: list-schemas
+      servers:
+      - url: https://management-api.suprsend.com
+      security:
+      - ServiceTokenAuth: []
+      x-codeSamples:
+      - lang: cURL
+        label: List Schemas
+        source: "curl -X GET \"https://management-api.suprsend.com/v1/{workspace}/schema/\" \\\n  --header 'Authorization: ServiceToken <token>' \\\n  --header 'Content-Type: application/json'\n"
+      parameters:
+      - in: path
+        name: workspace
+        required: true
+        schema:
+          type: string
+        description: Workspace slug (staging, production, etc.)
+      - in: query
+        name: mode
+        schema:
+          type: string
+          enum:
+          - draft
+          - live
+          default: draft
+        description: Specify if you want to fetch draft or live schema.
+      responses:
+        '200':
+          description: Successfully retrieved list of schemas
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      count:
+                        type: integer
+                        description: Total number of schemas matching the query
+                        example: 5
+                      limit:
+                        type: integer
+                        description: Number of results returned per page
+                        example: 10
+                      offset:
+                        type: integer
+                        description: Offset value passed in the request
+                        example: 0
+                    description: Metadata related to pagination information
+                  results:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        slug:
+                          type: string
+                          description: Unique identifier for the schema
+                          example: new-order-placed
+                        name:
+                          type: string
+                          description: Human-readable name of the schema
+                          example: Order Placed Event
+                        description:
+                          type: string
+                          nullable: true
+                          description: Description of the schema
+                          example: Schema for order placement action
+                        status:
+                          type: string
+                          enum:
+                          - draft
+                          - live
+                          description: Status of returned schema. By default, draft version is returned. You can set `mode=live` to fetch the live schema.
+                          example: draft
+                        hash:
+                          type: string
+                          description: Git-like hash for version tracking
+                          example: 382b707d4b1f8999a1xxxxxxxx
+                        json_schema:
+                          type: object
+                          nullable: true
+                          description: Structure of the workflow or event payload. Follows standard [json schema specification](https://json-schema.org/draft/2020-12/schema). You can link this schema to a workflow or event to validate their input payload in API response. Same schema can be linked to multiple workflows and events.
+                          example:
+                            type: object
+                            $schema: https://json-schema.org/draft/2020-12/schema
+                            required:
+                            - order_id
+                            - amount
+                            properties:
+                              order_id:
+                                type: string
+                              amount:
+                                type: string
+                            additionalProperties: true
+                        created_at:
+                          type: string
+                          format: date-time
+                          description: When the schema was created
+                          example: '2025-08-27T09:30:57.945326Z'
+                        updated_at:
+                          type: string
+                          format: date-time
+                          description: When the schema was last updated
+                          example: '2025-08-29T15:37:37.650177Z'
+                        committed_at:
+                          type: string
+                          format: date-time
+                          nullable: true
+                          description: When the schema was last committed. Only available for live schema.
+                          example: null
+                        commit_message:
+                          type: string
+                          nullable: true
+                          description: Last commit message. Only available for live schema.
+                          example: null
+                    description: Array of schemas
+        '404':
+          description: Schema not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    description: HTTP status code
+                    example: 404
+                  error_code:
+                    type: string
+                    description: Error code identifier
+                    example: not_found
+                  type:
+                    type: string
+                    description: Error type
+                    example: NotFound
+                  message:
+                    type: string
+                    description: Error message
+                    example: workspace 'demo' not found
+                  detail:
+                    type: string
+                    description: Detailed error information
+                    example: workspace 'demo' not found
+              example:
+                code: 404
+                error_code: not_found
+                type: NotFound
+                message: workspace 'demo' not found
+                detail: workspace 'demo' not found
+        '401':
+          $ref: '#/components/responses/AuthenticationError'
+          description: AuthenticationFailed - Invalid service token.
+      tags:
+      - Schema
+  /v1/{workspace}/schema/{schema_slug}/:
+    get:
+      summary: Get Schema
+      description: Fetch the JSON schema corresponding to a slug.
+      operationId: get-schema
+      servers:
+      - url: https://management-api.suprsend.com
+      security:
+      - ServiceTokenAuth: []
+      x-codeSamples:
+      - lang: cURL
+        label: Get Schema
+        source: "curl -X GET \"https://management-api.suprsend.com/v1/{workspace}/schema/{schema_slug}/\" \\\n  --header 'Authorization: ServiceToken <token>' \\\n  --header 'Content-Type: application/json'\n"
+      parameters:
+      - in: path
+        name: workspace
+        required: true
+        schema:
+          type: string
+        description: Workspace slug (staging, production, etc.)
+      - in: path
+        name: schema_slug
+        required: true
+        schema:
+          type: string
+        description: Unique identifier of the schema
+      - in: query
+        name: mode
+        schema:
+          type: string
+          enum:
+          - draft
+          - live
+          default: draft
+        description: Mode to fetch schema (draft or live). By default, draft schema is returned.
+      responses:
+        '200':
+          description: Successfully retrieved schema object
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  slug:
+                    type: string
+                    description: Unique identifier for the schema
+                    example: new-order-placed
+                  name:
+                    type: string
+                    description: Human-readable name of the schema
+                    example: Order Placed Event
+                  description:
+                    type: string
+                    nullable: true
+                    description: Description of the schema
+                    example: Schema for order placement action
+                  status:
+                    type: string
+                    enum:
+                    - draft
+                    - live
+                    description: Status of returned schema. By default, draft version is returned. You can set `mode=live` to fetch the live schema.
+                    example: draft
+                  hash:
+                    type: string
+                    description: Git-like hash for version tracking
+                    example: 382b707d4b1f8999a1xxxxxxxx
+                  json_schema:
+                    type: object
+                    nullable: true
+                    description: Structure of the workflow or event payload. Follows standard [json schema specification](https://json-schema.org/draft/2020-12/schema). You can link this schema to a workflow or event to validate their input payload in API response. Same schema can be linked to multiple workflows and events.
+                    example:
+                      type: object
+                      $schema: https://json-schema.org/draft/2020-12/schema
+                      required:
+                      - order_id
+                      - amount
+                      properties:
+                        order_id:
+                          type: string
+                        amount:
+                          type: string
+                      additionalProperties: true
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: When the schema was created
+                    example: '2025-08-27T09:30:57.945326Z'
+                  updated_at:
+                    type: string
+                    format: date-time
+                    description: When the schema was last updated
+                    example: '2025-08-29T15:37:37.650177Z'
+                  committed_at:
+                    type: string
+                    format: date-time
+                    nullable: true
+                    description: When the schema was last committed. Only available for live schema.
+                    example: null
+                  commit_message:
+                    type: string
+                    nullable: true
+                    description: Last commit message. Only available for live schema.
+                    example: null
+                example:
+                  slug: new-order-placed
+                  name: Order Placed Event
+                  description: Schema for order placement action
+                  status: draft
+                  hash: 382b707d4b1f8999a1xxxxxxxx
+                  json_schema:
+                    type: object
+                    $schema: https://json-schema.org/draft/2020-12/schema
+                    required:
+                    - order_id
+                    - amount
+                    properties:
+                      order_id:
+                        type: string
+                      amount:
+                        type: string
+                    additionalProperties: true
+                  created_at: '2025-08-27T09:30:57.945326Z'
+                  updated_at: '2025-08-29T15:37:37.650177Z'
+                  committed_at: null
+                  commit_message: null
+        '404':
+          description: Schema not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    description: HTTP status code
+                    example: 404
+                  error_code:
+                    type: string
+                    description: Error code identifier
+                    example: not_found
+                  type:
+                    type: string
+                    description: Error type
+                    example: NotFound
+                  message:
+                    type: string
+                    description: Error message
+                    example: workspace 'staging4' not found
+                  detail:
+                    type: string
+                    description: Detailed error information
+                    example: workspace 'staging4' not found
+              example:
+                code: 404
+                error_code: not_found
+                type: NotFound
+                message: workspace 'staging4' not found
+                detail: workspace 'staging4' not found
+        '401':
+          $ref: '#/components/responses/AuthenticationError'
+          description: AuthenticationFailed - Invalid service token.
+      tags:
+      - Schema
+    post:
+      summary: Create/Update Schema
+      description: Upset draft version of a JSON schema. Creates a new schema if it doesn't exist.
+      operationId: upsert-schema
+      servers:
+      - url: https://management-api.suprsend.com
+      security:
+      - ServiceTokenAuth: []
+      x-codeSamples:
+      - lang: cURL
+        label: Upsert Schema
+        source: "curl -X POST \"https://management-api.suprsend.com/v1/{workspace}/schema/{schema_slug}/?commit=true&commit_message=Initial%20schema%20creation\" \\\n  --header 'Authorization: ServiceToken <token>' \\\n  --header 'Content-Type: application/json' \\\n  --data '{\n    \"name\": \"Order Placed Event\",\n    \"description\": \"Schema for order placement action\",\n    \"json_schema\": {\n      \"type\": \"object\",\n      \"$schema\": \"https://json-schema.org/draft/2020-12/schema\",\n      \"required\": [\"order_id\", \"amount\"],\n      \"properties\": {\n        \"order_id\": {\n          \"type\": \"string\"\n        },\n        \"amount\": {\n          \"type\": \"string\"\n        }\n      },\n      \"additionalProperties\": true\n    }\n  }'\n"
+      parameters:
+      - in: path
+        name: workspace
+        required: true
+        schema:
+          type: string
+        description: Workspace slug (staging, production, etc.)
+      - in: path
+        name: schema_slug
+        required: true
+        schema:
+          type: string
+        description: Unique identifier of the schema
+      - in: query
+        name: commit
+        required: false
+        schema:
+          type: boolean
+          default: false
+        description: Set to true to commit the schema immediately after creation/update
+      - in: query
+        name: commit_message
+        required: false
+        schema:
+          type: string
+        description: Commit message describing the changes (required when commit=true)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - name
+              - json_schema
+              properties:
+                name:
+                  type: string
+                  description: Human-readable name of the schema
+                  example: Order Placed Event
+                description:
+                  type: string
+                  nullable: true
+                  description: Description of the schema. Can be used to describe which action this schema is linked to.
+                  example: Schema for order placement action
+                json_schema:
+                  type: object
+                  description: Structure of the workflow or event payload. Follows standard [json schema specification](https://json-schema.org/draft/2020-12/schema). You can link this schema to a workflow or event to validate their input payload in API response. Same schema can be linked to multiple workflows and events.
+                  example:
+                    type: object
+                    $schema: https://json-schema.org/draft/2020-12/schema
+                    required:
+                    - order_id
+                    - amount
+                    properties:
+                      order_id:
+                        type: string
+                      amount:
+                        type: string
+                    additionalProperties: true
+              example:
+                name: Order Placed Event
+                description: Schema for order placement action
+                json_schema:
+                  type: object
+                  $schema: https://json-schema.org/draft/2020-12/schema
+                  required:
+                  - order_id
+                  - amount
+                  properties:
+                    order_id:
+                      type: string
+                    amount:
+                      type: string
+                  additionalProperties: true
+      responses:
+        '200':
+          description: Successfully retrieved schema object
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  slug:
+                    type: string
+                    description: Unique identifier for the schema
+                    example: new-order-placed
+                  name:
+                    type: string
+                    description: Human-readable name of the schema
+                    example: Order Placed Event
+                  description:
+                    type: string
+                    nullable: true
+                    description: Description of the schema
+                    example: Schema for order placement action
+                  status:
+                    type: string
+                    enum:
+                    - draft
+                    - live
+                    description: Status of returned schema. By default, draft version is returned. You can set `mode=live` to fetch the live schema.
+                    example: draft
+                  hash:
+                    type: string
+                    description: Git-like hash for version tracking
+                    example: 382b707d4b1f8999a1xxxxxxxx
+                  json_schema:
+                    type: object
+                    nullable: true
+                    description: JSON schema passed in the request body.
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: When the schema was created
+                    example: '2025-08-27T09:30:57.945326Z'
+                  updated_at:
+                    type: string
+                    format: date-time
+                    description: When the schema was last updated
+                    example: '2025-08-29T15:37:37.650177Z'
+                  commit_result:
+                    type: object
+                    nullable: true
+                    description: Commit result when commit=true is passed in query parameter
+                    properties:
+                      is_committed:
+                        type: boolean
+                        description: Whether the schema was successfully committed
+                        example: false
+                      errors:
+                        type: array
+                        items:
+                          type: string
+                        description: List of errors if commit failed
+                        example: 'hash: no uncommitted changes found'
+                    example:
+                      is_committed: false
+                      errors:
+                      - 'hash: no uncommitted changes found'
+                example:
+                  slug: new-order-placed
+                  name: Order Placed Event
+                  description: Schema for order placement action
+                  status: draft
+                  hash: 382b707d4b1f8999a1xxxxxxxx
+                  json_schema:
+                    type: object
+                    $schema: https://json-schema.org/draft/2020-12/schema
+                    required:
+                    - order_id
+                    - amount
+                    properties:
+                      order_id:
+                        type: string
+                      amount:
+                        type: string
+                    additionalProperties: true
+                  created_at: '2025-08-27T09:30:57.945326Z'
+                  updated_at: '2025-08-29T15:37:37.650177Z'
+                  commit_result:
+                    is_committed: false
+                    errors:
+                    - 'hash: no uncommitted changes found'
+        '400':
+          description: Invalid schema format
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    description: HTTP status code
+                    example: 400
+                  error_code:
+                    type: string
+                    description: Error code identifier.
+                    example: error
+                  type:
+                    type: string
+                    description: Error type
+                    example: ValidationError
+                  message:
+                    type: string
+                    description: Error message
+                    example: '{"json_schema": ["Schema looks like JSON data, not a JSON Schema. Include keywords like ''$schema'', ''type'', ''properties'', or ''$defs''."]}'
+                  detail:
+                    type: object
+                    description: Detailed error information
+                    example:
+                      json_schema:
+                      - Schema looks like JSON data, not a JSON Schema. Include keywords like '$schema', 'type', 'properties', or '$defs'.
+              example:
+                code: 400
+                error_code: error
+                type: ValidationError
+                message: '{"json_schema": ["Schema looks like JSON data, not a JSON Schema. Include keywords like ''$schema'', ''type'', ''properties'', or ''$defs''."]}'
+                detail:
+                  json_schema:
+                  - Schema looks like JSON data, not a JSON Schema. Include keywords like '$schema', 'type', 'properties', or '$defs'.
+        '404':
+          description: Schema not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    description: HTTP status code
+                    example: 404
+                  error_code:
+                    type: string
+                    description: Error code identifier
+                    example: not_found
+                  type:
+                    type: string
+                    description: Error type
+                    example: NotFound
+                  message:
+                    type: string
+                    description: Error message
+                    example: workspace 'staging4' not found
+                  detail:
+                    type: string
+                    description: Detailed error information
+                    example: workspace 'staging4' not found
+              example:
+                code: 404
+                error_code: not_found
+                type: NotFound
+                message: workspace 'staging4' not found
+                detail: workspace 'staging4' not found
+        '401':
+          $ref: '#/components/responses/AuthenticationError'
+          description: AuthenticationFailed - Invalid service token.
+      tags:
+      - Schema
+  /v1/{workspace}/schema/{schema_slug}/commit/:
+    patch:
+      summary: Commit Schema
+      description: Commit a draft schema to make it live. Changes will start to take effect as soon as it's live.
+      operationId: commit-schema
+      servers:
+      - url: https://management-api.suprsend.com
+      security:
+      - ServiceTokenAuth: []
+      x-codeSamples:
+      - lang: cURL
+        label: Commit Schema
+        source: "curl -X PATCH \"https://management-api.suprsend.com/v1/{workspace}/schema/{schema_slug}/commit/\" \\\n  --header 'Authorization: ServiceToken <token>' \\\n  --header 'Content-Type: application/json'\n"
+      parameters:
+      - in: path
+        name: workspace
+        required: true
+        schema:
+          type: string
+        description: Workspace slug (staging, production, etc.)
+      - in: path
+        name: schema_slug
+        required: true
+        schema:
+          type: string
+        description: Unique identifier of the schema
+      - in: query
+        name: commit_message
+        required: false
+        schema:
+          type: string
+        description: Commit message describing the changes
+      responses:
+        '200':
+          description: Successfully retrieved schema object
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  slug:
+                    type: string
+                    description: Unique identifier for the schema
+                    example: new-order-placed
+                  name:
+                    type: string
+                    description: Human-readable name of the schema
+                    example: Order Placed Event
+                  description:
+                    type: string
+                    nullable: true
+                    description: Description of the schema. Can be used to describe which action this schema is linked to.
+                    example: Schema for order placement action
+                  status:
+                    type: string
+                    enum:
+                    - draft
+                    - live
+                    description: Status of returned schema. By default, draft version is returned. You can set `mode=live` to fetch the live schema.
+                    example: live
+                  hash:
+                    type: string
+                    description: Git-like hash for version tracking
+                    example: 382b707d4b1f8999a1xxxxxxxx
+                  json_schema:
+                    type: object
+                    nullable: true
+                    description: updated json schema
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: When the schema was created
+                    example: '2025-08-27T09:30:57.945326Z'
+                  updated_at:
+                    type: string
+                    format: date-time
+                    description: When the schema was last updated
+                    example: '2025-08-29T15:37:37.650177Z'
+                  committed_at:
+                    type: string
+                    format: date-time
+                    description: When the schema was last committed
+                    example: '2025-09-01T18:35:00.270698Z'
+                  commit_message:
+                    type: string
+                    description: Last commit message
+                    example: required fields updated
+                example:
+                  slug: new-order-placed
+                  name: Order Placed Event
+                  description: Schema for order placement action
+                  status: live
+                  hash: 382b707d4b1f8999a1xxxxxxxx
+                  json_schema:
+                    type: object
+                    $schema: https://json-schema.org/draft/2020-12/schema
+                    required:
+                    - order_id
+                    - amount
+                    properties:
+                      order_id:
+                        type: string
+                      amount:
+                        type: string
+                    additionalProperties: true
+                  created_at: '2025-08-27T09:30:57.945326Z'
+                  updated_at: '2025-08-29T15:37:37.650177Z'
+                  committed_at: '2025-09-01T18:35:00.270698Z'
+                  commit_message: required fields updated
+        '404':
+          description: Schema not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    description: HTTP status code
+                    example: 404
+                  error_code:
+                    type: string
+                    description: Error code identifier
+                    example: not_found
+                  type:
+                    type: string
+                    description: Error type
+                    example: NotFound
+                  message:
+                    type: string
+                    description: Error message
+                    example: workspace 'staging4' not found
+                  detail:
+                    type: string
+                    description: Detailed error information
+                    example: workspace 'staging4' not found
+              example:
+                code: 404
+                error_code: not_found
+                type: NotFound
+                message: workspace 'staging4' not found
+                detail: workspace 'staging4' not found
+        '401':
+          $ref: '#/components/responses/AuthenticationError'
+          description: AuthenticationFailed - Invalid service token.
+      tags:
+      - Schema
+components:
+  responses:
+    AuthenticationError:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            code: 401
+            error_code: authentication_failed
+            type: AuthenticationFailed
+            message: Invalid service token.
+            detail: Invalid service token.
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: HTTP status code
+        error_code:
+          type: string
+          description: Specific error code identifier
+        type:
+          type: string
+          description: Error type classification
+        message:
+          type: string
+          description: Human-readable error message
+        detail:
+          type: string
+          description: Additional error details
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API_Key
+      description: Pass as `Bearer <API_KEY>`. Get API Key from SuprSend dashboard Developers -> API Keys section.
+    ServiceTokenAuth:
+      type: apiKey
+      in: header
+      name: ServiceToken <token>
+      description: You can get Service Token from [SuprSend dashboard -> Account Settings -> Service Tokens](https://app.suprsend.com/en/account-settings/service-tokens) section.
+    sec0:
+      type: apiKey
+      in: header
+      name: Authorization
+      x-bearer-format: bearer
+      description: Bearer authentication header of the form `Bearer <token>`, where <token> is your auth token.
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+x-readme-fauxas: true

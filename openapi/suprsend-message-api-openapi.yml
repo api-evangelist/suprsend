@@ -1,0 +1,528 @@
+openapi: 3.1.1
+info:
+  title: SuprSend Broadcast Message API
+  description: APIs supported on suprsend platform
+  version: 1.2.2
+servers:
+- url: https://hub.suprsend.com
+security:
+- sec0: []
+- BearerAuth: []
+tags:
+- name: Message
+paths:
+  /v1/message/:
+    get:
+      summary: List Messages
+      description: 'Retrieve a paginated list of messages in a workspace order by created_at desc. Can be used to fetch and show message logs on the platform.
+
+        '
+      operationId: list-messages
+      security:
+      - BearerAuth: []
+      parameters:
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 10
+          maximum: 1000
+        description: Maximum number of messages to return per page. Defaults to `10`, maximum is `1000`.
+      - name: after
+        in: query
+        schema:
+          type: string
+        description: 'Cursor for forward pagination - pass the `meta.after` value from a previous response to fetch the next page of older messages. Treat this value as an opaque cursor - do not parse, validate, or assume any format for it. **Takes precedence over `before` when both are set** (`before` is silently ignored).
+
+          '
+      - name: before
+        in: query
+        schema:
+          type: string
+        description: 'Cursor for backward pagination - pass the `meta.before` value from a previous response to fetch the previous page of newer messages. Treat this value as an opaque cursor - do not parse, validate, or assume any format for it. Ignored when `after` is also set.
+
+          '
+      - name: status[]
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - triggered (status AnyOf('triggered','trigger_blocked','sent_by_vendor','to_be_triggered','not_to_be_triggered'))
+            - delivery_failed (status AnyOf('trigger_failed','failure_by_vendor')
+            - delivered
+            - seen
+            - clicked
+            - dismissed
+            - read (is_read = true)
+            - unread (is_read = false)
+            - archived (is_archived = true)
+        style: form
+        explode: true
+        description: 'Filter by one or more derived statuses. Multiple values are OR-ed. Repeat the param for each value, e.g. `?status[]=delivered&status[]=seen`.
+
+          '
+      - name: channel
+        in: query
+        schema:
+          type: string
+          enum:
+          - sms
+          - email
+          - androidpush
+          - iospush
+          - webpush
+          - inbox
+          - whatsapp
+          - slack
+          - ms_teams
+        description: Filter by delivery channel.
+      - name: recipient_id[]
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+        style: form
+        explode: true
+        description: Filter by one or more recipient `distinct_id`s (OR-ed). Repeat the param for each value, e.g. `?recipient_id[]=user_123&recipient_id[]=user_456`.
+      - name: category[]
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+        style: form
+        explode: true
+        description: Filter by one or more notification categories (OR-ed). Repeat the param for each value, e.g. `?category[]=transactional&category[]=promotional`.
+      - name: created_at_gte
+        in: query
+        schema:
+          type: string
+          format: date-time
+        description: 'RFC3339 timestamp lower bound (inclusive). Compared against the `created_at` column which has **second precision** - sub-second components in the filter value are effectively truncated. Example: `2026-04-26T21:34:33Z`.
+
+          '
+      - name: created_at_lte
+        in: query
+        schema:
+          type: string
+          format: date-time
+        description: 'RFC3339 timestamp upper bound (inclusive). Same second-precision caveat as `created_at_gte`. Must be `>= created_at_gte` when both are set.
+
+          '
+      - name: workflow_slug
+        in: query
+        schema:
+          type: string
+        description: Filter messages triggered from a specific workflow.
+      - name: execution_id
+        in: query
+        schema:
+          type: string
+        description: Matches `wf_exec_id` or `broadcast_id`.
+      - name: idempotency_key
+        in: query
+        schema:
+          type: string
+        description: Filter by the idempotency key associated with the message at trigger time.
+      - name: message_id
+        in: query
+        schema:
+          type: string
+        description: Exact match on message ID.
+      - name: tenant_id
+        in: query
+        schema:
+          type: string
+        description: Filter messages belonging to a specific tenant.
+      - name: is_campaign
+        in: query
+        schema:
+          type: boolean
+        description: Set `true` to return only messages sent as part of a broadcast/campaign.
+      - name: object_id
+        in: query
+        schema:
+          type: string
+        description: Must be provided together with `object_type` to filter messages sent to an object. Will filter all message logs which were sent to recipients after object fanout.
+      - name: object_type
+        in: query
+        schema:
+          type: string
+        description: Must be provided together with `object_id` to filter messages sent to an object. Will filter all message logs which were sent to recipients after object fanout.
+      responses:
+        '200':
+          description: Returns the paginated list of messages order by created_at desc.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/CursorPagination'
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/MessageResponse'
+              example:
+                meta:
+                  count: 3506
+                  limit: 10
+                  has_prev: false
+                  before: null
+                  has_next: true
+                  after: 01HVXXXXXXXXXXXXXXXXXXXX10
+                results:
+                - message_id: 01HVXXXXXXXXXXXXXXXXXXXX01
+                  created_at: '2026-04-01T17:18:06.000Z'
+                  updated_at: '2026-04-01T17:20:11.000Z'
+                  triggered_at: '2026-04-01T17:18:06.000Z'
+                  delivered_at: '2026-04-01T17:18:08.000Z'
+                  seen_at: '2026-04-01T17:19:25.000Z'
+                  clicked_at: null
+                  dismissed_at: null
+                  read_at: null
+                  unread_at: null
+                  archived_at: null
+                  unarchived_at: null
+                  is_read: false
+                  is_archived: false
+                  status: seen
+                  channel: inbox
+                  idempotency_key: order-5678
+                  failure_reason: null
+                  recipient:
+                    $type: user
+                    distinct_id: user_123
+                    object_type: null
+                    id: null
+                  parent_entity_id: null
+                  parent_entity_type: null
+                  vendor:
+                    name: suprsend_inbox
+                    nickname: Inbox
+                  execution_id: exec_01HV...
+                  parent_execution_id: null
+                  is_campaign: false
+                  tenant_id: acme
+                  workflow:
+                    slug: order-confirmation
+                    version_id: wf_ver_01HV...
+                    name: Order Confirmation
+                    node_ref: send_inbox_1
+                  template:
+                    name: Order Confirmation
+                    slug: order-confirmation
+                    version_no: 4
+                  channel_identity:
+                    inbox: user_123
+                  category: transactional
+                - message_id: 01HVXXXXXXXXXXXXXXXXXXXX02
+                  created_at: '2026-04-01T17:30:01.000Z'
+                  updated_at: '2026-04-01T17:30:15.000Z'
+                  triggered_at: '2026-04-01T17:30:01.000Z'
+                  delivered_at: null
+                  seen_at: null
+                  clicked_at: null
+                  dismissed_at: null
+                  read_at: null
+                  unread_at: null
+                  archived_at: null
+                  unarchived_at: null
+                  is_read: false
+                  is_archived: false
+                  status: delivery_failure
+                  channel: sms
+                  idempotency_key: null
+                  failure_reason: invalid_recipient_number
+                  recipient:
+                    $type: user
+                    distinct_id: user_456
+                    object_type: null
+                    id: null
+                  parent_entity_id: null
+                  parent_entity_type: null
+                  vendor:
+                    name: gupshup
+                    nickname: Gupshup WhatsApp
+                  execution_id: exec_01HV...
+                  parent_execution_id: null
+                  is_campaign: false
+                  tenant_id: acme
+                  workflow:
+                    slug: password-reset
+                    version_id: wf_ver_01HV...
+                    name: Password Reset
+                    node_ref: multichannel_1
+                  template:
+                    name: Password Reset
+                    slug: password-reset
+                    version_no: 2
+                  channel_identity:
+                    sms: '+15555550100'
+                  category: transactional
+      deprecated: false
+      tags:
+      - Message
+components:
+  schemas:
+    MessageResponse:
+      type: object
+      description: A single notification delivery attempt produced by a workflow trigger or broadcast.
+      properties:
+        message_id:
+          type: string
+          description: Message-id to update.
+        created_at:
+          type: string
+          format: date-time
+          description: Time when the message entry was created.
+        updated_at:
+          type: string
+          format: date-time
+          description: Time when the message entry was last updated (for example, on a status or timestamp change).
+        triggered_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: Time when the message was handovered to vendor by SuprSend.
+        delivered_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: Time when the vendor confirmed successful delivery. Null if the message has not been delivered yet. If you're not getting delivery events for email, SMS and Whatsapp, make sure to configure SuprSend webhook URL in vendor portal.
+        seen_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: Time when the recipient first saw or opened the message. Seen tracking is available for all channels accept Slack, MS Teams and SMS.
+        clicked_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: Time when the recipient clicked or interacted with the message. Tracked for Email, Push and Inbox.
+        dismissed_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: Time when the recipient dismissed or cleared the message. Only application for mobile push notifications.
+        read_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: Time when the message was marked as read. Only applicable for Inbox channel.
+        unread_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: Time when a previously read message was marked unread. Only applicable for Inbox channel.
+        archived_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: Time when the message was archived. Only applicable for Inbox channel.
+        unarchived_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: Time when a previously archived message was unarchived. Only applicable for Inbox channel.
+        is_read:
+          type: boolean
+          description: Whether the message is currently in the read state. Only applicable for Inbox channel.
+        is_archived:
+          type: boolean
+          description: Whether the message is currently archived. Only applicable for Inbox channel.
+        status:
+          type: string
+          description: 'Current message status. Other than `archived`, all actions translate to a status. Archived is just a flag on the message.
+
+
+            - `triggered` - Message has been triggered by SuprSend and queued for delivery to the vendor.
+
+            - `trigger_failed` - Vendor reported failure in response to delivery API call itself.
+
+            - `trigger_blocked` - Test mode is enabled and this channel was not part of allowed channel list.
+
+            - `not_to_be_triggered` - Message was intentionally skipped (generally happens in smart delivery when success metric is achieved)
+
+            - `to_be_triggered` - Message is queued and waiting to be triggered (generally happens when there is a wait added in smart delivery)
+
+            - `sent_by_vendor` - Vendor accepted the message for delivery; final delivery confirmation is pending.
+
+            - `delivered` - Vendor confirmed successful delivery to the recipient.
+
+            - `delivery_failure` - Vendor reported a delivery failure (for example, bounce or invalid recipient).
+
+            - `seen` - Recipient saw or opened the message.
+
+            - `clicked` - Recipient clicked or interacted with the message.
+
+            - `dismissed` - Recipient dismissed the message without acting on it.
+
+            - `read` - Inbox message was marked as read by the recipient.
+
+            '
+          enum:
+          - triggered
+          - trigger_failed
+          - trigger_blocked
+          - not_to_be_triggered
+          - to_be_triggered
+          - sent_by_vendor
+          - delivered
+          - delivery_failure
+          - seen
+          - clicked
+          - dismissed
+          - read
+        channel:
+          type: string
+          description: Channel through which the message was sent.
+          enum:
+          - sms
+          - email
+          - whatsapp
+          - inbox
+          - androidpush
+          - iospush
+          - webpush
+          - slack
+          - ms_teams
+        idempotency_key:
+          type: string
+          description: Idempotency key supplied at trigger time to prevent duplicate sends for the same logical event.
+        failure_reason:
+          type: string
+          description: Human-readable reason describing why delivery failed. Empty when the message did not fail.
+        recipient:
+          type: object
+          description: 'Recipient of the message. Either a user (`$type: user`) or an object (`$type: object`).'
+          properties:
+            $type:
+              type: string
+              description: Recipient type - `user` for a user recipient or `object` for an object recipient.
+              enum:
+              - user
+              - object
+            distinct_id:
+              type: string
+              description: Distinct ID of the user recipient. Present when `$type` is `user`.
+            object_type:
+              type: string
+              description: Object type slug. Present when `$type` is `object`.
+            id:
+              type: string
+              description: Object ID. Present when `$type` is `object`.
+        parent_entity_id:
+          type: string
+          description: ID of the parent entity (object)
+        parent_entity_type:
+          type: string
+          description: Type of the parent entity that originated this message (object)
+        vendor:
+          type: object
+          description: Delivery vendor that handled this message.
+          properties:
+            name:
+              type: string
+              description: Internal name of the vendor integration (for example, `sendgrid`, `twilio`).
+            nickname:
+              type: string
+              description: User-defined nickname for the vendor integration in the SuprSend dashboard.
+        execution_id:
+          type: string
+          description: ID of the workflow execution this message belongs to.
+        parent_execution_id:
+          type: string
+          description: ID of the parent execution, when this message was produced as fanout on object trigger.
+        is_campaign:
+          type: boolean
+          description: true when message was sent as part of a broadcast.
+        tenant_id:
+          type: string
+          description: ID of the tenant the message was sent under.
+        workflow:
+          type: object
+          description: Workflow that produced the message.
+          properties:
+            slug:
+              type: string
+              description: Unique slug of the workflow.
+            version_id:
+              type: string
+              description: ID of the specific workflow version that ran.
+            name:
+              type: string
+              description: Human-readable name of the workflow.
+            node_ref:
+              type: string
+              description: Slug to the specific node within the workflow that emitted this message.
+        template:
+          type: object
+          description: Template used to render the message.
+          properties:
+            name:
+              type: string
+              description: Human-readable name of the template.
+            slug:
+              type: string
+              description: Unique slug of the template.
+            version_no:
+              type: integer
+              description: Version number of the template that was used to render the message.
+        channel_identity:
+          type: object
+          additionalProperties: true
+          description: Channel-specific recipient identity that the message was delivered to (for example, the phone number for SMS, email address for email). Credential keys (`access_token`, `keys`, `incoming_webhook`) are stripped from the response.
+          example:
+            sms: '+15555550100'
+        category:
+          type: string
+          description: Notification category slug associated with this message.
+    CursorPagination:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: Total matching records (ignores cursor position).
+        limit:
+          type: integer
+          description: Maximum number of results returned per page.
+        has_prev:
+          type: boolean
+          description: True when the previous page (newer logs) exists.
+        before:
+          type: string
+          nullable: true
+          description: Cursor to pass as `before=` to retrieve the previous page (newer logs). Null on the first page or when `has_prev` is false.
+        has_next:
+          type: boolean
+          description: True when an next page (older logs) exist.
+        after:
+          type: string
+          nullable: true
+          description: Cursor to pass as `after=` to retrieve the next page (older logs). Null when `has_next` is false.
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API_Key
+      description: Pass as `Bearer <API_KEY>`. Get API Key from SuprSend dashboard Developers -> API Keys section.
+    ServiceTokenAuth:
+      type: apiKey
+      in: header
+      name: ServiceToken <token>
+      description: You can get Service Token from [SuprSend dashboard -> Account Settings -> Service Tokens](https://app.suprsend.com/en/account-settings/service-tokens) section.
+    sec0:
+      type: apiKey
+      in: header
+      name: Authorization
+      x-bearer-format: bearer
+      description: Bearer authentication header of the form `Bearer <token>`, where <token> is your auth token.
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+x-readme-fauxas: true
