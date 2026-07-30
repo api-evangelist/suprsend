@@ -11,7 +11,20 @@ description: >-
   synchronization, and an MCP server enabling AI agents to interact with notification
   infrastructure through tool calling.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/suprsend.png
 tags:
   - Notifications
   - Multi-Channel
@@ -29,46 +42,305 @@ created: '2026-06-12'
 modified: '2026-06-12'
 specificationVersion: '0.19'
 apis:
-  - aid: suprsend:rest-api
-    name: SuprSend REST API
-    description: >-
-      The SuprSend REST API allows developers to programmatically trigger notification
-      workflows, manage users and subscribers, send broadcast notifications, and access
-      delivery logs. Authentication uses workspace key and secret credentials. The API
-      returns HTTP 202 on successful workflow triggers and supports up to 100 recipients
-      per single workflow trigger call.
-    humanURL: https://docs.suprsend.com/reference/overview
-    baseURL: https://hub.suprsend.com
-    tags:
-      - Notifications
-      - Workflows
-      - Multi-Channel
-      - REST
-    properties:
-      - type: Documentation
-        url: https://docs.suprsend.com/reference/overview
-      - type: PostmanCollection
-        url: https://docs.suprsend.com/docs/developer/overview
-      - type: OpenAPI
-        url: openapi/suprsend-rest-api-openapi.yml
-  - aid: suprsend:management-api
-    name: SuprSend Management API
-    description: >-
-      The SuprSend Management API provides programmatic control over workspace assets
-      including workflows, templates, and other SuprSend configuration resources.
-      It uses service tokens for authentication rather than workspace keys, and
-      enables CI/CD integration for deploying notification configurations.
-    humanURL: https://docs.suprsend.com/docs/developer/overview
-    baseURL: https://hub.suprsend.com
-    tags:
-      - Management
-      - Workflows
-      - Templates
-      - Configuration
-    properties:
-      - type: Documentation
-        url: https://docs.suprsend.com/docs/developer/overview
+- aid: suprsend:management-api
+  name: SuprSend Management API
+  description: >-
+    The SuprSend Management API provides programmatic control over workspace assets including workflows,
+    templates, and other SuprSend configuration resources. It uses service tokens for authentication rather
+    than workspace keys, and enables CI/CD integration for deploying notification configurations.
+  humanURL: https://docs.suprsend.com/docs/developer/overview
+  baseURL: https://hub.suprsend.com
+  tags:
+  - Management
+  - Workflows
+  - Templates
+  - Configuration
+  properties:
+  - type: Documentation
+    url: https://docs.suprsend.com/docs/developer/overview
+- aid: suprsend:suprsend-broadcast-api
+  name: SuprSend Broadcast API
+  description: The Broadcast API from SuprSend — 1 operation(s) for broadcast.
+  humanURL: https://docs.suprsend.com/reference/overview
+  baseURL: https://hub.suprsend.com
+  tags:
+  - Broadcast
+  properties:
+  - type: OpenAPI
+    url: openapi/suprsend-broadcast-api-openapi.yml
+  - type: Documentation
+    url: https://docs.suprsend.com/reference/overview
+  - type: PostmanCollection
+    url: https://docs.suprsend.com/docs/developer/overview
+- aid: suprsend:suprsend-broadcast-run-api
+  name: SuprSend Broadcast Run API
+  description: The Broadcast Run API from SuprSend — 1 operation(s) for broadcast run.
+  humanURL: https://docs.suprsend.com/reference/overview
+  baseURL: https://hub.suprsend.com
+  tags:
+  - Broadcast Run
+  properties:
+  - type: OpenAPI
+    url: openapi/suprsend-broadcast-run-api-openapi.yml
+  - type: Documentation
+    url: https://docs.suprsend.com/reference/overview
+  - type: PostmanCollection
+    url: https://docs.suprsend.com/docs/developer/overview
+- aid: suprsend:suprsend-bulk-api
+  name: SuprSend Bulk API
+  description: The Bulk API from SuprSend — 3 operation(s) for bulk.
+  humanURL: https://docs.suprsend.com/reference/overview
+  baseURL: https://hub.suprsend.com
+  tags:
+  - Bulk
+  properties:
+  - type: OpenAPI
+    url: openapi/suprsend-bulk-api-openapi.yml
+  - type: Documentation
+    url: https://docs.suprsend.com/reference/overview
+  - type: PostmanCollection
+    url: https://docs.suprsend.com/docs/developer/overview
+- aid: suprsend:suprsend-event-api
+  name: SuprSend Event API
+  description: The Event API from SuprSend — 5 operation(s) for event.
+  humanURL: https://docs.suprsend.com/reference/overview
+  baseURL: https://hub.suprsend.com
+  tags:
+  - Event
+  properties:
+  - type: OpenAPI
+    url: openapi/suprsend-event-api-openapi.yml
+  - type: Documentation
+    url: https://docs.suprsend.com/reference/overview
+  - type: PostmanCollection
+    url: https://docs.suprsend.com/docs/developer/overview
+- aid: suprsend:suprsend-message-api
+  name: SuprSend Message API
+  description: The Message API from SuprSend — 1 operation(s) for message.
+  humanURL: https://docs.suprsend.com/reference/overview
+  baseURL: https://hub.suprsend.com
+  tags:
+  - Message
+  properties:
+  - type: OpenAPI
+    url: openapi/suprsend-message-api-openapi.yml
+  - type: Documentation
+    url: https://docs.suprsend.com/reference/overview
+  - type: PostmanCollection
+    url: https://docs.suprsend.com/docs/developer/overview
+- aid: suprsend:suprsend-object-api
+  name: SuprSend Object API
+  description: The Object API from SuprSend — 8 operation(s) for object.
+  humanURL: https://docs.suprsend.com/reference/overview
+  baseURL: https://hub.suprsend.com
+  tags:
+  - Object
+  properties:
+  - type: OpenAPI
+    url: openapi/suprsend-object-api-openapi.yml
+  - type: Documentation
+    url: https://docs.suprsend.com/reference/overview
+  - type: PostmanCollection
+    url: https://docs.suprsend.com/docs/developer/overview
+- aid: suprsend:suprsend-preference-category-api
+  name: SuprSend Preference Category API
+  description: The Preference Category API from SuprSend — 4 operation(s) for preference category.
+  humanURL: https://docs.suprsend.com/reference/overview
+  baseURL: https://hub.suprsend.com
+  tags:
+  - Preference Category
+  properties:
+  - type: OpenAPI
+    url: openapi/suprsend-preference-category-api-openapi.yml
+  - type: Documentation
+    url: https://docs.suprsend.com/reference/overview
+  - type: PostmanCollection
+    url: https://docs.suprsend.com/docs/developer/overview
+- aid: suprsend:suprsend-schema-api
+  name: SuprSend Schema API
+  description: The Schema API from SuprSend — 3 operation(s) for schema.
+  humanURL: https://docs.suprsend.com/reference/overview
+  baseURL: https://hub.suprsend.com
+  tags:
+  - Schema
+  properties:
+  - type: OpenAPI
+    url: openapi/suprsend-schema-api-openapi.yml
+  - type: Documentation
+    url: https://docs.suprsend.com/reference/overview
+  - type: PostmanCollection
+    url: https://docs.suprsend.com/docs/developer/overview
+- aid: suprsend:suprsend-subscriber-list-api
+  name: SuprSend Subscriber List API
+  description: The Subscriber List API from SuprSend — 11 operation(s) for subscriber list.
+  humanURL: https://docs.suprsend.com/reference/overview
+  baseURL: https://hub.suprsend.com
+  tags:
+  - Subscriber List
+  properties:
+  - type: OpenAPI
+    url: openapi/suprsend-subscriber-list-api-openapi.yml
+  - type: Documentation
+    url: https://docs.suprsend.com/reference/overview
+  - type: PostmanCollection
+    url: https://docs.suprsend.com/docs/developer/overview
+- aid: suprsend:suprsend-template-api
+  name: SuprSend Template API
+  description: The Template API from SuprSend — 12 operation(s) for template.
+  humanURL: https://docs.suprsend.com/reference/overview
+  baseURL: https://hub.suprsend.com
+  tags:
+  - Template
+  properties:
+  - type: OpenAPI
+    url: openapi/suprsend-template-api-openapi.yml
+  - type: Documentation
+    url: https://docs.suprsend.com/reference/overview
+  - type: PostmanCollection
+    url: https://docs.suprsend.com/docs/developer/overview
+- aid: suprsend:suprsend-tenant-api
+  name: SuprSend Tenant API
+  description: The Tenant API from SuprSend — 7 operation(s) for tenant.
+  humanURL: https://docs.suprsend.com/reference/overview
+  baseURL: https://hub.suprsend.com
+  tags:
+  - Tenant
+  properties:
+  - type: OpenAPI
+    url: openapi/suprsend-tenant-api-openapi.yml
+  - type: Documentation
+    url: https://docs.suprsend.com/reference/overview
+  - type: PostmanCollection
+    url: https://docs.suprsend.com/docs/developer/overview
+- aid: suprsend:suprsend-translation-api
+  name: SuprSend Translation API
+  description: The Translation API from SuprSend — 5 operation(s) for translation.
+  humanURL: https://docs.suprsend.com/reference/overview
+  baseURL: https://hub.suprsend.com
+  tags:
+  - Translation
+  properties:
+  - type: OpenAPI
+    url: openapi/suprsend-translation-api-openapi.yml
+  - type: Documentation
+    url: https://docs.suprsend.com/reference/overview
+  - type: PostmanCollection
+    url: https://docs.suprsend.com/docs/developer/overview
+- aid: suprsend:suprsend-trigger-api
+  name: SuprSend Trigger API
+  description: The Trigger API from SuprSend — 2 operation(s) for trigger.
+  humanURL: https://docs.suprsend.com/reference/overview
+  baseURL: https://hub.suprsend.com
+  tags:
+  - Trigger
+  properties:
+  - type: OpenAPI
+    url: openapi/suprsend-trigger-api-openapi.yml
+  - type: Documentation
+    url: https://docs.suprsend.com/reference/overview
+  - type: PostmanCollection
+    url: https://docs.suprsend.com/docs/developer/overview
+- aid: suprsend:suprsend-user-api
+  name: SuprSend User API
+  description: The User API from SuprSend — 9 operation(s) for user.
+  humanURL: https://docs.suprsend.com/reference/overview
+  baseURL: https://hub.suprsend.com
+  tags:
+  - User
+  properties:
+  - type: OpenAPI
+    url: openapi/suprsend-user-api-openapi.yml
+  - type: Documentation
+    url: https://docs.suprsend.com/reference/overview
+  - type: PostmanCollection
+    url: https://docs.suprsend.com/docs/developer/overview
+- aid: suprsend:suprsend-workflow-api
+  name: SuprSend Workflow API
+  description: The Workflow API from SuprSend — 4 operation(s) for workflow.
+  humanURL: https://docs.suprsend.com/reference/overview
+  baseURL: https://hub.suprsend.com
+  tags:
+  - Workflow
+  properties:
+  - type: OpenAPI
+    url: openapi/suprsend-workflow-api-openapi.yml
+  - type: Documentation
+    url: https://docs.suprsend.com/reference/overview
+  - type: PostmanCollection
+    url: https://docs.suprsend.com/docs/developer/overview
+- aid: suprsend:suprsend-workflow-run-api
+  name: SuprSend Workflow Run API
+  description: The Workflow Run API from SuprSend — 1 operation(s) for workflow run.
+  humanURL: https://docs.suprsend.com/reference/overview
+  baseURL: https://hub.suprsend.com
+  tags:
+  - Workflow Run
+  properties:
+  - type: OpenAPI
+    url: openapi/suprsend-workflow-run-api-openapi.yml
+  - type: Documentation
+    url: https://docs.suprsend.com/reference/overview
+  - type: PostmanCollection
+    url: https://docs.suprsend.com/docs/developer/overview
+- aid: suprsend:suprsend-workspace-api
+  name: SuprSend Workspace API
+  description: The Workspace API from SuprSend — 1 operation(s) for workspace.
+  humanURL: https://docs.suprsend.com/reference/overview
+  baseURL: https://hub.suprsend.com
+  tags:
+  - Workspace
+  properties:
+  - type: OpenAPI
+    url: openapi/suprsend-workspace-api-openapi.yml
+  - type: Documentation
+    url: https://docs.suprsend.com/reference/overview
+  - type: PostmanCollection
+    url: https://docs.suprsend.com/docs/developer/overview
+- aid: suprsend:suprsend-ws-api-key-api
+  name: SuprSend Ws Api Key API
+  description: The Ws Api Key API from SuprSend — 2 operation(s) for ws api key.
+  humanURL: https://docs.suprsend.com/reference/overview
+  baseURL: https://hub.suprsend.com
+  tags:
+  - Ws Api Key
+  properties:
+  - type: OpenAPI
+    url: openapi/suprsend-ws-api-key-api-openapi.yml
+  - type: Documentation
+    url: https://docs.suprsend.com/reference/overview
+  - type: PostmanCollection
+    url: https://docs.suprsend.com/docs/developer/overview
+- aid: suprsend:suprsend-ws-public-key-api
+  name: SuprSend Ws Public Key API
+  description: The Ws Public Key API from SuprSend — 3 operation(s) for ws public key.
+  humanURL: https://docs.suprsend.com/reference/overview
+  baseURL: https://hub.suprsend.com
+  tags:
+  - Ws Public Key
+  properties:
+  - type: OpenAPI
+    url: openapi/suprsend-ws-public-key-api-openapi.yml
+  - type: Documentation
+    url: https://docs.suprsend.com/reference/overview
+  - type: PostmanCollection
+    url: https://docs.suprsend.com/docs/developer/overview
+- aid: suprsend:suprsend-ws-signing-key-api
+  name: SuprSend Ws Signing Key API
+  description: The Ws Signing Key API from SuprSend — 3 operation(s) for ws signing key.
+  humanURL: https://docs.suprsend.com/reference/overview
+  baseURL: https://hub.suprsend.com
+  tags:
+  - Ws Signing Key
+  properties:
+  - type: OpenAPI
+    url: openapi/suprsend-ws-signing-key-api-openapi.yml
+  - type: Documentation
+    url: https://docs.suprsend.com/reference/overview
+  - type: PostmanCollection
+    url: https://docs.suprsend.com/docs/developer/overview
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/suprsend/overview
   - type: AgenticAccess
     url: agentic-access/suprsend-agentic-access.yml
   - type: TrustCenter
