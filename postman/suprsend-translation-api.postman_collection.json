@@ -1,0 +1,2060 @@
+{
+  "info": {
+    "_postman_id": "956cbcfe-145d-460f-b50c-15b1d6353767",
+    "name": "SuprSend Broadcast Translation API",
+    "description": "APIs supported on suprsend platform",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:06:27.000Z",
+    "updatedAt": "2026-07-28T03:06:27.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-956cbcfe-145d-460f-b50c-15b1d6353767"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "{workspace}",
+          "item": [
+            {
+              "name": "translation",
+              "item": [
+                {
+                  "name": "content",
+                  "item": [
+                    {
+                      "name": "{locale_file}",
+                      "item": [
+                        {
+                          "name": "Add Translation",
+                          "id": "7981efda-9071-4a2b-ae42-902595032880",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "apikey",
+                              "apikey": [
+                                {
+                                  "key": "key",
+                                  "value": "ServiceToken <token>",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "value",
+                                  "value": "{{apiKey}}",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "in",
+                                  "value": "header",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"locale\": \"<string>\",\n  \"content\": {\n    \"magna01\": -83904861.17120668,\n    \"id_5c\": \"id\",\n    \"adipisicing_94\": true\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "https://management-api.suprsend.com/v1/:workspace/translation/content/:locale_file/",
+                              "protocol": "https",
+                              "host": [
+                                "management-api",
+                                "suprsend",
+                                "com"
+                              ],
+                              "path": [
+                                "v1",
+                                ":workspace",
+                                "translation",
+                                "content",
+                                ":locale_file",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "id": "a01392f5-602a-44f3-8a5f-53938aa738cd",
+                                  "key": "workspace",
+                                  "value": "<string>",
+                                  "description": "(Required) Workspace slug (staging, production, etc.)"
+                                },
+                                {
+                                  "id": "2e34e847-3912-4ac3-a60e-ebdec0011d1e",
+                                  "key": "locale_file",
+                                  "value": "<string>",
+                                  "description": "(Required) Locale file name (e.g., \"fr.json\", \"es-MX.json\", \"auth.en.json\")"
+                                }
+                              ]
+                            },
+                            "description": "Upload or create a new translation file. The file content should be valid JSON following the translation file structure."
+                          },
+                          "response": [
+                            {
+                              "id": "4177c94a-b262-4758-aa1b-9451912bae46",
+                              "name": "Translation file successfully updated",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "ServiceToken <token>",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"locale\": \"<string>\",\n  \"content\": {\n    \"magna01\": -83904861.17120668,\n    \"id_5c\": \"id\",\n    \"adipisicing_94\": true\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "https://management-api.suprsend.com/v1/:workspace/translation/content/:locale_file/",
+                                  "protocol": "https",
+                                  "host": [
+                                    "management-api",
+                                    "suprsend",
+                                    "com"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":workspace",
+                                    "translation",
+                                    "content",
+                                    ":locale_file",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "locale_file"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Created",
+                              "code": 201,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"filename\": \"<string>\",\n  \"locale\": \"<string>\",\n  \"locale_name\": \"<string>\",\n  \"namespace\": \"<string>\",\n  \"action\": \"deleted\",\n  \"updated_at\": \"<dateTime>\",\n  \"content\": {\n    \"sed6\": \"<string>\",\n    \"qui_4\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T03:06:27.000Z",
+                              "updatedAt": "2026-07-28T03:06:27.000Z",
+                              "uid": "35240-4177c94a-b262-4758-aa1b-9451912bae46"
+                            },
+                            {
+                              "id": "1596f28e-9164-40af-bdb1-f89f422ae1e0",
+                              "name": "Invalid translation format",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "ServiceToken <token>",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"locale\": \"<string>\",\n  \"content\": {\n    \"magna01\": -83904861.17120668,\n    \"id_5c\": \"id\",\n    \"adipisicing_94\": true\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "https://management-api.suprsend.com/v1/:workspace/translation/content/:locale_file/",
+                                  "protocol": "https",
+                                  "host": [
+                                    "management-api",
+                                    "suprsend",
+                                    "com"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":workspace",
+                                    "translation",
+                                    "content",
+                                    ":locale_file",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "locale_file"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T03:06:27.000Z",
+                              "updatedAt": "2026-07-28T03:06:27.000Z",
+                              "uid": "35240-1596f28e-9164-40af-bdb1-f89f422ae1e0"
+                            },
+                            {
+                              "id": "bbedb29b-4ad5-44eb-a7f6-9d9eb3147e70",
+                              "name": "Authentication failed",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "ServiceToken <token>",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"locale\": \"<string>\",\n  \"content\": {\n    \"magna01\": -83904861.17120668,\n    \"id_5c\": \"id\",\n    \"adipisicing_94\": true\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "https://management-api.suprsend.com/v1/:workspace/translation/content/:locale_file/",
+                                  "protocol": "https",
+                                  "host": [
+                                    "management-api",
+                                    "suprsend",
+                                    "com"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":workspace",
+                                    "translation",
+                                    "content",
+                                    ":locale_file",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "locale_file"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T03:06:27.000Z",
+                              "updatedAt": "2026-07-28T03:06:27.000Z",
+                              "uid": "35240-bbedb29b-4ad5-44eb-a7f6-9d9eb3147e70"
+                            },
+                            {
+                              "id": "62ccad75-87c6-4029-b1b6-f06cd893f172",
+                              "name": "Resource not found",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "ServiceToken <token>",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"locale\": \"<string>\",\n  \"content\": {\n    \"magna01\": -83904861.17120668,\n    \"id_5c\": \"id\",\n    \"adipisicing_94\": true\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "https://management-api.suprsend.com/v1/:workspace/translation/content/:locale_file/",
+                                  "protocol": "https",
+                                  "host": [
+                                    "management-api",
+                                    "suprsend",
+                                    "com"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":workspace",
+                                    "translation",
+                                    "content",
+                                    ":locale_file",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "locale_file"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T03:06:27.000Z",
+                              "updatedAt": "2026-07-28T03:06:27.000Z",
+                              "uid": "35240-62ccad75-87c6-4029-b1b6-f06cd893f172"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:06:27.000Z",
+                          "updatedAt": "2026-07-28T03:06:27.000Z",
+                          "uid": "35240-7981efda-9071-4a2b-ae42-902595032880"
+                        },
+                        {
+                          "name": "Get Translation",
+                          "id": "3458a39a-9955-4019-9599-1850554c74f9",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "apikey",
+                              "apikey": [
+                                {
+                                  "key": "key",
+                                  "value": "ServiceToken <token>",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "value",
+                                  "value": "{{apiKey}}",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "in",
+                                  "value": "header",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "https://management-api.suprsend.com/v1/:workspace/translation/content/:locale_file/?mode=draft",
+                              "protocol": "https",
+                              "host": [
+                                "management-api",
+                                "suprsend",
+                                "com"
+                              ],
+                              "path": [
+                                "v1",
+                                ":workspace",
+                                "translation",
+                                "content",
+                                ":locale_file",
+                                ""
+                              ],
+                              "query": [
+                                {
+                                  "key": "mode",
+                                  "value": "draft"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "0489404f-29e7-4f26-bd12-1f25d3890af0",
+                                  "key": "workspace",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                },
+                                {
+                                  "id": "c12b3ed1-0649-47d2-b9be-414934739918",
+                                  "key": "locale_file",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Retrieve the content of a translation file for a specific locale file."
+                          },
+                          "response": [
+                            {
+                              "id": "45cb4ce3-6bad-4260-be50-826c59f1ffd8",
+                              "name": "Successfully retrieved translation content",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "ServiceToken <token>",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "https://management-api.suprsend.com/v1/:workspace/translation/content/:locale_file/?mode=draft",
+                                  "protocol": "https",
+                                  "host": [
+                                    "management-api",
+                                    "suprsend",
+                                    "com"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":workspace",
+                                    "translation",
+                                    "content",
+                                    ":locale_file",
+                                    ""
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "mode",
+                                      "value": "draft"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "locale_file"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"filename\": \"<string>\",\n  \"locale\": \"<string>\",\n  \"locale_name\": \"<string>\",\n  \"namespace\": \"<string>\",\n  \"action\": \"deleted\",\n  \"updated_at\": \"<dateTime>\",\n  \"content\": {\n    \"pariaturce\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T03:06:27.000Z",
+                              "updatedAt": "2026-07-28T03:06:27.000Z",
+                              "uid": "35240-45cb4ce3-6bad-4260-be50-826c59f1ffd8"
+                            },
+                            {
+                              "id": "b4a7a600-e138-4456-8a40-f00e9c9aef8c",
+                              "name": "Authentication failed",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "ServiceToken <token>",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "https://management-api.suprsend.com/v1/:workspace/translation/content/:locale_file/?mode=draft",
+                                  "protocol": "https",
+                                  "host": [
+                                    "management-api",
+                                    "suprsend",
+                                    "com"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":workspace",
+                                    "translation",
+                                    "content",
+                                    ":locale_file",
+                                    ""
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "mode",
+                                      "value": "draft"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "locale_file"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T03:06:27.000Z",
+                              "updatedAt": "2026-07-28T03:06:27.000Z",
+                              "uid": "35240-b4a7a600-e138-4456-8a40-f00e9c9aef8c"
+                            },
+                            {
+                              "id": "92fa2d88-4bbc-4b9f-9363-0f3e98e4756c",
+                              "name": "Resource not found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "ServiceToken <token>",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "https://management-api.suprsend.com/v1/:workspace/translation/content/:locale_file/?mode=draft",
+                                  "protocol": "https",
+                                  "host": [
+                                    "management-api",
+                                    "suprsend",
+                                    "com"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":workspace",
+                                    "translation",
+                                    "content",
+                                    ":locale_file",
+                                    ""
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "mode",
+                                      "value": "draft"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "locale_file"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T03:06:27.000Z",
+                              "updatedAt": "2026-07-28T03:06:27.000Z",
+                              "uid": "35240-92fa2d88-4bbc-4b9f-9363-0f3e98e4756c"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:06:27.000Z",
+                          "updatedAt": "2026-07-28T03:06:27.000Z",
+                          "uid": "35240-3458a39a-9955-4019-9599-1850554c74f9"
+                        },
+                        {
+                          "name": "Delete Translation",
+                          "id": "aa56ecd0-641e-4415-b871-5ad9fb6e74b2",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "apikey",
+                              "apikey": [
+                                {
+                                  "key": "key",
+                                  "value": "ServiceToken <token>",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "value",
+                                  "value": "{{apiKey}}",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "in",
+                                  "value": "header",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "https://management-api.suprsend.com/v1/:workspace/translation/content/:locale_file/",
+                              "protocol": "https",
+                              "host": [
+                                "management-api",
+                                "suprsend",
+                                "com"
+                              ],
+                              "path": [
+                                "v1",
+                                ":workspace",
+                                "translation",
+                                "content",
+                                ":locale_file",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "id": "2b509530-e204-4171-a757-535e43924b15",
+                                  "key": "workspace",
+                                  "value": "<string>",
+                                  "description": "(Required) Workspace slug (staging, production, etc.)"
+                                },
+                                {
+                                  "id": "303ed0b4-33d7-4d11-8ad5-59655e03f1c7",
+                                  "key": "locale_file",
+                                  "value": "<string>",
+                                  "description": "(Required) Locale file name (e.g., \"fr.json\", \"es-MX.json\", \"auth.en.json\")"
+                                }
+                              ]
+                            },
+                            "description": "Marks a file for deletion in the next commit. Actual deletion will happen when you commit the draft."
+                          },
+                          "response": [
+                            {
+                              "id": "204b2e14-ae34-478c-8273-6c2ae78da610",
+                              "name": "Translation file deleted successfully",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "ServiceToken <token>",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "https://management-api.suprsend.com/v1/:workspace/translation/content/:locale_file/",
+                                  "protocol": "https",
+                                  "host": [
+                                    "management-api",
+                                    "suprsend",
+                                    "com"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":workspace",
+                                    "translation",
+                                    "content",
+                                    ":locale_file",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "locale_file"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T03:06:27.000Z",
+                              "updatedAt": "2026-07-28T03:06:27.000Z",
+                              "uid": "35240-204b2e14-ae34-478c-8273-6c2ae78da610"
+                            },
+                            {
+                              "id": "ed0843dd-a4ed-4dde-a868-21cef360007d",
+                              "name": "Authentication failed",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "ServiceToken <token>",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "https://management-api.suprsend.com/v1/:workspace/translation/content/:locale_file/",
+                                  "protocol": "https",
+                                  "host": [
+                                    "management-api",
+                                    "suprsend",
+                                    "com"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":workspace",
+                                    "translation",
+                                    "content",
+                                    ":locale_file",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "locale_file"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T03:06:27.000Z",
+                              "updatedAt": "2026-07-28T03:06:27.000Z",
+                              "uid": "35240-ed0843dd-a4ed-4dde-a868-21cef360007d"
+                            },
+                            {
+                              "id": "90b0f66c-1cbe-4313-9032-22504ea7e4b5",
+                              "name": "Resource not found",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "ServiceToken <token>",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "https://management-api.suprsend.com/v1/:workspace/translation/content/:locale_file/",
+                                  "protocol": "https",
+                                  "host": [
+                                    "management-api",
+                                    "suprsend",
+                                    "com"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":workspace",
+                                    "translation",
+                                    "content",
+                                    ":locale_file",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "locale_file"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T03:06:27.000Z",
+                              "updatedAt": "2026-07-28T03:06:27.000Z",
+                              "uid": "35240-90b0f66c-1cbe-4313-9032-22504ea7e4b5"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:06:27.000Z",
+                          "updatedAt": "2026-07-28T03:06:27.000Z",
+                          "uid": "35240-aa56ecd0-641e-4415-b871-5ad9fb6e74b2"
+                        }
+                      ],
+                      "id": "74e3830c-5184-44dc-ab68-4faba2bd8afe",
+                      "createdAt": "2026-07-28T03:06:27.000Z",
+                      "updatedAt": "2026-07-28T03:06:27.000Z",
+                      "uid": "35240-74e3830c-5184-44dc-ab68-4faba2bd8afe"
+                    }
+                  ],
+                  "id": "bfe99fd8-8b62-4f5f-a74f-146cfd4eb0ac",
+                  "createdAt": "2026-07-28T03:06:27.000Z",
+                  "updatedAt": "2026-07-28T03:06:27.000Z",
+                  "uid": "35240-bfe99fd8-8b62-4f5f-a74f-146cfd4eb0ac"
+                },
+                {
+                  "name": "version",
+                  "item": [
+                    {
+                      "name": "{version}",
+                      "item": [
+                        {
+                          "name": "Get Translation History",
+                          "id": "7f56fed0-c574-46a5-a7d1-f4777ef89321",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "apikey",
+                              "apikey": [
+                                {
+                                  "key": "key",
+                                  "value": "ServiceToken <token>",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "value",
+                                  "value": "{{apiKey}}",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "in",
+                                  "value": "header",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "https://management-api.suprsend.com/v1/:workspace/translation/version/:version/",
+                              "protocol": "https",
+                              "host": [
+                                "management-api",
+                                "suprsend",
+                                "com"
+                              ],
+                              "path": [
+                                "v1",
+                                ":workspace",
+                                "translation",
+                                "version",
+                                ":version",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "id": "f490cc8e-f71c-4ced-a6af-06533bfda702",
+                                  "key": "workspace",
+                                  "value": "<string>",
+                                  "description": "(Required) Workspace slug (staging, production, etc.)"
+                                },
+                                {
+                                  "id": "4de4b258-c20f-46c2-8e87-a30397ae345c",
+                                  "key": "version",
+                                  "value": "<integer>",
+                                  "description": "(Required) Version number to retrieve"
+                                }
+                              ]
+                            },
+                            "description": "Retrieve version history information for translations, including all versions and their details."
+                          },
+                          "response": [
+                            {
+                              "id": "0273cfdb-443c-4996-b51e-8debc6202341",
+                              "name": "Successfully retrieved translation version history",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "ServiceToken <token>",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "https://management-api.suprsend.com/v1/:workspace/translation/version/:version/",
+                                  "protocol": "https",
+                                  "host": [
+                                    "management-api",
+                                    "suprsend",
+                                    "com"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":workspace",
+                                    "translation",
+                                    "version",
+                                    ":version",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "version"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"meta\": {\n    \"count\": \"<integer>\",\n    \"limit\": \"<integer>\",\n    \"offset\": \"<integer>\"\n  },\n  \"results\": [\n    {\n      \"filename\": \"<string>\",\n      \"locale\": \"<string>\",\n      \"locale_name\": \"<string>\",\n      \"namespace\": \"<string>\",\n      \"action\": \"updated\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"locale\": \"<string>\",\n      \"locale_name\": \"<string>\",\n      \"namespace\": \"<string>\",\n      \"action\": \"added\",\n      \"updated_at\": \"<dateTime>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T03:06:27.000Z",
+                              "updatedAt": "2026-07-28T03:06:27.000Z",
+                              "uid": "35240-0273cfdb-443c-4996-b51e-8debc6202341"
+                            },
+                            {
+                              "id": "fe569a87-94f0-40c5-b564-31d1dcca50bd",
+                              "name": "Authentication failed",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "ServiceToken <token>",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "https://management-api.suprsend.com/v1/:workspace/translation/version/:version/",
+                                  "protocol": "https",
+                                  "host": [
+                                    "management-api",
+                                    "suprsend",
+                                    "com"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":workspace",
+                                    "translation",
+                                    "version",
+                                    ":version",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "version"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T03:06:27.000Z",
+                              "updatedAt": "2026-07-28T03:06:27.000Z",
+                              "uid": "35240-fe569a87-94f0-40c5-b564-31d1dcca50bd"
+                            },
+                            {
+                              "id": "b925b1f5-4d3c-455a-a905-a404e5d72744",
+                              "name": "Resource not found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "ServiceToken <token>",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "https://management-api.suprsend.com/v1/:workspace/translation/version/:version/",
+                                  "protocol": "https",
+                                  "host": [
+                                    "management-api",
+                                    "suprsend",
+                                    "com"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":workspace",
+                                    "translation",
+                                    "version",
+                                    ":version",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "version"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T03:06:27.000Z",
+                              "updatedAt": "2026-07-28T03:06:27.000Z",
+                              "uid": "35240-b925b1f5-4d3c-455a-a905-a404e5d72744"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:06:27.000Z",
+                          "updatedAt": "2026-07-28T03:06:27.000Z",
+                          "uid": "35240-7f56fed0-c574-46a5-a7d1-f4777ef89321"
+                        }
+                      ],
+                      "id": "139cbfc1-c1ac-4dde-b605-5762539b9358",
+                      "createdAt": "2026-07-28T03:06:27.000Z",
+                      "updatedAt": "2026-07-28T03:06:27.000Z",
+                      "uid": "35240-139cbfc1-c1ac-4dde-b605-5762539b9358"
+                    },
+                    {
+                      "name": "{version_no}",
+                      "item": [
+                        {
+                          "name": "rollback",
+                          "item": [
+                            {
+                              "name": "Rollback Translation",
+                              "id": "656b5d96-c250-4f60-9927-d3f8e5acf412",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "apikey",
+                                  "apikey": [
+                                    {
+                                      "key": "key",
+                                      "value": "ServiceToken <token>",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "value",
+                                      "value": "{{apiKey}}",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "in",
+                                      "value": "header",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "https://management-api.suprsend.com/v1/:workspace/translation/version/:version_no/rollback/",
+                                  "protocol": "https",
+                                  "host": [
+                                    "management-api",
+                                    "suprsend",
+                                    "com"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":workspace",
+                                    "translation",
+                                    "version",
+                                    ":version_no",
+                                    "rollback",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "ca3ec058-fbe7-4d79-8273-8296c3d81bac",
+                                      "key": "workspace",
+                                      "value": "<string>",
+                                      "description": "(Required) Workspace slug (staging, production, etc.)"
+                                    },
+                                    {
+                                      "id": "5a3e8a6c-7dbe-4e9c-9c66-c05de921a932",
+                                      "key": "version_no",
+                                      "value": "<integer>",
+                                      "description": "(Required) Version number to rollback to"
+                                    }
+                                  ]
+                                },
+                                "description": "Rollback translations to a previous version. This will replace all files with what was available at the previous version."
+                              },
+                              "response": [
+                                {
+                                  "id": "122b25e3-66ec-4d49-ba48-b546ff9a9c4b",
+                                  "name": "Details of available translation files after rollback.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "ServiceToken <token>",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "https://management-api.suprsend.com/v1/:workspace/translation/version/:version_no/rollback/",
+                                      "protocol": "https",
+                                      "host": [
+                                        "management-api",
+                                        "suprsend",
+                                        "com"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        ":workspace",
+                                        "translation",
+                                        "version",
+                                        ":version_no",
+                                        "rollback",
+                                        ""
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "workspace"
+                                        },
+                                        {
+                                          "key": "version_no"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"meta\": {\n    \"count\": \"<integer>\",\n    \"limit\": \"<integer>\",\n    \"offset\": \"<integer>\"\n  },\n  \"results\": [\n    {\n      \"filename\": \"<string>\",\n      \"locale\": \"<string>\",\n      \"locale_name\": \"<string>\",\n      \"namespace\": \"<string>\",\n      \"action\": \"updated\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"locale\": \"<string>\",\n      \"locale_name\": \"<string>\",\n      \"namespace\": \"<string>\",\n      \"action\": \"added\",\n      \"updated_at\": \"<dateTime>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T03:06:27.000Z",
+                                  "updatedAt": "2026-07-28T03:06:27.000Z",
+                                  "uid": "35240-122b25e3-66ec-4d49-ba48-b546ff9a9c4b"
+                                },
+                                {
+                                  "id": "903c9027-a9ae-4168-8d28-74efaded88b8",
+                                  "name": "Authentication failed",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "ServiceToken <token>",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "https://management-api.suprsend.com/v1/:workspace/translation/version/:version_no/rollback/",
+                                      "protocol": "https",
+                                      "host": [
+                                        "management-api",
+                                        "suprsend",
+                                        "com"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        ":workspace",
+                                        "translation",
+                                        "version",
+                                        ":version_no",
+                                        "rollback",
+                                        ""
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "workspace"
+                                        },
+                                        {
+                                          "key": "version_no"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T03:06:27.000Z",
+                                  "updatedAt": "2026-07-28T03:06:27.000Z",
+                                  "uid": "35240-903c9027-a9ae-4168-8d28-74efaded88b8"
+                                },
+                                {
+                                  "id": "89521b6d-8b20-49d2-bcb5-82b33d3df4ba",
+                                  "name": "Resource not found",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "ServiceToken <token>",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "https://management-api.suprsend.com/v1/:workspace/translation/version/:version_no/rollback/",
+                                      "protocol": "https",
+                                      "host": [
+                                        "management-api",
+                                        "suprsend",
+                                        "com"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        ":workspace",
+                                        "translation",
+                                        "version",
+                                        ":version_no",
+                                        "rollback",
+                                        ""
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "workspace"
+                                        },
+                                        {
+                                          "key": "version_no"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T03:06:27.000Z",
+                                  "updatedAt": "2026-07-28T03:06:27.000Z",
+                                  "uid": "35240-89521b6d-8b20-49d2-bcb5-82b33d3df4ba"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T03:06:27.000Z",
+                              "updatedAt": "2026-07-28T03:06:27.000Z",
+                              "uid": "35240-656b5d96-c250-4f60-9927-d3f8e5acf412"
+                            }
+                          ],
+                          "id": "40a100e1-4e57-45de-a834-dd36baa40c92",
+                          "createdAt": "2026-07-28T03:06:27.000Z",
+                          "updatedAt": "2026-07-28T03:06:27.000Z",
+                          "uid": "35240-40a100e1-4e57-45de-a834-dd36baa40c92"
+                        }
+                      ],
+                      "id": "61c33724-0ce5-4339-8646-6b8e79e14616",
+                      "createdAt": "2026-07-28T03:06:27.000Z",
+                      "updatedAt": "2026-07-28T03:06:27.000Z",
+                      "uid": "35240-61c33724-0ce5-4339-8646-6b8e79e14616"
+                    }
+                  ],
+                  "id": "68dea2c3-de02-4416-a42c-c337dbde0a5b",
+                  "createdAt": "2026-07-28T03:06:27.000Z",
+                  "updatedAt": "2026-07-28T03:06:27.000Z",
+                  "uid": "35240-68dea2c3-de02-4416-a42c-c337dbde0a5b"
+                },
+                {
+                  "name": "commit",
+                  "item": [
+                    {
+                      "name": "Commit Translation",
+                      "id": "75bc4f03-fb13-4efb-a037-94e7475f5afb",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "ServiceToken <token>",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "https://management-api.suprsend.com/v1/:workspace/translation/commit/?commit_message=<string>",
+                          "protocol": "https",
+                          "host": [
+                            "management-api",
+                            "suprsend",
+                            "com"
+                          ],
+                          "path": [
+                            "v1",
+                            ":workspace",
+                            "translation",
+                            "commit",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "Commit message describing the changes",
+                              "key": "commit_message",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "67957d3b-23c2-4bca-98f3-6815866ad0f3",
+                              "key": "workspace",
+                              "value": "<string>",
+                              "description": "(Required) Workspace slug (staging, production, etc.)"
+                            }
+                          ]
+                        },
+                        "description": "Commit all files changes to make them live."
+                      },
+                      "response": [
+                        {
+                          "id": "3b5dcf80-62b3-474c-a515-826fa6047f61",
+                          "name": "Translations committed successfully",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "ServiceToken <token>",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "https://management-api.suprsend.com/v1/:workspace/translation/commit/?commit_message=<string>",
+                              "protocol": "https",
+                              "host": [
+                                "management-api",
+                                "suprsend",
+                                "com"
+                              ],
+                              "path": [
+                                "v1",
+                                ":workspace",
+                                "translation",
+                                "commit",
+                                ""
+                              ],
+                              "query": [
+                                {
+                                  "description": "Commit message describing the changes",
+                                  "key": "commit_message",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Accepted",
+                          "code": 202,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"meta\": {\n    \"count\": \"<integer>\",\n    \"limit\": \"<integer>\",\n    \"offset\": \"<integer>\"\n  },\n  \"results\": [\n    {\n      \"filename\": \"<string>\",\n      \"locale\": \"<string>\",\n      \"locale_name\": \"<string>\",\n      \"namespace\": \"<string>\",\n      \"action\": \"updated\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"locale\": \"<string>\",\n      \"locale_name\": \"<string>\",\n      \"namespace\": \"<string>\",\n      \"action\": \"added\",\n      \"updated_at\": \"<dateTime>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T03:06:27.000Z",
+                          "updatedAt": "2026-07-28T03:06:27.000Z",
+                          "uid": "35240-3b5dcf80-62b3-474c-a515-826fa6047f61"
+                        },
+                        {
+                          "id": "1a518ab7-1bf1-44e5-80a0-b029bc838c89",
+                          "name": "Authentication failed",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "ServiceToken <token>",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "https://management-api.suprsend.com/v1/:workspace/translation/commit/?commit_message=<string>",
+                              "protocol": "https",
+                              "host": [
+                                "management-api",
+                                "suprsend",
+                                "com"
+                              ],
+                              "path": [
+                                "v1",
+                                ":workspace",
+                                "translation",
+                                "commit",
+                                ""
+                              ],
+                              "query": [
+                                {
+                                  "description": "Commit message describing the changes",
+                                  "key": "commit_message",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:06:27.000Z",
+                          "updatedAt": "2026-07-28T03:06:27.000Z",
+                          "uid": "35240-1a518ab7-1bf1-44e5-80a0-b029bc838c89"
+                        },
+                        {
+                          "id": "ef56fe9b-508f-4bab-bb32-58a1f527f427",
+                          "name": "Resource not found",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "ServiceToken <token>",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "https://management-api.suprsend.com/v1/:workspace/translation/commit/?commit_message=<string>",
+                              "protocol": "https",
+                              "host": [
+                                "management-api",
+                                "suprsend",
+                                "com"
+                              ],
+                              "path": [
+                                "v1",
+                                ":workspace",
+                                "translation",
+                                "commit",
+                                ""
+                              ],
+                              "query": [
+                                {
+                                  "description": "Commit message describing the changes",
+                                  "key": "commit_message",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:06:27.000Z",
+                          "updatedAt": "2026-07-28T03:06:27.000Z",
+                          "uid": "35240-ef56fe9b-508f-4bab-bb32-58a1f527f427"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:06:27.000Z",
+                      "updatedAt": "2026-07-28T03:06:27.000Z",
+                      "uid": "35240-75bc4f03-fb13-4efb-a037-94e7475f5afb"
+                    }
+                  ],
+                  "id": "a313e61f-98c8-41c2-9e3c-09e905225835",
+                  "createdAt": "2026-07-28T03:06:27.000Z",
+                  "updatedAt": "2026-07-28T03:06:27.000Z",
+                  "uid": "35240-a313e61f-98c8-41c2-9e3c-09e905225835"
+                },
+                {
+                  "name": "List Translations",
+                  "id": "b882990a-6ff1-48c8-9eba-096dcc8e8b16",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "ServiceToken <token>",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "https://management-api.suprsend.com/v1/:workspace/translation/?mode=draft&limit=<integer>&offset=<integer>",
+                      "protocol": "https",
+                      "host": [
+                        "management-api",
+                        "suprsend",
+                        "com"
+                      ],
+                      "path": [
+                        "v1",
+                        ":workspace",
+                        "translation",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "Mode to filter translations (draft or live). By default, draft translations are returned.",
+                          "key": "mode",
+                          "value": "draft"
+                        },
+                        {
+                          "description": "Maximum number of results per page",
+                          "key": "limit",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Number of results to skip",
+                          "key": "offset",
+                          "value": "<integer>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "52a1b20b-bfa5-4b88-a6fd-350b3d389422",
+                          "key": "workspace",
+                          "value": "<string>",
+                          "description": "(Required) Workspace slug (staging, production, etc.)"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve a list of translation files in a workspace. By default, returns draft translations. Use the mode query parameter to filter by draft or live translations."
+                  },
+                  "response": [
+                    {
+                      "id": "b3a0979f-8b00-4668-a6e2-d991538d4809",
+                      "name": "Successfully retrieved list of translations",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "ServiceToken <token>",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "https://management-api.suprsend.com/v1/:workspace/translation/?mode=draft&limit=<integer>&offset=<integer>",
+                          "protocol": "https",
+                          "host": [
+                            "management-api",
+                            "suprsend",
+                            "com"
+                          ],
+                          "path": [
+                            "v1",
+                            ":workspace",
+                            "translation",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "Mode to filter translations (draft or live). By default, draft translations are returned.",
+                              "key": "mode",
+                              "value": "draft"
+                            },
+                            {
+                              "description": "Maximum number of results per page",
+                              "key": "limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Number of results to skip",
+                              "key": "offset",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"meta\": {\n    \"count\": \"<integer>\",\n    \"limit\": \"<integer>\",\n    \"offset\": \"<integer>\"\n  },\n  \"results\": [\n    {\n      \"filename\": \"<string>\",\n      \"locale\": \"<string>\",\n      \"locale_name\": \"<string>\",\n      \"namespace\": \"<string>\",\n      \"action\": \"updated\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"locale\": \"<string>\",\n      \"locale_name\": \"<string>\",\n      \"namespace\": \"<string>\",\n      \"action\": \"added\",\n      \"updated_at\": \"<dateTime>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T03:06:27.000Z",
+                      "updatedAt": "2026-07-28T03:06:27.000Z",
+                      "uid": "35240-b3a0979f-8b00-4668-a6e2-d991538d4809"
+                    },
+                    {
+                      "id": "3ee0d128-a68a-4d39-be85-d923d4114976",
+                      "name": "Authentication failed",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "ServiceToken <token>",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "https://management-api.suprsend.com/v1/:workspace/translation/?mode=draft&limit=<integer>&offset=<integer>",
+                          "protocol": "https",
+                          "host": [
+                            "management-api",
+                            "suprsend",
+                            "com"
+                          ],
+                          "path": [
+                            "v1",
+                            ":workspace",
+                            "translation",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "Mode to filter translations (draft or live). By default, draft translations are returned.",
+                              "key": "mode",
+                              "value": "draft"
+                            },
+                            {
+                              "description": "Maximum number of results per page",
+                              "key": "limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Number of results to skip",
+                              "key": "offset",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:06:27.000Z",
+                      "updatedAt": "2026-07-28T03:06:27.000Z",
+                      "uid": "35240-3ee0d128-a68a-4d39-be85-d923d4114976"
+                    },
+                    {
+                      "id": "cb22283a-be45-4256-873a-9a465dd74c5f",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "ServiceToken <token>",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "https://management-api.suprsend.com/v1/:workspace/translation/?mode=draft&limit=<integer>&offset=<integer>",
+                          "protocol": "https",
+                          "host": [
+                            "management-api",
+                            "suprsend",
+                            "com"
+                          ],
+                          "path": [
+                            "v1",
+                            ":workspace",
+                            "translation",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "Mode to filter translations (draft or live). By default, draft translations are returned.",
+                              "key": "mode",
+                              "value": "draft"
+                            },
+                            {
+                              "description": "Maximum number of results per page",
+                              "key": "limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Number of results to skip",
+                              "key": "offset",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:06:27.000Z",
+                      "updatedAt": "2026-07-28T03:06:27.000Z",
+                      "uid": "35240-cb22283a-be45-4256-873a-9a465dd74c5f"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:06:27.000Z",
+                  "updatedAt": "2026-07-28T03:06:27.000Z",
+                  "uid": "35240-b882990a-6ff1-48c8-9eba-096dcc8e8b16"
+                }
+              ],
+              "id": "413501f4-e599-48f4-ad64-7da130750d2b",
+              "createdAt": "2026-07-28T03:06:27.000Z",
+              "updatedAt": "2026-07-28T03:06:27.000Z",
+              "uid": "35240-413501f4-e599-48f4-ad64-7da130750d2b"
+            }
+          ],
+          "id": "e472e3ea-dcd9-420b-a44a-a0b7bdf06e4e",
+          "createdAt": "2026-07-28T03:06:27.000Z",
+          "updatedAt": "2026-07-28T03:06:27.000Z",
+          "uid": "35240-e472e3ea-dcd9-420b-a44a-a0b7bdf06e4e"
+        }
+      ],
+      "id": "37ea5705-0c4f-470a-8e80-b74d30e8e778",
+      "createdAt": "2026-07-28T03:06:27.000Z",
+      "updatedAt": "2026-07-28T03:06:27.000Z",
+      "uid": "35240-37ea5705-0c4f-470a-8e80-b74d30e8e778"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://hub.suprsend.com"
+    }
+  ]
+}

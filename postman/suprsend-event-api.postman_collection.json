@@ -1,0 +1,1797 @@
+{
+  "info": {
+    "_postman_id": "4e8c95d9-d48c-4b98-a8e5-faa947ad9bb3",
+    "name": "SuprSend Broadcast Event API",
+    "description": "APIs supported on suprsend platform",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:05:58.000Z",
+    "updatedAt": "2026-07-28T03:05:59.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-4e8c95d9-d48c-4b98-a8e5-faa947ad9bb3"
+  },
+  "item": [
+    {
+      "name": "event",
+      "item": [
+        {
+          "name": "Trigger an Event",
+          "id": "26147e51-91c4-4eaf-9c24-807ca4a6ad27",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"distinct_id\": \"_distinct_id_\",\n  \"event\": \"_event_name_\",\n  \"properties\": {\n    \"$attachments\": [\n      {\n        \"url\": \"<uri>\",\n        \"filename\": \"<string>\",\n        \"ignore_if_error\": \"<boolean>\"\n      },\n      {\n        \"url\": \"<uri>\",\n        \"filename\": \"<string>\",\n        \"ignore_if_error\": \"<boolean>\"\n      }\n    ],\n    \"sed52_\": \"<string>\"\n  },\n  \"tenant_id\": \"<string>\",\n  \"$idempotency_key\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/event/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "event",
+                ""
+              ]
+            },
+            "description": "API to pass an event, which in turn triggers workflows where that event is defined as the trigger."
+          },
+          "response": [
+            {
+              "id": "6c9b5cdd-fa0b-43da-a14c-b37bece0d486",
+              "name": "202 - Accepted",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"distinct_id\": \"_distinct_id_\",\n  \"event\": \"_event_name_\",\n  \"properties\": {\n    \"$attachments\": [\n      {\n        \"url\": \"<uri>\",\n        \"filename\": \"<string>\",\n        \"ignore_if_error\": \"<boolean>\"\n      },\n      {\n        \"url\": \"<uri>\",\n        \"filename\": \"<string>\",\n        \"ignore_if_error\": \"<boolean>\"\n      }\n    ],\n    \"sed52_\": \"<string>\"\n  },\n  \"tenant_id\": \"<string>\",\n  \"$idempotency_key\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/event/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "event",
+                    ""
+                  ]
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T03:05:59.000Z",
+              "updatedAt": "2026-07-28T03:05:59.000Z",
+              "uid": "35240-6c9b5cdd-fa0b-43da-a14c-b37bece0d486"
+            }
+          ],
+          "createdAt": "2026-07-28T03:05:59.000Z",
+          "updatedAt": "2026-07-28T03:05:59.000Z",
+          "uid": "35240-26147e51-91c4-4eaf-9c24-807ca4a6ad27"
+        }
+      ],
+      "id": "5ac57e9f-08b4-4c22-99b9-fab73115c2fa",
+      "createdAt": "2026-07-28T03:05:59.000Z",
+      "updatedAt": "2026-07-28T03:05:59.000Z",
+      "uid": "35240-5ac57e9f-08b4-4c22-99b9-fab73115c2fa"
+    },
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "{workspace}",
+          "item": [
+            {
+              "name": "event",
+              "item": [
+                {
+                  "name": "{url_encoded_event_name}",
+                  "item": [
+                    {
+                      "name": "linked_workflows",
+                      "item": [
+                        {
+                          "name": "Get Linked Workflows",
+                          "id": "4f74f748-3c6b-470a-bd5a-6a3b1f4865e6",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "apikey",
+                              "apikey": [
+                                {
+                                  "key": "key",
+                                  "value": "ServiceToken <token>",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "value",
+                                  "value": "{{apiKey}}",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "in",
+                                  "value": "header",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "https://management-api.suprsend.com/v1/:workspace/event/:url_encoded_event_name/linked_workflows/",
+                              "protocol": "https",
+                              "host": [
+                                "management-api",
+                                "suprsend",
+                                "com"
+                              ],
+                              "path": [
+                                "v1",
+                                ":workspace",
+                                "event",
+                                ":url_encoded_event_name",
+                                "linked_workflows",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "id": "9c1aed83-6047-4ad7-b069-165fd23ab229",
+                                  "key": "workspace",
+                                  "value": "<string>",
+                                  "description": "(Required) Workspace slug (staging, production, etc.)"
+                                },
+                                {
+                                  "id": "aab4eeba-0ac2-47c0-b4ac-a34329ac1ea5",
+                                  "key": "url_encoded_event_name",
+                                  "value": "<string>",
+                                  "description": "(Required) URL encoded event name. Example - `SHIPMENT%20ARRIVED`"
+                                }
+                              ]
+                            },
+                            "description": "Fetch list of all workflows where this event is used"
+                          },
+                          "response": [
+                            {
+                              "id": "522cbd1f-f836-465e-a83e-eba7a95e920f",
+                              "name": "Successfully retrieved linked workflows",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "ServiceToken <token>",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "https://management-api.suprsend.com/v1/:workspace/event/:url_encoded_event_name/linked_workflows/",
+                                  "protocol": "https",
+                                  "host": [
+                                    "management-api",
+                                    "suprsend",
+                                    "com"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":workspace",
+                                    "event",
+                                    ":url_encoded_event_name",
+                                    "linked_workflows",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "url_encoded_event_name"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"results\": [\n    {\n      \"slug\": \"<string>\",\n      \"usage\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"slug\": \"<string>\",\n      \"usage\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T03:05:59.000Z",
+                              "updatedAt": "2026-07-28T03:05:59.000Z",
+                              "uid": "35240-522cbd1f-f836-465e-a83e-eba7a95e920f"
+                            },
+                            {
+                              "id": "58856f6c-4672-4212-b688-c0dd5cddd4fc",
+                              "name": "Authentication failed",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "ServiceToken <token>",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "https://management-api.suprsend.com/v1/:workspace/event/:url_encoded_event_name/linked_workflows/",
+                                  "protocol": "https",
+                                  "host": [
+                                    "management-api",
+                                    "suprsend",
+                                    "com"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":workspace",
+                                    "event",
+                                    ":url_encoded_event_name",
+                                    "linked_workflows",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "url_encoded_event_name"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T03:05:59.000Z",
+                              "updatedAt": "2026-07-28T03:05:59.000Z",
+                              "uid": "35240-58856f6c-4672-4212-b688-c0dd5cddd4fc"
+                            },
+                            {
+                              "id": "0a270998-b172-4156-9f00-c8569f2a4489",
+                              "name": "Event not found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "ServiceToken <token>",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "https://management-api.suprsend.com/v1/:workspace/event/:url_encoded_event_name/linked_workflows/",
+                                  "protocol": "https",
+                                  "host": [
+                                    "management-api",
+                                    "suprsend",
+                                    "com"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":workspace",
+                                    "event",
+                                    ":url_encoded_event_name",
+                                    "linked_workflows",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "url_encoded_event_name"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T03:05:59.000Z",
+                              "updatedAt": "2026-07-28T03:05:59.000Z",
+                              "uid": "35240-0a270998-b172-4156-9f00-c8569f2a4489"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:05:59.000Z",
+                          "updatedAt": "2026-07-28T03:05:59.000Z",
+                          "uid": "35240-4f74f748-3c6b-470a-bd5a-6a3b1f4865e6"
+                        }
+                      ],
+                      "id": "f499b0b8-f6c8-4b71-bd87-7c1123685854",
+                      "createdAt": "2026-07-28T03:05:59.000Z",
+                      "updatedAt": "2026-07-28T03:05:59.000Z",
+                      "uid": "35240-f499b0b8-f6c8-4b71-bd87-7c1123685854"
+                    },
+                    {
+                      "name": "delink_schema",
+                      "item": [
+                        {
+                          "name": "Delink Schema from Event",
+                          "id": "4f89b60f-c5b8-4b87-837c-41df708c81bd",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "apikey",
+                              "apikey": [
+                                {
+                                  "key": "key",
+                                  "value": "ServiceToken <token>",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "value",
+                                  "value": "{{apiKey}}",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "in",
+                                  "value": "header",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "https://management-api.suprsend.com/v1/:workspace/event/:url_encoded_event_name/delink_schema/",
+                              "protocol": "https",
+                              "host": [
+                                "management-api",
+                                "suprsend",
+                                "com"
+                              ],
+                              "path": [
+                                "v1",
+                                ":workspace",
+                                "event",
+                                ":url_encoded_event_name",
+                                "delink_schema",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "id": "87d68fb6-568a-4c5b-a55a-5e9229e80be0",
+                                  "key": "workspace",
+                                  "value": "<string>",
+                                  "description": "(Required) Workspace slug (staging, production, etc.)"
+                                },
+                                {
+                                  "id": "8925f63e-ac65-471f-a5a3-82bf4ad3476d",
+                                  "key": "url_encoded_event_name",
+                                  "value": "<string>",
+                                  "description": "(Required) URL encoded event name. Example - `SHIPMENT%20ARRIVED`"
+                                }
+                              ]
+                            },
+                            "description": "Remove the linked schema from an event, making it schema-less. This allows the event to accept any payload structure without validation against a predefined schema."
+                          },
+                          "response": [
+                            {
+                              "id": "952a9292-a5fd-4fa4-9327-9b71bc65ea1d",
+                              "name": "Successfully delinked schema from event",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "ServiceToken <token>",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "https://management-api.suprsend.com/v1/:workspace/event/:url_encoded_event_name/delink_schema/",
+                                  "protocol": "https",
+                                  "host": [
+                                    "management-api",
+                                    "suprsend",
+                                    "com"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":workspace",
+                                    "event",
+                                    ":url_encoded_event_name",
+                                    "delink_schema",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "url_encoded_event_name"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"payload_schema\": \"<null>\",\n  \"created_at\": \"<dateTime>\",\n  \"$schema\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T03:05:59.000Z",
+                              "updatedAt": "2026-07-28T03:05:59.000Z",
+                              "uid": "35240-952a9292-a5fd-4fa4-9327-9b71bc65ea1d"
+                            },
+                            {
+                              "id": "fdfc2eb1-e0e8-43d3-9da0-dbb2e7ac266b",
+                              "name": "Invalid request",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "ServiceToken <token>",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "https://management-api.suprsend.com/v1/:workspace/event/:url_encoded_event_name/delink_schema/",
+                                  "protocol": "https",
+                                  "host": [
+                                    "management-api",
+                                    "suprsend",
+                                    "com"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":workspace",
+                                    "event",
+                                    ":url_encoded_event_name",
+                                    "delink_schema",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "url_encoded_event_name"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": {}\n}",
+                              "createdAt": "2026-07-28T03:05:59.000Z",
+                              "updatedAt": "2026-07-28T03:05:59.000Z",
+                              "uid": "35240-fdfc2eb1-e0e8-43d3-9da0-dbb2e7ac266b"
+                            },
+                            {
+                              "id": "fd1c107c-feaa-423c-84ea-07ca1b94a456",
+                              "name": "Authentication failed",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "ServiceToken <token>",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "https://management-api.suprsend.com/v1/:workspace/event/:url_encoded_event_name/delink_schema/",
+                                  "protocol": "https",
+                                  "host": [
+                                    "management-api",
+                                    "suprsend",
+                                    "com"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":workspace",
+                                    "event",
+                                    ":url_encoded_event_name",
+                                    "delink_schema",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "url_encoded_event_name"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T03:05:59.000Z",
+                              "updatedAt": "2026-07-28T03:05:59.000Z",
+                              "uid": "35240-fd1c107c-feaa-423c-84ea-07ca1b94a456"
+                            },
+                            {
+                              "id": "eea03595-3559-4081-ad92-32c0fafb834d",
+                              "name": "Event not found",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "ServiceToken <token>",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "https://management-api.suprsend.com/v1/:workspace/event/:url_encoded_event_name/delink_schema/",
+                                  "protocol": "https",
+                                  "host": [
+                                    "management-api",
+                                    "suprsend",
+                                    "com"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":workspace",
+                                    "event",
+                                    ":url_encoded_event_name",
+                                    "delink_schema",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "url_encoded_event_name"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T03:05:59.000Z",
+                              "updatedAt": "2026-07-28T03:05:59.000Z",
+                              "uid": "35240-eea03595-3559-4081-ad92-32c0fafb834d"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:05:59.000Z",
+                          "updatedAt": "2026-07-28T03:05:59.000Z",
+                          "uid": "35240-4f89b60f-c5b8-4b87-837c-41df708c81bd"
+                        }
+                      ],
+                      "id": "960a78de-c152-4f22-a0a4-eb3617ab21bf",
+                      "createdAt": "2026-07-28T03:05:59.000Z",
+                      "updatedAt": "2026-07-28T03:05:59.000Z",
+                      "uid": "35240-960a78de-c152-4f22-a0a4-eb3617ab21bf"
+                    },
+                    {
+                      "name": "Get Event Details",
+                      "id": "42581165-fc00-455a-a943-f55ab3b6b83b",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "ServiceToken <token>",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "https://management-api.suprsend.com/v1/:workspace/event/:url_encoded_event_name/",
+                          "protocol": "https",
+                          "host": [
+                            "management-api",
+                            "suprsend",
+                            "com"
+                          ],
+                          "path": [
+                            "v1",
+                            ":workspace",
+                            "event",
+                            ":url_encoded_event_name",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "id": "da30b7e3-91f7-4d9b-88bd-8c9aed63c887",
+                              "key": "workspace",
+                              "value": "<string>",
+                              "description": "(Required) Workspace slug (staging, production, etc.)"
+                            },
+                            {
+                              "id": "9eca0864-5f57-419b-8cdc-2b25ce18e188",
+                              "key": "url_encoded_event_name",
+                              "value": "<string>",
+                              "description": "(Required) URL encoded event name. Example - `SHIPMENT%20ARRIVED`"
+                            }
+                          ]
+                        },
+                        "description": "Fetch event details and its linked schema."
+                      },
+                      "response": [
+                        {
+                          "id": "16889101-22d6-48de-a9fe-c2677ad59b64",
+                          "name": "Successfully retrieved event",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "ServiceToken <token>",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "https://management-api.suprsend.com/v1/:workspace/event/:url_encoded_event_name/",
+                              "protocol": "https",
+                              "host": [
+                                "management-api",
+                                "suprsend",
+                                "com"
+                              ],
+                              "path": [
+                                "v1",
+                                ":workspace",
+                                "event",
+                                ":url_encoded_event_name",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "url_encoded_event_name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"payload_schema\": {\n    \"schema\": \"<string>\",\n    \"version_no\": \"<integer>\"\n  },\n  \"created_at\": \"<dateTime>\",\n  \"$schema\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:05:59.000Z",
+                          "updatedAt": "2026-07-28T03:05:59.000Z",
+                          "uid": "35240-16889101-22d6-48de-a9fe-c2677ad59b64"
+                        },
+                        {
+                          "id": "0a07a986-640c-4fba-aeb3-9bf474574be7",
+                          "name": "Invalid event format",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "ServiceToken <token>",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "https://management-api.suprsend.com/v1/:workspace/event/:url_encoded_event_name/",
+                              "protocol": "https",
+                              "host": [
+                                "management-api",
+                                "suprsend",
+                                "com"
+                              ],
+                              "path": [
+                                "v1",
+                                ":workspace",
+                                "event",
+                                ":url_encoded_event_name",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "url_encoded_event_name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": {}\n}",
+                          "createdAt": "2026-07-28T03:05:59.000Z",
+                          "updatedAt": "2026-07-28T03:05:59.000Z",
+                          "uid": "35240-0a07a986-640c-4fba-aeb3-9bf474574be7"
+                        },
+                        {
+                          "id": "aefab151-dbac-4e03-b0ce-f27e60c038cb",
+                          "name": "Authentication failed",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "ServiceToken <token>",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "https://management-api.suprsend.com/v1/:workspace/event/:url_encoded_event_name/",
+                              "protocol": "https",
+                              "host": [
+                                "management-api",
+                                "suprsend",
+                                "com"
+                              ],
+                              "path": [
+                                "v1",
+                                ":workspace",
+                                "event",
+                                ":url_encoded_event_name",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "url_encoded_event_name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:05:59.000Z",
+                          "updatedAt": "2026-07-28T03:05:59.000Z",
+                          "uid": "35240-aefab151-dbac-4e03-b0ce-f27e60c038cb"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:05:59.000Z",
+                      "updatedAt": "2026-07-28T03:05:59.000Z",
+                      "uid": "35240-42581165-fc00-455a-a943-f55ab3b6b83b"
+                    },
+                    {
+                      "name": "Update Event",
+                      "id": "f4fc0654-5d4b-4155-a451-cfd84b75b5b8",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "ServiceToken <token>",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"description\": \"<string>\",\n  \"payload_schema\": {\n    \"schema\": \"<string>\",\n    \"version_no\": \"<integer>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "https://management-api.suprsend.com/v1/:workspace/event/:url_encoded_event_name/",
+                          "protocol": "https",
+                          "host": [
+                            "management-api",
+                            "suprsend",
+                            "com"
+                          ],
+                          "path": [
+                            "v1",
+                            ":workspace",
+                            "event",
+                            ":url_encoded_event_name",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "id": "7a5f7809-ac6d-48d4-a22f-8c2961b51088",
+                              "key": "workspace",
+                              "value": "<string>",
+                              "description": "(Required) Workspace slug (staging, production, etc.)"
+                            },
+                            {
+                              "id": "889181ff-8f80-4c7d-8b04-d86544230861",
+                              "key": "url_encoded_event_name",
+                              "value": "<string>",
+                              "description": "(Required) URL encoded event name"
+                            }
+                          ]
+                        },
+                        "description": "Update event description and its linked schema."
+                      },
+                      "response": [
+                        {
+                          "id": "b4dca2cb-fb82-4773-afdc-d6070b9da2a8",
+                          "name": "Updated event details",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "ServiceToken <token>",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"description\": \"<string>\",\n  \"payload_schema\": {\n    \"schema\": \"<string>\",\n    \"version_no\": \"<integer>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "https://management-api.suprsend.com/v1/:workspace/event/:url_encoded_event_name/",
+                              "protocol": "https",
+                              "host": [
+                                "management-api",
+                                "suprsend",
+                                "com"
+                              ],
+                              "path": [
+                                "v1",
+                                ":workspace",
+                                "event",
+                                ":url_encoded_event_name",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "url_encoded_event_name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{}",
+                          "createdAt": "2026-07-28T03:05:59.000Z",
+                          "updatedAt": "2026-07-28T03:05:59.000Z",
+                          "uid": "35240-b4dca2cb-fb82-4773-afdc-d6070b9da2a8"
+                        },
+                        {
+                          "id": "6fb1f191-fd5e-4d33-b6b7-5c4c0492e089",
+                          "name": "Invalid event format",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "ServiceToken <token>",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"description\": \"<string>\",\n  \"payload_schema\": {\n    \"schema\": \"<string>\",\n    \"version_no\": \"<integer>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "https://management-api.suprsend.com/v1/:workspace/event/:url_encoded_event_name/",
+                              "protocol": "https",
+                              "host": [
+                                "management-api",
+                                "suprsend",
+                                "com"
+                              ],
+                              "path": [
+                                "v1",
+                                ":workspace",
+                                "event",
+                                ":url_encoded_event_name",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "url_encoded_event_name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": {}\n}",
+                          "createdAt": "2026-07-28T03:05:59.000Z",
+                          "updatedAt": "2026-07-28T03:05:59.000Z",
+                          "uid": "35240-6fb1f191-fd5e-4d33-b6b7-5c4c0492e089"
+                        },
+                        {
+                          "id": "ed394bf9-e79b-4579-a9d1-c138be074105",
+                          "name": "Authentication failed",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "ServiceToken <token>",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"description\": \"<string>\",\n  \"payload_schema\": {\n    \"schema\": \"<string>\",\n    \"version_no\": \"<integer>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "https://management-api.suprsend.com/v1/:workspace/event/:url_encoded_event_name/",
+                              "protocol": "https",
+                              "host": [
+                                "management-api",
+                                "suprsend",
+                                "com"
+                              ],
+                              "path": [
+                                "v1",
+                                ":workspace",
+                                "event",
+                                ":url_encoded_event_name",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "url_encoded_event_name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:05:59.000Z",
+                          "updatedAt": "2026-07-28T03:05:59.000Z",
+                          "uid": "35240-ed394bf9-e79b-4579-a9d1-c138be074105"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:05:59.000Z",
+                      "updatedAt": "2026-07-28T03:05:59.000Z",
+                      "uid": "35240-f4fc0654-5d4b-4155-a451-cfd84b75b5b8"
+                    }
+                  ],
+                  "id": "105f186c-179b-4b13-b5d6-e99c01703a56",
+                  "createdAt": "2026-07-28T03:05:59.000Z",
+                  "updatedAt": "2026-07-28T03:05:59.000Z",
+                  "uid": "35240-105f186c-179b-4b13-b5d6-e99c01703a56"
+                },
+                {
+                  "name": "List Events",
+                  "id": "c263ebad-eef0-4bfd-8008-fc16b8ba8239",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "ServiceToken <token>",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "https://management-api.suprsend.com/v1/:workspace/event/?limit=10&offset=0",
+                      "protocol": "https",
+                      "host": [
+                        "management-api",
+                        "suprsend",
+                        "com"
+                      ],
+                      "path": [
+                        "v1",
+                        ":workspace",
+                        "event",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "Number of events to return per page (max 100)",
+                          "key": "limit",
+                          "value": "10"
+                        },
+                        {
+                          "description": "Number of events to skip for pagination",
+                          "key": "offset",
+                          "value": "0"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "3a1101eb-7af6-4ce0-9fc5-7dde31bdf5ef",
+                          "key": "workspace",
+                          "value": "<string>",
+                          "description": "(Required) Workspace slug (staging, production, etc.)"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve a list of events in a workspace."
+                  },
+                  "response": [
+                    {
+                      "id": "22da07d5-5876-4fa7-af97-49d1d563c362",
+                      "name": "Successfully retrieved list of events",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "ServiceToken <token>",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "https://management-api.suprsend.com/v1/:workspace/event/?limit=10&offset=0",
+                          "protocol": "https",
+                          "host": [
+                            "management-api",
+                            "suprsend",
+                            "com"
+                          ],
+                          "path": [
+                            "v1",
+                            ":workspace",
+                            "event",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "Number of events to return per page (max 100)",
+                              "key": "limit",
+                              "value": "10"
+                            },
+                            {
+                              "description": "Number of events to skip for pagination",
+                              "key": "offset",
+                              "value": "0"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"meta\": {\n    \"count\": \"<integer>\",\n    \"limit\": \"<integer>\",\n    \"offset\": \"<integer>\"\n  },\n  \"results\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"payload_schema\": {\n        \"schema\": \"<string>\",\n        \"version_no\": \"<integer>\"\n      },\n      \"created_at\": \"<dateTime>\",\n      \"$schema\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"payload_schema\": {\n        \"schema\": \"<string>\",\n        \"version_no\": \"<integer>\"\n      },\n      \"created_at\": \"<dateTime>\",\n      \"$schema\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T03:05:59.000Z",
+                      "updatedAt": "2026-07-28T03:05:59.000Z",
+                      "uid": "35240-22da07d5-5876-4fa7-af97-49d1d563c362"
+                    },
+                    {
+                      "id": "effef83d-ace5-4155-a8cc-17b1695aad1d",
+                      "name": "Authentication failed",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "ServiceToken <token>",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "https://management-api.suprsend.com/v1/:workspace/event/?limit=10&offset=0",
+                          "protocol": "https",
+                          "host": [
+                            "management-api",
+                            "suprsend",
+                            "com"
+                          ],
+                          "path": [
+                            "v1",
+                            ":workspace",
+                            "event",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "Number of events to return per page (max 100)",
+                              "key": "limit",
+                              "value": "10"
+                            },
+                            {
+                              "description": "Number of events to skip for pagination",
+                              "key": "offset",
+                              "value": "0"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:05:59.000Z",
+                      "updatedAt": "2026-07-28T03:05:59.000Z",
+                      "uid": "35240-effef83d-ace5-4155-a8cc-17b1695aad1d"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:05:59.000Z",
+                  "updatedAt": "2026-07-28T03:05:59.000Z",
+                  "uid": "35240-c263ebad-eef0-4bfd-8008-fc16b8ba8239"
+                },
+                {
+                  "name": "Create Event",
+                  "id": "564f36b3-2011-4da5-8108-bc2d74d7e202",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "ServiceToken <token>",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"payload_schema\": {\n    \"schema\": \"<string>\",\n    \"version_no\": \"<integer>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "https://management-api.suprsend.com/v1/:workspace/event/",
+                      "protocol": "https",
+                      "host": [
+                        "management-api",
+                        "suprsend",
+                        "com"
+                      ],
+                      "path": [
+                        "v1",
+                        ":workspace",
+                        "event",
+                        ""
+                      ],
+                      "variable": [
+                        {
+                          "id": "3a69dc0b-89e1-415b-97d5-57d61b7bf4fa",
+                          "key": "workspace",
+                          "value": "<string>",
+                          "description": "(Required) Workspace slug (staging, production, etc.)"
+                        }
+                      ]
+                    },
+                    "description": "Add events and their linked schemas in SuprSend"
+                  },
+                  "response": [
+                    {
+                      "id": "fdb17b99-8128-4fa0-ac1d-64c5d47d68f0",
+                      "name": "Updated event details",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "ServiceToken <token>",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"payload_schema\": {\n    \"schema\": \"<string>\",\n    \"version_no\": \"<integer>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "https://management-api.suprsend.com/v1/:workspace/event/",
+                          "protocol": "https",
+                          "host": [
+                            "management-api",
+                            "suprsend",
+                            "com"
+                          ],
+                          "path": [
+                            "v1",
+                            ":workspace",
+                            "event",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-07-28T03:05:59.000Z",
+                      "updatedAt": "2026-07-28T03:05:59.000Z",
+                      "uid": "35240-fdb17b99-8128-4fa0-ac1d-64c5d47d68f0"
+                    },
+                    {
+                      "id": "a497e9ec-0eb5-499d-bdc3-ad1be0e5a496",
+                      "name": "Invalid event format",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "ServiceToken <token>",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"payload_schema\": {\n    \"schema\": \"<string>\",\n    \"version_no\": \"<integer>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "https://management-api.suprsend.com/v1/:workspace/event/",
+                          "protocol": "https",
+                          "host": [
+                            "management-api",
+                            "suprsend",
+                            "com"
+                          ],
+                          "path": [
+                            "v1",
+                            ":workspace",
+                            "event",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": {}\n}",
+                      "createdAt": "2026-07-28T03:05:59.000Z",
+                      "updatedAt": "2026-07-28T03:05:59.000Z",
+                      "uid": "35240-a497e9ec-0eb5-499d-bdc3-ad1be0e5a496"
+                    },
+                    {
+                      "id": "a279b271-2250-4f31-9e5e-34cdc2faf056",
+                      "name": "Authentication failed",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "ServiceToken <token>",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"payload_schema\": {\n    \"schema\": \"<string>\",\n    \"version_no\": \"<integer>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "https://management-api.suprsend.com/v1/:workspace/event/",
+                          "protocol": "https",
+                          "host": [
+                            "management-api",
+                            "suprsend",
+                            "com"
+                          ],
+                          "path": [
+                            "v1",
+                            ":workspace",
+                            "event",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:05:59.000Z",
+                      "updatedAt": "2026-07-28T03:05:59.000Z",
+                      "uid": "35240-a279b271-2250-4f31-9e5e-34cdc2faf056"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:05:59.000Z",
+                  "updatedAt": "2026-07-28T03:05:59.000Z",
+                  "uid": "35240-564f36b3-2011-4da5-8108-bc2d74d7e202"
+                }
+              ],
+              "id": "bffd4a48-89e0-443e-aff5-706738bc4b68",
+              "createdAt": "2026-07-28T03:05:59.000Z",
+              "updatedAt": "2026-07-28T03:05:59.000Z",
+              "uid": "35240-bffd4a48-89e0-443e-aff5-706738bc4b68"
+            }
+          ],
+          "id": "77df2961-ba27-4539-80ae-8dc0a2f27238",
+          "createdAt": "2026-07-28T03:05:59.000Z",
+          "updatedAt": "2026-07-28T03:05:59.000Z",
+          "uid": "35240-77df2961-ba27-4539-80ae-8dc0a2f27238"
+        }
+      ],
+      "id": "280de590-decb-4fc3-8bb3-6f06aa575b66",
+      "createdAt": "2026-07-28T03:05:59.000Z",
+      "updatedAt": "2026-07-28T03:05:59.000Z",
+      "uid": "35240-280de590-decb-4fc3-8bb3-6f06aa575b66"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://hub.suprsend.com"
+    }
+  ]
+}

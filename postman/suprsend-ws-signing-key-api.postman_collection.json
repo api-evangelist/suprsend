@@ -1,0 +1,1067 @@
+{
+  "info": {
+    "_postman_id": "9da60aa9-a7c8-4b3c-a107-614dd8752dec",
+    "name": "SuprSend Broadcast Ws Signing Key API",
+    "description": "APIs supported on suprsend platform",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:06:45.000Z",
+    "updatedAt": "2026-07-28T03:06:45.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-9da60aa9-a7c8-4b3c-a107-614dd8752dec"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "{workspace}",
+          "item": [
+            {
+              "name": "ws_signing_key",
+              "item": [
+                {
+                  "name": "{signing_key_uid}",
+                  "item": [
+                    {
+                      "name": "roll",
+                      "item": [
+                        {
+                          "name": "Roll Workspace Signing Key",
+                          "id": "66b9e152-cc1e-4588-a361-527f368cbc2e",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "apikey",
+                              "apikey": [
+                                {
+                                  "key": "key",
+                                  "value": "ServiceToken <token>",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "value",
+                                  "value": "{{apiKey}}",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "in",
+                                  "value": "header",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "https://management-api.suprsend.com/v1/:workspace/ws_signing_key/:signing_key_uid/roll/",
+                              "protocol": "https",
+                              "host": [
+                                "management-api",
+                                "suprsend",
+                                "com"
+                              ],
+                              "path": [
+                                "v1",
+                                ":workspace",
+                                "ws_signing_key",
+                                ":signing_key_uid",
+                                "roll",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "id": "094a9733-390a-45e8-abb0-1c18c57ad2d5",
+                                  "key": "workspace",
+                                  "value": "<string>",
+                                  "description": "(Required) Workspace slug (e.g. `staging`, `production`)."
+                                },
+                                {
+                                  "id": "382de673-1bac-4252-8135-06c1cae2d131",
+                                  "key": "signing_key_uid",
+                                  "value": "<string>",
+                                  "description": "(Required) Signing key `uid` to roll (e.g. `signing_key_...`)."
+                                }
+                              ]
+                            },
+                            "description": "Roll a signing key. Generates a new signing key that replaces the existing active key. The previous key is marked `rolled`.\n\nThe new `private_key_pem` and `private_key_base64` are returned **only once** in this response - store them securely.\n"
+                          },
+                          "response": [
+                            {
+                              "id": "9797b0fb-2b1a-4bf9-acd2-a9cd17c925d7",
+                              "name": "Signing key rolled. A new signing key is created and its private key material is returned once.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "ServiceToken <token>",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "https://management-api.suprsend.com/v1/:workspace/ws_signing_key/:signing_key_uid/roll/",
+                                  "protocol": "https",
+                                  "host": [
+                                    "management-api",
+                                    "suprsend",
+                                    "com"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":workspace",
+                                    "ws_signing_key",
+                                    ":signing_key_uid",
+                                    "roll",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "signing_key_uid"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Created",
+                              "code": 201,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"id\": \"<string>\",\n  \"uid\": \"<string>\",\n  \"status\": \"rolled\",\n  \"allowed_domains\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"expiry_at\": \"<dateTime>\",\n  \"created_at\": \"<dateTime>\",\n  \"created_by\": {\n    \"name\": \"<string>\",\n    \"email\": \"<string>\"\n  },\n  \"rolled_at\": \"<dateTime>\",\n  \"rolled_by\": {\n    \"name\": \"<string>\",\n    \"email\": \"<string>\"\n  },\n  \"deleted_at\": \"<dateTime>\",\n  \"deleted_by\": {\n    \"name\": \"<string>\",\n    \"email\": \"<string>\"\n  },\n  \"private_key_pem\": \"<string>\",\n  \"private_key_base64\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T03:06:46.000Z",
+                              "updatedAt": "2026-07-28T03:06:46.000Z",
+                              "uid": "35240-9797b0fb-2b1a-4bf9-acd2-a9cd17c925d7"
+                            },
+                            {
+                              "id": "4943cfeb-80e3-4369-bf27-57c79ab6a258",
+                              "name": "Authentication failed",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "ServiceToken <token>",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "https://management-api.suprsend.com/v1/:workspace/ws_signing_key/:signing_key_uid/roll/",
+                                  "protocol": "https",
+                                  "host": [
+                                    "management-api",
+                                    "suprsend",
+                                    "com"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":workspace",
+                                    "ws_signing_key",
+                                    ":signing_key_uid",
+                                    "roll",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "signing_key_uid"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T03:06:46.000Z",
+                              "updatedAt": "2026-07-28T03:06:46.000Z",
+                              "uid": "35240-4943cfeb-80e3-4369-bf27-57c79ab6a258"
+                            },
+                            {
+                              "id": "c41dbbce-4cc0-42f6-a146-29672b9d9ff7",
+                              "name": "Resource not found",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "ServiceToken <token>",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "https://management-api.suprsend.com/v1/:workspace/ws_signing_key/:signing_key_uid/roll/",
+                                  "protocol": "https",
+                                  "host": [
+                                    "management-api",
+                                    "suprsend",
+                                    "com"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":workspace",
+                                    "ws_signing_key",
+                                    ":signing_key_uid",
+                                    "roll",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "signing_key_uid"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T03:06:46.000Z",
+                              "updatedAt": "2026-07-28T03:06:46.000Z",
+                              "uid": "35240-c41dbbce-4cc0-42f6-a146-29672b9d9ff7"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:06:46.000Z",
+                          "updatedAt": "2026-07-28T03:06:46.000Z",
+                          "uid": "35240-66b9e152-cc1e-4588-a361-527f368cbc2e"
+                        }
+                      ],
+                      "id": "aa512753-c059-4075-b5e6-12ba7c0809c3",
+                      "createdAt": "2026-07-28T03:06:46.000Z",
+                      "updatedAt": "2026-07-28T03:06:46.000Z",
+                      "uid": "35240-aa512753-c059-4075-b5e6-12ba7c0809c3"
+                    },
+                    {
+                      "name": "Delete Workspace Signing Key",
+                      "id": "17205c30-7a95-4250-a542-d5b1b9919fc8",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "ServiceToken <token>",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "https://management-api.suprsend.com/v1/:workspace/ws_signing_key/:signing_key_uid/",
+                          "protocol": "https",
+                          "host": [
+                            "management-api",
+                            "suprsend",
+                            "com"
+                          ],
+                          "path": [
+                            "v1",
+                            ":workspace",
+                            "ws_signing_key",
+                            ":signing_key_uid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "id": "b69a8e01-6339-44eb-8a42-b600ad041e48",
+                              "key": "workspace",
+                              "value": "<string>",
+                              "description": "(Required) Workspace slug (e.g. `staging`, `production`)."
+                            },
+                            {
+                              "id": "20e4730d-6eb4-416a-b56a-a7df2ca46cb6",
+                              "key": "signing_key_uid",
+                              "value": "<string>",
+                              "description": "(Required) Signing key `uid` (e.g. `signing_key_...`)."
+                            }
+                          ]
+                        },
+                        "description": "Delete a signing key by its `uid` (e.g. `signing_key_20260421T123746`)."
+                      },
+                      "response": [
+                        {
+                          "id": "1a1f87c2-bb17-4a0b-8c6a-31e8955f19a7",
+                          "name": "Signing key deleted - no response body.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "ServiceToken <token>",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "https://management-api.suprsend.com/v1/:workspace/ws_signing_key/:signing_key_uid/",
+                              "protocol": "https",
+                              "host": [
+                                "management-api",
+                                "suprsend",
+                                "com"
+                              ],
+                              "path": [
+                                "v1",
+                                ":workspace",
+                                "ws_signing_key",
+                                ":signing_key_uid",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "signing_key_uid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:06:46.000Z",
+                          "updatedAt": "2026-07-28T03:06:46.000Z",
+                          "uid": "35240-1a1f87c2-bb17-4a0b-8c6a-31e8955f19a7"
+                        },
+                        {
+                          "id": "5dccf488-823c-428b-9b11-53b343dd5e05",
+                          "name": "Authentication failed",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "ServiceToken <token>",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "https://management-api.suprsend.com/v1/:workspace/ws_signing_key/:signing_key_uid/",
+                              "protocol": "https",
+                              "host": [
+                                "management-api",
+                                "suprsend",
+                                "com"
+                              ],
+                              "path": [
+                                "v1",
+                                ":workspace",
+                                "ws_signing_key",
+                                ":signing_key_uid",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "signing_key_uid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:06:46.000Z",
+                          "updatedAt": "2026-07-28T03:06:46.000Z",
+                          "uid": "35240-5dccf488-823c-428b-9b11-53b343dd5e05"
+                        },
+                        {
+                          "id": "0a4c6893-b17f-4158-b2b0-36ea76a53ada",
+                          "name": "Resource not found",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "ServiceToken <token>",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "https://management-api.suprsend.com/v1/:workspace/ws_signing_key/:signing_key_uid/",
+                              "protocol": "https",
+                              "host": [
+                                "management-api",
+                                "suprsend",
+                                "com"
+                              ],
+                              "path": [
+                                "v1",
+                                ":workspace",
+                                "ws_signing_key",
+                                ":signing_key_uid",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "signing_key_uid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:06:46.000Z",
+                          "updatedAt": "2026-07-28T03:06:46.000Z",
+                          "uid": "35240-0a4c6893-b17f-4158-b2b0-36ea76a53ada"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:06:46.000Z",
+                      "updatedAt": "2026-07-28T03:06:46.000Z",
+                      "uid": "35240-17205c30-7a95-4250-a542-d5b1b9919fc8"
+                    }
+                  ],
+                  "id": "a1f1ddb8-b5b2-4c92-b577-41099f6003a7",
+                  "createdAt": "2026-07-28T03:06:46.000Z",
+                  "updatedAt": "2026-07-28T03:06:46.000Z",
+                  "uid": "35240-a1f1ddb8-b5b2-4c92-b577-41099f6003a7"
+                },
+                {
+                  "name": "List Workspace Signing Keys",
+                  "id": "19297b4e-b61b-47a5-b0a3-3bcbe43ebec1",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "ServiceToken <token>",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "https://management-api.suprsend.com/v1/:workspace/ws_signing_key/",
+                      "protocol": "https",
+                      "host": [
+                        "management-api",
+                        "suprsend",
+                        "com"
+                      ],
+                      "path": [
+                        "v1",
+                        ":workspace",
+                        "ws_signing_key",
+                        ""
+                      ],
+                      "variable": [
+                        {
+                          "id": "f136e340-158b-4745-baf8-d6b55731a977",
+                          "key": "workspace",
+                          "value": "<string>",
+                          "description": "(Required) Workspace slug (e.g. `staging`, `production`)."
+                        }
+                      ]
+                    },
+                    "description": "List signing keys for this workspace. Signing keys are used to verify signed payloads."
+                  },
+                  "response": [
+                    {
+                      "id": "ff9963e7-15e5-4b90-939f-198b0b65de01",
+                      "name": "Successfully retrieved signing keys.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "ServiceToken <token>",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "https://management-api.suprsend.com/v1/:workspace/ws_signing_key/",
+                          "protocol": "https",
+                          "host": [
+                            "management-api",
+                            "suprsend",
+                            "com"
+                          ],
+                          "path": [
+                            "v1",
+                            ":workspace",
+                            "ws_signing_key",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"meta\": {\n    \"count\": \"<integer>\",\n    \"limit\": \"<integer>\",\n    \"offset\": \"<integer>\"\n  },\n  \"results\": [\n    {\n      \"id\": \"<string>\",\n      \"uid\": \"<string>\",\n      \"status\": \"rolled\",\n      \"allowed_domains\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"expiry_at\": \"<dateTime>\",\n      \"created_at\": \"<dateTime>\",\n      \"created_by\": {\n        \"name\": \"<string>\",\n        \"email\": \"<string>\"\n      },\n      \"rolled_at\": \"<dateTime>\",\n      \"rolled_by\": {\n        \"name\": \"<string>\",\n        \"email\": \"<string>\"\n      },\n      \"deleted_at\": \"<dateTime>\",\n      \"deleted_by\": {\n        \"name\": \"<string>\",\n        \"email\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"uid\": \"<string>\",\n      \"status\": \"rolled\",\n      \"allowed_domains\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"expiry_at\": \"<dateTime>\",\n      \"created_at\": \"<dateTime>\",\n      \"created_by\": {\n        \"name\": \"<string>\",\n        \"email\": \"<string>\"\n      },\n      \"rolled_at\": \"<dateTime>\",\n      \"rolled_by\": {\n        \"name\": \"<string>\",\n        \"email\": \"<string>\"\n      },\n      \"deleted_at\": \"<dateTime>\",\n      \"deleted_by\": {\n        \"name\": \"<string>\",\n        \"email\": \"<string>\"\n      }\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T03:06:46.000Z",
+                      "updatedAt": "2026-07-28T03:06:46.000Z",
+                      "uid": "35240-ff9963e7-15e5-4b90-939f-198b0b65de01"
+                    },
+                    {
+                      "id": "3d22e9e1-c142-4726-858b-63a516be2f02",
+                      "name": "Authentication failed",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "ServiceToken <token>",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "https://management-api.suprsend.com/v1/:workspace/ws_signing_key/",
+                          "protocol": "https",
+                          "host": [
+                            "management-api",
+                            "suprsend",
+                            "com"
+                          ],
+                          "path": [
+                            "v1",
+                            ":workspace",
+                            "ws_signing_key",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:06:46.000Z",
+                      "updatedAt": "2026-07-28T03:06:46.000Z",
+                      "uid": "35240-3d22e9e1-c142-4726-858b-63a516be2f02"
+                    },
+                    {
+                      "id": "74908cab-4320-4006-a55e-b8d54094f6fa",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "ServiceToken <token>",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "https://management-api.suprsend.com/v1/:workspace/ws_signing_key/",
+                          "protocol": "https",
+                          "host": [
+                            "management-api",
+                            "suprsend",
+                            "com"
+                          ],
+                          "path": [
+                            "v1",
+                            ":workspace",
+                            "ws_signing_key",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:06:46.000Z",
+                      "updatedAt": "2026-07-28T03:06:46.000Z",
+                      "uid": "35240-74908cab-4320-4006-a55e-b8d54094f6fa"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:06:46.000Z",
+                  "updatedAt": "2026-07-28T03:06:46.000Z",
+                  "uid": "35240-19297b4e-b61b-47a5-b0a3-3bcbe43ebec1"
+                },
+                {
+                  "name": "Create Workspace Signing Key",
+                  "id": "6deb46f6-ae5e-4129-9051-cabe5460b666",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "ServiceToken <token>",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "https://management-api.suprsend.com/v1/:workspace/ws_signing_key/",
+                      "protocol": "https",
+                      "host": [
+                        "management-api",
+                        "suprsend",
+                        "com"
+                      ],
+                      "path": [
+                        "v1",
+                        ":workspace",
+                        "ws_signing_key",
+                        ""
+                      ],
+                      "variable": [
+                        {
+                          "id": "3f6024d2-6978-4bc1-88f9-c0021e4b1ec0",
+                          "key": "workspace",
+                          "value": "<string>",
+                          "description": "(Required) Workspace slug (e.g. `staging`, `production`)."
+                        }
+                      ]
+                    },
+                    "description": "Create a signing key for this workspace.\n\nThe `private_key_pem` and `private_key_base64` fields are returned **only once** at creation. Store them securely - they cannot be retrieved later.\n\nOnly **one active** signing key is allowed per workspace. To replace an existing active key, use the [Roll Workspace Signing Key](#operation/roll-workspace-signing-key) endpoint instead.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "00c74cd0-a865-4c16-bb3f-fa7ff81335ae",
+                      "name": "Signing key created. Private key material is returned once in this response.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "ServiceToken <token>",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "https://management-api.suprsend.com/v1/:workspace/ws_signing_key/",
+                          "protocol": "https",
+                          "host": [
+                            "management-api",
+                            "suprsend",
+                            "com"
+                          ],
+                          "path": [
+                            "v1",
+                            ":workspace",
+                            "ws_signing_key",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"uid\": \"<string>\",\n  \"status\": \"rolled\",\n  \"allowed_domains\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"expiry_at\": \"<dateTime>\",\n  \"created_at\": \"<dateTime>\",\n  \"created_by\": {\n    \"name\": \"<string>\",\n    \"email\": \"<string>\"\n  },\n  \"rolled_at\": \"<dateTime>\",\n  \"rolled_by\": {\n    \"name\": \"<string>\",\n    \"email\": \"<string>\"\n  },\n  \"deleted_at\": \"<dateTime>\",\n  \"deleted_by\": {\n    \"name\": \"<string>\",\n    \"email\": \"<string>\"\n  },\n  \"private_key_pem\": \"<string>\",\n  \"private_key_base64\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:06:46.000Z",
+                      "updatedAt": "2026-07-28T03:06:46.000Z",
+                      "uid": "35240-00c74cd0-a865-4c16-bb3f-fa7ff81335ae"
+                    },
+                    {
+                      "id": "f3a79cee-e702-457d-8074-9bf7a6a957da",
+                      "name": "Validation error - for example, an active signing key already exists.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "ServiceToken <token>",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "https://management-api.suprsend.com/v1/:workspace/ws_signing_key/",
+                          "protocol": "https",
+                          "host": [
+                            "management-api",
+                            "suprsend",
+                            "com"
+                          ],
+                          "path": [
+                            "v1",
+                            ":workspace",
+                            "ws_signing_key",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:06:46.000Z",
+                      "updatedAt": "2026-07-28T03:06:46.000Z",
+                      "uid": "35240-f3a79cee-e702-457d-8074-9bf7a6a957da"
+                    },
+                    {
+                      "id": "6f0017d2-b940-4fb5-b3ca-07c6c41f0a7c",
+                      "name": "Authentication failed",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "ServiceToken <token>",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "https://management-api.suprsend.com/v1/:workspace/ws_signing_key/",
+                          "protocol": "https",
+                          "host": [
+                            "management-api",
+                            "suprsend",
+                            "com"
+                          ],
+                          "path": [
+                            "v1",
+                            ":workspace",
+                            "ws_signing_key",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:06:46.000Z",
+                      "updatedAt": "2026-07-28T03:06:46.000Z",
+                      "uid": "35240-6f0017d2-b940-4fb5-b3ca-07c6c41f0a7c"
+                    },
+                    {
+                      "id": "b1406611-b8d0-4eb5-a581-85029c3a758c",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "ServiceToken <token>",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "https://management-api.suprsend.com/v1/:workspace/ws_signing_key/",
+                          "protocol": "https",
+                          "host": [
+                            "management-api",
+                            "suprsend",
+                            "com"
+                          ],
+                          "path": [
+                            "v1",
+                            ":workspace",
+                            "ws_signing_key",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:06:46.000Z",
+                      "updatedAt": "2026-07-28T03:06:46.000Z",
+                      "uid": "35240-b1406611-b8d0-4eb5-a581-85029c3a758c"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:06:46.000Z",
+                  "updatedAt": "2026-07-28T03:06:46.000Z",
+                  "uid": "35240-6deb46f6-ae5e-4129-9051-cabe5460b666"
+                }
+              ],
+              "id": "1b65311d-25e1-43a0-bd45-50cb5f5a9980",
+              "createdAt": "2026-07-28T03:06:46.000Z",
+              "updatedAt": "2026-07-28T03:06:46.000Z",
+              "uid": "35240-1b65311d-25e1-43a0-bd45-50cb5f5a9980"
+            }
+          ],
+          "id": "0dd1c3a0-583a-4e68-a02e-00210c64a6aa",
+          "createdAt": "2026-07-28T03:06:46.000Z",
+          "updatedAt": "2026-07-28T03:06:46.000Z",
+          "uid": "35240-0dd1c3a0-583a-4e68-a02e-00210c64a6aa"
+        }
+      ],
+      "id": "450ca1fc-3e88-4c35-99b8-71f7030eed4d",
+      "createdAt": "2026-07-28T03:06:46.000Z",
+      "updatedAt": "2026-07-28T03:06:46.000Z",
+      "uid": "35240-450ca1fc-3e88-4c35-99b8-71f7030eed4d"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://hub.suprsend.com"
+    }
+  ]
+}

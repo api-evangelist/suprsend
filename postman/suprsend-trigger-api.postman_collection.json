@@ -1,0 +1,542 @@
+{
+  "info": {
+    "_postman_id": "87bdee34-d504-4656-a5d3-088e01148c16",
+    "name": "SuprSend Broadcast Trigger API",
+    "description": "APIs supported on suprsend platform",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:06:28.000Z",
+    "updatedAt": "2026-07-28T03:06:28.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-87bdee34-d504-4656-a5d3-088e01148c16"
+  },
+  "item": [
+    {
+      "name": "{workspace_key}",
+      "item": [
+        {
+          "name": "trigger",
+          "item": [
+            {
+              "name": "Dynamic Workflow Trigger",
+              "id": "c660c53e-2de0-4092-b331-5f02a6823e43",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"_workflow_name_\",\n  \"template\": \"_template_slug_\",\n  \"notification_category\": \"transactional\",\n  \"users\": [\n    {\n      \"distinct_id\": \"_distinct_id_\",\n      \"$androidpush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$iospush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$slack\": [\n        {\n          \"email\": \"<email>\",\n          \"access_token\": \"<string>\"\n        },\n        {\n          \"email\": \"<email>\",\n          \"access_token\": \"<string>\"\n        }\n      ],\n      \"$ms_teams\": [\n        {\n          \"tenant_id\": \"<string>\",\n          \"service_url\": \"<uri>\",\n          \"conversation_id\": \"<string>\"\n        },\n        {\n          \"tenant_id\": \"<string>\",\n          \"service_url\": \"<uri>\",\n          \"conversation_id\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"distinct_id\": \"_distinct_id_\",\n      \"$androidpush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$iospush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$slack\": [\n        {\n          \"email\": \"<email>\",\n          \"access_token\": \"<string>\"\n        },\n        {\n          \"email\": \"<email>\",\n          \"access_token\": \"<string>\"\n        }\n      ],\n      \"$ms_teams\": [\n        {\n          \"tenant_id\": \"<string>\",\n          \"service_url\": \"<uri>\",\n          \"conversation_id\": \"<string>\"\n        },\n        {\n          \"tenant_id\": \"<string>\",\n          \"service_url\": \"<uri>\",\n          \"conversation_id\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"data\": {\n    \"$attachments\": [\n      {\n        \"url\": \"<uri>\",\n        \"filename\": \"<string>\",\n        \"ignore_if_error\": \"<boolean>\"\n      },\n      {\n        \"url\": \"<uri>\",\n        \"filename\": \"<string>\",\n        \"ignore_if_error\": \"<boolean>\"\n      }\n    ],\n    \"ipsum8c\": \"<string>\",\n    \"nostrud8bf\": \"<string>\",\n    \"anim_c\": \"<string>\"\n  },\n  \"delivery\": {\n    \"smart\": false,\n    \"success\": \"seen\",\n    \"time_to_live\": \"<string>\",\n    \"mandatory_channels\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"delay\": \"<string>\",\n  \"trigger_at\": \"<date>\",\n  \"tenant_id\": \"<string>\",\n  \"$idempotency_key\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/:workspace_key/trigger/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":workspace_key",
+                    "trigger",
+                    ""
+                  ],
+                  "variable": [
+                    {
+                      "id": "db943e00-5f8a-4ef2-9df9-3d62c168ccf4",
+                      "key": "workspace_key",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "API to dynamically create and trigger a single step workflow."
+              },
+              "response": [
+                {
+                  "id": "3bad74ca-01d0-4728-9c0a-dbd88e7dcd4b",
+                  "name": "202",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"_workflow_name_\",\n  \"template\": \"_template_slug_\",\n  \"notification_category\": \"transactional\",\n  \"users\": [\n    {\n      \"distinct_id\": \"_distinct_id_\",\n      \"$androidpush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$iospush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$slack\": [\n        {\n          \"email\": \"<email>\",\n          \"access_token\": \"<string>\"\n        },\n        {\n          \"email\": \"<email>\",\n          \"access_token\": \"<string>\"\n        }\n      ],\n      \"$ms_teams\": [\n        {\n          \"tenant_id\": \"<string>\",\n          \"service_url\": \"<uri>\",\n          \"conversation_id\": \"<string>\"\n        },\n        {\n          \"tenant_id\": \"<string>\",\n          \"service_url\": \"<uri>\",\n          \"conversation_id\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"distinct_id\": \"_distinct_id_\",\n      \"$androidpush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$iospush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$slack\": [\n        {\n          \"email\": \"<email>\",\n          \"access_token\": \"<string>\"\n        },\n        {\n          \"email\": \"<email>\",\n          \"access_token\": \"<string>\"\n        }\n      ],\n      \"$ms_teams\": [\n        {\n          \"tenant_id\": \"<string>\",\n          \"service_url\": \"<uri>\",\n          \"conversation_id\": \"<string>\"\n        },\n        {\n          \"tenant_id\": \"<string>\",\n          \"service_url\": \"<uri>\",\n          \"conversation_id\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"data\": {\n    \"$attachments\": [\n      {\n        \"url\": \"<uri>\",\n        \"filename\": \"<string>\",\n        \"ignore_if_error\": \"<boolean>\"\n      },\n      {\n        \"url\": \"<uri>\",\n        \"filename\": \"<string>\",\n        \"ignore_if_error\": \"<boolean>\"\n      }\n    ],\n    \"ipsum8c\": \"<string>\",\n    \"nostrud8bf\": \"<string>\",\n    \"anim_c\": \"<string>\"\n  },\n  \"delivery\": {\n    \"smart\": false,\n    \"success\": \"seen\",\n    \"time_to_live\": \"<string>\",\n    \"mandatory_channels\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"delay\": \"<string>\",\n  \"trigger_at\": \"<date>\",\n  \"tenant_id\": \"<string>\",\n  \"$idempotency_key\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/:workspace_key/trigger/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":workspace_key",
+                        "trigger",
+                        ""
+                      ],
+                      "variable": [
+                        {
+                          "key": "workspace_key"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Accepted",
+                  "code": 202,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "<string>",
+                  "createdAt": "2026-07-28T03:06:29.000Z",
+                  "updatedAt": "2026-07-28T03:06:29.000Z",
+                  "uid": "35240-3bad74ca-01d0-4728-9c0a-dbd88e7dcd4b"
+                },
+                {
+                  "id": "b6808613-2590-41b4-a170-bd91f4657957",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"_workflow_name_\",\n  \"template\": \"_template_slug_\",\n  \"notification_category\": \"transactional\",\n  \"users\": [\n    {\n      \"distinct_id\": \"_distinct_id_\",\n      \"$androidpush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$iospush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$slack\": [\n        {\n          \"email\": \"<email>\",\n          \"access_token\": \"<string>\"\n        },\n        {\n          \"email\": \"<email>\",\n          \"access_token\": \"<string>\"\n        }\n      ],\n      \"$ms_teams\": [\n        {\n          \"tenant_id\": \"<string>\",\n          \"service_url\": \"<uri>\",\n          \"conversation_id\": \"<string>\"\n        },\n        {\n          \"tenant_id\": \"<string>\",\n          \"service_url\": \"<uri>\",\n          \"conversation_id\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"distinct_id\": \"_distinct_id_\",\n      \"$androidpush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$iospush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$slack\": [\n        {\n          \"email\": \"<email>\",\n          \"access_token\": \"<string>\"\n        },\n        {\n          \"email\": \"<email>\",\n          \"access_token\": \"<string>\"\n        }\n      ],\n      \"$ms_teams\": [\n        {\n          \"tenant_id\": \"<string>\",\n          \"service_url\": \"<uri>\",\n          \"conversation_id\": \"<string>\"\n        },\n        {\n          \"tenant_id\": \"<string>\",\n          \"service_url\": \"<uri>\",\n          \"conversation_id\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"data\": {\n    \"$attachments\": [\n      {\n        \"url\": \"<uri>\",\n        \"filename\": \"<string>\",\n        \"ignore_if_error\": \"<boolean>\"\n      },\n      {\n        \"url\": \"<uri>\",\n        \"filename\": \"<string>\",\n        \"ignore_if_error\": \"<boolean>\"\n      }\n    ],\n    \"ipsum8c\": \"<string>\",\n    \"nostrud8bf\": \"<string>\",\n    \"anim_c\": \"<string>\"\n  },\n  \"delivery\": {\n    \"smart\": false,\n    \"success\": \"seen\",\n    \"time_to_live\": \"<string>\",\n    \"mandatory_channels\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"delay\": \"<string>\",\n  \"trigger_at\": \"<date>\",\n  \"tenant_id\": \"<string>\",\n  \"$idempotency_key\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/:workspace_key/trigger/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":workspace_key",
+                        "trigger",
+                        ""
+                      ],
+                      "variable": [
+                        {
+                          "key": "workspace_key"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:06:29.000Z",
+                  "updatedAt": "2026-07-28T03:06:29.000Z",
+                  "uid": "35240-b6808613-2590-41b4-a170-bd91f4657957"
+                }
+              ],
+              "createdAt": "2026-07-28T03:06:29.000Z",
+              "updatedAt": "2026-07-28T03:06:29.000Z",
+              "uid": "35240-c660c53e-2de0-4092-b331-5f02a6823e43"
+            }
+          ],
+          "id": "6586482e-8ca1-4440-be7f-c0c75840e189",
+          "createdAt": "2026-07-28T03:06:29.000Z",
+          "updatedAt": "2026-07-28T03:06:29.000Z",
+          "uid": "35240-6586482e-8ca1-4440-be7f-c0c75840e189"
+        }
+      ],
+      "id": "4770d693-b7f2-41b1-89a4-8f03201999dd",
+      "createdAt": "2026-07-28T03:06:29.000Z",
+      "updatedAt": "2026-07-28T03:06:29.000Z",
+      "uid": "35240-4770d693-b7f2-41b1-89a4-8f03201999dd"
+    },
+    {
+      "name": "trigger",
+      "item": [
+        {
+          "name": "Trigger Workflow (single or bulk)",
+          "id": "44a33af6-3008-4683-b2cb-680973e92fcf",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"workflow\": \"_workflow_slug_\",\n  \"recipients\": [\n    {\n      \"distinct_id\": \"id1\",\n      \"is_transient\": \"<boolean>\",\n      \"$channels\": [\n        \"webpush\",\n        \"iospush\"\n      ],\n      \"$email\": [\n        \"<email>\",\n        \"<email>\"\n      ],\n      \"$sms\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$inbox\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$androidpush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$iospush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$slack\": [\n        {\n          \"email\": \"<email>\",\n          \"access_token\": \"<string>\"\n        },\n        {\n          \"email\": \"<email>\",\n          \"access_token\": \"<string>\"\n        }\n      ],\n      \"$ms_teams\": [\n        {\n          \"tenant_id\": \"<string>\",\n          \"service_url\": \"<uri>\",\n          \"conversation_id\": \"<string>\"\n        },\n        {\n          \"tenant_id\": \"<string>\",\n          \"service_url\": \"<uri>\",\n          \"conversation_id\": \"<string>\"\n        }\n      ],\n      \"$timezone\": \"<string>\",\n      \"$locale\": \"<string>\"\n    },\n    {\n      \"distinct_id\": \"id1\",\n      \"is_transient\": \"<boolean>\",\n      \"$channels\": [\n        \"iospush\",\n        \"iospush\"\n      ],\n      \"$email\": [\n        \"<email>\",\n        \"<email>\"\n      ],\n      \"$sms\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$inbox\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$androidpush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$iospush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$slack\": [\n        {\n          \"email\": \"<email>\",\n          \"access_token\": \"<string>\"\n        },\n        {\n          \"email\": \"<email>\",\n          \"access_token\": \"<string>\"\n        }\n      ],\n      \"$ms_teams\": [\n        {\n          \"tenant_id\": \"<string>\",\n          \"service_url\": \"<uri>\",\n          \"conversation_id\": \"<string>\"\n        },\n        {\n          \"tenant_id\": \"<string>\",\n          \"service_url\": \"<uri>\",\n          \"conversation_id\": \"<string>\"\n        }\n      ],\n      \"$timezone\": \"<string>\",\n      \"$locale\": \"<string>\"\n    }\n  ],\n  \"actor\": {\n    \"is_transient\": \"<boolean>\",\n    \"distinct_id\": \"id1\",\n    \"in4\": \"<string>\"\n  },\n  \"data\": {\n    \"$attachments\": [\n      {\n        \"url\": \"<uri>\",\n        \"filename\": \"<string>\",\n        \"ignore_if_error\": \"<boolean>\"\n      },\n      {\n        \"url\": \"<uri>\",\n        \"filename\": \"<string>\",\n        \"ignore_if_error\": \"<boolean>\"\n      }\n    ],\n    \"proidentf\": \"<string>\",\n    \"proident_c45\": \"<string>\"\n  },\n  \"tenant_id\": \"<string>\",\n  \"$idempotency_key\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/trigger/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "trigger",
+                ""
+              ]
+            },
+            "description": "API to trigger multi-step workflow to one or more users/objects by passing workflow slug, via `POST /trigger/`.\n\nSend a single JSON **object** to trigger one workflow, or an array of objects to trigger multiple workflows in one call.\n"
+          },
+          "response": [
+            {
+              "id": "dfd3248e-e7aa-44b8-bbe0-2b1f34eabdd0",
+              "name": "202 - Accepted (returned for single workflow trigger requests).",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"workflow\": \"_workflow_slug_\",\n  \"recipients\": [\n    {\n      \"distinct_id\": \"id1\",\n      \"is_transient\": \"<boolean>\",\n      \"$channels\": [\n        \"webpush\",\n        \"iospush\"\n      ],\n      \"$email\": [\n        \"<email>\",\n        \"<email>\"\n      ],\n      \"$sms\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$inbox\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$androidpush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$iospush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$slack\": [\n        {\n          \"email\": \"<email>\",\n          \"access_token\": \"<string>\"\n        },\n        {\n          \"email\": \"<email>\",\n          \"access_token\": \"<string>\"\n        }\n      ],\n      \"$ms_teams\": [\n        {\n          \"tenant_id\": \"<string>\",\n          \"service_url\": \"<uri>\",\n          \"conversation_id\": \"<string>\"\n        },\n        {\n          \"tenant_id\": \"<string>\",\n          \"service_url\": \"<uri>\",\n          \"conversation_id\": \"<string>\"\n        }\n      ],\n      \"$timezone\": \"<string>\",\n      \"$locale\": \"<string>\"\n    },\n    {\n      \"distinct_id\": \"id1\",\n      \"is_transient\": \"<boolean>\",\n      \"$channels\": [\n        \"iospush\",\n        \"iospush\"\n      ],\n      \"$email\": [\n        \"<email>\",\n        \"<email>\"\n      ],\n      \"$sms\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$inbox\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$androidpush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$iospush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$slack\": [\n        {\n          \"email\": \"<email>\",\n          \"access_token\": \"<string>\"\n        },\n        {\n          \"email\": \"<email>\",\n          \"access_token\": \"<string>\"\n        }\n      ],\n      \"$ms_teams\": [\n        {\n          \"tenant_id\": \"<string>\",\n          \"service_url\": \"<uri>\",\n          \"conversation_id\": \"<string>\"\n        },\n        {\n          \"tenant_id\": \"<string>\",\n          \"service_url\": \"<uri>\",\n          \"conversation_id\": \"<string>\"\n        }\n      ],\n      \"$timezone\": \"<string>\",\n      \"$locale\": \"<string>\"\n    }\n  ],\n  \"actor\": {\n    \"is_transient\": \"<boolean>\",\n    \"distinct_id\": \"id1\",\n    \"in4\": \"<string>\"\n  },\n  \"data\": {\n    \"$attachments\": [\n      {\n        \"url\": \"<uri>\",\n        \"filename\": \"<string>\",\n        \"ignore_if_error\": \"<boolean>\"\n      },\n      {\n        \"url\": \"<uri>\",\n        \"filename\": \"<string>\",\n        \"ignore_if_error\": \"<boolean>\"\n      }\n    ],\n    \"proidentf\": \"<string>\",\n    \"proident_c45\": \"<string>\"\n  },\n  \"tenant_id\": \"<string>\",\n  \"$idempotency_key\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/trigger/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "trigger",
+                    ""
+                  ]
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message_id\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T03:06:29.000Z",
+              "updatedAt": "2026-07-28T03:06:29.000Z",
+              "uid": "35240-dfd3248e-e7aa-44b8-bbe0-2b1f34eabdd0"
+            },
+            {
+              "id": "a3c4f6cc-7985-4817-84f3-9bead5cd60cd",
+              "name": "207 - Multi-Status (returned for bulk workflow trigger requests). Inspect each record's `status` and `error` for individual outcomes.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"workflow\": \"_workflow_slug_\",\n  \"recipients\": [\n    {\n      \"distinct_id\": \"id1\",\n      \"is_transient\": \"<boolean>\",\n      \"$channels\": [\n        \"webpush\",\n        \"iospush\"\n      ],\n      \"$email\": [\n        \"<email>\",\n        \"<email>\"\n      ],\n      \"$sms\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$inbox\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$androidpush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$iospush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$slack\": [\n        {\n          \"email\": \"<email>\",\n          \"access_token\": \"<string>\"\n        },\n        {\n          \"email\": \"<email>\",\n          \"access_token\": \"<string>\"\n        }\n      ],\n      \"$ms_teams\": [\n        {\n          \"tenant_id\": \"<string>\",\n          \"service_url\": \"<uri>\",\n          \"conversation_id\": \"<string>\"\n        },\n        {\n          \"tenant_id\": \"<string>\",\n          \"service_url\": \"<uri>\",\n          \"conversation_id\": \"<string>\"\n        }\n      ],\n      \"$timezone\": \"<string>\",\n      \"$locale\": \"<string>\"\n    },\n    {\n      \"distinct_id\": \"id1\",\n      \"is_transient\": \"<boolean>\",\n      \"$channels\": [\n        \"iospush\",\n        \"iospush\"\n      ],\n      \"$email\": [\n        \"<email>\",\n        \"<email>\"\n      ],\n      \"$sms\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$inbox\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$androidpush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$iospush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$slack\": [\n        {\n          \"email\": \"<email>\",\n          \"access_token\": \"<string>\"\n        },\n        {\n          \"email\": \"<email>\",\n          \"access_token\": \"<string>\"\n        }\n      ],\n      \"$ms_teams\": [\n        {\n          \"tenant_id\": \"<string>\",\n          \"service_url\": \"<uri>\",\n          \"conversation_id\": \"<string>\"\n        },\n        {\n          \"tenant_id\": \"<string>\",\n          \"service_url\": \"<uri>\",\n          \"conversation_id\": \"<string>\"\n        }\n      ],\n      \"$timezone\": \"<string>\",\n      \"$locale\": \"<string>\"\n    }\n  ],\n  \"actor\": {\n    \"is_transient\": \"<boolean>\",\n    \"distinct_id\": \"id1\",\n    \"in4\": \"<string>\"\n  },\n  \"data\": {\n    \"$attachments\": [\n      {\n        \"url\": \"<uri>\",\n        \"filename\": \"<string>\",\n        \"ignore_if_error\": \"<boolean>\"\n      },\n      {\n        \"url\": \"<uri>\",\n        \"filename\": \"<string>\",\n        \"ignore_if_error\": \"<boolean>\"\n      }\n    ],\n    \"proidentf\": \"<string>\",\n    \"proident_c45\": \"<string>\"\n  },\n  \"tenant_id\": \"<string>\",\n  \"$idempotency_key\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/trigger/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "trigger",
+                    ""
+                  ]
+                }
+              },
+              "status": "Multi-Status (WebDAV) (RFC 4918)",
+              "code": 207,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"records\": [\n    {\n      \"status\": \"success\",\n      \"status_code\": \"<integer>\",\n      \"message_id\": \"<string>\",\n      \"error\": {\n        \"message\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    },\n    {\n      \"status\": \"success\",\n      \"status_code\": \"<integer>\",\n      \"message_id\": \"<string>\",\n      \"error\": {\n        \"message\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    }\n  ],\n  \"status\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T03:06:29.000Z",
+              "updatedAt": "2026-07-28T03:06:29.000Z",
+              "uid": "35240-a3c4f6cc-7985-4817-84f3-9bead5cd60cd"
+            },
+            {
+              "id": "782646e4-c8be-4d8b-8899-fda6bcd9ae9c",
+              "name": "400 - Bad Request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"workflow\": \"_workflow_slug_\",\n  \"recipients\": [\n    {\n      \"distinct_id\": \"id1\",\n      \"is_transient\": \"<boolean>\",\n      \"$channels\": [\n        \"webpush\",\n        \"iospush\"\n      ],\n      \"$email\": [\n        \"<email>\",\n        \"<email>\"\n      ],\n      \"$sms\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$inbox\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$androidpush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$iospush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$slack\": [\n        {\n          \"email\": \"<email>\",\n          \"access_token\": \"<string>\"\n        },\n        {\n          \"email\": \"<email>\",\n          \"access_token\": \"<string>\"\n        }\n      ],\n      \"$ms_teams\": [\n        {\n          \"tenant_id\": \"<string>\",\n          \"service_url\": \"<uri>\",\n          \"conversation_id\": \"<string>\"\n        },\n        {\n          \"tenant_id\": \"<string>\",\n          \"service_url\": \"<uri>\",\n          \"conversation_id\": \"<string>\"\n        }\n      ],\n      \"$timezone\": \"<string>\",\n      \"$locale\": \"<string>\"\n    },\n    {\n      \"distinct_id\": \"id1\",\n      \"is_transient\": \"<boolean>\",\n      \"$channels\": [\n        \"iospush\",\n        \"iospush\"\n      ],\n      \"$email\": [\n        \"<email>\",\n        \"<email>\"\n      ],\n      \"$sms\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$inbox\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$androidpush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$iospush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$slack\": [\n        {\n          \"email\": \"<email>\",\n          \"access_token\": \"<string>\"\n        },\n        {\n          \"email\": \"<email>\",\n          \"access_token\": \"<string>\"\n        }\n      ],\n      \"$ms_teams\": [\n        {\n          \"tenant_id\": \"<string>\",\n          \"service_url\": \"<uri>\",\n          \"conversation_id\": \"<string>\"\n        },\n        {\n          \"tenant_id\": \"<string>\",\n          \"service_url\": \"<uri>\",\n          \"conversation_id\": \"<string>\"\n        }\n      ],\n      \"$timezone\": \"<string>\",\n      \"$locale\": \"<string>\"\n    }\n  ],\n  \"actor\": {\n    \"is_transient\": \"<boolean>\",\n    \"distinct_id\": \"id1\",\n    \"in4\": \"<string>\"\n  },\n  \"data\": {\n    \"$attachments\": [\n      {\n        \"url\": \"<uri>\",\n        \"filename\": \"<string>\",\n        \"ignore_if_error\": \"<boolean>\"\n      },\n      {\n        \"url\": \"<uri>\",\n        \"filename\": \"<string>\",\n        \"ignore_if_error\": \"<boolean>\"\n      }\n    ],\n    \"proidentf\": \"<string>\",\n    \"proident_c45\": \"<string>\"\n  },\n  \"tenant_id\": \"<string>\",\n  \"$idempotency_key\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/trigger/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "trigger",
+                    ""
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T03:06:29.000Z",
+              "updatedAt": "2026-07-28T03:06:29.000Z",
+              "uid": "35240-782646e4-c8be-4d8b-8899-fda6bcd9ae9c"
+            },
+            {
+              "id": "65abf3fd-5ad0-475e-b08b-f45061910d5f",
+              "name": "404 - Not Found",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"workflow\": \"_workflow_slug_\",\n  \"recipients\": [\n    {\n      \"distinct_id\": \"id1\",\n      \"is_transient\": \"<boolean>\",\n      \"$channels\": [\n        \"webpush\",\n        \"iospush\"\n      ],\n      \"$email\": [\n        \"<email>\",\n        \"<email>\"\n      ],\n      \"$sms\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$inbox\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$androidpush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$iospush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$slack\": [\n        {\n          \"email\": \"<email>\",\n          \"access_token\": \"<string>\"\n        },\n        {\n          \"email\": \"<email>\",\n          \"access_token\": \"<string>\"\n        }\n      ],\n      \"$ms_teams\": [\n        {\n          \"tenant_id\": \"<string>\",\n          \"service_url\": \"<uri>\",\n          \"conversation_id\": \"<string>\"\n        },\n        {\n          \"tenant_id\": \"<string>\",\n          \"service_url\": \"<uri>\",\n          \"conversation_id\": \"<string>\"\n        }\n      ],\n      \"$timezone\": \"<string>\",\n      \"$locale\": \"<string>\"\n    },\n    {\n      \"distinct_id\": \"id1\",\n      \"is_transient\": \"<boolean>\",\n      \"$channels\": [\n        \"iospush\",\n        \"iospush\"\n      ],\n      \"$email\": [\n        \"<email>\",\n        \"<email>\"\n      ],\n      \"$sms\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$inbox\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$androidpush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$iospush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$slack\": [\n        {\n          \"email\": \"<email>\",\n          \"access_token\": \"<string>\"\n        },\n        {\n          \"email\": \"<email>\",\n          \"access_token\": \"<string>\"\n        }\n      ],\n      \"$ms_teams\": [\n        {\n          \"tenant_id\": \"<string>\",\n          \"service_url\": \"<uri>\",\n          \"conversation_id\": \"<string>\"\n        },\n        {\n          \"tenant_id\": \"<string>\",\n          \"service_url\": \"<uri>\",\n          \"conversation_id\": \"<string>\"\n        }\n      ],\n      \"$timezone\": \"<string>\",\n      \"$locale\": \"<string>\"\n    }\n  ],\n  \"actor\": {\n    \"is_transient\": \"<boolean>\",\n    \"distinct_id\": \"id1\",\n    \"in4\": \"<string>\"\n  },\n  \"data\": {\n    \"$attachments\": [\n      {\n        \"url\": \"<uri>\",\n        \"filename\": \"<string>\",\n        \"ignore_if_error\": \"<boolean>\"\n      },\n      {\n        \"url\": \"<uri>\",\n        \"filename\": \"<string>\",\n        \"ignore_if_error\": \"<boolean>\"\n      }\n    ],\n    \"proidentf\": \"<string>\",\n    \"proident_c45\": \"<string>\"\n  },\n  \"tenant_id\": \"<string>\",\n  \"$idempotency_key\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/trigger/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "trigger",
+                    ""
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T03:06:29.000Z",
+              "updatedAt": "2026-07-28T03:06:29.000Z",
+              "uid": "35240-65abf3fd-5ad0-475e-b08b-f45061910d5f"
+            }
+          ],
+          "createdAt": "2026-07-28T03:06:29.000Z",
+          "updatedAt": "2026-07-28T03:06:29.000Z",
+          "uid": "35240-44a33af6-3008-4683-b2cb-680973e92fcf"
+        }
+      ],
+      "id": "0daf1563-426a-41d5-a442-a50353bb322c",
+      "createdAt": "2026-07-28T03:06:29.000Z",
+      "updatedAt": "2026-07-28T03:06:29.000Z",
+      "uid": "35240-0daf1563-426a-41d5-a442-a50353bb322c"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://hub.suprsend.com"
+    }
+  ]
+}

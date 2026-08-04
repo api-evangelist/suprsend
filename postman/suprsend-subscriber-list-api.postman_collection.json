@@ -1,0 +1,2377 @@
+{
+  "info": {
+    "_postman_id": "d379231c-d00c-4e27-9def-b4ba6778c4ef",
+    "name": "SuprSend Broadcast Subscriber List API",
+    "description": "APIs supported on suprsend platform",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:06:21.000Z",
+    "updatedAt": "2026-07-28T03:06:22.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d379231c-d00c-4e27-9def-b4ba6778c4ef"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "subscriber_list",
+          "item": [
+            {
+              "name": "{list_id}",
+              "item": [
+                {
+                  "name": "subscriber",
+                  "item": [
+                    {
+                      "name": "remove",
+                      "item": [
+                        {
+                          "name": "Remove Subscribers from List",
+                          "id": "3ba4fca2-8bd2-453e-bfa1-449e37961099",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"distinct_ids\": [\n    \"_distinct_id1_\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/subscriber_list/:list_id/subscriber/remove/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "subscriber_list",
+                                ":list_id",
+                                "subscriber",
+                                "remove",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "id": "d23e8fb4-e89a-4934-80e4-c51609c85536",
+                                  "key": "list_id",
+                                  "value": "_list_id_",
+                                  "description": "(Required) Unique string identifier of the list to which user needs to be updated"
+                                }
+                              ]
+                            },
+                            "description": "API to remove users from a list by passing their distinct_ids."
+                          },
+                          "response": [
+                            {
+                              "id": "cb28ecd4-9b12-429b-9353-fa7116e37cff",
+                              "name": "201",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"distinct_ids\": [\n    \"_distinct_id1_\"\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/subscriber_list/:list_id/subscriber/remove/",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "subscriber_list",
+                                    ":list_id",
+                                    "subscriber",
+                                    "remove",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "list_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Created",
+                              "code": 201,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"success\": \"<boolean>\",\n  \"affected_count\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T03:06:22.000Z",
+                              "updatedAt": "2026-07-28T03:06:22.000Z",
+                              "uid": "35240-cb28ecd4-9b12-429b-9353-fa7116e37cff"
+                            },
+                            {
+                              "id": "54a60009-d3c3-443c-88ff-640c282992ff",
+                              "name": "404",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"distinct_ids\": [\n    \"_distinct_id1_\"\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/subscriber_list/:list_id/subscriber/remove/",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "subscriber_list",
+                                    ":list_id",
+                                    "subscriber",
+                                    "remove",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "list_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T03:06:22.000Z",
+                              "updatedAt": "2026-07-28T03:06:22.000Z",
+                              "uid": "35240-54a60009-d3c3-443c-88ff-640c282992ff"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:06:22.000Z",
+                          "updatedAt": "2026-07-28T03:06:22.000Z",
+                          "uid": "35240-3ba4fca2-8bd2-453e-bfa1-449e37961099"
+                        }
+                      ],
+                      "id": "e22bae91-f1e1-4322-ad99-60ce127c962c",
+                      "createdAt": "2026-07-28T03:06:22.000Z",
+                      "updatedAt": "2026-07-28T03:06:22.000Z",
+                      "uid": "35240-e22bae91-f1e1-4322-ad99-60ce127c962c"
+                    },
+                    {
+                      "name": "add",
+                      "item": [
+                        {
+                          "name": "Add Users to List",
+                          "id": "273ca04a-a510-4cd4-b8ba-103d659d93c8",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"distinct_ids\": [\n    \"_distinct_id1_\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/subscriber_list/:list_id/subscriber/add/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "subscriber_list",
+                                ":list_id",
+                                "subscriber",
+                                "add",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "id": "c163d4a6-a315-4feb-877e-53f8da9beddf",
+                                  "key": "list_id",
+                                  "value": "_list_id_",
+                                  "description": "(Required) Unique string identifier of the list to which user needs to be updated"
+                                }
+                              ]
+                            },
+                            "description": "API to add users to the list by passing their distinct_ids."
+                          },
+                          "response": [
+                            {
+                              "id": "b014bbf1-fe40-4b39-a35c-ba4a01edbcca",
+                              "name": "201",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"distinct_ids\": [\n    \"_distinct_id1_\"\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/subscriber_list/:list_id/subscriber/add/",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "subscriber_list",
+                                    ":list_id",
+                                    "subscriber",
+                                    "add",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "list_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Created",
+                              "code": 201,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"success\": \"<boolean>\",\n  \"affected_count\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T03:06:22.000Z",
+                              "updatedAt": "2026-07-28T03:06:22.000Z",
+                              "uid": "35240-b014bbf1-fe40-4b39-a35c-ba4a01edbcca"
+                            },
+                            {
+                              "id": "e06ad24b-95c6-4492-adb2-c8cce5475830",
+                              "name": "404",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"distinct_ids\": [\n    \"_distinct_id1_\"\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/subscriber_list/:list_id/subscriber/add/",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "subscriber_list",
+                                    ":list_id",
+                                    "subscriber",
+                                    "add",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "list_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T03:06:22.000Z",
+                              "updatedAt": "2026-07-28T03:06:22.000Z",
+                              "uid": "35240-e06ad24b-95c6-4492-adb2-c8cce5475830"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:06:22.000Z",
+                          "updatedAt": "2026-07-28T03:06:22.000Z",
+                          "uid": "35240-273ca04a-a510-4cd4-b8ba-103d659d93c8"
+                        }
+                      ],
+                      "id": "eb7b5b78-51fd-446b-8dfb-718dfb55c44b",
+                      "createdAt": "2026-07-28T03:06:22.000Z",
+                      "updatedAt": "2026-07-28T03:06:22.000Z",
+                      "uid": "35240-eb7b5b78-51fd-446b-8dfb-718dfb55c44b"
+                    },
+                    {
+                      "name": "Get list subscribers",
+                      "id": "70196430-3308-440f-94fe-62c94dbe8009",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/subscriber_list/:list_id/subscriber/?limit=20&before=<string>&after=<string>&sort=-id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "subscriber_list",
+                            ":list_id",
+                            "subscriber",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "key": "limit",
+                              "value": "20"
+                            },
+                            {
+                              "description": "the 'id' before which the results need to be fetched",
+                              "key": "before",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "the 'id' after which the results need to be fetched",
+                              "key": "after",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "the sort order, ascending or descending, here it's decided by 'id': ascending and '-id': descending",
+                              "key": "sort",
+                              "value": "-id"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "1b6c041f-b248-45f1-bbe0-11ec4de1f0cd",
+                              "key": "list_id",
+                              "value": "list_id",
+                              "description": "(Required) The list_id of your subscriber list"
+                            }
+                          ]
+                        },
+                        "description": "API to fetch a cursor-based paginated list of all users in the list."
+                      },
+                      "response": [
+                        {
+                          "id": "13368873-4aef-48e9-be58-6d401cfaac28",
+                          "name": "200",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/subscriber_list/:list_id/subscriber/?limit=20&before=<string>&after=<string>&sort=-id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "subscriber_list",
+                                ":list_id",
+                                "subscriber",
+                                ""
+                              ],
+                              "query": [
+                                {
+                                  "key": "limit",
+                                  "value": "20"
+                                },
+                                {
+                                  "description": "the 'id' before which the results need to be fetched",
+                                  "key": "before",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "the 'id' after which the results need to be fetched",
+                                  "key": "after",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "the sort order, ascending or descending, here it's decided by 'id': ascending and '-id': descending",
+                                  "key": "sort",
+                                  "value": "-id"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "list_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"meta\": {\n    \"limit\": 20,\n    \"count\": \"<integer>\",\n    \"before\": \"<string>\",\n    \"after\": \"<string>\",\n    \"has_prev\": \"<boolean>\",\n    \"has_next\": \"<boolean>\"\n  },\n  \"results\": [\n    {\n      \"id\": \"<string>\",\n      \"distinct_id\": \"<string>\",\n      \"created_at\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"distinct_id\": \"<string>\",\n      \"created_at\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T03:06:22.000Z",
+                          "updatedAt": "2026-07-28T03:06:22.000Z",
+                          "uid": "35240-13368873-4aef-48e9-be58-6d401cfaac28"
+                        },
+                        {
+                          "id": "25beef16-90ea-4583-b0be-34742606bf76",
+                          "name": "404 - Not Found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/subscriber_list/:list_id/subscriber/?limit=20&before=<string>&after=<string>&sort=-id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "subscriber_list",
+                                ":list_id",
+                                "subscriber",
+                                ""
+                              ],
+                              "query": [
+                                {
+                                  "key": "limit",
+                                  "value": "20"
+                                },
+                                {
+                                  "description": "the 'id' before which the results need to be fetched",
+                                  "key": "before",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "the 'id' after which the results need to be fetched",
+                                  "key": "after",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "the sort order, ascending or descending, here it's decided by 'id': ascending and '-id': descending",
+                                  "key": "sort",
+                                  "value": "-id"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "list_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{}",
+                          "createdAt": "2026-07-28T03:06:22.000Z",
+                          "updatedAt": "2026-07-28T03:06:22.000Z",
+                          "uid": "35240-25beef16-90ea-4583-b0be-34742606bf76"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:06:22.000Z",
+                      "updatedAt": "2026-07-28T03:06:22.000Z",
+                      "uid": "35240-70196430-3308-440f-94fe-62c94dbe8009"
+                    }
+                  ],
+                  "id": "c7b951a9-7b87-4294-a5f6-145ea2b62bb0",
+                  "createdAt": "2026-07-28T03:06:22.000Z",
+                  "updatedAt": "2026-07-28T03:06:22.000Z",
+                  "uid": "35240-c7b951a9-7b87-4294-a5f6-145ea2b62bb0"
+                },
+                {
+                  "name": "delete",
+                  "item": [
+                    {
+                      "name": "Delete List",
+                      "id": "f94127f4-3ce6-4afd-8ca6-bdf8512df0dc",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/subscriber_list/:list_id/delete/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "subscriber_list",
+                            ":list_id",
+                            "delete",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "id": "2e0ca911-52bb-4a02-8a70-fef2190a3061",
+                              "key": "list_id",
+                              "value": "<string>",
+                              "description": "(Required) Unique string identifier of the list which you want to delete"
+                            }
+                          ]
+                        },
+                        "description": "API to permanently delete a list."
+                      },
+                      "response": [
+                        {
+                          "id": "826bd6d3-5f9d-43f7-b580-bf58f1b42d37",
+                          "name": "200",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/subscriber_list/:list_id/delete/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "subscriber_list",
+                                ":list_id",
+                                "delete",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "list_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{}",
+                          "createdAt": "2026-07-28T03:06:22.000Z",
+                          "updatedAt": "2026-07-28T03:06:22.000Z",
+                          "uid": "35240-826bd6d3-5f9d-43f7-b580-bf58f1b42d37"
+                        },
+                        {
+                          "id": "77373415-6d78-432c-b0a3-4b4e190a6e2b",
+                          "name": "404 - Not Found",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/subscriber_list/:list_id/delete/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "subscriber_list",
+                                ":list_id",
+                                "delete",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "list_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{}",
+                          "createdAt": "2026-07-28T03:06:22.000Z",
+                          "updatedAt": "2026-07-28T03:06:22.000Z",
+                          "uid": "35240-77373415-6d78-432c-b0a3-4b4e190a6e2b"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:06:22.000Z",
+                      "updatedAt": "2026-07-28T03:06:22.000Z",
+                      "uid": "35240-f94127f4-3ce6-4afd-8ca6-bdf8512df0dc"
+                    }
+                  ],
+                  "id": "58125d88-9bf5-41da-9f1a-2d6a5b6db9fd",
+                  "createdAt": "2026-07-28T03:06:22.000Z",
+                  "updatedAt": "2026-07-28T03:06:22.000Z",
+                  "uid": "35240-58125d88-9bf5-41da-9f1a-2d6a5b6db9fd"
+                },
+                {
+                  "name": "version",
+                  "item": [
+                    {
+                      "name": "{version_id}",
+                      "item": [
+                        {
+                          "name": "subscriber",
+                          "item": [
+                            {
+                              "name": "add",
+                              "item": [
+                                {
+                                  "name": "Add Users to Draft List",
+                                  "id": "9df4585a-bf8a-4785-bbe0-af8df051c420",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "bearer",
+                                      "bearer": [
+                                        {
+                                          "key": "token",
+                                          "value": "{{bearerToken}}",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"distinct_ids\": [\n    \"user1\"\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/subscriber_list/:list_id/version/:version_id/subscriber/add/",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "subscriber_list",
+                                        ":list_id",
+                                        "version",
+                                        ":version_id",
+                                        "subscriber",
+                                        "add",
+                                        ""
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "83f6588c-e914-41e5-890b-534eb500d647",
+                                          "key": "list_id",
+                                          "value": "_list_id_",
+                                          "description": "(Required) Unique string identifier of the list to which user needs to be updated"
+                                        },
+                                        {
+                                          "id": "356026b2-2188-4864-baae-25c4eb480799",
+                                          "key": "version_id",
+                                          "value": "__version_id__",
+                                          "description": "(Required) Unique string identifier of the draft version of the list to which user needs to be updated"
+                                        }
+                                      ]
+                                    },
+                                    "description": "API to add users in the draft list by passing its `version_id` returned in [Start Sync](/reference/start-sync) API response."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "a20c5d21-dc6e-4e06-a891-c11361e43444",
+                                      "name": "201",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"distinct_ids\": [\n    \"user1\"\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/v1/subscriber_list/:list_id/version/:version_id/subscriber/add/",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "v1",
+                                            "subscriber_list",
+                                            ":list_id",
+                                            "version",
+                                            ":version_id",
+                                            "subscriber",
+                                            "add",
+                                            ""
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "list_id"
+                                            },
+                                            {
+                                              "key": "version_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Created",
+                                      "code": 201,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"success\": \"<boolean>\",\n  \"affected_count\": \"<integer>\"\n}",
+                                      "createdAt": "2026-07-28T03:06:22.000Z",
+                                      "updatedAt": "2026-07-28T03:06:22.000Z",
+                                      "uid": "35240-a20c5d21-dc6e-4e06-a891-c11361e43444"
+                                    },
+                                    {
+                                      "id": "1ff8e146-e67c-4103-b850-8eeeb68a7c9e",
+                                      "name": "404 - Not Found",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"distinct_ids\": [\n    \"user1\"\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/v1/subscriber_list/:list_id/version/:version_id/subscriber/add/",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "v1",
+                                            "subscriber_list",
+                                            ":list_id",
+                                            "version",
+                                            ":version_id",
+                                            "subscriber",
+                                            "add",
+                                            ""
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "list_id"
+                                            },
+                                            {
+                                              "key": "version_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Found",
+                                      "code": 404,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{}",
+                                      "createdAt": "2026-07-28T03:06:22.000Z",
+                                      "updatedAt": "2026-07-28T03:06:22.000Z",
+                                      "uid": "35240-1ff8e146-e67c-4103-b850-8eeeb68a7c9e"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T03:06:22.000Z",
+                                  "updatedAt": "2026-07-28T03:06:22.000Z",
+                                  "uid": "35240-9df4585a-bf8a-4785-bbe0-af8df051c420"
+                                }
+                              ],
+                              "id": "30b536a7-5916-45f2-a5fd-6670f3fe9677",
+                              "createdAt": "2026-07-28T03:06:22.000Z",
+                              "updatedAt": "2026-07-28T03:06:22.000Z",
+                              "uid": "35240-30b536a7-5916-45f2-a5fd-6670f3fe9677"
+                            },
+                            {
+                              "name": "remove",
+                              "item": [
+                                {
+                                  "name": "Remove Subscribers from Draft List",
+                                  "id": "518d5f8e-c3c5-46c7-b965-1bee3023d497",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "bearer",
+                                      "bearer": [
+                                        {
+                                          "key": "token",
+                                          "value": "{{bearerToken}}",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"distinct_ids\": [\n    \"user1\"\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/subscriber_list/:list_id/version/:version_id/subscriber/remove/",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "subscriber_list",
+                                        ":list_id",
+                                        "version",
+                                        ":version_id",
+                                        "subscriber",
+                                        "remove",
+                                        ""
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "1971aa86-71e7-4f69-90f4-3d7637132ff3",
+                                          "key": "list_id",
+                                          "value": "_list_id_",
+                                          "description": "(Required) Unique string identifier of the list to which user needs to be updated"
+                                        },
+                                        {
+                                          "id": "1d53e758-6d33-437f-9365-0d4ba238ab4a",
+                                          "key": "version_id",
+                                          "value": "__version_id__",
+                                          "description": "(Required) Unique string identifier of the draft version of the list to which user needs to be updated"
+                                        }
+                                      ]
+                                    },
+                                    "description": "API to remove users from the draft list by passing its `version_id` returned in [Start Sync](/reference/start-sync) API response."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "ccf560ab-de1a-44fc-91d3-839ae5638e43",
+                                      "name": "201",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"distinct_ids\": [\n    \"user1\"\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/v1/subscriber_list/:list_id/version/:version_id/subscriber/remove/",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "v1",
+                                            "subscriber_list",
+                                            ":list_id",
+                                            "version",
+                                            ":version_id",
+                                            "subscriber",
+                                            "remove",
+                                            ""
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "list_id"
+                                            },
+                                            {
+                                              "key": "version_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Created",
+                                      "code": 201,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"success\": \"<boolean>\",\n  \"affected_count\": \"<integer>\"\n}",
+                                      "createdAt": "2026-07-28T03:06:22.000Z",
+                                      "updatedAt": "2026-07-28T03:06:22.000Z",
+                                      "uid": "35240-ccf560ab-de1a-44fc-91d3-839ae5638e43"
+                                    },
+                                    {
+                                      "id": "84e8bab0-443a-489f-b06d-bd8c91b04c73",
+                                      "name": "404 - Not Found",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"distinct_ids\": [\n    \"user1\"\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/v1/subscriber_list/:list_id/version/:version_id/subscriber/remove/",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "v1",
+                                            "subscriber_list",
+                                            ":list_id",
+                                            "version",
+                                            ":version_id",
+                                            "subscriber",
+                                            "remove",
+                                            ""
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "list_id"
+                                            },
+                                            {
+                                              "key": "version_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Found",
+                                      "code": 404,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{}",
+                                      "createdAt": "2026-07-28T03:06:22.000Z",
+                                      "updatedAt": "2026-07-28T03:06:22.000Z",
+                                      "uid": "35240-84e8bab0-443a-489f-b06d-bd8c91b04c73"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T03:06:22.000Z",
+                                  "updatedAt": "2026-07-28T03:06:22.000Z",
+                                  "uid": "35240-518d5f8e-c3c5-46c7-b965-1bee3023d497"
+                                }
+                              ],
+                              "id": "26a37e7b-9975-4157-97df-038ad3b191a9",
+                              "createdAt": "2026-07-28T03:06:22.000Z",
+                              "updatedAt": "2026-07-28T03:06:22.000Z",
+                              "uid": "35240-26a37e7b-9975-4157-97df-038ad3b191a9"
+                            }
+                          ],
+                          "id": "d41965f8-90cd-4cd4-a7e9-c53bbfb02485",
+                          "createdAt": "2026-07-28T03:06:22.000Z",
+                          "updatedAt": "2026-07-28T03:06:22.000Z",
+                          "uid": "35240-d41965f8-90cd-4cd4-a7e9-c53bbfb02485"
+                        },
+                        {
+                          "name": "delete",
+                          "item": [
+                            {
+                              "name": "Delete Draft List",
+                              "id": "04236531-2d1c-449c-a427-19e759ecdd8d",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/subscriber_list/:list_id/version/:version_id/delete/",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "subscriber_list",
+                                    ":list_id",
+                                    "version",
+                                    ":version_id",
+                                    "delete",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "1a65cf67-c8d4-465f-8845-d566591330ea",
+                                      "key": "list_id",
+                                      "value": "<string>",
+                                      "description": "(Required) Unique string identifier of the list which you want to delete"
+                                    },
+                                    {
+                                      "id": "e52b37b4-bd6b-4d17-b272-b9441103f53c",
+                                      "key": "version_id",
+                                      "value": "__version_id__",
+                                      "description": "(Required) Unique identifier of the draft version of the list which needs to be deleted"
+                                    }
+                                  ]
+                                },
+                                "description": "API to delete draft version of the list. Use this to discard test or interim versions before publishing the final list."
+                              },
+                              "response": [
+                                {
+                                  "id": "955ffb7b-3b0a-4a0e-bc4e-da8a98d6d2af",
+                                  "name": "200",
+                                  "originalRequest": {
+                                    "method": "PATCH",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/subscriber_list/:list_id/version/:version_id/delete/",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "subscriber_list",
+                                        ":list_id",
+                                        "version",
+                                        ":version_id",
+                                        "delete",
+                                        ""
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "list_id"
+                                        },
+                                        {
+                                          "key": "version_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{}",
+                                  "createdAt": "2026-07-28T03:06:22.000Z",
+                                  "updatedAt": "2026-07-28T03:06:22.000Z",
+                                  "uid": "35240-955ffb7b-3b0a-4a0e-bc4e-da8a98d6d2af"
+                                },
+                                {
+                                  "id": "2be58eb6-4815-4d91-9c1b-2f2c8fbe3ea5",
+                                  "name": "404 - Not Found",
+                                  "originalRequest": {
+                                    "method": "PATCH",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/subscriber_list/:list_id/version/:version_id/delete/",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "subscriber_list",
+                                        ":list_id",
+                                        "version",
+                                        ":version_id",
+                                        "delete",
+                                        ""
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "list_id"
+                                        },
+                                        {
+                                          "key": "version_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{}",
+                                  "createdAt": "2026-07-28T03:06:22.000Z",
+                                  "updatedAt": "2026-07-28T03:06:22.000Z",
+                                  "uid": "35240-2be58eb6-4815-4d91-9c1b-2f2c8fbe3ea5"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T03:06:22.000Z",
+                              "updatedAt": "2026-07-28T03:06:22.000Z",
+                              "uid": "35240-04236531-2d1c-449c-a427-19e759ecdd8d"
+                            }
+                          ],
+                          "id": "79e61d26-d4c6-4177-85ca-b056f8a567a0",
+                          "createdAt": "2026-07-28T03:06:22.000Z",
+                          "updatedAt": "2026-07-28T03:06:22.000Z",
+                          "uid": "35240-79e61d26-d4c6-4177-85ca-b056f8a567a0"
+                        },
+                        {
+                          "name": "finish_sync",
+                          "item": [
+                            {
+                              "name": "Finish Sync",
+                              "id": "4b5c4c03-c03e-4052-ac58-9484be22f2ee",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/subscriber_list/:list_id/version/:version_id/finish_sync/",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "subscriber_list",
+                                    ":list_id",
+                                    "version",
+                                    ":version_id",
+                                    "finish_sync",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "ff7042d0-2692-4616-b776-33a525660f74",
+                                      "key": "list_id",
+                                      "value": "_list_id_",
+                                      "description": "(Required) Unique string identifier of the list"
+                                    },
+                                    {
+                                      "id": "f501e30d-f268-47bb-b5f7-fdfcdbb9b786",
+                                      "key": "version_id",
+                                      "value": "__version_id__",
+                                      "description": "(Required) Unique string identifier of the draft version of the list which needs to be made active(live)"
+                                    }
+                                  ]
+                                },
+                                "description": "API to finish sync and make the draft list version live."
+                              },
+                              "response": [
+                                {
+                                  "id": "5f20e75e-fcc5-4a60-8eca-0030c0b464bc",
+                                  "name": "201",
+                                  "originalRequest": {
+                                    "method": "PATCH",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/subscriber_list/:list_id/version/:version_id/finish_sync/",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "subscriber_list",
+                                        ":list_id",
+                                        "version",
+                                        ":version_id",
+                                        "finish_sync",
+                                        ""
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "list_id"
+                                        },
+                                        {
+                                          "key": "version_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Created",
+                                  "code": 201,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"version_id\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T03:06:22.000Z",
+                                  "updatedAt": "2026-07-28T03:06:22.000Z",
+                                  "uid": "35240-5f20e75e-fcc5-4a60-8eca-0030c0b464bc"
+                                },
+                                {
+                                  "id": "ec5c557c-8025-44e1-8470-86a7b48e09d9",
+                                  "name": "400",
+                                  "originalRequest": {
+                                    "method": "PATCH",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/subscriber_list/:list_id/version/:version_id/finish_sync/",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "subscriber_list",
+                                        ":list_id",
+                                        "version",
+                                        ":version_id",
+                                        "finish_sync",
+                                        ""
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "list_id"
+                                        },
+                                        {
+                                          "key": "version_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{}",
+                                  "createdAt": "2026-07-28T03:06:22.000Z",
+                                  "updatedAt": "2026-07-28T03:06:22.000Z",
+                                  "uid": "35240-ec5c557c-8025-44e1-8470-86a7b48e09d9"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T03:06:22.000Z",
+                              "updatedAt": "2026-07-28T03:06:22.000Z",
+                              "uid": "35240-4b5c4c03-c03e-4052-ac58-9484be22f2ee"
+                            }
+                          ],
+                          "id": "318dfe80-018a-41b3-a65e-ea320a252041",
+                          "createdAt": "2026-07-28T03:06:22.000Z",
+                          "updatedAt": "2026-07-28T03:06:22.000Z",
+                          "uid": "35240-318dfe80-018a-41b3-a65e-ea320a252041"
+                        }
+                      ],
+                      "id": "48f9da55-2e88-41ae-ab1e-a1a58761e465",
+                      "createdAt": "2026-07-28T03:06:22.000Z",
+                      "updatedAt": "2026-07-28T03:06:22.000Z",
+                      "uid": "35240-48f9da55-2e88-41ae-ab1e-a1a58761e465"
+                    }
+                  ],
+                  "id": "d977f1cb-5295-4461-ac29-bf863c76c8f9",
+                  "createdAt": "2026-07-28T03:06:22.000Z",
+                  "updatedAt": "2026-07-28T03:06:22.000Z",
+                  "uid": "35240-d977f1cb-5295-4461-ac29-bf863c76c8f9"
+                },
+                {
+                  "name": "start_sync",
+                  "item": [
+                    {
+                      "name": "Start Sync",
+                      "id": "e1811ac3-3ef2-47ef-b480-1f645f1a9050",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/subscriber_list/:list_id/start_sync/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "subscriber_list",
+                            ":list_id",
+                            "start_sync",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "id": "98d029a9-f8af-4cfa-b8c2-863e7a92b3e6",
+                              "key": "list_id",
+                              "value": "_list_id_",
+                              "description": "(Required) Unique identifier of the list on which the sync needs to start to create a draft version"
+                            }
+                          ]
+                        },
+                        "description": "Creates an empty draft version of the list where you can update users to be replaced without affecting the live version."
+                      },
+                      "response": [
+                        {
+                          "id": "241e95e0-48c4-4fe9-95e5-3440766ce43a",
+                          "name": "201",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/subscriber_list/:list_id/start_sync/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "subscriber_list",
+                                ":list_id",
+                                "start_sync",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "list_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"version_id\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:06:22.000Z",
+                          "updatedAt": "2026-07-28T03:06:22.000Z",
+                          "uid": "35240-241e95e0-48c4-4fe9-95e5-3440766ce43a"
+                        },
+                        {
+                          "id": "04636dd4-3ae7-4dbc-8396-5b8b742cb6cc",
+                          "name": "404",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/subscriber_list/:list_id/start_sync/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "subscriber_list",
+                                ":list_id",
+                                "start_sync",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "list_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{}",
+                          "createdAt": "2026-07-28T03:06:22.000Z",
+                          "updatedAt": "2026-07-28T03:06:22.000Z",
+                          "uid": "35240-04636dd4-3ae7-4dbc-8396-5b8b742cb6cc"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:06:22.000Z",
+                      "updatedAt": "2026-07-28T03:06:22.000Z",
+                      "uid": "35240-e1811ac3-3ef2-47ef-b480-1f645f1a9050"
+                    }
+                  ],
+                  "id": "f3d312b9-d878-455d-83fa-5d624a216911",
+                  "createdAt": "2026-07-28T03:06:22.000Z",
+                  "updatedAt": "2026-07-28T03:06:22.000Z",
+                  "uid": "35240-f3d312b9-d878-455d-83fa-5d624a216911"
+                },
+                {
+                  "name": "Get List configuration",
+                  "id": "38ffe70a-536a-4c45-9396-79be97780f6b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/subscriber_list/:list_id/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "subscriber_list",
+                        ":list_id",
+                        ""
+                      ],
+                      "variable": [
+                        {
+                          "id": "ff896a6e-1f08-40e4-8a28-296cd5ea2d7f",
+                          "key": "list_id",
+                          "value": "_list_id_",
+                          "description": "(Required) Unique string identifier of the list."
+                        }
+                      ]
+                    },
+                    "description": "API to fetch list metadata like list type, count, source, and status. Doesn't include users in the list."
+                  },
+                  "response": [
+                    {
+                      "id": "aa68cdfa-cfb3-425a-9f2b-8bff2874846a",
+                      "name": "200",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/subscriber_list/:list_id/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "subscriber_list",
+                            ":list_id",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "list_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"list_id\": \"<string>\",\n  \"list_name\": \"<string>\",\n  \"list_description\": \"<string>\",\n  \"list_type\": \"query_based\",\n  \"subscribers_count\": \"<integer>\",\n  \"source\": \"<string>\",\n  \"is_readonly\": \"<boolean>\",\n  \"status\": \"<string>\",\n  \"track_user_entry\": \"<boolean>\",\n  \"track_user_exit\": \"<boolean>\",\n  \"requested_for_delete\": \"<boolean>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"drafts\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:06:22.000Z",
+                      "updatedAt": "2026-07-28T03:06:22.000Z",
+                      "uid": "35240-aa68cdfa-cfb3-425a-9f2b-8bff2874846a"
+                    },
+                    {
+                      "id": "fe434c75-969e-496b-8842-2cabb69ba49f",
+                      "name": "404",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/subscriber_list/:list_id/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "subscriber_list",
+                            ":list_id",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "list_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:06:22.000Z",
+                      "updatedAt": "2026-07-28T03:06:22.000Z",
+                      "uid": "35240-fe434c75-969e-496b-8842-2cabb69ba49f"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:06:22.000Z",
+                  "updatedAt": "2026-07-28T03:06:22.000Z",
+                  "uid": "35240-38ffe70a-536a-4c45-9396-79be97780f6b"
+                }
+              ],
+              "id": "6d3ab0b3-2190-496a-b401-69e90854a9de",
+              "createdAt": "2026-07-28T03:06:22.000Z",
+              "updatedAt": "2026-07-28T03:06:22.000Z",
+              "uid": "35240-6d3ab0b3-2190-496a-b401-69e90854a9de"
+            },
+            {
+              "name": "Get all Lists",
+              "id": "bca08223-134e-45d2-88b0-9c4573982276",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/subscriber_list/?limit=20&offset=0",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "subscriber_list",
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "number of results to be returned in API response",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "starting position of tenant list",
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ]
+                },
+                "description": "API to fetch a paginated list of all lists created in your workspace."
+              },
+              "response": [
+                {
+                  "id": "b2c74da3-c430-4fcf-bc56-f1d7a7a7da60",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/subscriber_list/?limit=20&offset=0",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "subscriber_list",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "number of results to be returned in API response",
+                          "key": "limit",
+                          "value": "20"
+                        },
+                        {
+                          "description": "starting position of tenant list",
+                          "key": "offset",
+                          "value": "0"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"meta\": {\n    \"count\": \"<integer>\",\n    \"limit\": \"<integer>\",\n    \"offset\": \"<integer>\"\n  }\n}",
+                  "createdAt": "2026-07-28T03:06:22.000Z",
+                  "updatedAt": "2026-07-28T03:06:22.000Z",
+                  "uid": "35240-b2c74da3-c430-4fcf-bc56-f1d7a7a7da60"
+                },
+                {
+                  "id": "85a82dca-8668-450d-ab4b-f5ea15ce4a47",
+                  "name": "401",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/subscriber_list/?limit=20&offset=0",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "subscriber_list",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "number of results to be returned in API response",
+                          "key": "limit",
+                          "value": "20"
+                        },
+                        {
+                          "description": "starting position of tenant list",
+                          "key": "offset",
+                          "value": "0"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T03:06:22.000Z",
+                  "updatedAt": "2026-07-28T03:06:22.000Z",
+                  "uid": "35240-85a82dca-8668-450d-ab4b-f5ea15ce4a47"
+                }
+              ],
+              "createdAt": "2026-07-28T03:06:22.000Z",
+              "updatedAt": "2026-07-28T03:06:22.000Z",
+              "uid": "35240-bca08223-134e-45d2-88b0-9c4573982276"
+            },
+            {
+              "name": "Create a List",
+              "id": "fef561c2-266c-4393-98e9-6046faf82038",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"list_id\": \"_list_id_\",\n  \"list_name\": \"_list_name_\",\n  \"list_description\": \"_some sample description_\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/subscriber_list/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "subscriber_list",
+                    ""
+                  ]
+                },
+                "description": "API to create / manage lists to send notification to a bulk list of users."
+              },
+              "response": [
+                {
+                  "id": "327eb37a-c379-4a52-b3b8-6ad5d3576d91",
+                  "name": "201",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"list_id\": \"_list_id_\",\n  \"list_name\": \"_list_name_\",\n  \"list_description\": \"_some sample description_\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/subscriber_list/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "subscriber_list",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"list_id\": \"<string>\",\n  \"list_name\": \"<string>\",\n  \"list_description\": \"<string>\",\n  \"list_type\": \"query_based\",\n  \"subscribers_count\": \"<integer>\",\n  \"source\": \"<string>\",\n  \"is_readonly\": \"<boolean>\",\n  \"status\": \"<string>\",\n  \"track_user_entry\": \"<boolean>\",\n  \"track_user_exit\": \"<boolean>\",\n  \"requested_for_delete\": \"<boolean>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"drafts\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:06:22.000Z",
+                  "updatedAt": "2026-07-28T03:06:22.000Z",
+                  "uid": "35240-327eb37a-c379-4a52-b3b8-6ad5d3576d91"
+                },
+                {
+                  "id": "96c34d90-20d5-4db4-9114-90b3744bed84",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"list_id\": \"_list_id_\",\n  \"list_name\": \"_list_name_\",\n  \"list_description\": \"_some sample description_\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/subscriber_list/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "subscriber_list",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T03:06:22.000Z",
+                  "updatedAt": "2026-07-28T03:06:22.000Z",
+                  "uid": "35240-96c34d90-20d5-4db4-9114-90b3744bed84"
+                }
+              ],
+              "createdAt": "2026-07-28T03:06:22.000Z",
+              "updatedAt": "2026-07-28T03:06:22.000Z",
+              "uid": "35240-fef561c2-266c-4393-98e9-6046faf82038"
+            }
+          ],
+          "id": "c6d1c9cf-c841-4f41-83bd-f34c2ff18c98",
+          "createdAt": "2026-07-28T03:06:22.000Z",
+          "updatedAt": "2026-07-28T03:06:22.000Z",
+          "uid": "35240-c6d1c9cf-c841-4f41-83bd-f34c2ff18c98"
+        }
+      ],
+      "id": "2025d494-39ea-4550-814f-378571e19084",
+      "createdAt": "2026-07-28T03:06:22.000Z",
+      "updatedAt": "2026-07-28T03:06:22.000Z",
+      "uid": "35240-2025d494-39ea-4550-814f-378571e19084"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://hub.suprsend.com"
+    }
+  ]
+}

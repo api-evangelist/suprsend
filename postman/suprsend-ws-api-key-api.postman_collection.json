@@ -1,0 +1,881 @@
+{
+  "info": {
+    "_postman_id": "d2472002-7cbd-49f7-8495-445410d56d82",
+    "name": "SuprSend Broadcast Ws Api Key API",
+    "description": "APIs supported on suprsend platform",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:06:35.000Z",
+    "updatedAt": "2026-07-28T03:06:35.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d2472002-7cbd-49f7-8495-445410d56d82"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "{workspace}",
+          "item": [
+            {
+              "name": "ws_api_key",
+              "item": [
+                {
+                  "name": "{api_key_id}",
+                  "item": [
+                    {
+                      "name": "Delete API Key",
+                      "id": "d86723a0-0518-4dac-b8aa-af86d3b6d756",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "ServiceToken <token>",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "https://management-api.suprsend.com/v1/:workspace/ws_api_key/:api_key_id/",
+                          "protocol": "https",
+                          "host": [
+                            "management-api",
+                            "suprsend",
+                            "com"
+                          ],
+                          "path": [
+                            "v1",
+                            ":workspace",
+                            "ws_api_key",
+                            ":api_key_id",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "id": "2e4b971c-35d0-45da-a449-66f39d1f2e87",
+                              "key": "workspace",
+                              "value": "<string>",
+                              "description": "(Required) Workspace slug (e.g. `staging`, `production`)."
+                            },
+                            {
+                              "id": "9a488b3e-20dd-43b5-829b-6f847d116742",
+                              "key": "api_key_id",
+                              "value": "<string>",
+                              "description": "(Required) API key identifier (e.g. `ws_apik_...`)."
+                            }
+                          ]
+                        },
+                        "description": "Delete an API key by its `id` (e.g. `ws_apik_...`). Once disabled, the key can no longer authenticate requests."
+                      },
+                      "response": [
+                        {
+                          "id": "3345666c-62c3-44b9-9f1d-5817bc6dca7c",
+                          "name": "API key disabled - no response body.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "ServiceToken <token>",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "https://management-api.suprsend.com/v1/:workspace/ws_api_key/:api_key_id/",
+                              "protocol": "https",
+                              "host": [
+                                "management-api",
+                                "suprsend",
+                                "com"
+                              ],
+                              "path": [
+                                "v1",
+                                ":workspace",
+                                "ws_api_key",
+                                ":api_key_id",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "api_key_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:06:36.000Z",
+                          "updatedAt": "2026-07-28T03:06:36.000Z",
+                          "uid": "35240-3345666c-62c3-44b9-9f1d-5817bc6dca7c"
+                        },
+                        {
+                          "id": "4383dea7-6c0f-428c-9e50-989c774c42c1",
+                          "name": "Authentication failed",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "ServiceToken <token>",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "https://management-api.suprsend.com/v1/:workspace/ws_api_key/:api_key_id/",
+                              "protocol": "https",
+                              "host": [
+                                "management-api",
+                                "suprsend",
+                                "com"
+                              ],
+                              "path": [
+                                "v1",
+                                ":workspace",
+                                "ws_api_key",
+                                ":api_key_id",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "api_key_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:06:36.000Z",
+                          "updatedAt": "2026-07-28T03:06:36.000Z",
+                          "uid": "35240-4383dea7-6c0f-428c-9e50-989c774c42c1"
+                        },
+                        {
+                          "id": "97a5c1cc-b0b0-4b2b-98ad-fcdcbe95f8c1",
+                          "name": "Resource not found",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "ServiceToken <token>",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "https://management-api.suprsend.com/v1/:workspace/ws_api_key/:api_key_id/",
+                              "protocol": "https",
+                              "host": [
+                                "management-api",
+                                "suprsend",
+                                "com"
+                              ],
+                              "path": [
+                                "v1",
+                                ":workspace",
+                                "ws_api_key",
+                                ":api_key_id",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "api_key_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:06:36.000Z",
+                          "updatedAt": "2026-07-28T03:06:36.000Z",
+                          "uid": "35240-97a5c1cc-b0b0-4b2b-98ad-fcdcbe95f8c1"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:06:36.000Z",
+                      "updatedAt": "2026-07-28T03:06:36.000Z",
+                      "uid": "35240-d86723a0-0518-4dac-b8aa-af86d3b6d756"
+                    }
+                  ],
+                  "id": "8da03a74-94a6-47c1-9431-90d761d5884c",
+                  "createdAt": "2026-07-28T03:06:36.000Z",
+                  "updatedAt": "2026-07-28T03:06:36.000Z",
+                  "uid": "35240-8da03a74-94a6-47c1-9431-90d761d5884c"
+                },
+                {
+                  "name": "List Workspace API Keys",
+                  "id": "70283cb2-3cfc-4299-bb49-cec02f0224ce",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "ServiceToken <token>",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "https://management-api.suprsend.com/v1/:workspace/ws_api_key/",
+                      "protocol": "https",
+                      "host": [
+                        "management-api",
+                        "suprsend",
+                        "com"
+                      ],
+                      "path": [
+                        "v1",
+                        ":workspace",
+                        "ws_api_key",
+                        ""
+                      ],
+                      "variable": [
+                        {
+                          "id": "334f20ba-0649-4c61-8b79-9dc127fa9c4e",
+                          "key": "workspace",
+                          "value": "<string>",
+                          "description": "(Required) Workspace slug (e.g. `staging`, `production`)."
+                        }
+                      ]
+                    },
+                    "description": "List API keys scoped to a workspace. Secret values are never returned on list; only a masked preview is shown."
+                  },
+                  "response": [
+                    {
+                      "id": "70c3fdce-ec43-4f21-b2be-c8df49ec034a",
+                      "name": "Successfully retrieved API keys.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "ServiceToken <token>",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "https://management-api.suprsend.com/v1/:workspace/ws_api_key/",
+                          "protocol": "https",
+                          "host": [
+                            "management-api",
+                            "suprsend",
+                            "com"
+                          ],
+                          "path": [
+                            "v1",
+                            ":workspace",
+                            "ws_api_key",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"meta\": {\n    \"count\": \"<integer>\",\n    \"limit\": \"<integer>\",\n    \"offset\": \"<integer>\"\n  },\n  \"results\": [\n    {\n      \"id\": \"<string>\",\n      \"masked_api_key\": \"<string>\",\n      \"is_deleted\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"allowed_domains\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"created_at\": \"<dateTime>\",\n      \"created_by\": {\n        \"name\": \"<string>\",\n        \"email\": \"<string>\"\n      },\n      \"deleted_at\": \"<dateTime>\",\n      \"deleted_by\": {\n        \"name\": \"<string>\",\n        \"email\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"masked_api_key\": \"<string>\",\n      \"is_deleted\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"allowed_domains\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"created_at\": \"<dateTime>\",\n      \"created_by\": {\n        \"name\": \"<string>\",\n        \"email\": \"<string>\"\n      },\n      \"deleted_at\": \"<dateTime>\",\n      \"deleted_by\": {\n        \"name\": \"<string>\",\n        \"email\": \"<string>\"\n      }\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T03:06:36.000Z",
+                      "updatedAt": "2026-07-28T03:06:36.000Z",
+                      "uid": "35240-70c3fdce-ec43-4f21-b2be-c8df49ec034a"
+                    },
+                    {
+                      "id": "ce51f8e6-48c4-4cf6-9440-2a9cdb626762",
+                      "name": "Authentication failed",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "ServiceToken <token>",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "https://management-api.suprsend.com/v1/:workspace/ws_api_key/",
+                          "protocol": "https",
+                          "host": [
+                            "management-api",
+                            "suprsend",
+                            "com"
+                          ],
+                          "path": [
+                            "v1",
+                            ":workspace",
+                            "ws_api_key",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:06:36.000Z",
+                      "updatedAt": "2026-07-28T03:06:36.000Z",
+                      "uid": "35240-ce51f8e6-48c4-4cf6-9440-2a9cdb626762"
+                    },
+                    {
+                      "id": "912e4fa0-8334-4d48-bfa2-37483ae3657d",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "ServiceToken <token>",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "https://management-api.suprsend.com/v1/:workspace/ws_api_key/",
+                          "protocol": "https",
+                          "host": [
+                            "management-api",
+                            "suprsend",
+                            "com"
+                          ],
+                          "path": [
+                            "v1",
+                            ":workspace",
+                            "ws_api_key",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:06:36.000Z",
+                      "updatedAt": "2026-07-28T03:06:36.000Z",
+                      "uid": "35240-912e4fa0-8334-4d48-bfa2-37483ae3657d"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:06:36.000Z",
+                  "updatedAt": "2026-07-28T03:06:36.000Z",
+                  "uid": "35240-70283cb2-3cfc-4299-bb49-cec02f0224ce"
+                },
+                {
+                  "name": "Create Workspace API Key",
+                  "id": "d09cce14-93be-4a51-92e0-2c2f04b35b86",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "ServiceToken <token>",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "https://management-api.suprsend.com/v1/:workspace/ws_api_key/",
+                      "protocol": "https",
+                      "host": [
+                        "management-api",
+                        "suprsend",
+                        "com"
+                      ],
+                      "path": [
+                        "v1",
+                        ":workspace",
+                        "ws_api_key",
+                        ""
+                      ],
+                      "variable": [
+                        {
+                          "id": "d07401de-5cae-461a-96c9-6e1c9ff132a0",
+                          "key": "workspace",
+                          "value": "<string>",
+                          "description": "(Required) Workspace slug (e.g. `staging`, `production`)."
+                        }
+                      ]
+                    },
+                    "description": "Create a new API key scoped to this workspace.\n\nThe full `api_key` secret is returned **only once** in the create response. Store it securely - it cannot be retrieved later.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "907bf1dc-e189-44c8-8984-f8c8605ccfc0",
+                      "name": "API key created. `api_key` is returned only once - store it securely.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "ServiceToken <token>",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "https://management-api.suprsend.com/v1/:workspace/ws_api_key/",
+                          "protocol": "https",
+                          "host": [
+                            "management-api",
+                            "suprsend",
+                            "com"
+                          ],
+                          "path": [
+                            "v1",
+                            ":workspace",
+                            "ws_api_key",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"masked_api_key\": \"<string>\",\n  \"is_deleted\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"allowed_domains\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"created_at\": \"<dateTime>\",\n  \"created_by\": {\n    \"name\": \"<string>\",\n    \"email\": \"<string>\"\n  },\n  \"deleted_at\": \"<dateTime>\",\n  \"deleted_by\": {\n    \"name\": \"<string>\",\n    \"email\": \"<string>\"\n  },\n  \"api_key\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:06:36.000Z",
+                      "updatedAt": "2026-07-28T03:06:36.000Z",
+                      "uid": "35240-907bf1dc-e189-44c8-8984-f8c8605ccfc0"
+                    },
+                    {
+                      "id": "de6f000b-14b3-45f5-935a-469db52bd37b",
+                      "name": "Validation error - data validation failed",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "ServiceToken <token>",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "https://management-api.suprsend.com/v1/:workspace/ws_api_key/",
+                          "protocol": "https",
+                          "host": [
+                            "management-api",
+                            "suprsend",
+                            "com"
+                          ],
+                          "path": [
+                            "v1",
+                            ":workspace",
+                            "ws_api_key",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:06:36.000Z",
+                      "updatedAt": "2026-07-28T03:06:36.000Z",
+                      "uid": "35240-de6f000b-14b3-45f5-935a-469db52bd37b"
+                    },
+                    {
+                      "id": "d1f1f280-96dd-4097-9acf-36e714cb3290",
+                      "name": "Authentication failed",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "ServiceToken <token>",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "https://management-api.suprsend.com/v1/:workspace/ws_api_key/",
+                          "protocol": "https",
+                          "host": [
+                            "management-api",
+                            "suprsend",
+                            "com"
+                          ],
+                          "path": [
+                            "v1",
+                            ":workspace",
+                            "ws_api_key",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:06:36.000Z",
+                      "updatedAt": "2026-07-28T03:06:36.000Z",
+                      "uid": "35240-d1f1f280-96dd-4097-9acf-36e714cb3290"
+                    },
+                    {
+                      "id": "85638867-43af-417e-bc25-4980cb14e1a4",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "ServiceToken <token>",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "https://management-api.suprsend.com/v1/:workspace/ws_api_key/",
+                          "protocol": "https",
+                          "host": [
+                            "management-api",
+                            "suprsend",
+                            "com"
+                          ],
+                          "path": [
+                            "v1",
+                            ":workspace",
+                            "ws_api_key",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:06:36.000Z",
+                      "updatedAt": "2026-07-28T03:06:36.000Z",
+                      "uid": "35240-85638867-43af-417e-bc25-4980cb14e1a4"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:06:36.000Z",
+                  "updatedAt": "2026-07-28T03:06:36.000Z",
+                  "uid": "35240-d09cce14-93be-4a51-92e0-2c2f04b35b86"
+                }
+              ],
+              "id": "ab7c44d8-bdb4-4290-b939-d3baa41688b0",
+              "createdAt": "2026-07-28T03:06:36.000Z",
+              "updatedAt": "2026-07-28T03:06:36.000Z",
+              "uid": "35240-ab7c44d8-bdb4-4290-b939-d3baa41688b0"
+            }
+          ],
+          "id": "024982c1-2d2c-461f-9104-63d12bc5aeb1",
+          "createdAt": "2026-07-28T03:06:36.000Z",
+          "updatedAt": "2026-07-28T03:06:36.000Z",
+          "uid": "35240-024982c1-2d2c-461f-9104-63d12bc5aeb1"
+        }
+      ],
+      "id": "f3c2efca-6c01-4520-a67f-fe1c821150dc",
+      "createdAt": "2026-07-28T03:06:36.000Z",
+      "updatedAt": "2026-07-28T03:06:36.000Z",
+      "uid": "35240-f3c2efca-6c01-4520-a67f-fe1c821150dc"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://hub.suprsend.com"
+    }
+  ]
+}

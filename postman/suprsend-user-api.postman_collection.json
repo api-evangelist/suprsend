@@ -1,0 +1,2938 @@
+{
+  "info": {
+    "_postman_id": "62652596-1375-4e83-838d-77ae0611e940",
+    "name": "SuprSend Broadcast User API",
+    "description": "APIs supported on suprsend platform",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:06:30.000Z",
+    "updatedAt": "2026-07-28T03:06:30.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-62652596-1375-4e83-838d-77ae0611e940"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "user",
+          "item": [
+            {
+              "name": "{distinct_id}",
+              "item": [
+                {
+                  "name": "preference",
+                  "item": [
+                    {
+                      "name": "category",
+                      "item": [
+                        {
+                          "name": "{category_slug}",
+                          "item": [
+                            {
+                              "name": "Category and Channel within Category",
+                              "id": "7a34cff0-87f7-496e-8913-1b0426b4a439",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"preference\": \"opt_in\",\n  \"opt_out_channels\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"opt_in_channels\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/user/:distinct_id/preference/category/:category_slug/?tenant_id=<string>&locale=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "user",
+                                    ":distinct_id",
+                                    "preference",
+                                    "category",
+                                    ":category_slug",
+                                    ""
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "to fetch user preferences for a particular tenant",
+                                      "key": "tenant_id",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Locale code (e.g., `es`, `fr`, `de`, `ja`, `es-AR`) to fetch translated category and section names and descriptions.  When provided, the API returns category and section names and descriptions in the specified language if translations are available.  If a translation is missing for the requested locale, the system automatically falls back in this order: `locale-region` (e.g., `es-AR`) \u2192 `locale` (e.g., `es`) \u2192 `en` (English - always available).\n",
+                                      "key": "locale",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "b7e5321b-1189-4b9d-a135-dfa989370672",
+                                      "key": "distinct_id",
+                                      "value": "<string>",
+                                      "description": "(Required) distinct_id of the user whose preferences should be fetched"
+                                    },
+                                    {
+                                      "id": "9c90deb7-73fc-433b-a5aa-44407c7a6d79",
+                                      "key": "category_slug",
+                                      "value": "<string>",
+                                      "description": "(Required) notification category slug. You can get this from Notification Categories page on SuprSend dashboard -> Settings page"
+                                    }
+                                  ]
+                                },
+                                "description": "API to update user preferences for a specific notification category."
+                              },
+                              "response": [
+                                {
+                                  "id": "d5e5c47b-e7e4-4bfb-b16b-2978e61d8593",
+                                  "name": "202",
+                                  "originalRequest": {
+                                    "method": "PATCH",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"preference\": \"opt_in\",\n  \"opt_out_channels\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"opt_in_channels\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/user/:distinct_id/preference/category/:category_slug/?tenant_id=<string>&locale=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "user",
+                                        ":distinct_id",
+                                        "preference",
+                                        "category",
+                                        ":category_slug",
+                                        ""
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "to fetch user preferences for a particular tenant",
+                                          "key": "tenant_id",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Locale code (e.g., `es`, `fr`, `de`, `ja`, `es-AR`) to fetch translated category and section names and descriptions.  When provided, the API returns category and section names and descriptions in the specified language if translations are available.  If a translation is missing for the requested locale, the system automatically falls back in this order: `locale-region` (e.g., `es-AR`) \u2192 `locale` (e.g., `es`) \u2192 `en` (English - always available).\n",
+                                          "key": "locale",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "distinct_id"
+                                        },
+                                        {
+                                          "key": "category_slug"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Accepted",
+                                  "code": 202,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"name\": \"<string>\",\n  \"category\": \"<string>\",\n  \"description\": \"<string>\",\n  \"original_preference\": \"<string>\",\n  \"preference\": \"<string>\",\n  \"is_editable\": \"<boolean>\",\n  \"channels\": [\n    {\n      \"channel\": \"<string>\",\n      \"preference\": \"opt_in\",\n      \"is_editable\": \"<boolean>\"\n    },\n    {\n      \"channel\": \"<string>\",\n      \"preference\": \"opt_out\",\n      \"is_editable\": \"<boolean>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T03:06:30.000Z",
+                                  "updatedAt": "2026-07-28T03:06:30.000Z",
+                                  "uid": "35240-d5e5c47b-e7e4-4bfb-b16b-2978e61d8593"
+                                },
+                                {
+                                  "id": "3b2b6b44-a055-4ea5-a4f2-64715bc393d7",
+                                  "name": "404 - Not Found",
+                                  "originalRequest": {
+                                    "method": "PATCH",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"preference\": \"opt_in\",\n  \"opt_out_channels\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"opt_in_channels\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/user/:distinct_id/preference/category/:category_slug/?tenant_id=<string>&locale=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "user",
+                                        ":distinct_id",
+                                        "preference",
+                                        "category",
+                                        ":category_slug",
+                                        ""
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "to fetch user preferences for a particular tenant",
+                                          "key": "tenant_id",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Locale code (e.g., `es`, `fr`, `de`, `ja`, `es-AR`) to fetch translated category and section names and descriptions.  When provided, the API returns category and section names and descriptions in the specified language if translations are available.  If a translation is missing for the requested locale, the system automatically falls back in this order: `locale-region` (e.g., `es-AR`) \u2192 `locale` (e.g., `es`) \u2192 `en` (English - always available).\n",
+                                          "key": "locale",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "distinct_id"
+                                        },
+                                        {
+                                          "key": "category_slug"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{}",
+                                  "createdAt": "2026-07-28T03:06:30.000Z",
+                                  "updatedAt": "2026-07-28T03:06:30.000Z",
+                                  "uid": "35240-3b2b6b44-a055-4ea5-a4f2-64715bc393d7"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T03:06:30.000Z",
+                              "updatedAt": "2026-07-28T03:06:30.000Z",
+                              "uid": "35240-7a34cff0-87f7-496e-8913-1b0426b4a439"
+                            },
+                            {
+                              "name": "Single Category",
+                              "id": "8a059517-7dd3-4d4f-8a32-3c1f1d69af15",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/user/:distinct_id/preference/category/:category_slug/?tenant_id=<string>&show_opt_out_channels=false&locale=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "user",
+                                    ":distinct_id",
+                                    "preference",
+                                    "category",
+                                    ":category_slug",
+                                    ""
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "to fetch user preferences for a particular tenant",
+                                      "key": "tenant_id",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "set this flag to `true` if you want to fetch channel list for opt-out categories.",
+                                      "key": "show_opt_out_channels",
+                                      "value": "false"
+                                    },
+                                    {
+                                      "description": "Locale code (e.g., `es`, `fr`, `de`, `ja`, `es-AR`) to fetch preference translations in user's locale. When provided, the API looks for category and section names and descriptions in the respective locale file.\nIf a translation is missing for the requested locale, the system automatically falls back in this order: `locale-region` (e.g., `es-AR`) \u2192 `locale` (e.g., `es`) \u2192 `en` (English - always available).\n",
+                                      "key": "locale",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "6212b244-a5dd-466e-a3cd-9253b6aff6c6",
+                                      "key": "distinct_id",
+                                      "value": "<string>",
+                                      "description": "(Required) distinct_id of the user whose preferences should be fetched"
+                                    },
+                                    {
+                                      "id": "596a1827-f93a-4f87-b0f3-079f0eeeac39",
+                                      "key": "category_slug",
+                                      "value": "<string>",
+                                      "description": "(Required) notification category slug. You can get this from Notification Categories page on SuprSend dashboard -> Settings page"
+                                    }
+                                  ]
+                                },
+                                "description": "API to fetch user preferences for a given category."
+                              },
+                              "response": [
+                                {
+                                  "id": "80c8c79e-84b4-4078-a9f7-12df3f971e94",
+                                  "name": "200",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/user/:distinct_id/preference/category/:category_slug/?tenant_id=<string>&show_opt_out_channels=false&locale=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "user",
+                                        ":distinct_id",
+                                        "preference",
+                                        "category",
+                                        ":category_slug",
+                                        ""
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "to fetch user preferences for a particular tenant",
+                                          "key": "tenant_id",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "set this flag to `true` if you want to fetch channel list for opt-out categories.",
+                                          "key": "show_opt_out_channels",
+                                          "value": "false"
+                                        },
+                                        {
+                                          "description": "Locale code (e.g., `es`, `fr`, `de`, `ja`, `es-AR`) to fetch preference translations in user's locale. When provided, the API looks for category and section names and descriptions in the respective locale file.\nIf a translation is missing for the requested locale, the system automatically falls back in this order: `locale-region` (e.g., `es-AR`) \u2192 `locale` (e.g., `es`) \u2192 `en` (English - always available).\n",
+                                          "key": "locale",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "distinct_id"
+                                        },
+                                        {
+                                          "key": "category_slug"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"name\": \"<string>\",\n  \"category\": \"<string>\",\n  \"description\": \"<string>\",\n  \"original_preference\": \"<string>\",\n  \"preference\": \"<string>\",\n  \"is_editable\": \"<boolean>\",\n  \"channels\": [\n    {\n      \"channel\": \"<string>\",\n      \"preference\": \"<string>\",\n      \"is_editable\": \"<boolean>\"\n    },\n    {\n      \"channel\": \"<string>\",\n      \"preference\": \"<string>\",\n      \"is_editable\": \"<boolean>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T03:06:30.000Z",
+                                  "updatedAt": "2026-07-28T03:06:30.000Z",
+                                  "uid": "35240-80c8c79e-84b4-4078-a9f7-12df3f971e94"
+                                },
+                                {
+                                  "id": "de548aca-e6ff-4868-961d-674264fdcf63",
+                                  "name": "404 - Not Found",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/user/:distinct_id/preference/category/:category_slug/?tenant_id=<string>&show_opt_out_channels=false&locale=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "user",
+                                        ":distinct_id",
+                                        "preference",
+                                        "category",
+                                        ":category_slug",
+                                        ""
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "to fetch user preferences for a particular tenant",
+                                          "key": "tenant_id",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "set this flag to `true` if you want to fetch channel list for opt-out categories.",
+                                          "key": "show_opt_out_channels",
+                                          "value": "false"
+                                        },
+                                        {
+                                          "description": "Locale code (e.g., `es`, `fr`, `de`, `ja`, `es-AR`) to fetch preference translations in user's locale. When provided, the API looks for category and section names and descriptions in the respective locale file.\nIf a translation is missing for the requested locale, the system automatically falls back in this order: `locale-region` (e.g., `es-AR`) \u2192 `locale` (e.g., `es`) \u2192 `en` (English - always available).\n",
+                                          "key": "locale",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "distinct_id"
+                                        },
+                                        {
+                                          "key": "category_slug"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T03:06:30.000Z",
+                                  "updatedAt": "2026-07-28T03:06:30.000Z",
+                                  "uid": "35240-de548aca-e6ff-4868-961d-674264fdcf63"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T03:06:30.000Z",
+                              "updatedAt": "2026-07-28T03:06:30.000Z",
+                              "uid": "35240-8a059517-7dd3-4d4f-8a32-3c1f1d69af15"
+                            }
+                          ],
+                          "id": "48c732e0-4217-4ea5-8e51-f46104767ef3",
+                          "createdAt": "2026-07-28T03:06:30.000Z",
+                          "updatedAt": "2026-07-28T03:06:30.000Z",
+                          "uid": "35240-48c732e0-4217-4ea5-8e51-f46104767ef3"
+                        },
+                        {
+                          "name": "All Categories",
+                          "id": "fe9c9e24-45e3-4be6-ada6-783a42d46582",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/user/:distinct_id/preference/category/?tenant_id=<string>&show_opt_out_channels=false&tags=<string>&locale=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "user",
+                                ":distinct_id",
+                                "preference",
+                                "category",
+                                ""
+                              ],
+                              "query": [
+                                {
+                                  "description": "to fetch user preferences for a particular tenant",
+                                  "key": "tenant_id",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "set this flag to `true` if you want to fetch channel list for opt-out categories.",
+                                  "key": "show_opt_out_channels",
+                                  "value": "false"
+                                },
+                                {
+                                  "description": "Filter preference categories with tags assigned to them. Used to filter preference categories relevant to the user on UI based on their roles, department or teams.\nYou can apply single tag filter like `tags=tag1` or build nested conditions using logical operators - `and`, `or`, `not`, `exists`.\n\nExample:\n```\ntags=admin\ntags={\"or\":[{\"and\":[\"admin\",\"sales\"]},{\"and\":[\"admin\",\"manager\"]}]}\ntags={\"not\":\"admin\"}\ntags={\"exists\":true}\n",
+                                  "key": "tags",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Locale code (e.g., `es`, `fr`, `de`, `ja`, `es-AR`) to fetch preference translations in user's locale. When provided, the API looks for category and section names and descriptions in the respective locale file. \nIf a translation is missing for the requested locale, the system automatically falls back in this order: `locale-region` (e.g., `es-AR`) \u2192 `locale` (e.g., `es`) \u2192 `en` (English - always available).\n",
+                                  "key": "locale",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "ac7a5111-f6dd-42d9-bfe4-1581e8fd9dd2",
+                                  "key": "distinct_id",
+                                  "value": "<string>",
+                                  "description": "(Required) distinct_id of the user whose preferences should be fetched"
+                                }
+                              ]
+                            },
+                            "description": "API to fetch user preferences across all categories."
+                          },
+                          "response": [
+                            {
+                              "id": "bc9aff4f-7b86-4d05-a89e-4daa6ad80240",
+                              "name": "200",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/user/:distinct_id/preference/category/?tenant_id=<string>&show_opt_out_channels=false&tags=<string>&locale=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "user",
+                                    ":distinct_id",
+                                    "preference",
+                                    "category",
+                                    ""
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "to fetch user preferences for a particular tenant",
+                                      "key": "tenant_id",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "set this flag to `true` if you want to fetch channel list for opt-out categories.",
+                                      "key": "show_opt_out_channels",
+                                      "value": "false"
+                                    },
+                                    {
+                                      "description": "Filter preference categories with tags assigned to them. Used to filter preference categories relevant to the user on UI based on their roles, department or teams.\nYou can apply single tag filter like `tags=tag1` or build nested conditions using logical operators - `and`, `or`, `not`, `exists`.\n\nExample:\n```\ntags=admin\ntags={\"or\":[{\"and\":[\"admin\",\"sales\"]},{\"and\":[\"admin\",\"manager\"]}]}\ntags={\"not\":\"admin\"}\ntags={\"exists\":true}\n",
+                                      "key": "tags",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Locale code (e.g., `es`, `fr`, `de`, `ja`, `es-AR`) to fetch preference translations in user's locale. When provided, the API looks for category and section names and descriptions in the respective locale file. \nIf a translation is missing for the requested locale, the system automatically falls back in this order: `locale-region` (e.g., `es-AR`) \u2192 `locale` (e.g., `es`) \u2192 `en` (English - always available).\n",
+                                      "key": "locale",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "distinct_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"meta\": {\n    \"count\": \"<integer>\",\n    \"limit\": \"<integer>\",\n    \"offset\": \"<integer>\"\n  },\n  \"results\": [\n    {\n      \"name\": \"<string>\",\n      \"category\": \"<string>\",\n      \"description\": \"<string>\",\n      \"original_preference\": \"<string>\",\n      \"preference\": \"opt_in\",\n      \"is_editable\": \"<boolean>\",\n      \"channels\": [\n        {\n          \"channel\": \"<string>\",\n          \"preference\": \"<string>\",\n          \"is_editable\": \"<boolean>\"\n        },\n        {\n          \"channel\": \"<string>\",\n          \"preference\": \"<string>\",\n          \"is_editable\": \"<boolean>\"\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"category\": \"<string>\",\n      \"description\": \"<string>\",\n      \"original_preference\": \"<string>\",\n      \"preference\": \"opt_in\",\n      \"is_editable\": \"<boolean>\",\n      \"channels\": [\n        {\n          \"channel\": \"<string>\",\n          \"preference\": \"<string>\",\n          \"is_editable\": \"<boolean>\"\n        },\n        {\n          \"channel\": \"<string>\",\n          \"preference\": \"<string>\",\n          \"is_editable\": \"<boolean>\"\n        }\n      ]\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T03:06:30.000Z",
+                              "updatedAt": "2026-07-28T03:06:30.000Z",
+                              "uid": "35240-bc9aff4f-7b86-4d05-a89e-4daa6ad80240"
+                            },
+                            {
+                              "id": "63f6474c-0702-48bc-93a7-942cdfbc39ba",
+                              "name": "404 - Not Found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/user/:distinct_id/preference/category/?tenant_id=<string>&show_opt_out_channels=false&tags=<string>&locale=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "user",
+                                    ":distinct_id",
+                                    "preference",
+                                    "category",
+                                    ""
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "to fetch user preferences for a particular tenant",
+                                      "key": "tenant_id",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "set this flag to `true` if you want to fetch channel list for opt-out categories.",
+                                      "key": "show_opt_out_channels",
+                                      "value": "false"
+                                    },
+                                    {
+                                      "description": "Filter preference categories with tags assigned to them. Used to filter preference categories relevant to the user on UI based on their roles, department or teams.\nYou can apply single tag filter like `tags=tag1` or build nested conditions using logical operators - `and`, `or`, `not`, `exists`.\n\nExample:\n```\ntags=admin\ntags={\"or\":[{\"and\":[\"admin\",\"sales\"]},{\"and\":[\"admin\",\"manager\"]}]}\ntags={\"not\":\"admin\"}\ntags={\"exists\":true}\n",
+                                      "key": "tags",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Locale code (e.g., `es`, `fr`, `de`, `ja`, `es-AR`) to fetch preference translations in user's locale. When provided, the API looks for category and section names and descriptions in the respective locale file. \nIf a translation is missing for the requested locale, the system automatically falls back in this order: `locale-region` (e.g., `es-AR`) \u2192 `locale` (e.g., `es`) \u2192 `en` (English - always available).\n",
+                                      "key": "locale",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "distinct_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T03:06:30.000Z",
+                              "updatedAt": "2026-07-28T03:06:30.000Z",
+                              "uid": "35240-63f6474c-0702-48bc-93a7-942cdfbc39ba"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:06:30.000Z",
+                          "updatedAt": "2026-07-28T03:06:30.000Z",
+                          "uid": "35240-fe9c9e24-45e3-4be6-ada6-783a42d46582"
+                        }
+                      ],
+                      "id": "8174435b-1701-461b-bd6e-3da6ae585521",
+                      "createdAt": "2026-07-28T03:06:30.000Z",
+                      "updatedAt": "2026-07-28T03:06:30.000Z",
+                      "uid": "35240-8174435b-1701-461b-bd6e-3da6ae585521"
+                    },
+                    {
+                      "name": "channel_preference",
+                      "item": [
+                        {
+                          "name": "All Channels",
+                          "id": "bcb13775-8d03-499f-ab05-e1df0fc48f41",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/user/:distinct_id/preference/channel_preference/?tenant_id=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "user",
+                                ":distinct_id",
+                                "preference",
+                                "channel_preference",
+                                ""
+                              ],
+                              "query": [
+                                {
+                                  "description": "to fetch user preferences for a particular tenant",
+                                  "key": "tenant_id",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "b8dd0c35-3bad-45ac-bba4-ee98b28fed2d",
+                                  "key": "distinct_id",
+                                  "value": "<string>",
+                                  "description": "(Required) distinct_id of the user whose preferences should be fetched"
+                                }
+                              ]
+                            },
+                            "description": "API to retrieve user preferences for all channels."
+                          },
+                          "response": [
+                            {
+                              "id": "289d9fb1-0268-42d4-b521-13316ee50ee8",
+                              "name": "200",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/user/:distinct_id/preference/channel_preference/?tenant_id=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "user",
+                                    ":distinct_id",
+                                    "preference",
+                                    "channel_preference",
+                                    ""
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "to fetch user preferences for a particular tenant",
+                                      "key": "tenant_id",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "distinct_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"channel_preferences\": [\n    {\n      \"channel\": \"<string>\",\n      \"is_restricted\": \"<boolean>\"\n    },\n    {\n      \"channel\": \"<string>\",\n      \"is_restricted\": \"<boolean>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T03:06:30.000Z",
+                              "updatedAt": "2026-07-28T03:06:30.000Z",
+                              "uid": "35240-289d9fb1-0268-42d4-b521-13316ee50ee8"
+                            },
+                            {
+                              "id": "b2bd9d3c-ab15-4ddd-8ab5-42e4a15c6e1b",
+                              "name": "404 - Not Found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/user/:distinct_id/preference/channel_preference/?tenant_id=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "user",
+                                    ":distinct_id",
+                                    "preference",
+                                    "channel_preference",
+                                    ""
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "to fetch user preferences for a particular tenant",
+                                      "key": "tenant_id",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "distinct_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T03:06:30.000Z",
+                              "updatedAt": "2026-07-28T03:06:30.000Z",
+                              "uid": "35240-b2bd9d3c-ab15-4ddd-8ab5-42e4a15c6e1b"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:06:30.000Z",
+                          "updatedAt": "2026-07-28T03:06:30.000Z",
+                          "uid": "35240-bcb13775-8d03-499f-ab05-e1df0fc48f41"
+                        },
+                        {
+                          "name": "Overall Channel level",
+                          "id": "d95dddd4-4e25-431c-8b4d-6f4ed2769f67",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"channel_preferences\": [\n    {\n      \"channel\": \"email\",\n      \"is_restricted\": false\n    },\n    {\n      \"channel\": \"email\",\n      \"is_restricted\": false\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/user/:distinct_id/preference/channel_preference/?tenant_id=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "user",
+                                ":distinct_id",
+                                "preference",
+                                "channel_preference",
+                                ""
+                              ],
+                              "query": [
+                                {
+                                  "description": "to fetch user preferences for a particular tenant",
+                                  "key": "tenant_id",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "622e69b6-b007-4f1e-85c6-d83b63c0cd7d",
+                                  "key": "distinct_id",
+                                  "value": "<string>",
+                                  "description": "(Required) distinct_id of the user whose preferences should be fetched"
+                                }
+                              ]
+                            },
+                            "description": "API to update user preferences across all channels."
+                          },
+                          "response": [
+                            {
+                              "id": "836dd4fa-6dc2-476b-b704-0591da46f26f",
+                              "name": "202",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"channel_preferences\": [\n    {\n      \"channel\": \"email\",\n      \"is_restricted\": false\n    },\n    {\n      \"channel\": \"email\",\n      \"is_restricted\": false\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/user/:distinct_id/preference/channel_preference/?tenant_id=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "user",
+                                    ":distinct_id",
+                                    "preference",
+                                    "channel_preference",
+                                    ""
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "to fetch user preferences for a particular tenant",
+                                      "key": "tenant_id",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "distinct_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Accepted",
+                              "code": 202,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"channel_preferences\": [\n    {\n      \"channel\": \"<string>\",\n      \"is_restricted\": \"<boolean>\"\n    },\n    {\n      \"channel\": \"<string>\",\n      \"is_restricted\": \"<boolean>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T03:06:30.000Z",
+                              "updatedAt": "2026-07-28T03:06:30.000Z",
+                              "uid": "35240-836dd4fa-6dc2-476b-b704-0591da46f26f"
+                            },
+                            {
+                              "id": "ceef9883-9ee2-4dbd-8fc6-9d275d6e909c",
+                              "name": "400 - Bad Request",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"channel_preferences\": [\n    {\n      \"channel\": \"email\",\n      \"is_restricted\": false\n    },\n    {\n      \"channel\": \"email\",\n      \"is_restricted\": false\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/user/:distinct_id/preference/channel_preference/?tenant_id=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "user",
+                                    ":distinct_id",
+                                    "preference",
+                                    "channel_preference",
+                                    ""
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "to fetch user preferences for a particular tenant",
+                                      "key": "tenant_id",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "distinct_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"detail\": {},\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T03:06:30.000Z",
+                              "updatedAt": "2026-07-28T03:06:30.000Z",
+                              "uid": "35240-ceef9883-9ee2-4dbd-8fc6-9d275d6e909c"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:06:30.000Z",
+                          "updatedAt": "2026-07-28T03:06:30.000Z",
+                          "uid": "35240-d95dddd4-4e25-431c-8b4d-6f4ed2769f67"
+                        }
+                      ],
+                      "id": "70ef6838-729b-4da3-aad9-45f0832c1f9e",
+                      "createdAt": "2026-07-28T03:06:30.000Z",
+                      "updatedAt": "2026-07-28T03:06:30.000Z",
+                      "uid": "35240-70ef6838-729b-4da3-aad9-45f0832c1f9e"
+                    },
+                    {
+                      "name": "Full Preference",
+                      "id": "4d446fda-fb3c-4927-838e-a4daa22aed1b",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/user/:distinct_id/preference/?tenant_id=<string>&show_opt_out_channels=false&tags=<string>&locale=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "user",
+                            ":distinct_id",
+                            "preference",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "to fetch user preferences for a particular tenant",
+                              "key": "tenant_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "set this flag to `true` if you want to fetch channel list for opt-out categories.",
+                              "key": "show_opt_out_channels",
+                              "value": "false"
+                            },
+                            {
+                              "description": "Filter preference categories with tags assigned to them. Used to filter preference categories relevant to the user on UI based on their roles, department or teams.\nYou can apply single tag filter like `tags=tag1` or build nested conditions using logical operators - `and`, `or`, `not`, `exists`.\n\nExample:\n```\ntags=admin\ntags={\"or\":[{\"and\":[\"admin\",\"sales\"]},{\"and\":[\"admin\",\"manager\"]}]}\ntags={\"not\":\"admin\"}\ntags={\"exists\":true}\n",
+                              "key": "tags",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Locale code (e.g., `es`, `fr`, `es-AR`) to fetch preference translations in user's locale. When provided, the API looks for category and section names and descriptions in the respective locale file.\nIf a translation is missing for the requested locale, the system automatically falls back in this order: `locale-region` (e.g., `es-AR`) \u2192 `locale` (e.g., `es`) \u2192 `en` (English - always available).\n",
+                              "key": "locale",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "85b6b766-b334-483d-b736-b7943302d67d",
+                              "key": "distinct_id",
+                              "value": "<string>",
+                              "description": "(Required) distinct_id of the user whose preferences should be fetched"
+                            }
+                          ]
+                        },
+                        "description": "API to fetch user preferences across all channels and categories."
+                      },
+                      "response": [
+                        {
+                          "id": "1aa0be04-2d28-438a-a244-de6cdf23bb0c",
+                          "name": "200",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/user/:distinct_id/preference/?tenant_id=<string>&show_opt_out_channels=false&tags=<string>&locale=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "user",
+                                ":distinct_id",
+                                "preference",
+                                ""
+                              ],
+                              "query": [
+                                {
+                                  "description": "to fetch user preferences for a particular tenant",
+                                  "key": "tenant_id",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "set this flag to `true` if you want to fetch channel list for opt-out categories.",
+                                  "key": "show_opt_out_channels",
+                                  "value": "false"
+                                },
+                                {
+                                  "description": "Filter preference categories with tags assigned to them. Used to filter preference categories relevant to the user on UI based on their roles, department or teams.\nYou can apply single tag filter like `tags=tag1` or build nested conditions using logical operators - `and`, `or`, `not`, `exists`.\n\nExample:\n```\ntags=admin\ntags={\"or\":[{\"and\":[\"admin\",\"sales\"]},{\"and\":[\"admin\",\"manager\"]}]}\ntags={\"not\":\"admin\"}\ntags={\"exists\":true}\n",
+                                  "key": "tags",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Locale code (e.g., `es`, `fr`, `es-AR`) to fetch preference translations in user's locale. When provided, the API looks for category and section names and descriptions in the respective locale file.\nIf a translation is missing for the requested locale, the system automatically falls back in this order: `locale-region` (e.g., `es-AR`) \u2192 `locale` (e.g., `es`) \u2192 `en` (English - always available).\n",
+                                  "key": "locale",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "distinct_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"sections\": [\n    {\n      \"subcategories\": [\n        {\n          \"name\": \"<string>\",\n          \"category\": \"<string>\",\n          \"description\": \"<string>\",\n          \"preference\": \"opt_in\",\n          \"is_editable\": \"<boolean>\",\n          \"channels\": [\n            {\n              \"channel\": \"<string>\",\n              \"preference\": \"opt_out\",\n              \"is_editable\": \"<boolean>\"\n            },\n            {\n              \"channel\": \"<string>\",\n              \"preference\": \"opt_in\",\n              \"is_editable\": \"<boolean>\"\n            }\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"category\": \"<string>\",\n          \"description\": \"<string>\",\n          \"preference\": \"opt_out\",\n          \"is_editable\": \"<boolean>\",\n          \"channels\": [\n            {\n              \"channel\": \"<string>\",\n              \"preference\": \"opt_out\",\n              \"is_editable\": \"<boolean>\"\n            },\n            {\n              \"channel\": \"<string>\",\n              \"preference\": \"opt_in\",\n              \"is_editable\": \"<boolean>\"\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"subcategories\": [\n        {\n          \"name\": \"<string>\",\n          \"category\": \"<string>\",\n          \"description\": \"<string>\",\n          \"preference\": \"opt_out\",\n          \"is_editable\": \"<boolean>\",\n          \"channels\": [\n            {\n              \"channel\": \"<string>\",\n              \"preference\": \"opt_out\",\n              \"is_editable\": \"<boolean>\"\n            },\n            {\n              \"channel\": \"<string>\",\n              \"preference\": \"opt_out\",\n              \"is_editable\": \"<boolean>\"\n            }\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"category\": \"<string>\",\n          \"description\": \"<string>\",\n          \"preference\": \"opt_in\",\n          \"is_editable\": \"<boolean>\",\n          \"channels\": [\n            {\n              \"channel\": \"<string>\",\n              \"preference\": \"opt_out\",\n              \"is_editable\": \"<boolean>\"\n            },\n            {\n              \"channel\": \"<string>\",\n              \"preference\": \"opt_out\",\n              \"is_editable\": \"<boolean>\"\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"channel_preferences\": [\n    {\n      \"channel\": \"<string>\",\n      \"is_restricted\": \"<boolean>\"\n    },\n    {\n      \"channel\": \"<string>\",\n      \"is_restricted\": \"<boolean>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T03:06:30.000Z",
+                          "updatedAt": "2026-07-28T03:06:30.000Z",
+                          "uid": "35240-1aa0be04-2d28-438a-a244-de6cdf23bb0c"
+                        },
+                        {
+                          "id": "b7394536-28d2-458b-9d99-f3900baa17d8",
+                          "name": "404",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/user/:distinct_id/preference/?tenant_id=<string>&show_opt_out_channels=false&tags=<string>&locale=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "user",
+                                ":distinct_id",
+                                "preference",
+                                ""
+                              ],
+                              "query": [
+                                {
+                                  "description": "to fetch user preferences for a particular tenant",
+                                  "key": "tenant_id",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "set this flag to `true` if you want to fetch channel list for opt-out categories.",
+                                  "key": "show_opt_out_channels",
+                                  "value": "false"
+                                },
+                                {
+                                  "description": "Filter preference categories with tags assigned to them. Used to filter preference categories relevant to the user on UI based on their roles, department or teams.\nYou can apply single tag filter like `tags=tag1` or build nested conditions using logical operators - `and`, `or`, `not`, `exists`.\n\nExample:\n```\ntags=admin\ntags={\"or\":[{\"and\":[\"admin\",\"sales\"]},{\"and\":[\"admin\",\"manager\"]}]}\ntags={\"not\":\"admin\"}\ntags={\"exists\":true}\n",
+                                  "key": "tags",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Locale code (e.g., `es`, `fr`, `es-AR`) to fetch preference translations in user's locale. When provided, the API looks for category and section names and descriptions in the respective locale file.\nIf a translation is missing for the requested locale, the system automatically falls back in this order: `locale-region` (e.g., `es-AR`) \u2192 `locale` (e.g., `es`) \u2192 `en` (English - always available).\n",
+                                  "key": "locale",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "distinct_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:06:30.000Z",
+                          "updatedAt": "2026-07-28T03:06:30.000Z",
+                          "uid": "35240-b7394536-28d2-458b-9d99-f3900baa17d8"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:06:30.000Z",
+                      "updatedAt": "2026-07-28T03:06:30.000Z",
+                      "uid": "35240-4d446fda-fb3c-4927-838e-a4daa22aed1b"
+                    },
+                    {
+                      "name": "Update User Full Preference",
+                      "id": "48fbc29a-2296-4f78-9f1a-ac7177776b61",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"channel_preferences\": [\n    {\n      \"channel\": \"<string>\",\n      \"is_restricted\": \"<boolean>\"\n    },\n    {\n      \"channel\": \"<string>\",\n      \"is_restricted\": \"<boolean>\"\n    }\n  ],\n  \"categories\": [\n    {\n      \"category\": \"<string>\",\n      \"preference\": \"opt_in\",\n      \"opt_out_channels\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"opt_in_channels\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"category\": \"<string>\",\n      \"preference\": \"opt_in\",\n      \"opt_out_channels\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"opt_in_channels\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/user/:distinct_id/preference/?tenant_id=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "user",
+                            ":distinct_id",
+                            "preference",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "to update user preferences for a particular tenant",
+                              "key": "tenant_id",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "a06c5afe-d39e-4877-b7a2-7e2779c7395a",
+                              "key": "distinct_id",
+                              "value": "<string>",
+                              "description": "(Required) distinct_id of the user whose preferences should be updated"
+                            }
+                          ]
+                        },
+                        "description": "API to update user preferences across all channels and categories with translated names and descriptions in the response."
+                      },
+                      "response": [
+                        {
+                          "id": "27607b53-68a2-4e70-9b82-4b02d64a1687",
+                          "name": "200",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"channel_preferences\": [\n    {\n      \"channel\": \"<string>\",\n      \"is_restricted\": \"<boolean>\"\n    },\n    {\n      \"channel\": \"<string>\",\n      \"is_restricted\": \"<boolean>\"\n    }\n  ],\n  \"categories\": [\n    {\n      \"category\": \"<string>\",\n      \"preference\": \"opt_in\",\n      \"opt_out_channels\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"opt_in_channels\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"category\": \"<string>\",\n      \"preference\": \"opt_in\",\n      \"opt_out_channels\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"opt_in_channels\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/user/:distinct_id/preference/?tenant_id=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "user",
+                                ":distinct_id",
+                                "preference",
+                                ""
+                              ],
+                              "query": [
+                                {
+                                  "description": "to update user preferences for a particular tenant",
+                                  "key": "tenant_id",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "distinct_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"sections\": [\n    {\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"description\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"subcategories\": [\n        {\n          \"name\": \"<string>\",\n          \"category\": \"<string>\",\n          \"description\": \"<string>\",\n          \"tags\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"effective_tags\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"original_preference\": \"cant_unsubscribe\",\n          \"preference\": \"opt_out\",\n          \"is_editable\": \"<boolean>\",\n          \"channels\": [\n            {\n              \"channel\": \"<string>\",\n              \"preference\": \"opt_in\",\n              \"is_editable\": \"<boolean>\"\n            },\n            {\n              \"channel\": \"<string>\",\n              \"preference\": \"opt_out\",\n              \"is_editable\": \"<boolean>\"\n            }\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"category\": \"<string>\",\n          \"description\": \"<string>\",\n          \"tags\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"effective_tags\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"original_preference\": \"opt_in\",\n          \"preference\": \"opt_in\",\n          \"is_editable\": \"<boolean>\",\n          \"channels\": [\n            {\n              \"channel\": \"<string>\",\n              \"preference\": \"opt_out\",\n              \"is_editable\": \"<boolean>\"\n            },\n            {\n              \"channel\": \"<string>\",\n              \"preference\": \"opt_out\",\n              \"is_editable\": \"<boolean>\"\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"description\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"subcategories\": [\n        {\n          \"name\": \"<string>\",\n          \"category\": \"<string>\",\n          \"description\": \"<string>\",\n          \"tags\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"effective_tags\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"original_preference\": \"cant_unsubscribe\",\n          \"preference\": \"opt_out\",\n          \"is_editable\": \"<boolean>\",\n          \"channels\": [\n            {\n              \"channel\": \"<string>\",\n              \"preference\": \"opt_out\",\n              \"is_editable\": \"<boolean>\"\n            },\n            {\n              \"channel\": \"<string>\",\n              \"preference\": \"opt_out\",\n              \"is_editable\": \"<boolean>\"\n            }\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"category\": \"<string>\",\n          \"description\": \"<string>\",\n          \"tags\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"effective_tags\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"original_preference\": \"opt_out\",\n          \"preference\": \"cant_unsubscribe\",\n          \"is_editable\": \"<boolean>\",\n          \"channels\": [\n            {\n              \"channel\": \"<string>\",\n              \"preference\": \"opt_in\",\n              \"is_editable\": \"<boolean>\"\n            },\n            {\n              \"channel\": \"<string>\",\n              \"preference\": \"opt_in\",\n              \"is_editable\": \"<boolean>\"\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"channel_preferences\": [\n    {\n      \"channel\": \"<string>\",\n      \"is_restricted\": \"<boolean>\"\n    },\n    {\n      \"channel\": \"<string>\",\n      \"is_restricted\": \"<boolean>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T03:06:30.000Z",
+                          "updatedAt": "2026-07-28T03:06:30.000Z",
+                          "uid": "35240-27607b53-68a2-4e70-9b82-4b02d64a1687"
+                        },
+                        {
+                          "id": "cd16c05f-1393-4f85-9f1b-4596ecd63b47",
+                          "name": "404",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"channel_preferences\": [\n    {\n      \"channel\": \"<string>\",\n      \"is_restricted\": \"<boolean>\"\n    },\n    {\n      \"channel\": \"<string>\",\n      \"is_restricted\": \"<boolean>\"\n    }\n  ],\n  \"categories\": [\n    {\n      \"category\": \"<string>\",\n      \"preference\": \"opt_in\",\n      \"opt_out_channels\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"opt_in_channels\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"category\": \"<string>\",\n      \"preference\": \"opt_in\",\n      \"opt_out_channels\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"opt_in_channels\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/user/:distinct_id/preference/?tenant_id=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "user",
+                                ":distinct_id",
+                                "preference",
+                                ""
+                              ],
+                              "query": [
+                                {
+                                  "description": "to update user preferences for a particular tenant",
+                                  "key": "tenant_id",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "distinct_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:06:30.000Z",
+                          "updatedAt": "2026-07-28T03:06:30.000Z",
+                          "uid": "35240-cd16c05f-1393-4f85-9f1b-4596ecd63b47"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:06:30.000Z",
+                      "updatedAt": "2026-07-28T03:06:30.000Z",
+                      "uid": "35240-48fbc29a-2296-4f78-9f1a-ac7177776b61"
+                    }
+                  ],
+                  "id": "b3571bcf-7eef-4627-a322-5b95878522aa",
+                  "createdAt": "2026-07-28T03:06:30.000Z",
+                  "updatedAt": "2026-07-28T03:06:30.000Z",
+                  "uid": "35240-b3571bcf-7eef-4627-a322-5b95878522aa"
+                },
+                {
+                  "name": "merge",
+                  "item": [
+                    {
+                      "name": "Merge User Profiles",
+                      "id": "4edeb60c-ef96-4236-bec1-db27b8b99158",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"from_user_id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/user/:distinct_id/merge/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "user",
+                            ":distinct_id",
+                            "merge",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "id": "e1d45a99-e209-4b37-97b4-d7b2924ca255",
+                              "key": "distinct_id",
+                              "value": "<string>",
+                              "description": "(Required) Unique identifier of primary user"
+                            }
+                          ]
+                        },
+                        "description": "API to merge two user profiles to resolve duplicate user records."
+                      },
+                      "response": [
+                        {
+                          "id": "2e9cb7e8-63c4-421c-af96-78cca99bba9d",
+                          "name": "201 - Created",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"from_user_id\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/user/:distinct_id/merge/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "user",
+                                ":distinct_id",
+                                "merge",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "distinct_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{}",
+                          "createdAt": "2026-07-28T03:06:30.000Z",
+                          "updatedAt": "2026-07-28T03:06:30.000Z",
+                          "uid": "35240-2e9cb7e8-63c4-421c-af96-78cca99bba9d"
+                        },
+                        {
+                          "id": "bf7c653f-5783-4ce7-85b9-ffc8543a389c",
+                          "name": "404 - Not Found",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"from_user_id\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/user/:distinct_id/merge/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "user",
+                                ":distinct_id",
+                                "merge",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "distinct_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:06:30.000Z",
+                          "updatedAt": "2026-07-28T03:06:30.000Z",
+                          "uid": "35240-bf7c653f-5783-4ce7-85b9-ffc8543a389c"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:06:30.000Z",
+                      "updatedAt": "2026-07-28T03:06:30.000Z",
+                      "uid": "35240-4edeb60c-ef96-4236-bec1-db27b8b99158"
+                    }
+                  ],
+                  "id": "2c1e90b9-aca2-4120-bec2-f3a4644617fd",
+                  "createdAt": "2026-07-28T03:06:30.000Z",
+                  "updatedAt": "2026-07-28T03:06:30.000Z",
+                  "uid": "35240-2c1e90b9-aca2-4120-bec2-f3a4644617fd"
+                },
+                {
+                  "name": "subscribed_to",
+                  "item": [
+                    {
+                      "name": "object",
+                      "item": [
+                        {
+                          "name": "Fetch User object subscriptions",
+                          "id": "341d43bb-c7b9-41b6-bc5d-bb61c9c305bd",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/user/:distinct_id/subscribed_to/object/?limit=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "user",
+                                ":distinct_id",
+                                "subscribed_to",
+                                "object",
+                                ""
+                              ],
+                              "query": [
+                                {
+                                  "description": "number of results to be returned in API response",
+                                  "key": "limit",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "0e398d6f-b97b-4515-9384-189c60d26d42",
+                                  "key": "distinct_id",
+                                  "value": "<string>",
+                                  "description": "(Required) Unique identifier of the user in your system"
+                                }
+                              ]
+                            },
+                            "description": "API to fetch all objects that a given user is subscribed to."
+                          },
+                          "response": [
+                            {
+                              "id": "ab2786c2-e0ca-4abe-8636-efda94934ec3",
+                              "name": "200",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/user/:distinct_id/subscribed_to/object/?limit=<integer>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "user",
+                                    ":distinct_id",
+                                    "subscribed_to",
+                                    "object",
+                                    ""
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "number of results to be returned in API response",
+                                      "key": "limit",
+                                      "value": "<integer>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "distinct_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"meta\": {\n    \"count\": \"<integer>\",\n    \"limit\": \"<integer>\",\n    \"has_prev\": \"<boolean>\",\n    \"before\": \"<string>\",\n    \"has_next\": \"<boolean>\",\n    \"after\": \"<string>\"\n  },\n  \"results\": [\n    {\n      \"properties\": {},\n      \"object\": {\n        \"id\": \"<string>\",\n        \"object_type\": \"<string>\",\n        \"properties\": {},\n        \"subscriptions_count\": \"<integer>\",\n        \"updated_at\": \"<dateTime>\"\n      },\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    {\n      \"properties\": {},\n      \"object\": {\n        \"id\": \"<string>\",\n        \"object_type\": \"<string>\",\n        \"properties\": {},\n        \"subscriptions_count\": \"<integer>\",\n        \"updated_at\": \"<dateTime>\"\n      },\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T03:06:30.000Z",
+                              "updatedAt": "2026-07-28T03:06:30.000Z",
+                              "uid": "35240-ab2786c2-e0ca-4abe-8636-efda94934ec3"
+                            },
+                            {
+                              "id": "7c9e41db-7aa4-43a8-b8a1-ce54dd1b15f8",
+                              "name": "404 - Not Found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/user/:distinct_id/subscribed_to/object/?limit=<integer>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "user",
+                                    ":distinct_id",
+                                    "subscribed_to",
+                                    "object",
+                                    ""
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "number of results to be returned in API response",
+                                      "key": "limit",
+                                      "value": "<integer>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "distinct_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T03:06:30.000Z",
+                              "updatedAt": "2026-07-28T03:06:30.000Z",
+                              "uid": "35240-7c9e41db-7aa4-43a8-b8a1-ce54dd1b15f8"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:06:30.000Z",
+                          "updatedAt": "2026-07-28T03:06:30.000Z",
+                          "uid": "35240-341d43bb-c7b9-41b6-bc5d-bb61c9c305bd"
+                        }
+                      ],
+                      "id": "59d72690-d206-42d8-984f-70e15fdd38a8",
+                      "createdAt": "2026-07-28T03:06:30.000Z",
+                      "updatedAt": "2026-07-28T03:06:30.000Z",
+                      "uid": "35240-59d72690-d206-42d8-984f-70e15fdd38a8"
+                    },
+                    {
+                      "name": "list",
+                      "item": [
+                        {
+                          "name": "Fetch User list subscriptions",
+                          "id": "66957611-3a76-482a-aad7-53f2b6228d14",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/user/:distinct_id/subscribed_to/list/?limit=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "user",
+                                ":distinct_id",
+                                "subscribed_to",
+                                "list",
+                                ""
+                              ],
+                              "query": [
+                                {
+                                  "description": "number of results to be returned in API response",
+                                  "key": "limit",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "d0c1741f-f8f7-49f0-b765-66deb264f8ee",
+                                  "key": "distinct_id",
+                                  "value": "<string>",
+                                  "description": "(Required) Unique identifier of the user in your system"
+                                }
+                              ]
+                            },
+                            "description": "API to retrieve all lists that a user is part of."
+                          },
+                          "response": [
+                            {
+                              "id": "49fda1ec-a5df-4c69-bc7f-6c415a649e59",
+                              "name": "200 - OK",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/user/:distinct_id/subscribed_to/list/?limit=<integer>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "user",
+                                    ":distinct_id",
+                                    "subscribed_to",
+                                    "list",
+                                    ""
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "number of results to be returned in API response",
+                                      "key": "limit",
+                                      "value": "<integer>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "distinct_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"meta\": {\n    \"count\": \"<integer>\",\n    \"limit\": \"<integer>\",\n    \"has_prev\": \"<boolean>\",\n    \"before\": \"<string>\",\n    \"has_next\": \"<boolean>\",\n    \"after\": \"<string>\"\n  },\n  \"results\": [\n    {\n      \"list\": {\n        \"list_id\": \"<string>\",\n        \"list_name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"list_type\": \"<string>\",\n        \"source\": \"<string>\",\n        \"subscribers_count\": \"<integer>\",\n        \"updated_at\": \"<dateTime>\"\n      },\n      \"created_at\": \"<dateTime>\"\n    },\n    {\n      \"list\": {\n        \"list_id\": \"<string>\",\n        \"list_name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"list_type\": \"<string>\",\n        \"source\": \"<string>\",\n        \"subscribers_count\": \"<integer>\",\n        \"updated_at\": \"<dateTime>\"\n      },\n      \"created_at\": \"<dateTime>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T03:06:30.000Z",
+                              "updatedAt": "2026-07-28T03:06:30.000Z",
+                              "uid": "35240-49fda1ec-a5df-4c69-bc7f-6c415a649e59"
+                            },
+                            {
+                              "id": "bce7ffaa-54c3-4d7e-932b-dd76cc6b198b",
+                              "name": "404 - Not Found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/user/:distinct_id/subscribed_to/list/?limit=<integer>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "user",
+                                    ":distinct_id",
+                                    "subscribed_to",
+                                    "list",
+                                    ""
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "number of results to be returned in API response",
+                                      "key": "limit",
+                                      "value": "<integer>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "distinct_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T03:06:30.000Z",
+                              "updatedAt": "2026-07-28T03:06:30.000Z",
+                              "uid": "35240-bce7ffaa-54c3-4d7e-932b-dd76cc6b198b"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:06:30.000Z",
+                          "updatedAt": "2026-07-28T03:06:30.000Z",
+                          "uid": "35240-66957611-3a76-482a-aad7-53f2b6228d14"
+                        }
+                      ],
+                      "id": "a199e11e-c8d3-45a4-8aee-7580fdbd63be",
+                      "createdAt": "2026-07-28T03:06:30.000Z",
+                      "updatedAt": "2026-07-28T03:06:30.000Z",
+                      "uid": "35240-a199e11e-c8d3-45a4-8aee-7580fdbd63be"
+                    }
+                  ],
+                  "id": "f5f06459-e129-4994-8258-9f95d4313088",
+                  "createdAt": "2026-07-28T03:06:30.000Z",
+                  "updatedAt": "2026-07-28T03:06:30.000Z",
+                  "uid": "35240-f5f06459-e129-4994-8258-9f95d4313088"
+                },
+                {
+                  "name": "Create / Update Users",
+                  "id": "d68d7f90-d859-486d-baf9-36df68c63279",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"$email\": [\n    \"<email>\",\n    \"<email>\"\n  ],\n  \"$sms\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"$whatsapp\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"$inbox\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"$androidpush\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"$iospush\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"$slack\": [\n    {\n      \"email\": \"<email>\",\n      \"access_token\": \"<string>\"\n    },\n    {\n      \"email\": \"<email>\",\n      \"access_token\": \"<string>\"\n    }\n  ],\n  \"$ms_teams\": [\n    {\n      \"tenant_id\": \"<string>\",\n      \"service_url\": \"<uri>\",\n      \"conversation_id\": \"<string>\"\n    },\n    {\n      \"tenant_id\": \"<string>\",\n      \"service_url\": \"<uri>\",\n      \"conversation_id\": \"<string>\"\n    }\n  ],\n  \"$timezone\": \"<string>\",\n  \"$locale\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/user/:distinct_id/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "user",
+                        ":distinct_id",
+                        ""
+                      ],
+                      "variable": [
+                        {
+                          "id": "31a2ca0f-5047-4f9c-9729-f632ce42db77",
+                          "key": "distinct_id",
+                          "value": "<string>",
+                          "description": "(Required) Unique identifier of the user in your system"
+                        }
+                      ]
+                    },
+                    "description": "API to upsert (create if not exists, update if exists) user profile using a `distinct_id`."
+                  },
+                  "response": [
+                    {
+                      "id": "751cb9b7-41e7-42b4-a49b-6fd315633a65",
+                      "name": "201",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"$email\": [\n    \"<email>\",\n    \"<email>\"\n  ],\n  \"$sms\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"$whatsapp\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"$inbox\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"$androidpush\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"$iospush\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"$slack\": [\n    {\n      \"email\": \"<email>\",\n      \"access_token\": \"<string>\"\n    },\n    {\n      \"email\": \"<email>\",\n      \"access_token\": \"<string>\"\n    }\n  ],\n  \"$ms_teams\": [\n    {\n      \"tenant_id\": \"<string>\",\n      \"service_url\": \"<uri>\",\n      \"conversation_id\": \"<string>\"\n    },\n    {\n      \"tenant_id\": \"<string>\",\n      \"service_url\": \"<uri>\",\n      \"conversation_id\": \"<string>\"\n    }\n  ],\n  \"$timezone\": \"<string>\",\n  \"$locale\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/user/:distinct_id/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "user",
+                            ":distinct_id",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "distinct_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"distinct_id\": \"<string>\",\n  \"properties\": {},\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"$<channel>\": [\n    {\n      \"value\": \"<string>\",\n      \"status\": \"<string>\",\n      \"perma_status\": \"<string>\"\n    },\n    {\n      \"value\": \"<string>\",\n      \"status\": \"<string>\",\n      \"perma_status\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T03:06:30.000Z",
+                      "updatedAt": "2026-07-28T03:06:30.000Z",
+                      "uid": "35240-751cb9b7-41e7-42b4-a49b-6fd315633a65"
+                    },
+                    {
+                      "id": "5cf8b8cb-d1f7-4524-a0dd-13b7fbb9c853",
+                      "name": "400",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"$email\": [\n    \"<email>\",\n    \"<email>\"\n  ],\n  \"$sms\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"$whatsapp\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"$inbox\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"$androidpush\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"$iospush\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"$slack\": [\n    {\n      \"email\": \"<email>\",\n      \"access_token\": \"<string>\"\n    },\n    {\n      \"email\": \"<email>\",\n      \"access_token\": \"<string>\"\n    }\n  ],\n  \"$ms_teams\": [\n    {\n      \"tenant_id\": \"<string>\",\n      \"service_url\": \"<uri>\",\n      \"conversation_id\": \"<string>\"\n    },\n    {\n      \"tenant_id\": \"<string>\",\n      \"service_url\": \"<uri>\",\n      \"conversation_id\": \"<string>\"\n    }\n  ],\n  \"$timezone\": \"<string>\",\n  \"$locale\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/user/:distinct_id/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "user",
+                            ":distinct_id",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "distinct_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:06:30.000Z",
+                      "updatedAt": "2026-07-28T03:06:30.000Z",
+                      "uid": "35240-5cf8b8cb-d1f7-4524-a0dd-13b7fbb9c853"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:06:30.000Z",
+                  "updatedAt": "2026-07-28T03:06:30.000Z",
+                  "uid": "35240-d68d7f90-d859-486d-baf9-36df68c63279"
+                },
+                {
+                  "name": "Fetch User by id",
+                  "id": "92a078b9-d720-410a-ae56-c09beed51f40",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/user/:distinct_id/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "user",
+                        ":distinct_id",
+                        ""
+                      ],
+                      "variable": [
+                        {
+                          "id": "732e1033-2d4a-4e0e-8910-93217bdbfe19",
+                          "key": "distinct_id",
+                          "value": "<string>",
+                          "description": "(Required) Unique identifier of the user in your system"
+                        }
+                      ]
+                    },
+                    "description": "API to fetch user object by passing it's unique `distinct_id`."
+                  },
+                  "response": [
+                    {
+                      "id": "9603f2c3-a2ec-4597-9f27-c906d75be3cb",
+                      "name": "200",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/user/:distinct_id/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "user",
+                            ":distinct_id",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "distinct_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"distinct_id\": \"<string>\",\n  \"properties\": {},\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"$<channel>\": [\n    {\n      \"value\": \"<string>\",\n      \"status\": \"<string>\",\n      \"perma_status\": \"<string>\"\n    },\n    {\n      \"value\": \"<string>\",\n      \"status\": \"<string>\",\n      \"perma_status\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T03:06:30.000Z",
+                      "updatedAt": "2026-07-28T03:06:30.000Z",
+                      "uid": "35240-9603f2c3-a2ec-4597-9f27-c906d75be3cb"
+                    },
+                    {
+                      "id": "38d4db6d-faa8-4bfd-91ca-35a8f5c59db5",
+                      "name": "400",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/user/:distinct_id/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "user",
+                            ":distinct_id",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "distinct_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:06:30.000Z",
+                      "updatedAt": "2026-07-28T03:06:30.000Z",
+                      "uid": "35240-38d4db6d-faa8-4bfd-91ca-35a8f5c59db5"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:06:30.000Z",
+                  "updatedAt": "2026-07-28T03:06:30.000Z",
+                  "uid": "35240-92a078b9-d720-410a-ae56-c09beed51f40"
+                },
+                {
+                  "name": "Delete user",
+                  "id": "012095ab-278e-4944-829e-6e89656a6de3",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/user/:distinct_id/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "user",
+                        ":distinct_id",
+                        ""
+                      ],
+                      "variable": [
+                        {
+                          "id": "5959ce40-ac08-4733-812f-4e47b4ed4af3",
+                          "key": "distinct_id",
+                          "value": "<string>",
+                          "description": "(Required) Unique identifier of the user in your system"
+                        }
+                      ]
+                    },
+                    "description": "API to permanently delete a user from SuprSend by passing `distinct_id`."
+                  },
+                  "response": [
+                    {
+                      "id": "ac79b9c7-52af-4dca-af94-e4601e8d8b73",
+                      "name": "204 - No Content",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/user/:distinct_id/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "user",
+                            ":distinct_id",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "distinct_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:06:30.000Z",
+                      "updatedAt": "2026-07-28T03:06:30.000Z",
+                      "uid": "35240-ac79b9c7-52af-4dca-af94-e4601e8d8b73"
+                    },
+                    {
+                      "id": "20f21d26-85ed-4292-8652-858d3acc8668",
+                      "name": "404",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/user/:distinct_id/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "user",
+                            ":distinct_id",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "distinct_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:06:30.000Z",
+                      "updatedAt": "2026-07-28T03:06:30.000Z",
+                      "uid": "35240-20f21d26-85ed-4292-8652-858d3acc8668"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:06:30.000Z",
+                  "updatedAt": "2026-07-28T03:06:30.000Z",
+                  "uid": "35240-012095ab-278e-4944-829e-6e89656a6de3"
+                },
+                {
+                  "name": "Edit User Profile",
+                  "id": "c3841b01-e64e-41c8-ad81-075bf32300bd",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"operations\": [\n    {\n      \"$set\": {\n        \"ipsum79e\": \"<string>\",\n        \"non385\": \"<string>\",\n        \"sint_246\": \"<string>\",\n        \"Ut_7_\": \"<string>\"\n      },\n      \"$unset\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$append\": {\n        \"et_50\": \"<string>\",\n        \"eaa_4\": \"<string>\"\n      },\n      \"$remove\": {\n        \"anim__cf\": \"<string>\",\n        \"dolor35\": \"<string>\"\n      },\n      \"$set_once\": {\n        \"cupidatat_\": \"<string>\",\n        \"sunt_6\": \"<string>\"\n      },\n      \"$increment\": {\n        \"esseb1\": \"<string>\",\n        \"quis_c0\": \"<string>\"\n      }\n    },\n    {\n      \"$set\": {\n        \"proidentc0\": \"<string>\",\n        \"commodo_08\": \"<string>\"\n      },\n      \"$unset\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$append\": {\n        \"voluptate85\": \"<string>\"\n      },\n      \"$remove\": {\n        \"Ut_e\": \"<string>\",\n        \"et__4f\": \"<string>\"\n      },\n      \"$set_once\": {\n        \"mollit_0\": \"<string>\",\n        \"consequat_1\": \"<string>\",\n        \"irure_6ee\": \"<string>\",\n        \"cillum_9a6\": \"<string>\"\n      },\n      \"$increment\": {\n        \"aliquip_969\": \"<string>\"\n      }\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/user/:distinct_id/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "user",
+                        ":distinct_id",
+                        ""
+                      ],
+                      "variable": [
+                        {
+                          "id": "5d1f288d-663e-46fb-b171-0791352882d2",
+                          "key": "distinct_id",
+                          "value": "<string>",
+                          "description": "(Required) unique identifier of the user"
+                        }
+                      ]
+                    },
+                    "description": "API to edit (add/remove) properties and communication-channels for a user."
+                  },
+                  "response": [
+                    {
+                      "id": "f2f96bac-0006-4170-a723-e007654609c2",
+                      "name": "202",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"operations\": [\n    {\n      \"$set\": {\n        \"ipsum79e\": \"<string>\",\n        \"non385\": \"<string>\",\n        \"sint_246\": \"<string>\",\n        \"Ut_7_\": \"<string>\"\n      },\n      \"$unset\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$append\": {\n        \"et_50\": \"<string>\",\n        \"eaa_4\": \"<string>\"\n      },\n      \"$remove\": {\n        \"anim__cf\": \"<string>\",\n        \"dolor35\": \"<string>\"\n      },\n      \"$set_once\": {\n        \"cupidatat_\": \"<string>\",\n        \"sunt_6\": \"<string>\"\n      },\n      \"$increment\": {\n        \"esseb1\": \"<string>\",\n        \"quis_c0\": \"<string>\"\n      }\n    },\n    {\n      \"$set\": {\n        \"proidentc0\": \"<string>\",\n        \"commodo_08\": \"<string>\"\n      },\n      \"$unset\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$append\": {\n        \"voluptate85\": \"<string>\"\n      },\n      \"$remove\": {\n        \"Ut_e\": \"<string>\",\n        \"et__4f\": \"<string>\"\n      },\n      \"$set_once\": {\n        \"mollit_0\": \"<string>\",\n        \"consequat_1\": \"<string>\",\n        \"irure_6ee\": \"<string>\",\n        \"cillum_9a6\": \"<string>\"\n      },\n      \"$increment\": {\n        \"aliquip_969\": \"<string>\"\n      }\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/user/:distinct_id/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "user",
+                            ":distinct_id",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "distinct_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Accepted",
+                      "code": 202,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"distinct_id\": \"<string>\",\n  \"properties\": {},\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"$<channel>\": [\n    {\n      \"value\": \"<string>\",\n      \"status\": \"<string>\",\n      \"perma_status\": \"<string>\"\n    },\n    {\n      \"value\": \"<string>\",\n      \"status\": \"<string>\",\n      \"perma_status\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T03:06:30.000Z",
+                      "updatedAt": "2026-07-28T03:06:30.000Z",
+                      "uid": "35240-f2f96bac-0006-4170-a723-e007654609c2"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:06:30.000Z",
+                  "updatedAt": "2026-07-28T03:06:30.000Z",
+                  "uid": "35240-c3841b01-e64e-41c8-ad81-075bf32300bd"
+                }
+              ],
+              "id": "ff1f9579-732c-4134-ad4c-a1150dab5c30",
+              "createdAt": "2026-07-28T03:06:30.000Z",
+              "updatedAt": "2026-07-28T03:06:30.000Z",
+              "uid": "35240-ff1f9579-732c-4134-ad4c-a1150dab5c30"
+            },
+            {
+              "name": "List Users",
+              "id": "7cae6356-c57d-427a-a793-a114874ff51a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/user/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "user",
+                    ""
+                  ]
+                },
+                "description": "API to list cursor-based paginated list of users in your workspace."
+              },
+              "response": [
+                {
+                  "id": "36a616ef-5099-4116-8d3e-10c7484986a9",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/user/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "user",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"meta\": {\n    \"count\": \"<integer>\",\n    \"limit\": \"<integer>\",\n    \"has_prev\": \"<boolean>\",\n    \"before\": \"<string>\",\n    \"has_next\": \"<boolean>\",\n    \"after\": \"<string>\"\n  },\n  \"results\": [\n    {\n      \"distinct_id\": \"<string>\",\n      \"properties\": {},\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    {\n      \"distinct_id\": \"<string>\",\n      \"properties\": {},\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T03:06:30.000Z",
+                  "updatedAt": "2026-07-28T03:06:30.000Z",
+                  "uid": "35240-36a616ef-5099-4116-8d3e-10c7484986a9"
+                }
+              ],
+              "createdAt": "2026-07-28T03:06:30.000Z",
+              "updatedAt": "2026-07-28T03:06:30.000Z",
+              "uid": "35240-7cae6356-c57d-427a-a793-a114874ff51a"
+            }
+          ],
+          "id": "108e30cc-497a-417f-9bf4-07dea35d6db1",
+          "createdAt": "2026-07-28T03:06:30.000Z",
+          "updatedAt": "2026-07-28T03:06:30.000Z",
+          "uid": "35240-108e30cc-497a-417f-9bf4-07dea35d6db1"
+        }
+      ],
+      "id": "82101e69-79cf-473c-bb02-2dcbe9bbdbf7",
+      "createdAt": "2026-07-28T03:06:30.000Z",
+      "updatedAt": "2026-07-28T03:06:30.000Z",
+      "uid": "35240-82101e69-79cf-473c-bb02-2dcbe9bbdbf7"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://hub.suprsend.com"
+    }
+  ]
+}

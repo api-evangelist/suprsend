@@ -1,0 +1,1796 @@
+{
+  "info": {
+    "_postman_id": "714513ad-a3ae-4539-81d9-6543a4cacdf1",
+    "name": "SuprSend Broadcast Workflow API",
+    "description": "APIs supported on suprsend platform",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:06:31.000Z",
+    "updatedAt": "2026-07-28T03:06:31.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-714513ad-a3ae-4539-81d9-6543a4cacdf1"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "{workspace}",
+          "item": [
+            {
+              "name": "workflow",
+              "item": [
+                {
+                  "name": "{slug}",
+                  "item": [
+                    {
+                      "name": "commit",
+                      "item": [
+                        {
+                          "name": "Commit Workflow",
+                          "id": "c31e5372-bb4d-4f0b-9a52-0c5c36a58e41",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "apikey",
+                              "apikey": [
+                                {
+                                  "key": "key",
+                                  "value": "ServiceToken <token>",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "value",
+                                  "value": "{{apiKey}}",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "in",
+                                  "value": "header",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "https://management-api.suprsend.com/v1/:workspace/workflow/:slug/commit/?commit_message=<string>",
+                              "protocol": "https",
+                              "host": [
+                                "management-api",
+                                "suprsend",
+                                "com"
+                              ],
+                              "path": [
+                                "v1",
+                                ":workspace",
+                                "workflow",
+                                ":slug",
+                                "commit",
+                                ""
+                              ],
+                              "query": [
+                                {
+                                  "description": "Commit message describing the changes",
+                                  "key": "commit_message",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "d3c22210-3860-4b47-b461-ff729f4e859d",
+                                  "key": "workspace",
+                                  "value": "<string>",
+                                  "description": "(Required) Workspace to which the workflow belongs (staging, production, etc.)"
+                                },
+                                {
+                                  "id": "f21070aa-bae1-4fd0-aee9-66fbd3378440",
+                                  "key": "slug",
+                                  "value": "<string>",
+                                  "description": "(Required) Unique identifier of the workflow. You can get it from workflow settings."
+                                }
+                              ]
+                            },
+                            "description": "Commit a workflow to make the draft version live."
+                          },
+                          "response": [
+                            {
+                              "id": "9c74f771-d6b3-4c02-a71b-77b416645eb1",
+                              "name": "Workflow committed successfully. The response will be the latest draft version after the commit.",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "ServiceToken <token>",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "https://management-api.suprsend.com/v1/:workspace/workflow/:slug/commit/?commit_message=<string>",
+                                  "protocol": "https",
+                                  "host": [
+                                    "management-api",
+                                    "suprsend",
+                                    "com"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":workspace",
+                                    "workflow",
+                                    ":slug",
+                                    "commit",
+                                    ""
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Commit message describing the changes",
+                                      "key": "commit_message",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "slug"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Accepted",
+                              "code": 202,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"$schema\": \"<uri>\",\n  \"slug\": \"e\",\n  \"is_enabled\": \"<boolean>\",\n  \"created_at\": \"<dateTime>\",\n  \"last_executed_at\": \"<dateTime>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"updated_at\": \"<dateTime>\",\n  \"commit_message\": \"<string>\",\n  \"hash\": \"<string>\",\n  \"status\": \"draft\",\n  \"category\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ratelimit\": {},\n  \"trigger_type\": \"event\",\n  \"trigger_events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"override_recipients_type\": \"user\",\n  \"override_recipients_user_expr\": \"<string>\",\n  \"override_recipients_single_object_fields_expr\": \"<string>\",\n  \"override_actor_user_expr\": \"<string>\",\n  \"override_tenant_expr\": \"<string>\",\n  \"active_at\": \"<dateTime>\",\n  \"updated_by\": {\n    \"name\": \"<string>\",\n    \"email\": \"<email>\"\n  },\n  \"tree\": {},\n  \"validation_result\": {\n    \"is_valid\": \"<boolean>\",\n    \"errors\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                              "createdAt": "2026-07-28T03:06:31.000Z",
+                              "updatedAt": "2026-07-28T03:06:31.000Z",
+                              "uid": "35240-9c74f771-d6b3-4c02-a71b-77b416645eb1"
+                            },
+                            {
+                              "id": "658b22d8-5daf-4e75-94cd-aa75a12be2b7",
+                              "name": "Authentication failed",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "ServiceToken <token>",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "https://management-api.suprsend.com/v1/:workspace/workflow/:slug/commit/?commit_message=<string>",
+                                  "protocol": "https",
+                                  "host": [
+                                    "management-api",
+                                    "suprsend",
+                                    "com"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":workspace",
+                                    "workflow",
+                                    ":slug",
+                                    "commit",
+                                    ""
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Commit message describing the changes",
+                                      "key": "commit_message",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "slug"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T03:06:31.000Z",
+                              "updatedAt": "2026-07-28T03:06:31.000Z",
+                              "uid": "35240-658b22d8-5daf-4e75-94cd-aa75a12be2b7"
+                            },
+                            {
+                              "id": "d9314b8d-bee9-4bd3-81ea-fbfe34e079eb",
+                              "name": "Resource not found",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "ServiceToken <token>",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "https://management-api.suprsend.com/v1/:workspace/workflow/:slug/commit/?commit_message=<string>",
+                                  "protocol": "https",
+                                  "host": [
+                                    "management-api",
+                                    "suprsend",
+                                    "com"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":workspace",
+                                    "workflow",
+                                    ":slug",
+                                    "commit",
+                                    ""
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Commit message describing the changes",
+                                      "key": "commit_message",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "slug"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T03:06:31.000Z",
+                              "updatedAt": "2026-07-28T03:06:31.000Z",
+                              "uid": "35240-d9314b8d-bee9-4bd3-81ea-fbfe34e079eb"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:06:31.000Z",
+                          "updatedAt": "2026-07-28T03:06:31.000Z",
+                          "uid": "35240-c31e5372-bb4d-4f0b-9a52-0c5c36a58e41"
+                        }
+                      ],
+                      "id": "3c948ec6-8e4d-415b-82d2-d124c7c25ea7",
+                      "createdAt": "2026-07-28T03:06:31.000Z",
+                      "updatedAt": "2026-07-28T03:06:31.000Z",
+                      "uid": "35240-3c948ec6-8e4d-415b-82d2-d124c7c25ea7"
+                    },
+                    {
+                      "name": "enable",
+                      "item": [
+                        {
+                          "name": "Enable/Disable Workflow",
+                          "id": "e1117b57-d5bc-4b6f-8b9f-76bb46e72f2c",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "apikey",
+                              "apikey": [
+                                {
+                                  "key": "key",
+                                  "value": "ServiceToken <token>",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "value",
+                                  "value": "{{apiKey}}",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "in",
+                                  "value": "header",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"is_enabled\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "https://management-api.suprsend.com/v1/:workspace/workflow/:slug/enable/",
+                              "protocol": "https",
+                              "host": [
+                                "management-api",
+                                "suprsend",
+                                "com"
+                              ],
+                              "path": [
+                                "v1",
+                                ":workspace",
+                                "workflow",
+                                ":slug",
+                                "enable",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "id": "de7a81c0-5a12-4249-8b02-6128aa9222ff",
+                                  "key": "workspace",
+                                  "value": "<string>",
+                                  "description": "(Required) Workspace to which the workflow belongs (staging, production, etc.)"
+                                },
+                                {
+                                  "id": "3ab566be-55c4-44e1-8b17-bc0a02b4f767",
+                                  "key": "slug",
+                                  "value": "<string>",
+                                  "description": "(Required) Unique identifier of the workflow. You can get it from workflow settings."
+                                }
+                              ]
+                            },
+                            "description": "Enable or disable a workflow. Disabled workflows will not be executed when triggered. By default, workflows are enabled unless you explicitly disable them."
+                          },
+                          "response": [
+                            {
+                              "id": "3110a90d-9905-4c03-a8f8-85d861ad04fc",
+                              "name": "Workflow status updated successfully",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "ServiceToken <token>",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"is_enabled\": \"<boolean>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "https://management-api.suprsend.com/v1/:workspace/workflow/:slug/enable/",
+                                  "protocol": "https",
+                                  "host": [
+                                    "management-api",
+                                    "suprsend",
+                                    "com"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":workspace",
+                                    "workflow",
+                                    ":slug",
+                                    "enable",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "slug"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Accepted",
+                              "code": 202,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"$schema\": \"<uri>\",\n  \"slug\": \"e\",\n  \"is_enabled\": \"<boolean>\",\n  \"created_at\": \"<dateTime>\",\n  \"last_executed_at\": \"<dateTime>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"updated_at\": \"<dateTime>\",\n  \"commit_message\": \"<string>\",\n  \"hash\": \"<string>\",\n  \"status\": \"draft\",\n  \"category\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ratelimit\": {},\n  \"trigger_type\": \"event\",\n  \"trigger_events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"override_recipients_type\": \"user\",\n  \"override_recipients_user_expr\": \"<string>\",\n  \"override_recipients_single_object_fields_expr\": \"<string>\",\n  \"override_actor_user_expr\": \"<string>\",\n  \"override_tenant_expr\": \"<string>\",\n  \"active_at\": \"<dateTime>\",\n  \"updated_by\": {\n    \"name\": \"<string>\",\n    \"email\": \"<email>\"\n  },\n  \"tree\": {},\n  \"validation_result\": {\n    \"is_valid\": \"<boolean>\",\n    \"errors\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                              "createdAt": "2026-07-28T03:06:31.000Z",
+                              "updatedAt": "2026-07-28T03:06:31.000Z",
+                              "uid": "35240-3110a90d-9905-4c03-a8f8-85d861ad04fc"
+                            },
+                            {
+                              "id": "53996989-9613-4deb-86c2-5ba5bade9b48",
+                              "name": "Authentication failed",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "ServiceToken <token>",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"is_enabled\": \"<boolean>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "https://management-api.suprsend.com/v1/:workspace/workflow/:slug/enable/",
+                                  "protocol": "https",
+                                  "host": [
+                                    "management-api",
+                                    "suprsend",
+                                    "com"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":workspace",
+                                    "workflow",
+                                    ":slug",
+                                    "enable",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "slug"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T03:06:31.000Z",
+                              "updatedAt": "2026-07-28T03:06:31.000Z",
+                              "uid": "35240-53996989-9613-4deb-86c2-5ba5bade9b48"
+                            },
+                            {
+                              "id": "170a9abe-deca-43dd-bbbe-0a8fd2c8c85a",
+                              "name": "Resource not found",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "ServiceToken <token>",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"is_enabled\": \"<boolean>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "https://management-api.suprsend.com/v1/:workspace/workflow/:slug/enable/",
+                                  "protocol": "https",
+                                  "host": [
+                                    "management-api",
+                                    "suprsend",
+                                    "com"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":workspace",
+                                    "workflow",
+                                    ":slug",
+                                    "enable",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "slug"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T03:06:31.000Z",
+                              "updatedAt": "2026-07-28T03:06:31.000Z",
+                              "uid": "35240-170a9abe-deca-43dd-bbbe-0a8fd2c8c85a"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:06:31.000Z",
+                          "updatedAt": "2026-07-28T03:06:31.000Z",
+                          "uid": "35240-e1117b57-d5bc-4b6f-8b9f-76bb46e72f2c"
+                        }
+                      ],
+                      "id": "a927cd98-ada1-42ee-ab14-89d451dacf26",
+                      "createdAt": "2026-07-28T03:06:31.000Z",
+                      "updatedAt": "2026-07-28T03:06:31.000Z",
+                      "uid": "35240-a927cd98-ada1-42ee-ab14-89d451dacf26"
+                    },
+                    {
+                      "name": "Get Workflow Details",
+                      "id": "54e056cb-b727-4253-b3c0-6690fc7bf799",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "ServiceToken <token>",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "https://management-api.suprsend.com/v1/:workspace/workflow/:slug/?mode=draft",
+                          "protocol": "https",
+                          "host": [
+                            "management-api",
+                            "suprsend",
+                            "com"
+                          ],
+                          "path": [
+                            "v1",
+                            ":workspace",
+                            "workflow",
+                            ":slug",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "Which workflow version to fetch (draft or live). By default, draft version is returned.",
+                              "key": "mode",
+                              "value": "draft"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "cd078e99-5e6c-4d5c-baef-180752e0d0e2",
+                              "key": "workspace",
+                              "value": "<string>",
+                              "description": "(Required) Workspace slug (staging, production, etc.)"
+                            },
+                            {
+                              "id": "29124324-1574-45cb-8f05-f42f65764d1d",
+                              "key": "slug",
+                              "value": "<string>",
+                              "description": "(Required) Unique identifier of the workflow. You can get it from workflow settings."
+                            }
+                          ]
+                        },
+                        "description": "Fetch workflow corresponding to the given slug in a workspace."
+                      },
+                      "response": [
+                        {
+                          "id": "2fc3df7a-624d-4497-9d29-c5393d7fbd2c",
+                          "name": "Successfully retrieved workflow",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "ServiceToken <token>",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "https://management-api.suprsend.com/v1/:workspace/workflow/:slug/?mode=draft",
+                              "protocol": "https",
+                              "host": [
+                                "management-api",
+                                "suprsend",
+                                "com"
+                              ],
+                              "path": [
+                                "v1",
+                                ":workspace",
+                                "workflow",
+                                ":slug",
+                                ""
+                              ],
+                              "query": [
+                                {
+                                  "description": "Which workflow version to fetch (draft or live). By default, draft version is returned.",
+                                  "key": "mode",
+                                  "value": "draft"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "slug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"$schema\": \"<uri>\",\n  \"slug\": \"e\",\n  \"is_enabled\": \"<boolean>\",\n  \"created_at\": \"<dateTime>\",\n  \"last_executed_at\": \"<dateTime>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"updated_at\": \"<dateTime>\",\n  \"commit_message\": \"<string>\",\n  \"hash\": \"<string>\",\n  \"status\": \"draft\",\n  \"category\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ratelimit\": {},\n  \"trigger_type\": \"event\",\n  \"trigger_events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"override_recipients_type\": \"user\",\n  \"override_recipients_user_expr\": \"<string>\",\n  \"override_recipients_single_object_fields_expr\": \"<string>\",\n  \"override_actor_user_expr\": \"<string>\",\n  \"override_tenant_expr\": \"<string>\",\n  \"active_at\": \"<dateTime>\",\n  \"updated_by\": {\n    \"name\": \"<string>\",\n    \"email\": \"<email>\"\n  },\n  \"tree\": {},\n  \"validation_result\": {\n    \"is_valid\": \"<boolean>\",\n    \"errors\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                          "createdAt": "2026-07-28T03:06:31.000Z",
+                          "updatedAt": "2026-07-28T03:06:31.000Z",
+                          "uid": "35240-2fc3df7a-624d-4497-9d29-c5393d7fbd2c"
+                        },
+                        {
+                          "id": "fade61ff-68f0-4f94-babc-62bde51259c0",
+                          "name": "Authentication failed",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "ServiceToken <token>",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "https://management-api.suprsend.com/v1/:workspace/workflow/:slug/?mode=draft",
+                              "protocol": "https",
+                              "host": [
+                                "management-api",
+                                "suprsend",
+                                "com"
+                              ],
+                              "path": [
+                                "v1",
+                                ":workspace",
+                                "workflow",
+                                ":slug",
+                                ""
+                              ],
+                              "query": [
+                                {
+                                  "description": "Which workflow version to fetch (draft or live). By default, draft version is returned.",
+                                  "key": "mode",
+                                  "value": "draft"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "slug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:06:31.000Z",
+                          "updatedAt": "2026-07-28T03:06:31.000Z",
+                          "uid": "35240-fade61ff-68f0-4f94-babc-62bde51259c0"
+                        },
+                        {
+                          "id": "acbb2d1d-2cdc-41b8-baee-31cbe2d097f8",
+                          "name": "Resource not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "ServiceToken <token>",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "https://management-api.suprsend.com/v1/:workspace/workflow/:slug/?mode=draft",
+                              "protocol": "https",
+                              "host": [
+                                "management-api",
+                                "suprsend",
+                                "com"
+                              ],
+                              "path": [
+                                "v1",
+                                ":workspace",
+                                "workflow",
+                                ":slug",
+                                ""
+                              ],
+                              "query": [
+                                {
+                                  "description": "Which workflow version to fetch (draft or live). By default, draft version is returned.",
+                                  "key": "mode",
+                                  "value": "draft"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "slug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:06:31.000Z",
+                          "updatedAt": "2026-07-28T03:06:31.000Z",
+                          "uid": "35240-acbb2d1d-2cdc-41b8-baee-31cbe2d097f8"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:06:31.000Z",
+                      "updatedAt": "2026-07-28T03:06:31.000Z",
+                      "uid": "35240-54e056cb-b727-4253-b3c0-6690fc7bf799"
+                    },
+                    {
+                      "name": "Create or Update Workflow",
+                      "id": "abba643d-a656-466f-aae3-7e6f13d1ec40",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "ServiceToken <token>",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"trigger_type\": \"event\",\n  \"category\": \"<string>\",\n  \"tree\": {\n    \"nodes\": [\n      {\n        \"node_type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"delay_type\": \"relative_to\",\n        \"description\": \"<string>\",\n        \"duration\": \"<string>\",\n        \"relative_to\": {\n          \"pivot_expr\": \"<string>\",\n          \"offset_type\": \"after\",\n          \"offset_value_type\": \"dynamic\",\n          \"offset_value\": \"<string>\"\n        }\n      },\n      {\n        \"node_type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"delay_type\": \"dynamic\",\n        \"description\": \"<string>\",\n        \"duration\": \"<string>\",\n        \"relative_to\": {\n          \"pivot_expr\": \"<string>\",\n          \"offset_type\": \"before\",\n          \"offset_value_type\": \"dynamic\",\n          \"offset_value\": \"<string>\"\n        }\n      }\n    ]\n  },\n  \"description\": \"<string>\",\n  \"is_enabled\": true,\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"payload_schema\": {\n    \"schema\": \"<string>\",\n    \"version_no\": \"<integer>\"\n  },\n  \"trigger_events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ratelimit\": {\n    \"count\": \"<integer>\",\n    \"sliding_window\": \"<string>\"\n  },\n  \"conditions\": [\n    {\n      \"type\": \"expression_v1\",\n      \"expression_v1\": {\n        \"op\": \"AND\",\n        \"args\": [\n          {\n            \"op\": \"<\",\n            \"value\": \"<string>\",\n            \"variable\": \"<string>\",\n            \"variable_ns\": \"\"\n          },\n          {\n            \"op\": \"NOT_CONTAINS\",\n            \"value\": \"<string>\",\n            \"variable\": \"<string>\",\n            \"variable_ns\": \"$tenant\"\n          }\n        ]\n      }\n    },\n    {\n      \"type\": \"expression_v1\",\n      \"expression_v1\": {\n        \"op\": \"AND\",\n        \"args\": [\n          {\n            \"op\": \">\",\n            \"value\": \"<string>\",\n            \"variable\": \"<string>\",\n            \"variable_ns\": \"\"\n          },\n          {\n            \"op\": \"<=\",\n            \"value\": \"<string>\",\n            \"variable\": \"<string>\",\n            \"variable_ns\": \"\"\n          }\n        ]\n      }\n    }\n  ],\n  \"override_recipients_type\": \"single_object_fields\",\n  \"override_recipients_user_expr\": \"<string>\",\n  \"override_recipients_single_object_fields_expr\": {\n    \"id\": \"<string>\",\n    \"object_type\": \"<string>\",\n    \"$object_subscriptions_query.depth\": \"<string>\"\n  },\n  \"override_actor_user_expr\": \"<string>\",\n  \"override_tenant_expr\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "https://management-api.suprsend.com/v1/:workspace/workflow/:slug/?commit=false&commit_message=<string>",
+                          "protocol": "https",
+                          "host": [
+                            "management-api",
+                            "suprsend",
+                            "com"
+                          ],
+                          "path": [
+                            "v1",
+                            ":workspace",
+                            "workflow",
+                            ":slug",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "Whether to commit the workflow immediately. Workflow will be successfully committed only if validation_result.is_valid is true.",
+                              "key": "commit",
+                              "value": "false"
+                            },
+                            {
+                              "description": "Commit message describing the changes (required if commit=true)",
+                              "key": "commit_message",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "f2c3e69c-6a03-4557-9313-dc2c84f71176",
+                              "key": "workspace",
+                              "value": "<string>",
+                              "description": "(Required) Workspace where the workflow should be created (staging, production, etc.)"
+                            },
+                            {
+                              "id": "c9e36f6f-9f3a-415d-afc4-0b8020349a1c",
+                              "key": "slug",
+                              "value": "<string>",
+                              "description": "(Required) Unique identifier of the workflow. You can get it from workflow settings for existing workflows."
+                            }
+                          ]
+                        },
+                        "description": "Create a new workflow or update the draft version of an existing one"
+                      },
+                      "response": [
+                        {
+                          "id": "edabea19-6f85-4499-9669-41115e021888",
+                          "name": "The response includes the same workflow object as input along with a validation_result field that indicates whether the workflow configuration is valid.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "ServiceToken <token>",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"trigger_type\": \"event\",\n  \"category\": \"<string>\",\n  \"tree\": {\n    \"nodes\": [\n      {\n        \"node_type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"delay_type\": \"relative_to\",\n        \"description\": \"<string>\",\n        \"duration\": \"<string>\",\n        \"relative_to\": {\n          \"pivot_expr\": \"<string>\",\n          \"offset_type\": \"after\",\n          \"offset_value_type\": \"dynamic\",\n          \"offset_value\": \"<string>\"\n        }\n      },\n      {\n        \"node_type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"delay_type\": \"dynamic\",\n        \"description\": \"<string>\",\n        \"duration\": \"<string>\",\n        \"relative_to\": {\n          \"pivot_expr\": \"<string>\",\n          \"offset_type\": \"before\",\n          \"offset_value_type\": \"dynamic\",\n          \"offset_value\": \"<string>\"\n        }\n      }\n    ]\n  },\n  \"description\": \"<string>\",\n  \"is_enabled\": true,\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"payload_schema\": {\n    \"schema\": \"<string>\",\n    \"version_no\": \"<integer>\"\n  },\n  \"trigger_events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ratelimit\": {\n    \"count\": \"<integer>\",\n    \"sliding_window\": \"<string>\"\n  },\n  \"conditions\": [\n    {\n      \"type\": \"expression_v1\",\n      \"expression_v1\": {\n        \"op\": \"AND\",\n        \"args\": [\n          {\n            \"op\": \"<\",\n            \"value\": \"<string>\",\n            \"variable\": \"<string>\",\n            \"variable_ns\": \"\"\n          },\n          {\n            \"op\": \"NOT_CONTAINS\",\n            \"value\": \"<string>\",\n            \"variable\": \"<string>\",\n            \"variable_ns\": \"$tenant\"\n          }\n        ]\n      }\n    },\n    {\n      \"type\": \"expression_v1\",\n      \"expression_v1\": {\n        \"op\": \"AND\",\n        \"args\": [\n          {\n            \"op\": \">\",\n            \"value\": \"<string>\",\n            \"variable\": \"<string>\",\n            \"variable_ns\": \"\"\n          },\n          {\n            \"op\": \"<=\",\n            \"value\": \"<string>\",\n            \"variable\": \"<string>\",\n            \"variable_ns\": \"\"\n          }\n        ]\n      }\n    }\n  ],\n  \"override_recipients_type\": \"single_object_fields\",\n  \"override_recipients_user_expr\": \"<string>\",\n  \"override_recipients_single_object_fields_expr\": {\n    \"id\": \"<string>\",\n    \"object_type\": \"<string>\",\n    \"$object_subscriptions_query.depth\": \"<string>\"\n  },\n  \"override_actor_user_expr\": \"<string>\",\n  \"override_tenant_expr\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "https://management-api.suprsend.com/v1/:workspace/workflow/:slug/?commit=false&commit_message=<string>",
+                              "protocol": "https",
+                              "host": [
+                                "management-api",
+                                "suprsend",
+                                "com"
+                              ],
+                              "path": [
+                                "v1",
+                                ":workspace",
+                                "workflow",
+                                ":slug",
+                                ""
+                              ],
+                              "query": [
+                                {
+                                  "description": "Whether to commit the workflow immediately. Workflow will be successfully committed only if validation_result.is_valid is true.",
+                                  "key": "commit",
+                                  "value": "false"
+                                },
+                                {
+                                  "description": "Commit message describing the changes (required if commit=true)",
+                                  "key": "commit_message",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "slug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"validation_result\": {\n    \"is_valid\": \"<boolean>\",\n    \"errors\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                          "createdAt": "2026-07-28T03:06:31.000Z",
+                          "updatedAt": "2026-07-28T03:06:31.000Z",
+                          "uid": "35240-edabea19-6f85-4499-9669-41115e021888"
+                        },
+                        {
+                          "id": "8f2178ba-df93-45d5-9700-a841bd3f335d",
+                          "name": "Authentication failed",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "ServiceToken <token>",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"trigger_type\": \"event\",\n  \"category\": \"<string>\",\n  \"tree\": {\n    \"nodes\": [\n      {\n        \"node_type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"delay_type\": \"relative_to\",\n        \"description\": \"<string>\",\n        \"duration\": \"<string>\",\n        \"relative_to\": {\n          \"pivot_expr\": \"<string>\",\n          \"offset_type\": \"after\",\n          \"offset_value_type\": \"dynamic\",\n          \"offset_value\": \"<string>\"\n        }\n      },\n      {\n        \"node_type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"delay_type\": \"dynamic\",\n        \"description\": \"<string>\",\n        \"duration\": \"<string>\",\n        \"relative_to\": {\n          \"pivot_expr\": \"<string>\",\n          \"offset_type\": \"before\",\n          \"offset_value_type\": \"dynamic\",\n          \"offset_value\": \"<string>\"\n        }\n      }\n    ]\n  },\n  \"description\": \"<string>\",\n  \"is_enabled\": true,\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"payload_schema\": {\n    \"schema\": \"<string>\",\n    \"version_no\": \"<integer>\"\n  },\n  \"trigger_events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ratelimit\": {\n    \"count\": \"<integer>\",\n    \"sliding_window\": \"<string>\"\n  },\n  \"conditions\": [\n    {\n      \"type\": \"expression_v1\",\n      \"expression_v1\": {\n        \"op\": \"AND\",\n        \"args\": [\n          {\n            \"op\": \"<\",\n            \"value\": \"<string>\",\n            \"variable\": \"<string>\",\n            \"variable_ns\": \"\"\n          },\n          {\n            \"op\": \"NOT_CONTAINS\",\n            \"value\": \"<string>\",\n            \"variable\": \"<string>\",\n            \"variable_ns\": \"$tenant\"\n          }\n        ]\n      }\n    },\n    {\n      \"type\": \"expression_v1\",\n      \"expression_v1\": {\n        \"op\": \"AND\",\n        \"args\": [\n          {\n            \"op\": \">\",\n            \"value\": \"<string>\",\n            \"variable\": \"<string>\",\n            \"variable_ns\": \"\"\n          },\n          {\n            \"op\": \"<=\",\n            \"value\": \"<string>\",\n            \"variable\": \"<string>\",\n            \"variable_ns\": \"\"\n          }\n        ]\n      }\n    }\n  ],\n  \"override_recipients_type\": \"single_object_fields\",\n  \"override_recipients_user_expr\": \"<string>\",\n  \"override_recipients_single_object_fields_expr\": {\n    \"id\": \"<string>\",\n    \"object_type\": \"<string>\",\n    \"$object_subscriptions_query.depth\": \"<string>\"\n  },\n  \"override_actor_user_expr\": \"<string>\",\n  \"override_tenant_expr\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "https://management-api.suprsend.com/v1/:workspace/workflow/:slug/?commit=false&commit_message=<string>",
+                              "protocol": "https",
+                              "host": [
+                                "management-api",
+                                "suprsend",
+                                "com"
+                              ],
+                              "path": [
+                                "v1",
+                                ":workspace",
+                                "workflow",
+                                ":slug",
+                                ""
+                              ],
+                              "query": [
+                                {
+                                  "description": "Whether to commit the workflow immediately. Workflow will be successfully committed only if validation_result.is_valid is true.",
+                                  "key": "commit",
+                                  "value": "false"
+                                },
+                                {
+                                  "description": "Commit message describing the changes (required if commit=true)",
+                                  "key": "commit_message",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "slug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:06:31.000Z",
+                          "updatedAt": "2026-07-28T03:06:31.000Z",
+                          "uid": "35240-8f2178ba-df93-45d5-9700-a841bd3f335d"
+                        },
+                        {
+                          "id": "f683dae2-8a64-4db0-92d5-87e82224b185",
+                          "name": "Resource not found",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "ServiceToken <token>",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"trigger_type\": \"event\",\n  \"category\": \"<string>\",\n  \"tree\": {\n    \"nodes\": [\n      {\n        \"node_type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"delay_type\": \"relative_to\",\n        \"description\": \"<string>\",\n        \"duration\": \"<string>\",\n        \"relative_to\": {\n          \"pivot_expr\": \"<string>\",\n          \"offset_type\": \"after\",\n          \"offset_value_type\": \"dynamic\",\n          \"offset_value\": \"<string>\"\n        }\n      },\n      {\n        \"node_type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"delay_type\": \"dynamic\",\n        \"description\": \"<string>\",\n        \"duration\": \"<string>\",\n        \"relative_to\": {\n          \"pivot_expr\": \"<string>\",\n          \"offset_type\": \"before\",\n          \"offset_value_type\": \"dynamic\",\n          \"offset_value\": \"<string>\"\n        }\n      }\n    ]\n  },\n  \"description\": \"<string>\",\n  \"is_enabled\": true,\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"payload_schema\": {\n    \"schema\": \"<string>\",\n    \"version_no\": \"<integer>\"\n  },\n  \"trigger_events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ratelimit\": {\n    \"count\": \"<integer>\",\n    \"sliding_window\": \"<string>\"\n  },\n  \"conditions\": [\n    {\n      \"type\": \"expression_v1\",\n      \"expression_v1\": {\n        \"op\": \"AND\",\n        \"args\": [\n          {\n            \"op\": \"<\",\n            \"value\": \"<string>\",\n            \"variable\": \"<string>\",\n            \"variable_ns\": \"\"\n          },\n          {\n            \"op\": \"NOT_CONTAINS\",\n            \"value\": \"<string>\",\n            \"variable\": \"<string>\",\n            \"variable_ns\": \"$tenant\"\n          }\n        ]\n      }\n    },\n    {\n      \"type\": \"expression_v1\",\n      \"expression_v1\": {\n        \"op\": \"AND\",\n        \"args\": [\n          {\n            \"op\": \">\",\n            \"value\": \"<string>\",\n            \"variable\": \"<string>\",\n            \"variable_ns\": \"\"\n          },\n          {\n            \"op\": \"<=\",\n            \"value\": \"<string>\",\n            \"variable\": \"<string>\",\n            \"variable_ns\": \"\"\n          }\n        ]\n      }\n    }\n  ],\n  \"override_recipients_type\": \"single_object_fields\",\n  \"override_recipients_user_expr\": \"<string>\",\n  \"override_recipients_single_object_fields_expr\": {\n    \"id\": \"<string>\",\n    \"object_type\": \"<string>\",\n    \"$object_subscriptions_query.depth\": \"<string>\"\n  },\n  \"override_actor_user_expr\": \"<string>\",\n  \"override_tenant_expr\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "https://management-api.suprsend.com/v1/:workspace/workflow/:slug/?commit=false&commit_message=<string>",
+                              "protocol": "https",
+                              "host": [
+                                "management-api",
+                                "suprsend",
+                                "com"
+                              ],
+                              "path": [
+                                "v1",
+                                ":workspace",
+                                "workflow",
+                                ":slug",
+                                ""
+                              ],
+                              "query": [
+                                {
+                                  "description": "Whether to commit the workflow immediately. Workflow will be successfully committed only if validation_result.is_valid is true.",
+                                  "key": "commit",
+                                  "value": "false"
+                                },
+                                {
+                                  "description": "Commit message describing the changes (required if commit=true)",
+                                  "key": "commit_message",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "slug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:06:31.000Z",
+                          "updatedAt": "2026-07-28T03:06:31.000Z",
+                          "uid": "35240-f683dae2-8a64-4db0-92d5-87e82224b185"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:06:31.000Z",
+                      "updatedAt": "2026-07-28T03:06:31.000Z",
+                      "uid": "35240-abba643d-a656-466f-aae3-7e6f13d1ec40"
+                    },
+                    {
+                      "name": "Delete Workflow",
+                      "id": "8ec49914-8dda-4692-9633-61a853f99200",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "ServiceToken <token>",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "https://management-api.suprsend.com/v1/:workspace/workflow/:slug/",
+                          "protocol": "https",
+                          "host": [
+                            "management-api",
+                            "suprsend",
+                            "com"
+                          ],
+                          "path": [
+                            "v1",
+                            ":workspace",
+                            "workflow",
+                            ":slug",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "id": "04aff341-2b92-4ffb-a780-580f422feea7",
+                              "key": "workspace",
+                              "value": "<string>",
+                              "description": "(Required) Which workspace workflow belongs to (staging, production, etc.)"
+                            },
+                            {
+                              "id": "75e55c78-b04e-451f-9908-902f7d720f71",
+                              "key": "slug",
+                              "value": "<string>",
+                              "description": "(Required) Unique identifier of the workflow. You can get it from workflow settings."
+                            }
+                          ]
+                        },
+                        "description": "Permanently deletes a workflow by providing it's slug."
+                      },
+                      "response": [
+                        {
+                          "id": "61762873-e08c-4d86-9376-8e66ebe29554",
+                          "name": "No Content",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "ServiceToken <token>",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "https://management-api.suprsend.com/v1/:workspace/workflow/:slug/",
+                              "protocol": "https",
+                              "host": [
+                                "management-api",
+                                "suprsend",
+                                "com"
+                              ],
+                              "path": [
+                                "v1",
+                                ":workspace",
+                                "workflow",
+                                ":slug",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "slug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:06:31.000Z",
+                          "updatedAt": "2026-07-28T03:06:31.000Z",
+                          "uid": "35240-61762873-e08c-4d86-9376-8e66ebe29554"
+                        },
+                        {
+                          "id": "a7551be3-fe61-45ea-ba6c-8980f1f36f3e",
+                          "name": "Authentication failed",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "ServiceToken <token>",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "https://management-api.suprsend.com/v1/:workspace/workflow/:slug/",
+                              "protocol": "https",
+                              "host": [
+                                "management-api",
+                                "suprsend",
+                                "com"
+                              ],
+                              "path": [
+                                "v1",
+                                ":workspace",
+                                "workflow",
+                                ":slug",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "slug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:06:31.000Z",
+                          "updatedAt": "2026-07-28T03:06:31.000Z",
+                          "uid": "35240-a7551be3-fe61-45ea-ba6c-8980f1f36f3e"
+                        },
+                        {
+                          "id": "1f6e81d7-a6d3-4bf3-abf4-b983046dea6f",
+                          "name": "Resource not found",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "ServiceToken <token>",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "https://management-api.suprsend.com/v1/:workspace/workflow/:slug/",
+                              "protocol": "https",
+                              "host": [
+                                "management-api",
+                                "suprsend",
+                                "com"
+                              ],
+                              "path": [
+                                "v1",
+                                ":workspace",
+                                "workflow",
+                                ":slug",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "slug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:06:31.000Z",
+                          "updatedAt": "2026-07-28T03:06:31.000Z",
+                          "uid": "35240-1f6e81d7-a6d3-4bf3-abf4-b983046dea6f"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:06:31.000Z",
+                      "updatedAt": "2026-07-28T03:06:31.000Z",
+                      "uid": "35240-8ec49914-8dda-4692-9633-61a853f99200"
+                    }
+                  ],
+                  "id": "cbcf6b7c-e11f-41e9-b593-9d6a9c765c1d",
+                  "createdAt": "2026-07-28T03:06:31.000Z",
+                  "updatedAt": "2026-07-28T03:06:31.000Z",
+                  "uid": "35240-cbcf6b7c-e11f-41e9-b593-9d6a9c765c1d"
+                },
+                {
+                  "name": "List Workflows",
+                  "id": "d3a47f6e-2c1c-4122-8928-5722800c32ad",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "ServiceToken <token>",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "https://management-api.suprsend.com/v1/:workspace/workflow/?mode=draft&slugs=<string>",
+                      "protocol": "https",
+                      "host": [
+                        "management-api",
+                        "suprsend",
+                        "com"
+                      ],
+                      "path": [
+                        "v1",
+                        ":workspace",
+                        "workflow",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "Mode to filter workflows (draft or live). By default, draft workflows are returned.",
+                          "key": "mode",
+                          "value": "draft"
+                        },
+                        {
+                          "description": "Comma-separated list of workflow slugs to filter. This can be used to filter workflows by slug.",
+                          "key": "slugs",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "71257c29-fba7-4df8-ad05-68334f2da7c5",
+                          "key": "workspace",
+                          "value": "<string>",
+                          "description": "(Required) Workspace slug (staging, production, etc.)"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve a list of workflows in a workspace."
+                  },
+                  "response": [
+                    {
+                      "id": "228d1f09-e6a5-4b19-bc18-d45e5b2840e8",
+                      "name": "Successfully retrieved list of workflows",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "ServiceToken <token>",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "https://management-api.suprsend.com/v1/:workspace/workflow/?mode=draft&slugs=<string>",
+                          "protocol": "https",
+                          "host": [
+                            "management-api",
+                            "suprsend",
+                            "com"
+                          ],
+                          "path": [
+                            "v1",
+                            ":workspace",
+                            "workflow",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "Mode to filter workflows (draft or live). By default, draft workflows are returned.",
+                              "key": "mode",
+                              "value": "draft"
+                            },
+                            {
+                              "description": "Comma-separated list of workflow slugs to filter. This can be used to filter workflows by slug.",
+                              "key": "slugs",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"meta\": {\n    \"count\": \"<integer>\",\n    \"limit\": \"<integer>\",\n    \"offset\": \"<integer>\"\n  },\n  \"results\": [\n    {\n      \"$schema\": \"<uri>\",\n      \"slug\": \"e5uvgcd\",\n      \"is_enabled\": \"<boolean>\",\n      \"created_at\": \"<dateTime>\",\n      \"last_executed_at\": \"<dateTime>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"updated_at\": \"<dateTime>\",\n      \"commit_message\": \"<string>\",\n      \"hash\": \"<string>\",\n      \"status\": \"draft\",\n      \"category\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"ratelimit\": {},\n      \"trigger_type\": \"api\",\n      \"trigger_events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"override_recipients_type\": \"user\",\n      \"override_recipients_user_expr\": \"<string>\",\n      \"override_recipients_single_object_fields_expr\": \"<string>\",\n      \"override_actor_user_expr\": \"<string>\",\n      \"override_tenant_expr\": \"<string>\",\n      \"active_at\": \"<dateTime>\",\n      \"updated_by\": {\n        \"name\": \"<string>\",\n        \"email\": \"<email>\"\n      },\n      \"tree\": {},\n      \"validation_result\": {\n        \"is_valid\": \"<boolean>\",\n        \"errors\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    },\n    {\n      \"$schema\": \"<uri>\",\n      \"slug\": \"8axt5qo1\",\n      \"is_enabled\": \"<boolean>\",\n      \"created_at\": \"<dateTime>\",\n      \"last_executed_at\": \"<dateTime>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"updated_at\": \"<dateTime>\",\n      \"commit_message\": \"<string>\",\n      \"hash\": \"<string>\",\n      \"status\": \"inactive\",\n      \"category\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"ratelimit\": {},\n      \"trigger_type\": \"event\",\n      \"trigger_events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"override_recipients_type\": \"single_object_fields\",\n      \"override_recipients_user_expr\": \"<string>\",\n      \"override_recipients_single_object_fields_expr\": \"<string>\",\n      \"override_actor_user_expr\": \"<string>\",\n      \"override_tenant_expr\": \"<string>\",\n      \"active_at\": \"<dateTime>\",\n      \"updated_by\": {\n        \"name\": \"<string>\",\n        \"email\": \"<email>\"\n      },\n      \"tree\": {},\n      \"validation_result\": {\n        \"is_valid\": \"<boolean>\",\n        \"errors\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T03:06:31.000Z",
+                      "updatedAt": "2026-07-28T03:06:31.000Z",
+                      "uid": "35240-228d1f09-e6a5-4b19-bc18-d45e5b2840e8"
+                    },
+                    {
+                      "id": "4b839056-7c73-4a75-92b8-76fa81596cfd",
+                      "name": "Authentication failed",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "ServiceToken <token>",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "https://management-api.suprsend.com/v1/:workspace/workflow/?mode=draft&slugs=<string>",
+                          "protocol": "https",
+                          "host": [
+                            "management-api",
+                            "suprsend",
+                            "com"
+                          ],
+                          "path": [
+                            "v1",
+                            ":workspace",
+                            "workflow",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "Mode to filter workflows (draft or live). By default, draft workflows are returned.",
+                              "key": "mode",
+                              "value": "draft"
+                            },
+                            {
+                              "description": "Comma-separated list of workflow slugs to filter. This can be used to filter workflows by slug.",
+                              "key": "slugs",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:06:31.000Z",
+                      "updatedAt": "2026-07-28T03:06:31.000Z",
+                      "uid": "35240-4b839056-7c73-4a75-92b8-76fa81596cfd"
+                    },
+                    {
+                      "id": "0185221c-4041-45cc-9b01-f8516d27c928",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "ServiceToken <token>",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "https://management-api.suprsend.com/v1/:workspace/workflow/?mode=draft&slugs=<string>",
+                          "protocol": "https",
+                          "host": [
+                            "management-api",
+                            "suprsend",
+                            "com"
+                          ],
+                          "path": [
+                            "v1",
+                            ":workspace",
+                            "workflow",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "Mode to filter workflows (draft or live). By default, draft workflows are returned.",
+                              "key": "mode",
+                              "value": "draft"
+                            },
+                            {
+                              "description": "Comma-separated list of workflow slugs to filter. This can be used to filter workflows by slug.",
+                              "key": "slugs",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:06:31.000Z",
+                      "updatedAt": "2026-07-28T03:06:31.000Z",
+                      "uid": "35240-0185221c-4041-45cc-9b01-f8516d27c928"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:06:31.000Z",
+                  "updatedAt": "2026-07-28T03:06:31.000Z",
+                  "uid": "35240-d3a47f6e-2c1c-4122-8928-5722800c32ad"
+                }
+              ],
+              "id": "658739ed-9b8d-484f-8d21-19a29456e67a",
+              "createdAt": "2026-07-28T03:06:31.000Z",
+              "updatedAt": "2026-07-28T03:06:31.000Z",
+              "uid": "35240-658739ed-9b8d-484f-8d21-19a29456e67a"
+            }
+          ],
+          "id": "4278e4ec-1c41-4205-832a-b417ff58c936",
+          "createdAt": "2026-07-28T03:06:31.000Z",
+          "updatedAt": "2026-07-28T03:06:31.000Z",
+          "uid": "35240-4278e4ec-1c41-4205-832a-b417ff58c936"
+        }
+      ],
+      "id": "31e19564-fd91-4b84-907e-87570f78f485",
+      "createdAt": "2026-07-28T03:06:31.000Z",
+      "updatedAt": "2026-07-28T03:06:31.000Z",
+      "uid": "35240-31e19564-fd91-4b84-907e-87570f78f485"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://hub.suprsend.com"
+    }
+  ]
+}

@@ -1,0 +1,334 @@
+{
+  "info": {
+    "_postman_id": "f405c29a-9758-42a6-aa02-2b6a7b75dcd5",
+    "name": "SuprSend Broadcast Message API",
+    "description": "APIs supported on suprsend platform",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:06:00.000Z",
+    "updatedAt": "2026-07-28T03:06:00.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f405c29a-9758-42a6-aa02-2b6a7b75dcd5"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "message",
+          "item": [
+            {
+              "name": "List Messages",
+              "id": "2f91d17c-3177-4528-a3c3-18343778b111",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/message/?limit=10&after=<string>&before=<string>&status[]=triggered (status AnyOf('triggered','trigger_blocked','sent_by_vendor','to_be_triggered','not_to_be_triggered'))&status[]=dismissed&channel=webpush&recipient_id[]=<string>&recipient_id[]=<string>&category[]=<string>&category[]=<string>&created_at_gte=<dateTime>&created_at_lte=<dateTime>&workflow_slug=<string>&execution_id=<string>&idempotency_key=<string>&message_id=<string>&tenant_id=<string>&is_campaign=<boolean>&object_id=<string>&object_type=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "message",
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of messages to return per page. Defaults to `10`, maximum is `1000`.",
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "description": "Cursor for forward pagination - pass the `meta.after` value from a previous response to fetch the next page of older messages. Treat this value as an opaque cursor - do not parse, validate, or assume any format for it. **Takes precedence over `before` when both are set** (`before` is silently ignored).\n",
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Cursor for backward pagination - pass the `meta.before` value from a previous response to fetch the previous page of newer messages. Treat this value as an opaque cursor - do not parse, validate, or assume any format for it. Ignored when `after` is also set.\n",
+                      "key": "before",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by one or more derived statuses. Multiple values are OR-ed. Repeat the param for each value, e.g. `?status[]=delivered&status[]=seen`.\n",
+                      "key": "status[]",
+                      "value": "triggered (status AnyOf('triggered','trigger_blocked','sent_by_vendor','to_be_triggered','not_to_be_triggered'))"
+                    },
+                    {
+                      "description": "Filter by one or more derived statuses. Multiple values are OR-ed. Repeat the param for each value, e.g. `?status[]=delivered&status[]=seen`.\n",
+                      "key": "status[]",
+                      "value": "dismissed"
+                    },
+                    {
+                      "description": "Filter by delivery channel.",
+                      "key": "channel",
+                      "value": "webpush"
+                    },
+                    {
+                      "description": "Filter by one or more recipient `distinct_id`s (OR-ed). Repeat the param for each value, e.g. `?recipient_id[]=user_123&recipient_id[]=user_456`.",
+                      "key": "recipient_id[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by one or more recipient `distinct_id`s (OR-ed). Repeat the param for each value, e.g. `?recipient_id[]=user_123&recipient_id[]=user_456`.",
+                      "key": "recipient_id[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by one or more notification categories (OR-ed). Repeat the param for each value, e.g. `?category[]=transactional&category[]=promotional`.",
+                      "key": "category[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by one or more notification categories (OR-ed). Repeat the param for each value, e.g. `?category[]=transactional&category[]=promotional`.",
+                      "key": "category[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "RFC3339 timestamp lower bound (inclusive). Compared against the `created_at` column which has **second precision** - sub-second components in the filter value are effectively truncated. Example: `2026-04-26T21:34:33Z`.\n",
+                      "key": "created_at_gte",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "RFC3339 timestamp upper bound (inclusive). Same second-precision caveat as `created_at_gte`. Must be `>= created_at_gte` when both are set.\n",
+                      "key": "created_at_lte",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Filter messages triggered from a specific workflow.",
+                      "key": "workflow_slug",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Matches `wf_exec_id` or `broadcast_id`.",
+                      "key": "execution_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by the idempotency key associated with the message at trigger time.",
+                      "key": "idempotency_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Exact match on message ID.",
+                      "key": "message_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter messages belonging to a specific tenant.",
+                      "key": "tenant_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Set `true` to return only messages sent as part of a broadcast/campaign.",
+                      "key": "is_campaign",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "description": "Must be provided together with `object_type` to filter messages sent to an object. Will filter all message logs which were sent to recipients after object fanout.",
+                      "key": "object_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Must be provided together with `object_id` to filter messages sent to an object. Will filter all message logs which were sent to recipients after object fanout.",
+                      "key": "object_type",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Retrieve a paginated list of messages in a workspace order by created_at desc. Can be used to fetch and show message logs on the platform.\n"
+              },
+              "response": [
+                {
+                  "id": "7474c9a6-8de8-406d-ba3f-54e5fd56d7ad",
+                  "name": "Returns the paginated list of messages order by created_at desc.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/message/?limit=10&after=<string>&before=<string>&status[]=dismissed&channel=webpush&recipient_id[]=<string>&category[]=<string>&created_at_gte=<dateTime>&created_at_lte=<dateTime>&workflow_slug=<string>&execution_id=<string>&idempotency_key=<string>&message_id=<string>&tenant_id=<string>&is_campaign=<boolean>&object_id=<string>&object_type=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "message",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "Maximum number of messages to return per page. Defaults to `10`, maximum is `1000`.",
+                          "key": "limit",
+                          "value": "10"
+                        },
+                        {
+                          "description": "Cursor for forward pagination - pass the `meta.after` value from a previous response to fetch the next page of older messages. Treat this value as an opaque cursor - do not parse, validate, or assume any format for it. **Takes precedence over `before` when both are set** (`before` is silently ignored).\n",
+                          "key": "after",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Cursor for backward pagination - pass the `meta.before` value from a previous response to fetch the previous page of newer messages. Treat this value as an opaque cursor - do not parse, validate, or assume any format for it. Ignored when `after` is also set.\n",
+                          "key": "before",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter by one or more derived statuses. Multiple values are OR-ed. Repeat the param for each value, e.g. `?status[]=delivered&status[]=seen`.\n",
+                          "key": "status[]",
+                          "value": "dismissed"
+                        },
+                        {
+                          "description": "Filter by delivery channel.",
+                          "key": "channel",
+                          "value": "webpush"
+                        },
+                        {
+                          "description": "Filter by one or more recipient `distinct_id`s (OR-ed). Repeat the param for each value, e.g. `?recipient_id[]=user_123&recipient_id[]=user_456`.",
+                          "key": "recipient_id[]",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter by one or more notification categories (OR-ed). Repeat the param for each value, e.g. `?category[]=transactional&category[]=promotional`.",
+                          "key": "category[]",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "RFC3339 timestamp lower bound (inclusive). Compared against the `created_at` column which has **second precision** - sub-second components in the filter value are effectively truncated. Example: `2026-04-26T21:34:33Z`.\n",
+                          "key": "created_at_gte",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "RFC3339 timestamp upper bound (inclusive). Same second-precision caveat as `created_at_gte`. Must be `>= created_at_gte` when both are set.\n",
+                          "key": "created_at_lte",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Filter messages triggered from a specific workflow.",
+                          "key": "workflow_slug",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Matches `wf_exec_id` or `broadcast_id`.",
+                          "key": "execution_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter by the idempotency key associated with the message at trigger time.",
+                          "key": "idempotency_key",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Exact match on message ID.",
+                          "key": "message_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter messages belonging to a specific tenant.",
+                          "key": "tenant_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Set `true` to return only messages sent as part of a broadcast/campaign.",
+                          "key": "is_campaign",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "description": "Must be provided together with `object_type` to filter messages sent to an object. Will filter all message logs which were sent to recipients after object fanout.",
+                          "key": "object_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Must be provided together with `object_id` to filter messages sent to an object. Will filter all message logs which were sent to recipients after object fanout.",
+                          "key": "object_type",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"meta\": {\n    \"count\": \"<integer>\",\n    \"limit\": \"<integer>\",\n    \"has_prev\": \"<boolean>\",\n    \"before\": \"<string>\",\n    \"has_next\": \"<boolean>\",\n    \"after\": \"<string>\"\n  },\n  \"results\": [\n    {\n      \"message_id\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"triggered_at\": \"<dateTime>\",\n      \"delivered_at\": \"<dateTime>\",\n      \"seen_at\": \"<dateTime>\",\n      \"clicked_at\": \"<dateTime>\",\n      \"dismissed_at\": \"<dateTime>\",\n      \"read_at\": \"<dateTime>\",\n      \"unread_at\": \"<dateTime>\",\n      \"archived_at\": \"<dateTime>\",\n      \"unarchived_at\": \"<dateTime>\",\n      \"is_read\": \"<boolean>\",\n      \"is_archived\": \"<boolean>\",\n      \"status\": \"to_be_triggered\",\n      \"channel\": \"inbox\",\n      \"idempotency_key\": \"<string>\",\n      \"failure_reason\": \"<string>\",\n      \"recipient\": {\n        \"$type\": \"user\",\n        \"distinct_id\": \"<string>\",\n        \"object_type\": \"<string>\",\n        \"id\": \"<string>\"\n      },\n      \"parent_entity_id\": \"<string>\",\n      \"parent_entity_type\": \"<string>\",\n      \"vendor\": {\n        \"name\": \"<string>\",\n        \"nickname\": \"<string>\"\n      },\n      \"execution_id\": \"<string>\",\n      \"parent_execution_id\": \"<string>\",\n      \"is_campaign\": \"<boolean>\",\n      \"tenant_id\": \"<string>\",\n      \"workflow\": {\n        \"slug\": \"<string>\",\n        \"version_id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"node_ref\": \"<string>\"\n      },\n      \"template\": {\n        \"name\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"version_no\": \"<integer>\"\n      },\n      \"channel_identity\": {\n        \"eiusmodbbc\": true,\n        \"occaecatd53\": 47070604\n      },\n      \"category\": \"<string>\"\n    },\n    {\n      \"message_id\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"triggered_at\": \"<dateTime>\",\n      \"delivered_at\": \"<dateTime>\",\n      \"seen_at\": \"<dateTime>\",\n      \"clicked_at\": \"<dateTime>\",\n      \"dismissed_at\": \"<dateTime>\",\n      \"read_at\": \"<dateTime>\",\n      \"unread_at\": \"<dateTime>\",\n      \"archived_at\": \"<dateTime>\",\n      \"unarchived_at\": \"<dateTime>\",\n      \"is_read\": \"<boolean>\",\n      \"is_archived\": \"<boolean>\",\n      \"status\": \"triggered\",\n      \"channel\": \"webpush\",\n      \"idempotency_key\": \"<string>\",\n      \"failure_reason\": \"<string>\",\n      \"recipient\": {\n        \"$type\": \"object\",\n        \"distinct_id\": \"<string>\",\n        \"object_type\": \"<string>\",\n        \"id\": \"<string>\"\n      },\n      \"parent_entity_id\": \"<string>\",\n      \"parent_entity_type\": \"<string>\",\n      \"vendor\": {\n        \"name\": \"<string>\",\n        \"nickname\": \"<string>\"\n      },\n      \"execution_id\": \"<string>\",\n      \"parent_execution_id\": \"<string>\",\n      \"is_campaign\": \"<boolean>\",\n      \"tenant_id\": \"<string>\",\n      \"workflow\": {\n        \"slug\": \"<string>\",\n        \"version_id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"node_ref\": \"<string>\"\n      },\n      \"template\": {\n        \"name\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"version_no\": \"<integer>\"\n      },\n      \"channel_identity\": {\n        \"laboris_a7\": true\n      },\n      \"category\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T03:06:00.000Z",
+                  "updatedAt": "2026-07-28T03:06:00.000Z",
+                  "uid": "35240-7474c9a6-8de8-406d-ba3f-54e5fd56d7ad"
+                }
+              ],
+              "createdAt": "2026-07-28T03:06:00.000Z",
+              "updatedAt": "2026-07-28T03:06:00.000Z",
+              "uid": "35240-2f91d17c-3177-4528-a3c3-18343778b111"
+            }
+          ],
+          "id": "4db59abf-4ad0-4a90-a77a-510651e875fa",
+          "createdAt": "2026-07-28T03:06:00.000Z",
+          "updatedAt": "2026-07-28T03:06:00.000Z",
+          "uid": "35240-4db59abf-4ad0-4a90-a77a-510651e875fa"
+        }
+      ],
+      "id": "1481ff79-c035-42ed-89e3-866b3548bd24",
+      "createdAt": "2026-07-28T03:06:00.000Z",
+      "updatedAt": "2026-07-28T03:06:00.000Z",
+      "uid": "35240-1481ff79-c035-42ed-89e3-866b3548bd24"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://hub.suprsend.com"
+    }
+  ]
+}

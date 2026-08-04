@@ -1,0 +1,1313 @@
+{
+  "info": {
+    "_postman_id": "fec34707-a958-4185-a89d-406483843445",
+    "name": "SuprSend Broadcast Schema API",
+    "description": "APIs supported on suprsend platform",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:06:20.000Z",
+    "updatedAt": "2026-07-28T03:06:21.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-fec34707-a958-4185-a89d-406483843445"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "{workspace}",
+          "item": [
+            {
+              "name": "schema",
+              "item": [
+                {
+                  "name": "{schema_slug}",
+                  "item": [
+                    {
+                      "name": "commit",
+                      "item": [
+                        {
+                          "name": "Commit Schema",
+                          "id": "e124e2a6-45f9-4266-82cd-aa7921cabad3",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "apikey",
+                              "apikey": [
+                                {
+                                  "key": "key",
+                                  "value": "ServiceToken <token>",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "value",
+                                  "value": "{{apiKey}}",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "in",
+                                  "value": "header",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "https://management-api.suprsend.com/v1/:workspace/schema/:schema_slug/commit/?commit_message=<string>",
+                              "protocol": "https",
+                              "host": [
+                                "management-api",
+                                "suprsend",
+                                "com"
+                              ],
+                              "path": [
+                                "v1",
+                                ":workspace",
+                                "schema",
+                                ":schema_slug",
+                                "commit",
+                                ""
+                              ],
+                              "query": [
+                                {
+                                  "description": "Commit message describing the changes",
+                                  "key": "commit_message",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "64f1df37-53a1-4918-9296-387e146705a2",
+                                  "key": "workspace",
+                                  "value": "<string>",
+                                  "description": "(Required) Workspace slug (staging, production, etc.)"
+                                },
+                                {
+                                  "id": "896d8950-3547-4379-be2a-1cc671eb347c",
+                                  "key": "schema_slug",
+                                  "value": "<string>",
+                                  "description": "(Required) Unique identifier of the schema"
+                                }
+                              ]
+                            },
+                            "description": "Commit a draft schema to make it live. Changes will start to take effect as soon as it's live."
+                          },
+                          "response": [
+                            {
+                              "id": "8e826973-fd36-4fc6-bab8-31f978e216bc",
+                              "name": "Successfully retrieved schema object",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "ServiceToken <token>",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "https://management-api.suprsend.com/v1/:workspace/schema/:schema_slug/commit/?commit_message=<string>",
+                                  "protocol": "https",
+                                  "host": [
+                                    "management-api",
+                                    "suprsend",
+                                    "com"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":workspace",
+                                    "schema",
+                                    ":schema_slug",
+                                    "commit",
+                                    ""
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Commit message describing the changes",
+                                      "key": "commit_message",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "schema_slug"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"slug\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"live\",\n  \"hash\": \"<string>\",\n  \"json_schema\": {},\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"committed_at\": \"<dateTime>\",\n  \"commit_message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T03:06:21.000Z",
+                              "updatedAt": "2026-07-28T03:06:21.000Z",
+                              "uid": "35240-8e826973-fd36-4fc6-bab8-31f978e216bc"
+                            },
+                            {
+                              "id": "468e6e20-9793-4e44-8084-3d05c3a7c20d",
+                              "name": "Authentication failed",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "ServiceToken <token>",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "https://management-api.suprsend.com/v1/:workspace/schema/:schema_slug/commit/?commit_message=<string>",
+                                  "protocol": "https",
+                                  "host": [
+                                    "management-api",
+                                    "suprsend",
+                                    "com"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":workspace",
+                                    "schema",
+                                    ":schema_slug",
+                                    "commit",
+                                    ""
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Commit message describing the changes",
+                                      "key": "commit_message",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "schema_slug"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T03:06:21.000Z",
+                              "updatedAt": "2026-07-28T03:06:21.000Z",
+                              "uid": "35240-468e6e20-9793-4e44-8084-3d05c3a7c20d"
+                            },
+                            {
+                              "id": "69a8295e-73a8-4652-ba5d-2af779cd3cf4",
+                              "name": "Schema not found",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "ServiceToken <token>",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "https://management-api.suprsend.com/v1/:workspace/schema/:schema_slug/commit/?commit_message=<string>",
+                                  "protocol": "https",
+                                  "host": [
+                                    "management-api",
+                                    "suprsend",
+                                    "com"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":workspace",
+                                    "schema",
+                                    ":schema_slug",
+                                    "commit",
+                                    ""
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Commit message describing the changes",
+                                      "key": "commit_message",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "schema_slug"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T03:06:21.000Z",
+                              "updatedAt": "2026-07-28T03:06:21.000Z",
+                              "uid": "35240-69a8295e-73a8-4652-ba5d-2af779cd3cf4"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:06:21.000Z",
+                          "updatedAt": "2026-07-28T03:06:21.000Z",
+                          "uid": "35240-e124e2a6-45f9-4266-82cd-aa7921cabad3"
+                        }
+                      ],
+                      "id": "0b03b986-48cf-4991-9cce-cc7c1980bac9",
+                      "createdAt": "2026-07-28T03:06:21.000Z",
+                      "updatedAt": "2026-07-28T03:06:21.000Z",
+                      "uid": "35240-0b03b986-48cf-4991-9cce-cc7c1980bac9"
+                    },
+                    {
+                      "name": "Get Schema",
+                      "id": "2f4fa2f3-2e79-4320-a20d-0ec1c0c2c271",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "ServiceToken <token>",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "https://management-api.suprsend.com/v1/:workspace/schema/:schema_slug/?mode=draft",
+                          "protocol": "https",
+                          "host": [
+                            "management-api",
+                            "suprsend",
+                            "com"
+                          ],
+                          "path": [
+                            "v1",
+                            ":workspace",
+                            "schema",
+                            ":schema_slug",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "Mode to fetch schema (draft or live). By default, draft schema is returned.",
+                              "key": "mode",
+                              "value": "draft"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "b23a3b59-6b73-4cb0-95e3-329a009013ec",
+                              "key": "workspace",
+                              "value": "<string>",
+                              "description": "(Required) Workspace slug (staging, production, etc.)"
+                            },
+                            {
+                              "id": "52d359dd-f0a1-4f4e-9af8-2c5e6daa8557",
+                              "key": "schema_slug",
+                              "value": "<string>",
+                              "description": "(Required) Unique identifier of the schema"
+                            }
+                          ]
+                        },
+                        "description": "Fetch the JSON schema corresponding to a slug."
+                      },
+                      "response": [
+                        {
+                          "id": "f9f83d7b-ed9f-4a4b-8840-c0836772b025",
+                          "name": "Successfully retrieved schema object",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "ServiceToken <token>",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "https://management-api.suprsend.com/v1/:workspace/schema/:schema_slug/?mode=draft",
+                              "protocol": "https",
+                              "host": [
+                                "management-api",
+                                "suprsend",
+                                "com"
+                              ],
+                              "path": [
+                                "v1",
+                                ":workspace",
+                                "schema",
+                                ":schema_slug",
+                                ""
+                              ],
+                              "query": [
+                                {
+                                  "description": "Mode to fetch schema (draft or live). By default, draft schema is returned.",
+                                  "key": "mode",
+                                  "value": "draft"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "schema_slug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"slug\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"live\",\n  \"hash\": \"<string>\",\n  \"json_schema\": {},\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"committed_at\": \"<dateTime>\",\n  \"commit_message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:06:21.000Z",
+                          "updatedAt": "2026-07-28T03:06:21.000Z",
+                          "uid": "35240-f9f83d7b-ed9f-4a4b-8840-c0836772b025"
+                        },
+                        {
+                          "id": "ee72b436-fb99-4a3c-8f7b-30817f14babe",
+                          "name": "Authentication failed",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "ServiceToken <token>",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "https://management-api.suprsend.com/v1/:workspace/schema/:schema_slug/?mode=draft",
+                              "protocol": "https",
+                              "host": [
+                                "management-api",
+                                "suprsend",
+                                "com"
+                              ],
+                              "path": [
+                                "v1",
+                                ":workspace",
+                                "schema",
+                                ":schema_slug",
+                                ""
+                              ],
+                              "query": [
+                                {
+                                  "description": "Mode to fetch schema (draft or live). By default, draft schema is returned.",
+                                  "key": "mode",
+                                  "value": "draft"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "schema_slug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:06:21.000Z",
+                          "updatedAt": "2026-07-28T03:06:21.000Z",
+                          "uid": "35240-ee72b436-fb99-4a3c-8f7b-30817f14babe"
+                        },
+                        {
+                          "id": "f59c35cb-a687-4b0d-808a-10f91ea926de",
+                          "name": "Schema not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "ServiceToken <token>",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "https://management-api.suprsend.com/v1/:workspace/schema/:schema_slug/?mode=draft",
+                              "protocol": "https",
+                              "host": [
+                                "management-api",
+                                "suprsend",
+                                "com"
+                              ],
+                              "path": [
+                                "v1",
+                                ":workspace",
+                                "schema",
+                                ":schema_slug",
+                                ""
+                              ],
+                              "query": [
+                                {
+                                  "description": "Mode to fetch schema (draft or live). By default, draft schema is returned.",
+                                  "key": "mode",
+                                  "value": "draft"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "schema_slug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:06:21.000Z",
+                          "updatedAt": "2026-07-28T03:06:21.000Z",
+                          "uid": "35240-f59c35cb-a687-4b0d-808a-10f91ea926de"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:06:21.000Z",
+                      "updatedAt": "2026-07-28T03:06:21.000Z",
+                      "uid": "35240-2f4fa2f3-2e79-4320-a20d-0ec1c0c2c271"
+                    },
+                    {
+                      "name": "Create/Update Schema",
+                      "id": "5bee263e-2663-4579-9ad9-8db1c76a900f",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "ServiceToken <token>",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"json_schema\": {},\n  \"description\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "https://management-api.suprsend.com/v1/:workspace/schema/:schema_slug/?commit=false&commit_message=<string>",
+                          "protocol": "https",
+                          "host": [
+                            "management-api",
+                            "suprsend",
+                            "com"
+                          ],
+                          "path": [
+                            "v1",
+                            ":workspace",
+                            "schema",
+                            ":schema_slug",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "Set to true to commit the schema immediately after creation/update",
+                              "key": "commit",
+                              "value": "false"
+                            },
+                            {
+                              "description": "Commit message describing the changes (required when commit=true)",
+                              "key": "commit_message",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "ce2d6728-34ad-4d20-9476-181ba634caa0",
+                              "key": "workspace",
+                              "value": "<string>",
+                              "description": "(Required) Workspace slug (staging, production, etc.)"
+                            },
+                            {
+                              "id": "a2737b13-7fa7-4dc4-b90a-a6f25f9111c5",
+                              "key": "schema_slug",
+                              "value": "<string>",
+                              "description": "(Required) Unique identifier of the schema"
+                            }
+                          ]
+                        },
+                        "description": "Upset draft version of a JSON schema. Creates a new schema if it doesn't exist."
+                      },
+                      "response": [
+                        {
+                          "id": "5c8fd269-03c8-487c-9519-cc3f84304969",
+                          "name": "Successfully retrieved schema object",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "ServiceToken <token>",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"json_schema\": {},\n  \"description\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "https://management-api.suprsend.com/v1/:workspace/schema/:schema_slug/?commit=false&commit_message=<string>",
+                              "protocol": "https",
+                              "host": [
+                                "management-api",
+                                "suprsend",
+                                "com"
+                              ],
+                              "path": [
+                                "v1",
+                                ":workspace",
+                                "schema",
+                                ":schema_slug",
+                                ""
+                              ],
+                              "query": [
+                                {
+                                  "description": "Set to true to commit the schema immediately after creation/update",
+                                  "key": "commit",
+                                  "value": "false"
+                                },
+                                {
+                                  "description": "Commit message describing the changes (required when commit=true)",
+                                  "key": "commit_message",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "schema_slug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"slug\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"draft\",\n  \"hash\": \"<string>\",\n  \"json_schema\": {},\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"commit_result\": {\n    \"is_committed\": \"<boolean>\",\n    \"errors\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                          "createdAt": "2026-07-28T03:06:21.000Z",
+                          "updatedAt": "2026-07-28T03:06:21.000Z",
+                          "uid": "35240-5c8fd269-03c8-487c-9519-cc3f84304969"
+                        },
+                        {
+                          "id": "b665fd7f-83f5-4229-a4a3-31355604b901",
+                          "name": "Invalid schema format",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "ServiceToken <token>",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"json_schema\": {},\n  \"description\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "https://management-api.suprsend.com/v1/:workspace/schema/:schema_slug/?commit=false&commit_message=<string>",
+                              "protocol": "https",
+                              "host": [
+                                "management-api",
+                                "suprsend",
+                                "com"
+                              ],
+                              "path": [
+                                "v1",
+                                ":workspace",
+                                "schema",
+                                ":schema_slug",
+                                ""
+                              ],
+                              "query": [
+                                {
+                                  "description": "Set to true to commit the schema immediately after creation/update",
+                                  "key": "commit",
+                                  "value": "false"
+                                },
+                                {
+                                  "description": "Commit message describing the changes (required when commit=true)",
+                                  "key": "commit_message",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "schema_slug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": {}\n}",
+                          "createdAt": "2026-07-28T03:06:21.000Z",
+                          "updatedAt": "2026-07-28T03:06:21.000Z",
+                          "uid": "35240-b665fd7f-83f5-4229-a4a3-31355604b901"
+                        },
+                        {
+                          "id": "da0b10e6-ee18-4a43-9560-93b1a3ba7f60",
+                          "name": "Authentication failed",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "ServiceToken <token>",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"json_schema\": {},\n  \"description\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "https://management-api.suprsend.com/v1/:workspace/schema/:schema_slug/?commit=false&commit_message=<string>",
+                              "protocol": "https",
+                              "host": [
+                                "management-api",
+                                "suprsend",
+                                "com"
+                              ],
+                              "path": [
+                                "v1",
+                                ":workspace",
+                                "schema",
+                                ":schema_slug",
+                                ""
+                              ],
+                              "query": [
+                                {
+                                  "description": "Set to true to commit the schema immediately after creation/update",
+                                  "key": "commit",
+                                  "value": "false"
+                                },
+                                {
+                                  "description": "Commit message describing the changes (required when commit=true)",
+                                  "key": "commit_message",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "schema_slug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:06:21.000Z",
+                          "updatedAt": "2026-07-28T03:06:21.000Z",
+                          "uid": "35240-da0b10e6-ee18-4a43-9560-93b1a3ba7f60"
+                        },
+                        {
+                          "id": "a2a80a6f-ac02-40e9-a837-3f5b6cbac174",
+                          "name": "Schema not found",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "ServiceToken <token>",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"json_schema\": {},\n  \"description\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "https://management-api.suprsend.com/v1/:workspace/schema/:schema_slug/?commit=false&commit_message=<string>",
+                              "protocol": "https",
+                              "host": [
+                                "management-api",
+                                "suprsend",
+                                "com"
+                              ],
+                              "path": [
+                                "v1",
+                                ":workspace",
+                                "schema",
+                                ":schema_slug",
+                                ""
+                              ],
+                              "query": [
+                                {
+                                  "description": "Set to true to commit the schema immediately after creation/update",
+                                  "key": "commit",
+                                  "value": "false"
+                                },
+                                {
+                                  "description": "Commit message describing the changes (required when commit=true)",
+                                  "key": "commit_message",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "schema_slug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:06:21.000Z",
+                          "updatedAt": "2026-07-28T03:06:21.000Z",
+                          "uid": "35240-a2a80a6f-ac02-40e9-a837-3f5b6cbac174"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:06:21.000Z",
+                      "updatedAt": "2026-07-28T03:06:21.000Z",
+                      "uid": "35240-5bee263e-2663-4579-9ad9-8db1c76a900f"
+                    }
+                  ],
+                  "id": "8ec9ff93-5825-4a4c-8a00-5e256761cfa7",
+                  "createdAt": "2026-07-28T03:06:21.000Z",
+                  "updatedAt": "2026-07-28T03:06:21.000Z",
+                  "uid": "35240-8ec9ff93-5825-4a4c-8a00-5e256761cfa7"
+                },
+                {
+                  "name": "List Schemas",
+                  "id": "d975aea5-51a6-4fc2-a04c-92ad469e793a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "ServiceToken <token>",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "https://management-api.suprsend.com/v1/:workspace/schema/?mode=draft",
+                      "protocol": "https",
+                      "host": [
+                        "management-api",
+                        "suprsend",
+                        "com"
+                      ],
+                      "path": [
+                        "v1",
+                        ":workspace",
+                        "schema",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "Specify if you want to fetch draft or live schema.",
+                          "key": "mode",
+                          "value": "draft"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "4bfce655-6b56-449b-b089-899139c88d34",
+                          "key": "workspace",
+                          "value": "<string>",
+                          "description": "(Required) Workspace slug (staging, production, etc.)"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve a list of schemas in a workspace."
+                  },
+                  "response": [
+                    {
+                      "id": "e04d86fe-823d-4df8-af15-855203ded762",
+                      "name": "Successfully retrieved list of schemas",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "ServiceToken <token>",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "https://management-api.suprsend.com/v1/:workspace/schema/?mode=draft",
+                          "protocol": "https",
+                          "host": [
+                            "management-api",
+                            "suprsend",
+                            "com"
+                          ],
+                          "path": [
+                            "v1",
+                            ":workspace",
+                            "schema",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "Specify if you want to fetch draft or live schema.",
+                              "key": "mode",
+                              "value": "draft"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"meta\": {\n    \"count\": \"<integer>\",\n    \"limit\": \"<integer>\",\n    \"offset\": \"<integer>\"\n  },\n  \"results\": [\n    {\n      \"slug\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"status\": \"draft\",\n      \"hash\": \"<string>\",\n      \"json_schema\": {},\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"committed_at\": \"<dateTime>\",\n      \"commit_message\": \"<string>\"\n    },\n    {\n      \"slug\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"status\": \"live\",\n      \"hash\": \"<string>\",\n      \"json_schema\": {},\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"committed_at\": \"<dateTime>\",\n      \"commit_message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T03:06:21.000Z",
+                      "updatedAt": "2026-07-28T03:06:21.000Z",
+                      "uid": "35240-e04d86fe-823d-4df8-af15-855203ded762"
+                    },
+                    {
+                      "id": "17cdda4c-8475-4efb-b79a-eed5d7f767f6",
+                      "name": "Authentication failed",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "ServiceToken <token>",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "https://management-api.suprsend.com/v1/:workspace/schema/?mode=draft",
+                          "protocol": "https",
+                          "host": [
+                            "management-api",
+                            "suprsend",
+                            "com"
+                          ],
+                          "path": [
+                            "v1",
+                            ":workspace",
+                            "schema",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "Specify if you want to fetch draft or live schema.",
+                              "key": "mode",
+                              "value": "draft"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:06:21.000Z",
+                      "updatedAt": "2026-07-28T03:06:21.000Z",
+                      "uid": "35240-17cdda4c-8475-4efb-b79a-eed5d7f767f6"
+                    },
+                    {
+                      "id": "4de216af-3fe5-497e-94a0-8341aa1a5a75",
+                      "name": "Schema not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "ServiceToken <token>",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "https://management-api.suprsend.com/v1/:workspace/schema/?mode=draft",
+                          "protocol": "https",
+                          "host": [
+                            "management-api",
+                            "suprsend",
+                            "com"
+                          ],
+                          "path": [
+                            "v1",
+                            ":workspace",
+                            "schema",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "Specify if you want to fetch draft or live schema.",
+                              "key": "mode",
+                              "value": "draft"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"error_code\": \"<string>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:06:21.000Z",
+                      "updatedAt": "2026-07-28T03:06:21.000Z",
+                      "uid": "35240-4de216af-3fe5-497e-94a0-8341aa1a5a75"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:06:21.000Z",
+                  "updatedAt": "2026-07-28T03:06:21.000Z",
+                  "uid": "35240-d975aea5-51a6-4fc2-a04c-92ad469e793a"
+                }
+              ],
+              "id": "db2ec3f7-32d3-449d-861f-69c93078743a",
+              "createdAt": "2026-07-28T03:06:21.000Z",
+              "updatedAt": "2026-07-28T03:06:21.000Z",
+              "uid": "35240-db2ec3f7-32d3-449d-861f-69c93078743a"
+            }
+          ],
+          "id": "a15d6731-6082-49ea-8fe3-60c0be7825ab",
+          "createdAt": "2026-07-28T03:06:21.000Z",
+          "updatedAt": "2026-07-28T03:06:21.000Z",
+          "uid": "35240-a15d6731-6082-49ea-8fe3-60c0be7825ab"
+        }
+      ],
+      "id": "2417282b-58f3-4f55-8486-e1ac459924ee",
+      "createdAt": "2026-07-28T03:06:21.000Z",
+      "updatedAt": "2026-07-28T03:06:21.000Z",
+      "uid": "35240-2417282b-58f3-4f55-8486-e1ac459924ee"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://hub.suprsend.com"
+    }
+  ]
+}

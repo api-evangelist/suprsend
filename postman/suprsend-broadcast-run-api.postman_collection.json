@@ -1,0 +1,243 @@
+{
+  "info": {
+    "_postman_id": "1c2822da-ed41-44bc-a08e-dcae4ef139f7",
+    "name": "SuprSend Broadcast Broadcast Run API",
+    "description": "APIs supported on suprsend platform",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:05:56.000Z",
+    "updatedAt": "2026-07-28T03:05:56.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-1c2822da-ed41-44bc-a08e-dcae4ef139f7"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "broadcast_run",
+          "item": [
+            {
+              "name": "cancel",
+              "item": [
+                {
+                  "name": "Cancel Broadcast",
+                  "id": "9203a021-d082-464c-a857-22ac05e6406c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"execution_id\": \"<string>\",\n  \"list_id\": \"<string>\",\n  \"idempotency_key\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/broadcast_run/cancel/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "broadcast_run",
+                        "cancel",
+                        ""
+                      ]
+                    },
+                    "description": "API to cancel a running broadcast execution. You can cancel a broadcast by passing any combination of filters in the request body. When multiple parameters are provided, they are **ANDed** together to narrow down the matching broadcast runs.\n\nFor example, passing both `list_id` and `idempotency_key` will cancel only the broadcast runs that match both the given list and idempotency key.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "e37f6d0b-61eb-4269-89c1-78cdc9761c87",
+                      "name": "200 - OK",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"execution_id\": \"<string>\",\n  \"list_id\": \"<string>\",\n  \"idempotency_key\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/broadcast_run/cancel/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "broadcast_run",
+                            "cancel",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"execution_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "createdAt": "2026-07-28T03:05:57.000Z",
+                      "updatedAt": "2026-07-28T03:05:57.000Z",
+                      "uid": "35240-e37f6d0b-61eb-4269-89c1-78cdc9761c87"
+                    },
+                    {
+                      "id": "78e1a3e1-d24e-4e12-bf8f-8a1f99933b6b",
+                      "name": "400 - Bad Request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"execution_id\": \"<string>\",\n  \"list_id\": \"<string>\",\n  \"idempotency_key\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/broadcast_run/cancel/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "broadcast_run",
+                            "cancel",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:05:57.000Z",
+                      "updatedAt": "2026-07-28T03:05:57.000Z",
+                      "uid": "35240-78e1a3e1-d24e-4e12-bf8f-8a1f99933b6b"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:05:57.000Z",
+                  "updatedAt": "2026-07-28T03:05:57.000Z",
+                  "uid": "35240-9203a021-d082-464c-a857-22ac05e6406c"
+                }
+              ],
+              "id": "c8188166-49a1-40d4-b97f-532286b0688e",
+              "createdAt": "2026-07-28T03:05:57.000Z",
+              "updatedAt": "2026-07-28T03:05:57.000Z",
+              "uid": "35240-c8188166-49a1-40d4-b97f-532286b0688e"
+            }
+          ],
+          "id": "c84fd38e-186c-468f-a63a-79b8b87b9d42",
+          "createdAt": "2026-07-28T03:05:57.000Z",
+          "updatedAt": "2026-07-28T03:05:57.000Z",
+          "uid": "35240-c84fd38e-186c-468f-a63a-79b8b87b9d42"
+        }
+      ],
+      "id": "a3349743-f07b-4c6d-bd0f-5d12c31c2ee9",
+      "createdAt": "2026-07-28T03:05:57.000Z",
+      "updatedAt": "2026-07-28T03:05:57.000Z",
+      "uid": "35240-a3349743-f07b-4c6d-bd0f-5d12c31c2ee9"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://hub.suprsend.com"
+    }
+  ]
+}

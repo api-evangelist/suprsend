@@ -1,0 +1,243 @@
+{
+  "info": {
+    "_postman_id": "8cfa8ba9-a793-4a1c-ac49-dfc8a7b3e1ee",
+    "name": "SuprSend Broadcast Workflow Run API",
+    "description": "APIs supported on suprsend platform",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:06:32.000Z",
+    "updatedAt": "2026-07-28T03:06:32.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-8cfa8ba9-a793-4a1c-ac49-dfc8a7b3e1ee"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "workflow_run",
+          "item": [
+            {
+              "name": "cancel",
+              "item": [
+                {
+                  "name": "Cancel Workflow",
+                  "id": "d18020cc-1e0d-4f73-8be7-9fe105c363ba",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"execution_id\": \"<string>\",\n  \"recipients\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"idempotency_key\": \"<string>\",\n  \"workflow_slug\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/workflow_run/cancel/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "workflow_run",
+                        "cancel",
+                        ""
+                      ]
+                    },
+                    "description": "API to cancel a running workflow execution. You can cancel a workflow by passing any combination of filters in the request body. When multiple parameters are provided, they are **ANDed** together to narrow down the matching workflow runs.\n\nFor example, passing both `workflow_slug` and `recipients` will cancel only the workflow runs that match both the given slug and recipients.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "cc939533-4e8e-4548-bad2-0ec7342ffe41",
+                      "name": "200 - OK",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"execution_id\": \"<string>\",\n  \"recipients\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"idempotency_key\": \"<string>\",\n  \"workflow_slug\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/workflow_run/cancel/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "workflow_run",
+                            "cancel",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"execution_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "createdAt": "2026-07-28T03:06:32.000Z",
+                      "updatedAt": "2026-07-28T03:06:32.000Z",
+                      "uid": "35240-cc939533-4e8e-4548-bad2-0ec7342ffe41"
+                    },
+                    {
+                      "id": "17e1f2a2-0cf2-4470-9da8-bce83b02d8d5",
+                      "name": "400 - Bad Request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"execution_id\": \"<string>\",\n  \"recipients\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"idempotency_key\": \"<string>\",\n  \"workflow_slug\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/workflow_run/cancel/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "workflow_run",
+                            "cancel",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:06:32.000Z",
+                      "updatedAt": "2026-07-28T03:06:32.000Z",
+                      "uid": "35240-17e1f2a2-0cf2-4470-9da8-bce83b02d8d5"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:06:32.000Z",
+                  "updatedAt": "2026-07-28T03:06:32.000Z",
+                  "uid": "35240-d18020cc-1e0d-4f73-8be7-9fe105c363ba"
+                }
+              ],
+              "id": "aca8ae99-6a66-4b3e-8e99-90f4543ffe24",
+              "createdAt": "2026-07-28T03:06:32.000Z",
+              "updatedAt": "2026-07-28T03:06:32.000Z",
+              "uid": "35240-aca8ae99-6a66-4b3e-8e99-90f4543ffe24"
+            }
+          ],
+          "id": "20fd0bf7-976e-4ff7-bd71-4699ef1fd5da",
+          "createdAt": "2026-07-28T03:06:32.000Z",
+          "updatedAt": "2026-07-28T03:06:32.000Z",
+          "uid": "35240-20fd0bf7-976e-4ff7-bd71-4699ef1fd5da"
+        }
+      ],
+      "id": "a96c18c3-f19a-4261-b6c3-5a866fd12f6e",
+      "createdAt": "2026-07-28T03:06:32.000Z",
+      "updatedAt": "2026-07-28T03:06:32.000Z",
+      "uid": "35240-a96c18c3-f19a-4261-b6c3-5a866fd12f6e"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://hub.suprsend.com"
+    }
+  ]
+}

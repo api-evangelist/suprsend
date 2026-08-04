@@ -1,0 +1,614 @@
+{
+  "info": {
+    "_postman_id": "de70cb8c-7333-40f8-b69a-a7076a62f67d",
+    "name": "SuprSend Broadcast Bulk API",
+    "description": "APIs supported on suprsend platform",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:05:57.000Z",
+    "updatedAt": "2026-07-28T03:05:58.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-de70cb8c-7333-40f8-b69a-a7076a62f67d"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "bulk",
+          "item": [
+            {
+              "name": "user",
+              "item": [
+                {
+                  "name": "preference",
+                  "item": [
+                    {
+                      "name": "reset",
+                      "item": [
+                        {
+                          "name": "Reset",
+                          "id": "64b10196-3281-48e7-a53b-5aa4afe12d2e",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"distinct_ids\": [\n    \"id1\",\n    \"id2\"\n  ],\n  \"reset_channel_preferences\": true,\n  \"reset_categories\": true\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/bulk/user/preference/reset/?tenant_id=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "bulk",
+                                "user",
+                                "preference",
+                                "reset",
+                                ""
+                              ],
+                              "query": [
+                                {
+                                  "description": "to fetch user preferences for a particular tenant",
+                                  "key": "tenant_id",
+                                  "value": "<string>"
+                                }
+                              ]
+                            },
+                            "description": "API to reset user preference settings to default preference."
+                          },
+                          "response": [
+                            {
+                              "id": "971fabbd-799c-4abf-80ff-3e12a3ec259c",
+                              "name": "202",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"distinct_ids\": [\n    \"id1\",\n    \"id2\"\n  ],\n  \"reset_channel_preferences\": true,\n  \"reset_categories\": true\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/bulk/user/preference/reset/?tenant_id=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "bulk",
+                                    "user",
+                                    "preference",
+                                    "reset",
+                                    ""
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "to fetch user preferences for a particular tenant",
+                                      "key": "tenant_id",
+                                      "value": "<string>"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Accepted",
+                              "code": 202,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"success\": \"<boolean>\"\n}",
+                              "createdAt": "2026-07-28T03:05:58.000Z",
+                              "updatedAt": "2026-07-28T03:05:58.000Z",
+                              "uid": "35240-971fabbd-799c-4abf-80ff-3e12a3ec259c"
+                            },
+                            {
+                              "id": "8cd05417-25ca-47b8-aa7e-9c018b9b96a4",
+                              "name": "404",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"distinct_ids\": [\n    \"id1\",\n    \"id2\"\n  ],\n  \"reset_channel_preferences\": true,\n  \"reset_categories\": true\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/bulk/user/preference/reset/?tenant_id=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "bulk",
+                                    "user",
+                                    "preference",
+                                    "reset",
+                                    ""
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "to fetch user preferences for a particular tenant",
+                                      "key": "tenant_id",
+                                      "value": "<string>"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T03:05:58.000Z",
+                              "updatedAt": "2026-07-28T03:05:58.000Z",
+                              "uid": "35240-8cd05417-25ca-47b8-aa7e-9c018b9b96a4"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:05:58.000Z",
+                          "updatedAt": "2026-07-28T03:05:58.000Z",
+                          "uid": "35240-64b10196-3281-48e7-a53b-5aa4afe12d2e"
+                        }
+                      ],
+                      "id": "92f7affb-0e67-4498-b166-4fa24086e9e4",
+                      "createdAt": "2026-07-28T03:05:58.000Z",
+                      "updatedAt": "2026-07-28T03:05:58.000Z",
+                      "uid": "35240-92f7affb-0e67-4498-b166-4fa24086e9e4"
+                    },
+                    {
+                      "name": "Bulk Update",
+                      "id": "df4d1462-9fe4-4f25-85ba-750240d2156a",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"distinct_ids\": [\n    \"id1\",\n    \"id2\"\n  ],\n  \"channel_preferences\": [\n    {\n      \"channel\": \"email\",\n      \"is_restricted\": false\n    },\n    {\n      \"channel\": \"email\",\n      \"is_restricted\": false\n    }\n  ],\n  \"categories\": [\n    {\n      \"category\": \"_category_slug_\",\n      \"preference\": \"opt_in\"\n    },\n    {\n      \"category\": \"_category_slug_\",\n      \"preference\": \"opt_in\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/bulk/user/preference/?tenant_id=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "bulk",
+                            "user",
+                            "preference",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "to fetch user preferences for a particular tenant",
+                              "key": "tenant_id",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "description": "Bulk API to update channel and category-level notification preferences for multiple users in one request."
+                      },
+                      "response": [
+                        {
+                          "id": "c412eb3d-b9cf-4610-ba40-190641932ea6",
+                          "name": "202",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"distinct_ids\": [\n    \"id1\",\n    \"id2\"\n  ],\n  \"channel_preferences\": [\n    {\n      \"channel\": \"email\",\n      \"is_restricted\": false\n    },\n    {\n      \"channel\": \"email\",\n      \"is_restricted\": false\n    }\n  ],\n  \"categories\": [\n    {\n      \"category\": \"_category_slug_\",\n      \"preference\": \"opt_in\"\n    },\n    {\n      \"category\": \"_category_slug_\",\n      \"preference\": \"opt_in\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/bulk/user/preference/?tenant_id=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "bulk",
+                                "user",
+                                "preference",
+                                ""
+                              ],
+                              "query": [
+                                {
+                                  "description": "to fetch user preferences for a particular tenant",
+                                  "key": "tenant_id",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Accepted",
+                          "code": 202,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"success\": \"<boolean>\"\n}",
+                          "createdAt": "2026-07-28T03:05:58.000Z",
+                          "updatedAt": "2026-07-28T03:05:58.000Z",
+                          "uid": "35240-c412eb3d-b9cf-4610-ba40-190641932ea6"
+                        },
+                        {
+                          "id": "10d79854-ae43-4a9c-abff-a9e8d8b92cd9",
+                          "name": "404",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"distinct_ids\": [\n    \"id1\",\n    \"id2\"\n  ],\n  \"channel_preferences\": [\n    {\n      \"channel\": \"email\",\n      \"is_restricted\": false\n    },\n    {\n      \"channel\": \"email\",\n      \"is_restricted\": false\n    }\n  ],\n  \"categories\": [\n    {\n      \"category\": \"_category_slug_\",\n      \"preference\": \"opt_in\"\n    },\n    {\n      \"category\": \"_category_slug_\",\n      \"preference\": \"opt_in\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/bulk/user/preference/?tenant_id=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "bulk",
+                                "user",
+                                "preference",
+                                ""
+                              ],
+                              "query": [
+                                {
+                                  "description": "to fetch user preferences for a particular tenant",
+                                  "key": "tenant_id",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:05:58.000Z",
+                          "updatedAt": "2026-07-28T03:05:58.000Z",
+                          "uid": "35240-10d79854-ae43-4a9c-abff-a9e8d8b92cd9"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:05:58.000Z",
+                      "updatedAt": "2026-07-28T03:05:58.000Z",
+                      "uid": "35240-df4d1462-9fe4-4f25-85ba-750240d2156a"
+                    }
+                  ],
+                  "id": "509a2d61-f77e-47a5-8d89-74245257f191",
+                  "createdAt": "2026-07-28T03:05:58.000Z",
+                  "updatedAt": "2026-07-28T03:05:58.000Z",
+                  "uid": "35240-509a2d61-f77e-47a5-8d89-74245257f191"
+                }
+              ],
+              "id": "1c7e88bf-f223-44ae-8def-94634a9b7ed2",
+              "createdAt": "2026-07-28T03:05:58.000Z",
+              "updatedAt": "2026-07-28T03:05:58.000Z",
+              "uid": "35240-1c7e88bf-f223-44ae-8def-94634a9b7ed2"
+            },
+            {
+              "name": "message",
+              "item": [
+                {
+                  "name": "Bulk Update Message Status",
+                  "id": "b1449b8a-5da6-45ad-b28e-968cc5fb7d83",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"messages\": [\n    {\n      \"message_id\": \"<string>\",\n      \"action\": \"unread\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/bulk/message/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "bulk",
+                        "message",
+                        ""
+                      ]
+                    },
+                    "description": "Change the status of messages by passing their id and notification action."
+                  },
+                  "response": [
+                    {
+                      "id": "b5ff0271-565e-445c-891a-f87e91cad6ee",
+                      "name": "Bulk update accepted. Inspect each record's `status_code` and `error` for individual outcomes - a `null` `error` means success.",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"messages\": [\n    {\n      \"message_id\": \"<string>\",\n      \"action\": \"unread\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/bulk/message/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "bulk",
+                            "message",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Accepted",
+                      "code": 202,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"records\": [\n    {\n      \"message_id\": \"<string>\",\n      \"status_code\": \"<integer>\",\n      \"error\": {\n        \"type\": \"action_not_supported\",\n        \"message\": \"<string>\"\n      }\n    },\n    {\n      \"message_id\": \"<string>\",\n      \"status_code\": \"<integer>\",\n      \"error\": {\n        \"type\": \"internal_error\",\n        \"message\": \"<string>\"\n      }\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T03:05:58.000Z",
+                      "updatedAt": "2026-07-28T03:05:58.000Z",
+                      "uid": "35240-b5ff0271-565e-445c-891a-f87e91cad6ee"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:05:58.000Z",
+                  "updatedAt": "2026-07-28T03:05:58.000Z",
+                  "uid": "35240-b1449b8a-5da6-45ad-b28e-968cc5fb7d83"
+                }
+              ],
+              "id": "d5b48590-b0be-4ec2-a567-5a09c664cb13",
+              "createdAt": "2026-07-28T03:05:58.000Z",
+              "updatedAt": "2026-07-28T03:05:58.000Z",
+              "uid": "35240-d5b48590-b0be-4ec2-a567-5a09c664cb13"
+            }
+          ],
+          "id": "64babb7e-8be9-49fb-a9a4-cb05e62e300c",
+          "createdAt": "2026-07-28T03:05:58.000Z",
+          "updatedAt": "2026-07-28T03:05:58.000Z",
+          "uid": "35240-64babb7e-8be9-49fb-a9a4-cb05e62e300c"
+        }
+      ],
+      "id": "28fe2b3d-b7dd-4a4c-82c3-62cae41e3aef",
+      "createdAt": "2026-07-28T03:05:58.000Z",
+      "updatedAt": "2026-07-28T03:05:58.000Z",
+      "uid": "35240-28fe2b3d-b7dd-4a4c-82c3-62cae41e3aef"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://hub.suprsend.com"
+    }
+  ]
+}
