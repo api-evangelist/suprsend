@@ -1,0 +1,3528 @@
+{
+  "item": [
+    {
+      "id": "4ecd42af-2724-4260-a88a-75eedd5ee56a",
+      "name": "Object",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5e188501-d07b-412c-8720-e88584f17d47",
+          "name": "Create / Update Objects",
+          "request": {
+            "name": "Create / Update Objects",
+            "description": {
+              "content": "API to upsert (create if not exists, update if exists) object by providing a unique object ID and type.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "object",
+                ":object_type",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Unique identifier of the object in your system"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "object_type",
+                  "description": "(Required) Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"$email\": [\n    \"<email>\",\n    \"<email>\"\n  ],\n  \"$sms\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"$whatsapp\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"$inbox\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"$androidpush\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"$iospush\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"$slack\": [\n    {\n      \"email\": \"<email>\",\n      \"access_token\": \"<string>\"\n    },\n    {\n      \"email\": \"<email>\",\n      \"access_token\": \"<string>\"\n    }\n  ],\n  \"$ms_teams\": [\n    {\n      \"tenant_id\": \"<string>\",\n      \"service_url\": \"<uri>\",\n      \"conversation_id\": \"<string>\"\n    },\n    {\n      \"tenant_id\": \"<string>\",\n      \"service_url\": \"<uri>\",\n      \"conversation_id\": \"<string>\"\n    }\n  ],\n  \"$timezone\": \"<string>\",\n  \"$locale\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8ce64d4b-dd92-4808-8555-7db8dc18b3c6",
+              "name": "201 - Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "object",
+                    ":object_type",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the object in your system"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "object_type",
+                      "description": "(Required) Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"department\": \"Engineering\",\n  \"$email\": [\n    \"devs@example.com\"\n  ],\n  \"$slack\": [\n    {\n      \"channel\": \"CXXXXXXXX\",\n      \"access_token\": \"xoxb-XXXXXX\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"object_type\": \"departments\",\n  \"id\": \"engineering\",\n  \"subscriptions_count\": 0,\n  \"properties\": {\n    \"$locale\": \"en_GB\",\n    \"department\": \"Engineering\"\n  },\n  \"created_at\": \"2025-04-06T10:00:37.893892+00:00\",\n  \"updated_at\": \"2025-04-06T10:00:37.893892+00:00\",\n  \"$email\": [\n    {\n      \"value\": \"devs@example.com\",\n      \"status\": \"active\",\n      \"perma_status\": \"active\"\n    }\n  ],\n  \"$slack\": [\n    {\n      \"value\": {\n        \"email_id\": \"user@example.com\",\n        \"access_token\": \"xoxb-...\"\n      },\n      \"status\": \"active\",\n      \"perma_status\": \"active\"\n    }\n  ],\n  \"$inbox\": [\n    {\n      \"value\": \"pO7w6x_HFZxCs30N4SHab05e3QIdB1e0xT2r4vQWjvM\",\n      \"id_provider\": \"suprsend\",\n      \"status\": \"active\",\n      \"perma_status\": \"active\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b455dda9-ea52-40fb-a602-dcef837ee49d",
+              "name": "400 - Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "object",
+                    ":object_type",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the object in your system"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "object_type",
+                      "description": "(Required) Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"department\": \"Engineering\",\n  \"$email\": [\n    \"devs@example.com\"\n  ],\n  \"$slack\": [\n    {\n      \"channel\": \"CXXXXXXXX\",\n      \"access_token\": \"xoxb-XXXXXX\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 400,\n  \"message\": \"invalid_request_error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b3a254da-808b-4863-accc-bebd716f3297",
+          "name": "Fetch Object by id",
+          "request": {
+            "name": "Fetch Object by id",
+            "description": {
+              "content": "API to fetch Object details by passing object type and ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "object",
+                ":object_type",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Unique identifier of the object in your system"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "object_type",
+                  "description": "(Required) Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7a963ca7-32ce-4c21-b98b-297f25726457",
+              "name": "200 - OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "object",
+                    ":object_type",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the object in your system"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "object_type",
+                      "description": "(Required) Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"object_type\": \"departments\",\n  \"id\": \"engineering\",\n  \"subscriptions_count\": 0,\n  \"properties\": {\n    \"$locale\": \"en_GB\"\n  },\n  \"created_at\": \"2025-04-06T10:00:37.893892+00:00\",\n  \"updated_at\": \"2025-04-06T10:00:37.893892+00:00\",\n  \"$inbox\": [\n    {\n      \"value\": \"pO7w6x_HFZxCs30N4SHab05e3QIdB1e0xT2r4vQWjvM\",\n      \"id_provider\": \"suprsend\",\n      \"status\": \"active\",\n      \"perma_status\": \"active\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "066325a2-c412-4ff5-af1c-47cdcd979360",
+              "name": "404 - Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "object",
+                    ":object_type",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the object in your system"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "object_type",
+                      "description": "(Required) Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"message\": \"object 'obj_type/obj_id' not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4b19f8fd-6c98-45d8-9a57-283008e1ff75",
+          "name": "Delete an Object",
+          "request": {
+            "name": "Delete an Object",
+            "description": {
+              "content": "API to permanently delete an object by passing `object_type` and `id`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "object",
+                ":object_type",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Unique identifier of the object in your system"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "object_type",
+                  "description": "(Required) Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "22572d2c-81f9-4898-ac4d-defb1ddf34ac",
+              "name": "204 - No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "object",
+                    ":object_type",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the object in your system"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "object_type",
+                      "description": "(Required) Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "null",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f972fb5b-3f35-48a5-b017-f36167d3999a",
+              "name": "404 - Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "object",
+                    ":object_type",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the object in your system"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "object_type",
+                      "description": "(Required) Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"message\": \"object 'object_type/object_id' not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "91d76310-0656-4800-9d21-04ddbb2d15c4",
+          "name": "Edit Object Profile",
+          "request": {
+            "name": "Edit Object Profile",
+            "description": {
+              "content": "API to edit (add/remove) properties and communication-channels for an object.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "object",
+                ":object_type",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "object_type",
+                  "description": "(Required) Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Unique identifier of the object in your system"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"operations\": [\n    {\n      \"$set\": {\n        \"key_0\": \"<string>\"\n      },\n      \"$unset\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$append\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"$remove\": {\n        \"key_0\": \"<string>\"\n      },\n      \"$set_once\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\"\n      },\n      \"$increment\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    },\n    {\n      \"$set\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"$unset\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$append\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\"\n      },\n      \"$remove\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"$set_once\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"$increment\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "43fbfb02-ba14-4d75-bcbf-7717dcb24f52",
+              "name": "200 - OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "object",
+                    ":object_type",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "object_type",
+                      "description": "(Required) Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the object in your system"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"operations\": [\n    {\n      \"$set\": {\n        \"key_0\": \"<string>\"\n      },\n      \"$unset\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$append\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\",\n        \"key_3\": \"<string>\"\n      },\n      \"$remove\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"$set_once\": {\n        \"key_0\": \"<string>\"\n      },\n      \"$increment\": {\n        \"key_0\": \"<string>\"\n      }\n    },\n    {\n      \"$set\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"$unset\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$append\": {\n        \"key_0\": \"<string>\"\n      },\n      \"$remove\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"$set_once\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\"\n      },\n      \"$increment\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\",\n        \"key_3\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"object_type\": \"departments\",\n  \"id\": \"engineering\",\n  \"subscriptions_count\": 0,\n  \"properties\": {\n    \"$locale\": \"en_GB\"\n  },\n  \"created_at\": \"2025-04-06T10:00:37.893892+00:00\",\n  \"updated_at\": \"2025-04-06T10:00:37.893892+00:00\",\n  \"$inbox\": [\n    {\n      \"value\": \"pO7w6x_HFZxCs30N4SHab05e3QIdB1e0xT2r4vQWjvM\",\n      \"id_provider\": \"suprsend\",\n      \"status\": \"active\",\n      \"perma_status\": \"active\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2e9353d4-acb1-479e-8803-0d0b62f88153",
+              "name": "400 - Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "object",
+                    ":object_type",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "object_type",
+                      "description": "(Required) Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the object in your system"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"operations\": [\n    {\n      \"$set\": {\n        \"key_0\": \"<string>\"\n      },\n      \"$unset\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$append\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\",\n        \"key_3\": \"<string>\"\n      },\n      \"$remove\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"$set_once\": {\n        \"key_0\": \"<string>\"\n      },\n      \"$increment\": {\n        \"key_0\": \"<string>\"\n      }\n    },\n    {\n      \"$set\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"$unset\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$append\": {\n        \"key_0\": \"<string>\"\n      },\n      \"$remove\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"$set_once\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\"\n      },\n      \"$increment\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\",\n        \"key_3\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 400,\n  \"message\": \"Request body must not be empty\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ef4e6be5-3b51-4d17-b527-d5fccbe58dc3",
+          "name": "Add Subscription",
+          "request": {
+            "name": "Add Subscription",
+            "description": {
+              "content": "API to add subscribers (users/child objects) to a given object, to notify subscribers when workflow is triggered on the parent object.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "object",
+                ":object_type",
+                ":id",
+                "subscription",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Unique identifier of the object in your system"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "object_type",
+                  "description": "(Required) Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"recipients\": [\n    {\n      \"distinct_id\": \"id1\",\n      \"$email\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$sms\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$whatsapp\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$inbox\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$androidpush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$iospush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$slack\": [\n        {\n          \"email\": \"<email>\",\n          \"access_token\": \"<string>\"\n        },\n        {\n          \"email\": \"<email>\",\n          \"access_token\": \"<string>\"\n        }\n      ],\n      \"$ms_teams\": [\n        {\n          \"tenant_id\": \"<string>\",\n          \"service_url\": \"<uri>\",\n          \"conversation_id\": \"<string>\"\n        },\n        {\n          \"tenant_id\": \"<string>\",\n          \"service_url\": \"<uri>\",\n          \"conversation_id\": \"<string>\"\n        }\n      ],\n      \"$locale\": \"<string>\",\n      \"$timezone\": \"<string>\"\n    },\n    {\n      \"distinct_id\": \"id1\",\n      \"$email\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$sms\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$whatsapp\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$inbox\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$androidpush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$iospush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$slack\": [\n        {\n          \"email\": \"<email>\",\n          \"access_token\": \"<string>\"\n        },\n        {\n          \"email\": \"<email>\",\n          \"access_token\": \"<string>\"\n        }\n      ],\n      \"$ms_teams\": [\n        {\n          \"tenant_id\": \"<string>\",\n          \"service_url\": \"<uri>\",\n          \"conversation_id\": \"<string>\"\n        },\n        {\n          \"tenant_id\": \"<string>\",\n          \"service_url\": \"<uri>\",\n          \"conversation_id\": \"<string>\"\n        }\n      ],\n      \"$locale\": \"<string>\",\n      \"$timezone\": \"<string>\"\n    }\n  ],\n  \"properties\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e3617beb-32ff-486c-b9f4-175a650d93e0",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "object",
+                    ":object_type",
+                    ":id",
+                    "subscription",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the object in your system"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "object_type",
+                      "description": "(Required) Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"recipients\": [\n    {\n      \"distinct_id\": \"id1\",\n      \"$email\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$sms\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$whatsapp\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$inbox\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$androidpush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$iospush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$slack\": [\n        {\n          \"email\": \"user@example.com\",\n          \"access_token\": \"xoxb-XXXXXXXX\"\n        },\n        {\n          \"email\": \"user@example.com\",\n          \"access_token\": \"xoxb-XXXXXXXX\"\n        }\n      ],\n      \"$ms_teams\": [\n        {\n          \"tenant_id\": \"c1981ab2-9aaf-xxxx-xxxx\",\n          \"service_url\": \"https://smba.trafficmanager.net/amer\",\n          \"conversation_id\": \"19:c1524d7c-a06f-456f-8abe-xxxx\"\n        },\n        {\n          \"tenant_id\": \"c1981ab2-9aaf-xxxx-xxxx\",\n          \"service_url\": \"https://smba.trafficmanager.net/amer\",\n          \"conversation_id\": \"19:c1524d7c-a06f-456f-8abe-xxxx\"\n        }\n      ],\n      \"$locale\": \"en_GB\",\n      \"$timezone\": \"<string>\"\n    },\n    {\n      \"distinct_id\": \"id1\",\n      \"$email\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$sms\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$whatsapp\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$inbox\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$androidpush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$iospush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$slack\": [\n        {\n          \"email\": \"user@example.com\",\n          \"access_token\": \"xoxb-XXXXXXXX\"\n        },\n        {\n          \"email\": \"user@example.com\",\n          \"access_token\": \"xoxb-XXXXXXXX\"\n        }\n      ],\n      \"$ms_teams\": [\n        {\n          \"tenant_id\": \"c1981ab2-9aaf-xxxx-xxxx\",\n          \"service_url\": \"https://smba.trafficmanager.net/amer\",\n          \"conversation_id\": \"19:c1524d7c-a06f-456f-8abe-xxxx\"\n        },\n        {\n          \"tenant_id\": \"c1981ab2-9aaf-xxxx-xxxx\",\n          \"service_url\": \"https://smba.trafficmanager.net/amer\",\n          \"conversation_id\": \"19:c1524d7c-a06f-456f-8abe-xxxx\"\n        }\n      ],\n      \"$locale\": \"en_GB\",\n      \"$timezone\": \"<string>\"\n    }\n  ],\n  \"properties\": {\n    \"role\": \"developer\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"properties\": {\n        \"department\": \"frontend\"\n      },\n      \"user\": {\n        \"distinct_id\": \"_distinct_id_\",\n        \"updated_at\": \"2025-04-05T10:33:33.629736+00:00\"\n      },\n      \"object\": {\n        \"id\": \"_object_id_\",\n        \"object_type\": \"_object_type_\",\n        \"subscriptions_count\": 10,\n        \"updated_at\": \"2025-04-06T11:00:24.257046+00:00\"\n      },\n      \"created_at\": \"2025-04-06T10:59:07.726336+00:00\",\n      \"updated_at\": \"2025-04-06T10:59:07.726336+00:00\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a2317d40-33c8-4f67-b034-74fe21ae8d4a",
+              "name": "404 - Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "object",
+                    ":object_type",
+                    ":id",
+                    "subscription",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the object in your system"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "object_type",
+                      "description": "(Required) Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"recipients\": [\n    {\n      \"distinct_id\": \"id1\",\n      \"$email\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$sms\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$whatsapp\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$inbox\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$androidpush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$iospush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$slack\": [\n        {\n          \"email\": \"user@example.com\",\n          \"access_token\": \"xoxb-XXXXXXXX\"\n        },\n        {\n          \"email\": \"user@example.com\",\n          \"access_token\": \"xoxb-XXXXXXXX\"\n        }\n      ],\n      \"$ms_teams\": [\n        {\n          \"tenant_id\": \"c1981ab2-9aaf-xxxx-xxxx\",\n          \"service_url\": \"https://smba.trafficmanager.net/amer\",\n          \"conversation_id\": \"19:c1524d7c-a06f-456f-8abe-xxxx\"\n        },\n        {\n          \"tenant_id\": \"c1981ab2-9aaf-xxxx-xxxx\",\n          \"service_url\": \"https://smba.trafficmanager.net/amer\",\n          \"conversation_id\": \"19:c1524d7c-a06f-456f-8abe-xxxx\"\n        }\n      ],\n      \"$locale\": \"en_GB\",\n      \"$timezone\": \"<string>\"\n    },\n    {\n      \"distinct_id\": \"id1\",\n      \"$email\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$sms\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$whatsapp\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$inbox\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$androidpush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$iospush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$slack\": [\n        {\n          \"email\": \"user@example.com\",\n          \"access_token\": \"xoxb-XXXXXXXX\"\n        },\n        {\n          \"email\": \"user@example.com\",\n          \"access_token\": \"xoxb-XXXXXXXX\"\n        }\n      ],\n      \"$ms_teams\": [\n        {\n          \"tenant_id\": \"c1981ab2-9aaf-xxxx-xxxx\",\n          \"service_url\": \"https://smba.trafficmanager.net/amer\",\n          \"conversation_id\": \"19:c1524d7c-a06f-456f-8abe-xxxx\"\n        },\n        {\n          \"tenant_id\": \"c1981ab2-9aaf-xxxx-xxxx\",\n          \"service_url\": \"https://smba.trafficmanager.net/amer\",\n          \"conversation_id\": \"19:c1524d7c-a06f-456f-8abe-xxxx\"\n        }\n      ],\n      \"$locale\": \"en_GB\",\n      \"$timezone\": \"<string>\"\n    }\n  ],\n  \"properties\": {\n    \"role\": \"developer\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"message\": \"object 'object_type/id' not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ba9afdbc-6513-4338-b651-20397d2631e8",
+          "name": "List Object Subscriptions",
+          "request": {
+            "name": "List Object Subscriptions",
+            "description": {
+              "content": "API to fetch a paginated list of users or child objects subscribed to a given object.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "object",
+                ":object_type",
+                ":id",
+                "subscription",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Unique identifier of the object in your system"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "object_type",
+                  "description": "(Required) Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5b396864-66e7-4887-b230-2f2f46dff71b",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "object",
+                    ":object_type",
+                    ":id",
+                    "subscription",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the object in your system"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "object_type",
+                      "description": "(Required) Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"count\": 3,\n    \"limit\": 10,\n    \"has_prev\": false,\n    \"before\": null,\n    \"has_next\": false,\n    \"after\": null\n  },\n  \"results\": [\n    {\n      \"properties\": {},\n      \"user\": null,\n      \"object\": {\n        \"id\": \"devs\",\n        \"object_type\": \"teams\",\n        \"subscriptions_count\": 1,\n        \"updated_at\": \"2025-04-06T11:00:24.257046+00:00\"\n      },\n      \"created_at\": \"2025-04-06T11:00:24.260496+00:00\",\n      \"updated_at\": \"2025-04-06T11:00:24.260496+00:00\"\n    },\n    {\n      \"properties\": {\n        \"role\": \"employee\"\n      },\n      \"user\": {\n        \"distinct_id\": \"user_456\",\n        \"updated_at\": \"2023-08-25T13:31:24.517819+00:00\"\n      },\n      \"object\": null,\n      \"created_at\": \"2024-11-10T21:40:02.169501+00:00\",\n      \"updated_at\": \"2024-11-10T21:40:02.169501+00:00\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3503dd59-6cd0-4af6-b3b8-2a6b6094da39",
+              "name": "404 - Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "object",
+                    ":object_type",
+                    ":id",
+                    "subscription",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the object in your system"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "object_type",
+                      "description": "(Required) Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"message\": \"object 'obj_type/obj_id' not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c5d53a23-74bc-4c54-9438-eb80c51480e9",
+          "name": "Remove Object Subscriptions",
+          "request": {
+            "name": "Remove Object Subscriptions",
+            "description": {
+              "content": "API to remove object subscribers (users or child objects).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "object",
+                ":object_type",
+                ":id",
+                "subscription",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "recipients",
+                  "value": "<string>",
+                  "description": "(Required) List of recipients to be notified. Provide recipient IDs as a comma-separated list (e.g., `id1,id2,id3`)."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Unique identifier of the object in your system"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "object_type",
+                  "description": "(Required) Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"recipients\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "147546b0-1e6e-4ba9-9cca-ce3a7c495aaf",
+              "name": "204 - No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "object",
+                    ":object_type",
+                    ":id",
+                    "subscription",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "recipients",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the object in your system"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "object_type",
+                      "description": "(Required) Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"recipients\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "null",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6866fed1-79f9-4eb7-bf94-072698187abe",
+              "name": "404 - Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "object",
+                    ":object_type",
+                    ":id",
+                    "subscription",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "recipients",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the object in your system"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "object_type",
+                      "description": "(Required) Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"recipients\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"message\": \"object 'object_type/id' not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c6a6044d-d1bc-40d4-97be-4cb493dbd61c",
+          "name": "List Objects by type",
+          "request": {
+            "name": "List Objects by type",
+            "description": {
+              "content": "API to fetch paginated list of objects that belong to the specified `object_type`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "object",
+                ":object_type",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "object_type",
+                  "description": "(Required) Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c4615319-bbfa-46a2-8ff2-104911be69f0",
+              "name": "200 - OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "object",
+                    ":object_type",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "object_type",
+                      "description": "(Required) Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"count\": 1,\n    \"limit\": 10,\n    \"has_prev\": false,\n    \"before\": null,\n    \"has_next\": false,\n    \"after\": null\n  },\n  \"results\": [\n    {\n      \"object_type\": \"teams\",\n      \"id\": \"devs\",\n      \"subscriptions_count\": 1,\n      \"properties\": {},\n      \"created_at\": \"2024-11-04T09:30:05.141405+00:00\",\n      \"updated_at\": \"2025-04-06T11:00:24.257046+00:00\",\n      \"$inbox\": [\n        {\n          \"value\": \"mwjNxXS-z5IvY6VwyXweG0mqc14WL-z9ctBlJ-4wx60\",\n          \"id_provider\": \"suprsend\",\n          \"status\": \"active\",\n          \"perma_status\": \"active\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f6c03e08-c861-490d-95ce-62d3592f51bd",
+          "name": "Category and Channel within Category",
+          "request": {
+            "name": "Category and Channel within Category",
+            "description": {
+              "content": "API to update object preferences for a specific notification category.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "object",
+                ":object_type",
+                ":id",
+                "preference",
+                "category",
+                ":category_slug",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "tenant_id",
+                  "value": "<string>",
+                  "description": "to fetch user preferences for a particular tenant"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "object_type",
+                  "description": "(Required) Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Unique identifier of the object in your system"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "category_slug",
+                  "description": "(Required) notification category slug. You can get this from Notification Categories page on SuprSend dashboard -> Settings page"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"preference\": \"opt_in\",\n  \"opt_out_channels\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"opt_in_channels\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bb8c200a-7f44-4dd5-8e71-0fac7e89964b",
+              "name": "202",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "object",
+                    ":object_type",
+                    ":id",
+                    "preference",
+                    "category",
+                    ":category_slug",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "object_type",
+                      "description": "(Required) Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the object in your system"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "category_slug",
+                      "description": "(Required) notification category slug. You can get this from Notification Categories page on SuprSend dashboard -> Settings page"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"preference\": \"opt_in\",\n  \"opt_out_channels\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"opt_in_channels\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"Status Update Alert\",\n  \"category\": \"status-update-alert\",\n  \"description\": \"Send me updates when account status changes\",\n  \"original_preference\": \"opt_in\",\n  \"preference\": \"opt_in\",\n  \"is_editable\": true,\n  \"channels\": [\n    {\n      \"channel\": \"email\",\n      \"preference\": \"opt_out\",\n      \"is_editable\": true\n    },\n    {\n      \"channel\": \"ms_teams\",\n      \"preference\": \"opt_in\",\n      \"is_editable\": true\n    },\n    {\n      \"channel\": \"slack\",\n      \"preference\": \"opt_out\",\n      \"is_editable\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2c1786bc-3de9-46f5-b482-f6c41311b189",
+              "name": "404 - Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "object",
+                    ":object_type",
+                    ":id",
+                    "preference",
+                    "category",
+                    ":category_slug",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "object_type",
+                      "description": "(Required) Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the object in your system"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "category_slug",
+                      "description": "(Required) notification category slug. You can get this from Notification Categories page on SuprSend dashboard -> Settings page"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"preference\": \"opt_in\",\n  \"opt_out_channels\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"opt_in_channels\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"message\": \"category '_category_slug_' not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ea07b66c-7439-4510-9fdb-2bfc92f2db29",
+          "name": "Single Category",
+          "request": {
+            "name": "Single Category",
+            "description": {
+              "content": "API to fetch object preferences for a given category.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "object",
+                ":object_type",
+                ":id",
+                "preference",
+                "category",
+                ":category_slug",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "tenant_id",
+                  "value": "<string>",
+                  "description": "to fetch object preferences for a particular tenant"
+                },
+                {
+                  "disabled": false,
+                  "key": "show_opt_out_channels",
+                  "value": "false",
+                  "description": "set this flag to `true` if you want to fetch channel list for opt-out categories."
+                },
+                {
+                  "disabled": false,
+                  "key": "locale",
+                  "value": "<string>",
+                  "description": "Locale code (e.g., `es`, `fr`, `de`, `ja`, `es-AR`) to fetch preference translations in user's locale. When provided, the API looks for category and section names and descriptions in the respective locale file.\nIf a translation is missing for the requested locale, the system automatically falls back in this order: `locale-region` (e.g., `es-AR`) → `locale` (e.g., `es`) → `en` (English - always available).\n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "object_type",
+                  "description": "(Required) Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Unique identifier of the object in your system"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "category_slug",
+                  "description": "(Required) notification category slug. You can get this from Notification Categories page on SuprSend dashboard -> Settings page"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "61372e7e-30f9-4fca-a27e-1d13757ab89a",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "object",
+                    ":object_type",
+                    ":id",
+                    "preference",
+                    "category",
+                    ":category_slug",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "show_opt_out_channels",
+                      "value": "false"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "es"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "object_type",
+                      "description": "(Required) Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the object in your system"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "category_slug",
+                      "description": "(Required) notification category slug. You can get this from Notification Categories page on SuprSend dashboard -> Settings page"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"Newsletter\",\n  \"category\": \"newsletter\",\n  \"description\": \"Send me updates on new product updates\",\n  \"original_preference\": null,\n  \"preference\": \"opt_in\",\n  \"is_editable\": false,\n  \"channels\": [\n    {\n      \"channel\": \"email\",\n      \"preference\": \"opt_in\",\n      \"is_editable\": false\n    },\n    {\n      \"channel\": \"ms_teams\",\n      \"preference\": \"opt_in\",\n      \"is_editable\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "03439dcb-691e-4960-bcdc-72bea594e5c7",
+              "name": "404 - Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "object",
+                    ":object_type",
+                    ":id",
+                    "preference",
+                    "category",
+                    ":category_slug",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "show_opt_out_channels",
+                      "value": "false"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "es"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "object_type",
+                      "description": "(Required) Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the object in your system"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "category_slug",
+                      "description": "(Required) notification category slug. You can get this from Notification Categories page on SuprSend dashboard -> Settings page"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"message\": \"category 'category_slug' not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3ac9b675-b52b-43ce-be15-f46cd65d7763",
+          "name": "Overall Channel level",
+          "request": {
+            "name": "Overall Channel level",
+            "description": {
+              "content": "API to update object preferences across all channels.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "object",
+                ":object_type",
+                ":id",
+                "preference",
+                "channel_preference",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "tenant_id",
+                  "value": "<string>",
+                  "description": "to fetch user preferences for a particular tenant"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "object_type",
+                  "description": "(Required) Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Unique identifier of the object in your system"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"channel_preferences\": [\n    {\n      \"channel\": \"email\",\n      \"is_restricted\": false\n    },\n    {\n      \"channel\": \"email\",\n      \"is_restricted\": false\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "36c77d9e-c129-45d1-b320-08847417741b",
+              "name": "202",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "object",
+                    ":object_type",
+                    ":id",
+                    "preference",
+                    "channel_preference",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "object_type",
+                      "description": "(Required) Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the object in your system"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"channel_preferences\": [\n    {\n      \"channel\": \"email\",\n      \"is_restricted\": false\n    },\n    {\n      \"channel\": \"email\",\n      \"is_restricted\": false\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"channel_preferences\": [\n    {\n      \"channel\": \"email\",\n      \"is_restricted\": true\n    },\n    {\n      \"channel\": \"inbox\",\n      \"is_restricted\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "947a268c-a3e4-4db7-aa01-c21edb10e434",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "object",
+                    ":object_type",
+                    ":id",
+                    "preference",
+                    "channel_preference",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "object_type",
+                      "description": "(Required) Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the object in your system"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"channel_preferences\": [\n    {\n      \"channel\": \"email\",\n      \"is_restricted\": false\n    },\n    {\n      \"channel\": \"email\",\n      \"is_restricted\": false\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"message\": \"object 'obj_type/obj_id' not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6aef7d3c-bb07-4925-b573-dc1c8891bd98",
+          "name": "All Channels",
+          "request": {
+            "name": "All Channels",
+            "description": {
+              "content": "API to retrieve all channel preferences for a given object.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "object",
+                ":object_type",
+                ":id",
+                "preference",
+                "channel_preference",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "tenant_id",
+                  "value": "<string>",
+                  "description": "to fetch object preferences for a particular tenant"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "object_type",
+                  "description": "(Required) Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Unique identifier of the object in your system"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c7a6e87a-85eb-40f2-bf26-91125f7ae608",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "object",
+                    ":object_type",
+                    ":id",
+                    "preference",
+                    "channel_preference",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "object_type",
+                      "description": "(Required) Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the object in your system"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"channel_preferences\": [\n    {\n      \"channel\": \"androidpush\",\n      \"is_restricted\": false\n    },\n    {\n      \"channel\": \"email\",\n      \"is_restricted\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fc7d1581-b557-44c0-a358-346105c92e6d",
+              "name": "404 - Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "object",
+                    ":object_type",
+                    ":id",
+                    "preference",
+                    "channel_preference",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "object_type",
+                      "description": "(Required) Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the object in your system"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"message\": \"object 'obj_type/obj_id' not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ddc7aa4c-55fb-4947-a1b5-85ed0109afb9",
+          "name": "Full Preference",
+          "request": {
+            "name": "Full Preference",
+            "description": {
+              "content": "API to fetch object preferences across all channels and categories.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "object",
+                ":object_type",
+                ":id",
+                "preference",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "tenant_id",
+                  "value": "<string>",
+                  "description": "to fetch object preferences for a particular tenant"
+                },
+                {
+                  "disabled": false,
+                  "key": "show_opt_out_channels",
+                  "value": "false",
+                  "description": "set this flag to `true` if you want to fetch channel list for opt-out categories."
+                },
+                {
+                  "disabled": false,
+                  "key": "tags",
+                  "value": "<string>",
+                  "description": "Filter preference categories with tags assigned to them. Used to filter preference categories relevant to the user on UI based on their roles, department or teams.\nYou can apply single tag filter like `tags=tag1` or build nested conditions using logical operators - `and`, `or`, `not`, `exists`.\n\nExample:\n```\ntags=admin\ntags={\"or\":[{\"and\":[\"admin\",\"sales\"]},{\"and\":[\"admin\",\"manager\"]}]}\ntags={\"not\":\"admin\"}\ntags={\"exists\":true}\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "locale",
+                  "value": "<string>",
+                  "description": "Locale code (e.g., `es`, `fr`, `de`, `ja`, `es-AR`) to fetch preference translations in user's locale. When provided, the API looks for category and section names and descriptions in the respective locale file.\nIf a translation is missing for the requested locale, the system automatically falls back in this order: `locale-region` (e.g., `es-AR`) → `locale` (e.g., `es`) → `en` (English - always available).\n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "object_type",
+                  "description": "(Required) Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Unique identifier of the object in your system"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3b03a26f-be6b-4465-bfbf-dfebebd85708",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "object",
+                    ":object_type",
+                    ":id",
+                    "preference",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "show_opt_out_channels",
+                      "value": "false"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "es"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "object_type",
+                      "description": "(Required) Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the object in your system"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sections\": [\n    {\n      \"subcategories\": [\n        {\n          \"name\": \"Newsletter\",\n          \"category\": \"newsletter\",\n          \"description\": \"Send me updates on new product updates\",\n          \"preference\": \"opt_in\",\n          \"is_editable\": true,\n          \"channels\": [\n            {\n              \"channel\": \"androidpush\",\n              \"preference\": \"opt_in\",\n              \"is_editable\": true\n            },\n            {\n              \"channel\": \"email\",\n              \"preference\": \"opt_in\",\n              \"is_editable\": true\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"channel_preferences\": [\n    {\n      \"channel\": \"email\",\n      \"is_restricted\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f35ee874-b8bb-4f2b-8f50-79ee5524f763",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "object",
+                    ":object_type",
+                    ":id",
+                    "preference",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "show_opt_out_channels",
+                      "value": "false"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "es"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "object_type",
+                      "description": "(Required) Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the object in your system"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"message\": \"object 'object_type/id' not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fed383d6-9d8a-4ccd-a2d7-283af516d136",
+          "name": "Update Object Full Preference",
+          "request": {
+            "name": "Update Object Full Preference",
+            "description": {
+              "content": "API to update object preferences across all channels and categories with translated names and descriptions in the response.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "object",
+                ":object_type",
+                ":id",
+                "preference",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "tenant_id",
+                  "value": "<string>",
+                  "description": "to update object preferences for a particular tenant"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "object_type",
+                  "description": "(Required) Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Unique identifier of the object in your system"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"channel_preferences\": [\n    {\n      \"channel\": \"<string>\",\n      \"is_restricted\": \"<boolean>\"\n    },\n    {\n      \"channel\": \"<string>\",\n      \"is_restricted\": \"<boolean>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "10184409-bc5c-443d-8ee3-1bf9b21fa17c",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "object",
+                    ":object_type",
+                    ":id",
+                    "preference",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "object_type",
+                      "description": "(Required) Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the object in your system"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"channel_preferences\": [\n    {\n      \"channel\": \"email\",\n      \"is_restricted\": false\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sections\": [\n    {\n      \"name\": null,\n      \"slug\": null,\n      \"subcategories\": [\n        {\n          \"name\": \"Promotion de remboursement\",\n          \"category\": \"refund-promotion\",\n          \"description\": \"mises à jour\",\n          \"original_preference\": null,\n          \"preference\": \"opt_in\",\n          \"is_editable\": false,\n          \"channels\": [\n            {\n              \"channel\": \"inbox\",\n              \"preference\": \"opt_in\",\n              \"is_editable\": false\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"channel_preferences\": [\n    {\n      \"channel\": \"inbox\",\n      \"is_restricted\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "72c0625c-fe84-4f45-8542-e2a8a6257ef5",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "object",
+                    ":object_type",
+                    ":id",
+                    "preference",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "object_type",
+                      "description": "(Required) Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the object in your system"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"channel_preferences\": [\n    {\n      \"channel\": \"email\",\n      \"is_restricted\": false\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"message\": \"object 'object_type/id' not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ab0ea0ed-3b76-4f13-a63b-b2f2b8741b0f",
+          "name": "All Categories",
+          "request": {
+            "name": "All Categories",
+            "description": {
+              "content": "API to fetch user preferences across all categories.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "object",
+                ":object_type",
+                ":id",
+                "preference",
+                "category",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "tenant_id",
+                  "value": "<string>",
+                  "description": "to fetch object preferences for a particular tenant"
+                },
+                {
+                  "disabled": false,
+                  "key": "show_opt_out_channels",
+                  "value": "false",
+                  "description": "set this flag to `true` if you want to fetch channel list for opt-out categories."
+                },
+                {
+                  "disabled": false,
+                  "key": "tags",
+                  "value": "<string>",
+                  "description": "Filter preference categories with tags assigned to them. Used to filter preference categories relevant to the user on UI based on their roles, department or teams.\nYou can apply single tag filter like `tags=tag1` or build nested conditions using logical operators - `and`, `or`, `not`, `exists`.\n\nExample:\n```\ntags=admin\ntags={\"or\":[{\"and\":[\"admin\",\"sales\"]},{\"and\":[\"admin\",\"manager\"]}]}\ntags={\"not\":\"admin\"}\ntags={\"exists\":true}\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "locale",
+                  "value": "<string>",
+                  "description": "Locale code (e.g., `es`, `fr`, `de`, `ja`, `es-AR`) to fetch preference translations in user's locale. When provided, the API looks for category and section names and descriptions in the respective locale file. \nIf a translation is missing for the requested locale, the system automatically falls back in this order: `locale-region` (e.g., `es-AR`) → `locale` (e.g., `es`) → `en` (English - always available).\n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "object_type",
+                  "description": "(Required) Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Unique identifier of the object in your system"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e691ba64-5741-4d72-bbf6-733994f1f677",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "object",
+                    ":object_type",
+                    ":id",
+                    "preference",
+                    "category",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "show_opt_out_channels",
+                      "value": "false"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "es"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "object_type",
+                      "description": "(Required) Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the object in your system"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"count\": 12,\n    \"limit\": 10,\n    \"offset\": 0\n  },\n  \"results\": [\n    {\n      \"name\": \"Newsletter\",\n      \"category\": \"newsletter\",\n      \"description\": \"Send me updates on new product updates\",\n      \"original_preference\": null,\n      \"preference\": \"opt_in\",\n      \"is_editable\": false,\n      \"channels\": [\n        {\n          \"channel\": \"email\",\n          \"preference\": \"opt_in\",\n          \"is_editable\": false\n        },\n        {\n          \"channel\": \"ms_teams\",\n          \"preference\": \"opt_in\",\n          \"is_editable\": false\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "31a1316e-3a2f-40ca-b7ad-6f5a10f6506f",
+              "name": "404 - Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "object",
+                    ":object_type",
+                    ":id",
+                    "preference",
+                    "category",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "show_opt_out_channels",
+                      "value": "false"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "es"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "object_type",
+                      "description": "(Required) Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the object in your system"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"message\": \"object 'object_type/id' not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2b62862e-a375-4859-be8f-8319394a835a",
+          "name": "Fetch Object subscriptions",
+          "request": {
+            "name": "Fetch Object subscriptions",
+            "description": {
+              "content": "API to fetch a paginated list of all parent objects that the given child object is subscribed to.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "object",
+                ":object_type",
+                ":id",
+                "subscribed_to",
+                "object",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "(Required) number of results to be returned in API response"
+                },
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Unique identifier of the object in your system"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "object_type",
+                  "description": "(Required) Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "adb4fade-67e6-4d18-881d-7f256b0ccecb",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "object",
+                    ":object_type",
+                    ":id",
+                    "subscribed_to",
+                    "object",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the object in your system"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "object_type",
+                      "description": "(Required) Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"count\": 1,\n    \"limit\": 10,\n    \"has_prev\": false,\n    \"before\": null,\n    \"has_next\": false,\n    \"after\": null\n  },\n  \"results\": [\n    {\n      \"properties\": {},\n      \"object\": {\n        \"id\": \"frontend\",\n        \"object_type\": \"developer\",\n        \"properties\": {\n          \"name\": \"frontend\",\n          \"technology\": \"react\"\n        },\n        \"subscriptions_count\": 3,\n        \"updated_at\": \"2024-11-10T21:41:02.673661+00:00\"\n      },\n      \"created_at\": \"2025-04-06T11:00:24.260496+00:00\",\n      \"updated_at\": \"2025-04-06T11:00:24.260496+00:00\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d4e57ea8-920b-4ce5-bb82-dfddad67d3e3",
+              "name": "404 - Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "object",
+                    ":object_type",
+                    ":id",
+                    "subscribed_to",
+                    "object",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the object in your system"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "object_type",
+                      "description": "(Required) Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"message\": \"object 'obj_type/obj_id' not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://hub.suprsend.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3c098aff-89fd-49a2-aa76-a48f3672a970",
+    "name": "SuprSend Broadcast Object API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs supported on suprsend platform",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,2196 @@
+{
+  "item": [
+    {
+      "id": "222deff3-456f-45d8-859a-4ddfa7f7cda5",
+      "name": "Preference Category",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "70a20d49-6877-4f7a-b94f-0e06d8a50bd3",
+          "name": "Get Preference Category",
+          "request": {
+            "name": "Get Preference Category",
+            "description": {
+              "content": "Retrieve the current preference category for a workspace",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "v1",
+                ":workspace",
+                "preference_category",
+                ""
+              ],
+              "host": [
+                "management-api",
+                "suprsend",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "mode",
+                  "value": "<string>",
+                  "description": "(Required) Mode to retrieve categories. Use 'live' for active categories or 'draft' for current draft."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) Workspace slug (staging, production, etc.)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "ServiceToken <token>"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f654a661-0eb8-45ac-81d3-fc3a9cc5ad1d",
+              "name": "Successfully retrieved preference category",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "preference_category",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "mode",
+                      "value": "draft"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (staging, production, etc.)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$schema\": \"https://schema.suprsend.com/preference_category/v1/schema.json\",\n  \"root_categories\": [\n    {\n      \"root_category\": \"system\",\n      \"sections\": []\n    },\n    {\n      \"root_category\": \"transactional\",\n      \"sections\": [\n        {\n          \"name\": \"Task Updates\",\n          \"categories\": [\n            {\n              \"category\": \"tagged-to-me\",\n              \"name\": \"Tagged to Me\",\n              \"description\": \"Status Update or mentions on tasks assigned by me or tagged to me\",\n              \"default_preference\": \"opt_in\"\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"root_category\": \"promotional\",\n      \"sections\": [\n        {\n          \"name\": \"Product Updates\",\n          \"categories\": [\n            {\n              \"category\": \"newsletter\",\n              \"name\": \"Newsletter\",\n              \"default_preference\": \"opt_out\"\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"version_no\": 15,\n  \"status\": \"draft\",\n  \"validation_result\": {\n    \"is_valid\": false,\n    \"errors\": [\n      \"it seems some subcategories have been deleted in this version, on which active workflows are configured. missing subcategories: [\\\"chapter-added\\\" \\\"forecast\\\" \\\"onboarding-guide\\\" \\\"training-new\\\"]\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a10dc72f-f373-4120-b06b-92205001bbc4",
+              "name": "ServiceToken not found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "preference_category",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "mode",
+                      "value": "draft"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (staging, production, etc.)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"message\": \"ServiceToken not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "05f12bfd-b482-4266-9d42-bacee59010b8",
+              "name": "Workspace not found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "preference_category",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "mode",
+                      "value": "draft"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (staging, production, etc.)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"message\": \"workspace not found for slug/uid: workspace\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cf3fe2f7-4ddb-45cc-9a8f-19d5fabbfc47",
+          "name": "Update Preference Categories",
+          "request": {
+            "name": "Update Preference Categories",
+            "description": {
+              "content": "Use this API to set preference categories to be used in workflow or to show on user preference page.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "v1",
+                ":workspace",
+                "preference_category",
+                ""
+              ],
+              "host": [
+                "management-api",
+                "suprsend",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "commit",
+                  "value": "<boolean>",
+                  "description": "Whether to commit changes immediately. Set to true to make changes live, false to save as draft."
+                },
+                {
+                  "disabled": false,
+                  "key": "commit_message",
+                  "value": "<string>",
+                  "description": "Optional commit message describing the changes made. Required when commit=true."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) Workspace slug (staging, production, etc.)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "ServiceToken <token>"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"root_categories\": [\n    {\n      \"root_category\": \"<string>\",\n      \"sections\": [\n        {\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"tags\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"categories\": [\n            {\n              \"category\": \"<string>\",\n              \"name\": \"<string>\",\n              \"description\": \"<string>\",\n              \"default_preference\": \"<string>\",\n              \"default_mandatory_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"default_opt_in_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"tags\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            },\n            {\n              \"category\": \"<string>\",\n              \"name\": \"<string>\",\n              \"description\": \"<string>\",\n              \"default_preference\": \"<string>\",\n              \"default_mandatory_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"default_opt_in_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"tags\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            }\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"tags\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"categories\": [\n            {\n              \"category\": \"<string>\",\n              \"name\": \"<string>\",\n              \"description\": \"<string>\",\n              \"default_preference\": \"<string>\",\n              \"default_mandatory_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"default_opt_in_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"tags\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            },\n            {\n              \"category\": \"<string>\",\n              \"name\": \"<string>\",\n              \"description\": \"<string>\",\n              \"default_preference\": \"<string>\",\n              \"default_mandatory_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"default_opt_in_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"tags\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"root_category\": \"<string>\",\n      \"sections\": [\n        {\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"tags\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"categories\": [\n            {\n              \"category\": \"<string>\",\n              \"name\": \"<string>\",\n              \"description\": \"<string>\",\n              \"default_preference\": \"<string>\",\n              \"default_mandatory_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"default_opt_in_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"tags\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            },\n            {\n              \"category\": \"<string>\",\n              \"name\": \"<string>\",\n              \"description\": \"<string>\",\n              \"default_preference\": \"<string>\",\n              \"default_mandatory_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"default_opt_in_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"tags\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            }\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"tags\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"categories\": [\n            {\n              \"category\": \"<string>\",\n              \"name\": \"<string>\",\n              \"description\": \"<string>\",\n              \"default_preference\": \"<string>\",\n              \"default_mandatory_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"default_opt_in_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"tags\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            },\n            {\n              \"category\": \"<string>\",\n              \"name\": \"<string>\",\n              \"description\": \"<string>\",\n              \"default_preference\": \"<string>\",\n              \"default_mandatory_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"default_opt_in_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"tags\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bede3c88-4b30-4c38-9b80-e524f6c8bd08",
+              "name": "Successfully created/updated preference category",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "preference_category",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "commit",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "commit_message",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (staging, production, etc.)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"root_categories\": [\n    {\n      \"root_category\": \"<string>\",\n      \"sections\": [\n        {\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"tags\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"categories\": [\n            {\n              \"category\": \"<string>\",\n              \"name\": \"<string>\",\n              \"description\": \"<string>\",\n              \"default_preference\": \"<string>\",\n              \"default_mandatory_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"default_opt_in_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"tags\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            },\n            {\n              \"category\": \"<string>\",\n              \"name\": \"<string>\",\n              \"description\": \"<string>\",\n              \"default_preference\": \"<string>\",\n              \"default_mandatory_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"default_opt_in_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"tags\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            }\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"tags\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"categories\": [\n            {\n              \"category\": \"<string>\",\n              \"name\": \"<string>\",\n              \"description\": \"<string>\",\n              \"default_preference\": \"<string>\",\n              \"default_mandatory_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"default_opt_in_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"tags\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            },\n            {\n              \"category\": \"<string>\",\n              \"name\": \"<string>\",\n              \"description\": \"<string>\",\n              \"default_preference\": \"<string>\",\n              \"default_mandatory_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"default_opt_in_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"tags\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"root_category\": \"<string>\",\n      \"sections\": [\n        {\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"tags\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"categories\": [\n            {\n              \"category\": \"<string>\",\n              \"name\": \"<string>\",\n              \"description\": \"<string>\",\n              \"default_preference\": \"<string>\",\n              \"default_mandatory_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"default_opt_in_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"tags\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            },\n            {\n              \"category\": \"<string>\",\n              \"name\": \"<string>\",\n              \"description\": \"<string>\",\n              \"default_preference\": \"<string>\",\n              \"default_mandatory_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"default_opt_in_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"tags\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            }\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"tags\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"categories\": [\n            {\n              \"category\": \"<string>\",\n              \"name\": \"<string>\",\n              \"description\": \"<string>\",\n              \"default_preference\": \"<string>\",\n              \"default_mandatory_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"default_opt_in_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"tags\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            },\n            {\n              \"category\": \"<string>\",\n              \"name\": \"<string>\",\n              \"description\": \"<string>\",\n              \"default_preference\": \"<string>\",\n              \"default_mandatory_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"default_opt_in_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"tags\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$schema\": \"https://schema.suprsend.com/preference_category/v1/schema.json\",\n  \"root_categories\": [\n    {\n      \"root_category\": \"system\",\n      \"sections\": []\n    },\n    {\n      \"root_category\": \"transactional\",\n      \"sections\": [\n        {\n          \"name\": \"Task Updates\",\n          \"description\": null,\n          \"tags\": null,\n          \"categories\": [\n            {\n              \"category\": \"tagged-to-me\",\n              \"name\": \"Tagged to Me\",\n              \"description\": \"Status Update or mentions on tasks assigned by me or tagged to me\",\n              \"default_preference\": \"opt_in\",\n              \"default_mandatory_channels\": null,\n              \"default_opt_in_channels\": null,\n              \"tags\": null\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"root_category\": \"promotional\",\n      \"sections\": [\n        {\n          \"name\": \"Product Updates\",\n          \"description\": null,\n          \"tags\": null,\n          \"categories\": [\n            {\n              \"category\": \"newsletter\",\n              \"name\": \"Newsletter\",\n              \"description\": null,\n              \"default_preference\": \"opt_out\",\n              \"default_mandatory_channels\": null,\n              \"default_opt_in_channels\": null,\n              \"tags\": null\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"version_no\": 3,\n  \"status\": \"draft\",\n  \"commit_message\": null,\n  \"committed_at\": null,\n  \"validation_result\": {\n    \"is_valid\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0aff603d-a5d9-47ef-8fc2-499320db3b70",
+              "name": "ServiceToken not found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "preference_category",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "commit",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "commit_message",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (staging, production, etc.)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"root_categories\": [\n    {\n      \"root_category\": \"<string>\",\n      \"sections\": [\n        {\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"tags\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"categories\": [\n            {\n              \"category\": \"<string>\",\n              \"name\": \"<string>\",\n              \"description\": \"<string>\",\n              \"default_preference\": \"<string>\",\n              \"default_mandatory_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"default_opt_in_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"tags\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            },\n            {\n              \"category\": \"<string>\",\n              \"name\": \"<string>\",\n              \"description\": \"<string>\",\n              \"default_preference\": \"<string>\",\n              \"default_mandatory_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"default_opt_in_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"tags\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            }\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"tags\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"categories\": [\n            {\n              \"category\": \"<string>\",\n              \"name\": \"<string>\",\n              \"description\": \"<string>\",\n              \"default_preference\": \"<string>\",\n              \"default_mandatory_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"default_opt_in_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"tags\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            },\n            {\n              \"category\": \"<string>\",\n              \"name\": \"<string>\",\n              \"description\": \"<string>\",\n              \"default_preference\": \"<string>\",\n              \"default_mandatory_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"default_opt_in_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"tags\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"root_category\": \"<string>\",\n      \"sections\": [\n        {\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"tags\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"categories\": [\n            {\n              \"category\": \"<string>\",\n              \"name\": \"<string>\",\n              \"description\": \"<string>\",\n              \"default_preference\": \"<string>\",\n              \"default_mandatory_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"default_opt_in_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"tags\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            },\n            {\n              \"category\": \"<string>\",\n              \"name\": \"<string>\",\n              \"description\": \"<string>\",\n              \"default_preference\": \"<string>\",\n              \"default_mandatory_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"default_opt_in_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"tags\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            }\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"tags\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"categories\": [\n            {\n              \"category\": \"<string>\",\n              \"name\": \"<string>\",\n              \"description\": \"<string>\",\n              \"default_preference\": \"<string>\",\n              \"default_mandatory_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"default_opt_in_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"tags\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            },\n            {\n              \"category\": \"<string>\",\n              \"name\": \"<string>\",\n              \"description\": \"<string>\",\n              \"default_preference\": \"<string>\",\n              \"default_mandatory_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"default_opt_in_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"tags\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"message\": \"ServiceToken not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b993c691-b26f-457a-a1fe-a6e8764674cd",
+              "name": "Workspace not found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "preference_category",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "commit",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "commit_message",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (staging, production, etc.)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"root_categories\": [\n    {\n      \"root_category\": \"<string>\",\n      \"sections\": [\n        {\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"tags\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"categories\": [\n            {\n              \"category\": \"<string>\",\n              \"name\": \"<string>\",\n              \"description\": \"<string>\",\n              \"default_preference\": \"<string>\",\n              \"default_mandatory_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"default_opt_in_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"tags\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            },\n            {\n              \"category\": \"<string>\",\n              \"name\": \"<string>\",\n              \"description\": \"<string>\",\n              \"default_preference\": \"<string>\",\n              \"default_mandatory_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"default_opt_in_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"tags\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            }\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"tags\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"categories\": [\n            {\n              \"category\": \"<string>\",\n              \"name\": \"<string>\",\n              \"description\": \"<string>\",\n              \"default_preference\": \"<string>\",\n              \"default_mandatory_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"default_opt_in_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"tags\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            },\n            {\n              \"category\": \"<string>\",\n              \"name\": \"<string>\",\n              \"description\": \"<string>\",\n              \"default_preference\": \"<string>\",\n              \"default_mandatory_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"default_opt_in_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"tags\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"root_category\": \"<string>\",\n      \"sections\": [\n        {\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"tags\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"categories\": [\n            {\n              \"category\": \"<string>\",\n              \"name\": \"<string>\",\n              \"description\": \"<string>\",\n              \"default_preference\": \"<string>\",\n              \"default_mandatory_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"default_opt_in_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"tags\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            },\n            {\n              \"category\": \"<string>\",\n              \"name\": \"<string>\",\n              \"description\": \"<string>\",\n              \"default_preference\": \"<string>\",\n              \"default_mandatory_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"default_opt_in_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"tags\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            }\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"tags\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"categories\": [\n            {\n              \"category\": \"<string>\",\n              \"name\": \"<string>\",\n              \"description\": \"<string>\",\n              \"default_preference\": \"<string>\",\n              \"default_mandatory_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"default_opt_in_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"tags\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            },\n            {\n              \"category\": \"<string>\",\n              \"name\": \"<string>\",\n              \"description\": \"<string>\",\n              \"default_preference\": \"<string>\",\n              \"default_mandatory_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"default_opt_in_channels\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"tags\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"message\": \"workspace not found for slug/uid: workspace\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b41172c6-cc84-4e5e-8c3b-578fd4d17002",
+          "name": "Commit Preference Category",
+          "request": {
+            "name": "Commit Preference Category",
+            "description": {
+              "content": "Commit draft changes to the preference category to make them live",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "v1",
+                ":workspace",
+                "preference_category",
+                "commit",
+                ""
+              ],
+              "host": [
+                "management-api",
+                "suprsend",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "commit_message",
+                  "value": "<string>",
+                  "description": "(Required) Commit message describing the changes being made live."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) Workspace slug (staging, production, etc.)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "ServiceToken <token>"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "cdf55d67-1b89-4f41-8cef-fa3f67a28ec2",
+              "name": "Successfully committed preference category",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "preference_category",
+                    "commit",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "commit_message",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (staging, production, etc.)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$schema\": \"https://schema.suprsend.com/preference_category/v1/schema.json\",\n  \"root_categories\": [\n    {\n      \"root_category\": \"system\",\n      \"sections\": [\n        {\n          \"name\": \"Alerts\",\n          \"description\": null,\n          \"tags\": null,\n          \"categories\": [\n            {\n              \"category\": \"critical-updates\",\n              \"name\": \"Critical Updates\",\n              \"description\": \"Important system alerts requiring immediate attention\",\n              \"default_preference\": \"opt_in\",\n              \"default_mandatory_channels\": null,\n              \"default_opt_in_channels\": null,\n              \"tags\": null\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"root_category\": \"transactional\",\n      \"sections\": [\n        {\n          \"name\": \"Task Updates\",\n          \"description\": null,\n          \"tags\": null,\n          \"categories\": [\n            {\n              \"category\": \"tagged-to-me\",\n              \"name\": \"Tagged to Me\",\n              \"description\": \"Status updates or mentions on tasks assigned by me or tagged to me\",\n              \"default_preference\": \"opt_in\",\n              \"default_mandatory_channels\": null,\n              \"default_opt_in_channels\": null,\n              \"tags\": null\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"root_category\": \"promotional\",\n      \"sections\": [\n        {\n          \"name\": \"Product Updates\",\n          \"description\": null,\n          \"tags\": null,\n          \"categories\": [\n            {\n              \"category\": \"newsletter\",\n              \"name\": \"Newsletter\",\n              \"description\": null,\n              \"default_preference\": \"opt_out\",\n              \"default_mandatory_channels\": null,\n              \"default_opt_in_channels\": null,\n              \"tags\": null\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"version_no\": 2,\n  \"status\": \"active\",\n  \"commit_message\": \"Added password-reset category\",\n  \"committed_at\": \"2025-10-03T09:52:55.273317+00:00\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b6cefd2e-1f89-434d-8751-cb74a8567806",
+              "name": "ServiceToken not found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "preference_category",
+                    "commit",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "commit_message",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (staging, production, etc.)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"message\": \"ServiceToken not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c903f9cc-592a-47ba-a206-7693061e14bc",
+              "name": "Workspace not found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "preference_category",
+                    "commit",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "commit_message",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (staging, production, etc.)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"message\": \"workspace not found for slug/uid: workspace\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c87804f8-88ad-49f9-9971-9eba05dc949a",
+          "name": "List Category Translations",
+          "request": {
+            "name": "List Category Translations",
+            "description": {
+              "content": "Returns all the locales for which translation is uploaded for preference categories.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "v1",
+                ":workspace",
+                "preference_category",
+                "translation",
+                "locale",
+                ""
+              ],
+              "host": [
+                "management-api",
+                "suprsend",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) Workspace slug (staging, production, etc.)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "ServiceToken <token>"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5395c178-551e-4860-a045-c99cfdef030c",
+              "name": "Successfully retrieved list of translation locales",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "preference_category",
+                    "translation",
+                    "locale",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (staging, production, etc.)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"locale\": \"en\"\n    },\n    {\n      \"locale\": \"en-NA\"\n    },\n    {\n      \"locale\": \"es\"\n    },\n    {\n      \"locale\": \"es-AR\"\n    },\n    {\n      \"locale\": \"es-BO\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c547a3f6-57e6-45fb-b2ad-6005e82464ba",
+              "name": "ServiceToken not found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "preference_category",
+                    "translation",
+                    "locale",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (staging, production, etc.)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"message\": \"ServiceToken not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9afccb3f-6fee-4a67-99a5-5bfb455fba74",
+              "name": "Workspace not found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "preference_category",
+                    "translation",
+                    "locale",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (staging, production, etc.)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"message\": \"workspace not found for slug/uid: workspace\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f4b57e76-447f-491e-ae6d-82cced402a45",
+          "name": "Get Category Translation",
+          "request": {
+            "name": "Get Category Translation",
+            "description": {
+              "content": "Fetch translation content for a given locale for preference categories and sections.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "v1",
+                ":workspace",
+                "preference_category",
+                "translation",
+                "content",
+                ":locale",
+                ""
+              ],
+              "host": [
+                "management-api",
+                "suprsend",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) Workspace slug (staging, production, etc.)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "locale",
+                  "description": "(Required) Locale code (e.g., es, fr, de, ja)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "ServiceToken <token>"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9c4deedd-7d02-47ef-a96f-10d7a5964ffa",
+              "name": "Successfully retrieved translation content",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "preference_category",
+                    "translation",
+                    "content",
+                    ":locale",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (staging, production, etc.)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "locale",
+                      "description": "(Required) Locale code (e.g., es, fr, de, ja)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sections\": {\n    \"new-5\": {\n      \"name\": \"nouveau 5\",\n      \"description\": null\n    },\n    \"nik-section-for-transactional\": {\n      \"name\": \"Section Nik pour transactionnel\",\n      \"description\": \"Description de la section Nik pour transactionnel\"\n    }\n  },\n  \"categories\": {\n    \"nik-sub-category\": {\n      \"name\": \"Sous-catégorie Nik\",\n      \"description\": \"Sous-catégorie Nik 1\"\n    },\n    \"amount-refunded\": {\n      \"name\": \"Montant remboursé\",\n      \"description\": null\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "97b5f639-f46c-4d73-bebc-1f602b0b321c",
+              "name": "Invalid or unsupported locale",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "preference_category",
+                    "translation",
+                    "content",
+                    ":locale",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (staging, production, etc.)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "locale",
+                      "description": "(Required) Locale code (e.g., es, fr, de, ja)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 400,\n  \"message\": \"invalid/unsupported locale: 'apl'\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b0025954-729a-43b0-babe-1fce91c0fd11",
+              "name": "ServiceToken not found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "preference_category",
+                    "translation",
+                    "content",
+                    ":locale",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (staging, production, etc.)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "locale",
+                      "description": "(Required) Locale code (e.g., es, fr, de, ja)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"message\": \"ServiceToken not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "89372545-a1c7-41f4-9429-59f513820434",
+              "name": "Workspace or translation not found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "preference_category",
+                    "translation",
+                    "content",
+                    ":locale",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (staging, production, etc.)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "locale",
+                      "description": "(Required) Locale code (e.g., es, fr, de, ja)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"message\": \"translation not found for locale: es\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e2f4c824-5c00-4c45-8704-7f9aa7351527",
+          "name": "Add or Update Category Translation",
+          "request": {
+            "name": "Add or Update Category Translation",
+            "description": {
+              "content": "Add or update translation content for a given locale for preference categories and sections.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "v1",
+                ":workspace",
+                "preference_category",
+                "translation",
+                "content",
+                ":locale",
+                ""
+              ],
+              "host": [
+                "management-api",
+                "suprsend",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) Workspace slug (staging, production, etc.)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "locale",
+                  "description": "(Required) Locale code (e.g., es, fr, de, ja)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "ServiceToken <token>"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sections\": {\n    \"key_0\": {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    \"key_1\": {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    \"key_2\": {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  },\n  \"categories\": {\n    \"key_0\": {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    \"key_1\": {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0374082d-9b8f-4e4a-907b-1aff2052e873",
+              "name": "Successfully added or updated translation",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "preference_category",
+                    "translation",
+                    "content",
+                    ":locale",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (staging, production, etc.)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "locale",
+                      "description": "(Required) Locale code (e.g., es, fr, de, ja)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sections\": {\n    \"account-updates\": {\n      \"name\": \"Actualizaciones de Cuenta\",\n      \"description\": \"Notificaciones importantes relacionadas con la cuenta\"\n    }\n  },\n  \"categories\": {\n    \"password-reset\": {\n      \"name\": \"Restablecimiento de Contraseña\",\n      \"description\": \"Notificaciones cuando se restablece la contraseña\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sections\": {\n    \"new-5\": {\n      \"name\": null,\n      \"description\": null\n    },\n    \"nik-section-for-transactional\": {\n      \"name\": null,\n      \"description\": null\n    }\n  },\n  \"categories\": {\n    \"nik-sub-category\": {\n      \"name\": null,\n      \"description\": null\n    },\n    \"amount-refunded\": {\n      \"name\": null,\n      \"description\": null\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fd962ec6-344b-4a9c-8795-9e3012e799f7",
+              "name": "Invalid or unsupported locale, or invalid translation data",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "preference_category",
+                    "translation",
+                    "content",
+                    ":locale",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (staging, production, etc.)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "locale",
+                      "description": "(Required) Locale code (e.g., es, fr, de, ja)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sections\": {\n    \"account-updates\": {\n      \"name\": \"Actualizaciones de Cuenta\",\n      \"description\": \"Notificaciones importantes relacionadas con la cuenta\"\n    }\n  },\n  \"categories\": {\n    \"password-reset\": {\n      \"name\": \"Restablecimiento de Contraseña\",\n      \"description\": \"Notificaciones cuando se restablece la contraseña\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 400,\n  \"message\": \"invalid/unsupported locale: 'apl'\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "29bdca55-fedb-4a04-beac-5c25347abf8b",
+              "name": "ServiceToken not found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "preference_category",
+                    "translation",
+                    "content",
+                    ":locale",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (staging, production, etc.)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "locale",
+                      "description": "(Required) Locale code (e.g., es, fr, de, ja)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sections\": {\n    \"account-updates\": {\n      \"name\": \"Actualizaciones de Cuenta\",\n      \"description\": \"Notificaciones importantes relacionadas con la cuenta\"\n    }\n  },\n  \"categories\": {\n    \"password-reset\": {\n      \"name\": \"Restablecimiento de Contraseña\",\n      \"description\": \"Notificaciones cuando se restablece la contraseña\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"message\": \"ServiceToken not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aa172ae0-a959-45be-83a1-7b19eceb345e",
+              "name": "Workspace not found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "preference_category",
+                    "translation",
+                    "content",
+                    ":locale",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (staging, production, etc.)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "locale",
+                      "description": "(Required) Locale code (e.g., es, fr, de, ja)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sections\": {\n    \"account-updates\": {\n      \"name\": \"Actualizaciones de Cuenta\",\n      \"description\": \"Notificaciones importantes relacionadas con la cuenta\"\n    }\n  },\n  \"categories\": {\n    \"password-reset\": {\n      \"name\": \"Restablecimiento de Contraseña\",\n      \"description\": \"Notificaciones cuando se restablece la contraseña\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"message\": \"workspace not found for slug/uid: workspace\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a57f708b-8008-47d0-a231-0ae1ade96424",
+          "name": "Delete Category Translation",
+          "request": {
+            "name": "Delete Category Translation",
+            "description": {
+              "content": "Delete translation content for a given locale for preference categories and sections.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "v1",
+                ":workspace",
+                "preference_category",
+                "translation",
+                "content",
+                ":locale",
+                ""
+              ],
+              "host": [
+                "management-api",
+                "suprsend",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) Workspace slug (staging, production, etc.)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "locale",
+                  "description": "(Required) Locale code (e.g., es, fr, de, ja)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "ServiceToken <token>"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b46f770d-df89-485d-9f35-82893086bc9d",
+              "name": "Successfully deleted translation",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "preference_category",
+                    "translation",
+                    "content",
+                    ":locale",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (staging, production, etc.)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "locale",
+                      "description": "(Required) Locale code (e.g., es, fr, de, ja)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9964590b-4878-45ca-a328-b9f03f4d930b",
+              "name": "Invalid or unsupported locale",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "preference_category",
+                    "translation",
+                    "content",
+                    ":locale",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (staging, production, etc.)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "locale",
+                      "description": "(Required) Locale code (e.g., es, fr, de, ja)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 400,\n  \"message\": \"invalid/unsupported locale: 'apl'\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dbba9f73-801d-4ca5-a989-40a330263b76",
+              "name": "ServiceToken not found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "preference_category",
+                    "translation",
+                    "content",
+                    ":locale",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (staging, production, etc.)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "locale",
+                      "description": "(Required) Locale code (e.g., es, fr, de, ja)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"message\": \"ServiceToken not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "befbe97c-ddd1-48a5-9dea-b393a789fa89",
+              "name": "Workspace or translation not found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "preference_category",
+                    "translation",
+                    "content",
+                    ":locale",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (staging, production, etc.)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "locale",
+                      "description": "(Required) Locale code (e.g., es, fr, de, ja)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"message\": \"translation not found for locale: es\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://hub.suprsend.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b9ed631f-db93-45be-8cd2-0829729ac377",
+    "name": "SuprSend Broadcast Preference Category API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs supported on suprsend platform",
+      "type": "text/plain"
+    }
+  }
+}

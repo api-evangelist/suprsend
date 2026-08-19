@@ -1,0 +1,2893 @@
+{
+  "item": [
+    {
+      "id": "7c6e1b60-a6a3-4b63-8a2f-77381ee62581",
+      "name": "User",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2ef02121-a4a0-41d8-8b9a-8e5cbb05e0d7",
+          "name": "All Categories",
+          "request": {
+            "name": "All Categories",
+            "description": {
+              "content": "API to fetch user preferences across all categories.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "user",
+                ":distinct_id",
+                "preference",
+                "category",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "tenant_id",
+                  "value": "<string>",
+                  "description": "to fetch user preferences for a particular tenant"
+                },
+                {
+                  "disabled": false,
+                  "key": "show_opt_out_channels",
+                  "value": "false",
+                  "description": "set this flag to `true` if you want to fetch channel list for opt-out categories."
+                },
+                {
+                  "disabled": false,
+                  "key": "tags",
+                  "value": "<string>",
+                  "description": "Filter preference categories with tags assigned to them. Used to filter preference categories relevant to the user on UI based on their roles, department or teams.\nYou can apply single tag filter like `tags=tag1` or build nested conditions using logical operators - `and`, `or`, `not`, `exists`.\n\nExample:\n```\ntags=admin\ntags={\"or\":[{\"and\":[\"admin\",\"sales\"]},{\"and\":[\"admin\",\"manager\"]}]}\ntags={\"not\":\"admin\"}\ntags={\"exists\":true}\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "locale",
+                  "value": "<string>",
+                  "description": "Locale code (e.g., `es`, `fr`, `de`, `ja`, `es-AR`) to fetch preference translations in user's locale. When provided, the API looks for category and section names and descriptions in the respective locale file. \nIf a translation is missing for the requested locale, the system automatically falls back in this order: `locale-region` (e.g., `es-AR`) → `locale` (e.g., `es`) → `en` (English - always available).\n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "distinct_id",
+                  "description": "(Required) distinct_id of the user whose preferences should be fetched"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7fc7af39-b3ce-424c-bf90-077e2e042bd7",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "user",
+                    ":distinct_id",
+                    "preference",
+                    "category",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "show_opt_out_channels",
+                      "value": "false"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "es"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "distinct_id",
+                      "description": "(Required) distinct_id of the user whose preferences should be fetched"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"count\": 12,\n    \"limit\": 10,\n    \"offset\": 0\n  },\n  \"results\": [\n    {\n      \"name\": \"Newsletter\",\n      \"category\": \"newsletter\",\n      \"description\": \"Send me updates on new product updates\",\n      \"original_preference\": null,\n      \"preference\": \"opt_in\",\n      \"is_editable\": false,\n      \"channels\": [\n        {\n          \"channel\": \"email\",\n          \"preference\": \"opt_in\",\n          \"is_editable\": false\n        },\n        {\n          \"channel\": \"ms_teams\",\n          \"preference\": \"opt_in\",\n          \"is_editable\": false\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5348faf3-52c7-4447-a31e-d6fa246c6118",
+              "name": "404 - Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "user",
+                    ":distinct_id",
+                    "preference",
+                    "category",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "show_opt_out_channels",
+                      "value": "false"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "es"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "distinct_id",
+                      "description": "(Required) distinct_id of the user whose preferences should be fetched"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"message\": \"user [distinct_id: 'user1'] not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4f68fd68-be19-4918-b874-147b75ed9d20",
+          "name": "All Channels",
+          "request": {
+            "name": "All Channels",
+            "description": {
+              "content": "API to retrieve user preferences for all channels.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "user",
+                ":distinct_id",
+                "preference",
+                "channel_preference",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "tenant_id",
+                  "value": "<string>",
+                  "description": "to fetch user preferences for a particular tenant"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "distinct_id",
+                  "description": "(Required) distinct_id of the user whose preferences should be fetched"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b991a5f4-9078-4e79-a078-6b73d74e0727",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "user",
+                    ":distinct_id",
+                    "preference",
+                    "channel_preference",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "distinct_id",
+                      "description": "(Required) distinct_id of the user whose preferences should be fetched"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"channel_preferences\": [\n    {\n      \"channel\": \"androidpush\",\n      \"is_restricted\": false\n    },\n    {\n      \"channel\": \"email\",\n      \"is_restricted\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aee8c609-2ca4-493c-b94d-a1604a80e9f9",
+              "name": "404 - Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "user",
+                    ":distinct_id",
+                    "preference",
+                    "channel_preference",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "distinct_id",
+                      "description": "(Required) distinct_id of the user whose preferences should be fetched"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"message\": \"user [distinct_id: 'user1'] not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "79773bcc-03b6-4718-a718-3ced40235bad",
+          "name": "Overall Channel level",
+          "request": {
+            "name": "Overall Channel level",
+            "description": {
+              "content": "API to update user preferences across all channels.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "user",
+                ":distinct_id",
+                "preference",
+                "channel_preference",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "tenant_id",
+                  "value": "<string>",
+                  "description": "to fetch user preferences for a particular tenant"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "distinct_id",
+                  "description": "(Required) distinct_id of the user whose preferences should be fetched"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"channel_preferences\": [\n    {\n      \"channel\": \"email\",\n      \"is_restricted\": false\n    },\n    {\n      \"channel\": \"email\",\n      \"is_restricted\": false\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "140cb8bd-932b-484e-90e6-df0b500a9e05",
+              "name": "202",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "user",
+                    ":distinct_id",
+                    "preference",
+                    "channel_preference",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "distinct_id",
+                      "description": "(Required) distinct_id of the user whose preferences should be fetched"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"channel_preferences\": [\n    {\n      \"channel\": \"email\",\n      \"is_restricted\": false\n    },\n    {\n      \"channel\": \"email\",\n      \"is_restricted\": false\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"channel_preferences\": [\n    {\n      \"channel\": \"email\",\n      \"is_restricted\": true\n    },\n    {\n      \"channel\": \"inbox\",\n      \"is_restricted\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "39ab1341-3f7c-4c54-a9f2-136811809bb0",
+              "name": "400 - Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "user",
+                    ":distinct_id",
+                    "preference",
+                    "channel_preference",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "distinct_id",
+                      "description": "(Required) distinct_id of the user whose preferences should be fetched"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"channel_preferences\": [\n    {\n      \"channel\": \"email\",\n      \"is_restricted\": false\n    },\n    {\n      \"channel\": \"email\",\n      \"is_restricted\": false\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 400,\n  \"detail\": {\n    \"channel_preferences[0].channel\": \"must be one of [\\\"sms\\\", \\\"email\\\", \\\"androidpush\\\" \\\"iospush\\\", \\\"webpush\\\", \\\"inbox\\\", \\\"whatsapp\\\", \\\"slack\\\", \\\"ms_teams\\\"]\"\n  },\n  \"message\": \"{\\\"channel_preferences[0].channel\\\": must be one of [\\\"sms\\\", \\\"email\\\", \\\"androidpush\\\" \\\"iospush\\\", \\\"webpush\\\", \\\"inbox\\\", \\\"whatsapp\\\", \\\"slack\\\", \\\"ms_teams\\\"]\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f653f9ad-886c-41ff-a74c-de36a292235e",
+          "name": "Category and Channel within Category",
+          "request": {
+            "name": "Category and Channel within Category",
+            "description": {
+              "content": "API to update user preferences for a specific notification category.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "user",
+                ":distinct_id",
+                "preference",
+                "category",
+                ":category_slug",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "tenant_id",
+                  "value": "<string>",
+                  "description": "to fetch user preferences for a particular tenant"
+                },
+                {
+                  "disabled": false,
+                  "key": "locale",
+                  "value": "<string>",
+                  "description": "Locale code (e.g., `es`, `fr`, `de`, `ja`, `es-AR`) to fetch translated category and section names and descriptions.  When provided, the API returns category and section names and descriptions in the specified language if translations are available.  If a translation is missing for the requested locale, the system automatically falls back in this order: `locale-region` (e.g., `es-AR`) → `locale` (e.g., `es`) → `en` (English - always available).\n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "distinct_id",
+                  "description": "(Required) distinct_id of the user whose preferences should be fetched"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "category_slug",
+                  "description": "(Required) notification category slug. You can get this from Notification Categories page on SuprSend dashboard -> Settings page"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"preference\": \"opt_in\",\n  \"opt_out_channels\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"opt_in_channels\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b6cc4479-590f-410f-bdcf-437d0b7df7ea",
+              "name": "202",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "user",
+                    ":distinct_id",
+                    "preference",
+                    "category",
+                    ":category_slug",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "es"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "distinct_id",
+                      "description": "(Required) distinct_id of the user whose preferences should be fetched"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "category_slug",
+                      "description": "(Required) notification category slug. You can get this from Notification Categories page on SuprSend dashboard -> Settings page"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"preference\": \"opt_in\",\n  \"opt_out_channels\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"opt_in_channels\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"Status Update Alert\",\n  \"category\": \"status-update-alert\",\n  \"description\": \"Send me updates when account status changes\",\n  \"original_preference\": \"opt_in\",\n  \"preference\": \"opt_in\",\n  \"is_editable\": true,\n  \"channels\": [\n    {\n      \"channel\": \"email\",\n      \"preference\": \"opt_in\",\n      \"is_editable\": true\n    },\n    {\n      \"channel\": \"ms_teams\",\n      \"preference\": \"opt_in\",\n      \"is_editable\": true\n    },\n    {\n      \"channel\": \"slack\",\n      \"preference\": \"opt_in\",\n      \"is_editable\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e10e1734-063f-4571-9efa-15bfc29a223e",
+              "name": "404 - Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "user",
+                    ":distinct_id",
+                    "preference",
+                    "category",
+                    ":category_slug",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "es"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "distinct_id",
+                      "description": "(Required) distinct_id of the user whose preferences should be fetched"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "category_slug",
+                      "description": "(Required) notification category slug. You can get this from Notification Categories page on SuprSend dashboard -> Settings page"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"preference\": \"opt_in\",\n  \"opt_out_channels\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"opt_in_channels\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"message\": \"category '_category_slug_' not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e8eb74b6-6803-47f8-974e-13c7facb2612",
+          "name": "Single Category",
+          "request": {
+            "name": "Single Category",
+            "description": {
+              "content": "API to fetch user preferences for a given category.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "user",
+                ":distinct_id",
+                "preference",
+                "category",
+                ":category_slug",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "tenant_id",
+                  "value": "<string>",
+                  "description": "to fetch user preferences for a particular tenant"
+                },
+                {
+                  "disabled": false,
+                  "key": "show_opt_out_channels",
+                  "value": "false",
+                  "description": "set this flag to `true` if you want to fetch channel list for opt-out categories."
+                },
+                {
+                  "disabled": false,
+                  "key": "locale",
+                  "value": "<string>",
+                  "description": "Locale code (e.g., `es`, `fr`, `de`, `ja`, `es-AR`) to fetch preference translations in user's locale. When provided, the API looks for category and section names and descriptions in the respective locale file.\nIf a translation is missing for the requested locale, the system automatically falls back in this order: `locale-region` (e.g., `es-AR`) → `locale` (e.g., `es`) → `en` (English - always available).\n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "distinct_id",
+                  "description": "(Required) distinct_id of the user whose preferences should be fetched"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "category_slug",
+                  "description": "(Required) notification category slug. You can get this from Notification Categories page on SuprSend dashboard -> Settings page"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ab91f9c0-fc26-4fb0-811e-540eb5b3bd01",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "user",
+                    ":distinct_id",
+                    "preference",
+                    "category",
+                    ":category_slug",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "show_opt_out_channels",
+                      "value": "false"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "es"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "distinct_id",
+                      "description": "(Required) distinct_id of the user whose preferences should be fetched"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "category_slug",
+                      "description": "(Required) notification category slug. You can get this from Notification Categories page on SuprSend dashboard -> Settings page"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"Newsletter\",\n  \"category\": \"newsletter\",\n  \"description\": \"Send me updates on new product updates\",\n  \"original_preference\": null,\n  \"preference\": \"opt_in\",\n  \"is_editable\": false,\n  \"channels\": [\n    {\n      \"channel\": \"email\",\n      \"preference\": \"opt_in\",\n      \"is_editable\": false\n    },\n    {\n      \"channel\": \"ms_teams\",\n      \"preference\": \"opt_in\",\n      \"is_editable\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7676c337-5eea-4728-9dd7-f1acb82cb344",
+              "name": "404 - Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "user",
+                    ":distinct_id",
+                    "preference",
+                    "category",
+                    ":category_slug",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "show_opt_out_channels",
+                      "value": "false"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "es"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "distinct_id",
+                      "description": "(Required) distinct_id of the user whose preferences should be fetched"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "category_slug",
+                      "description": "(Required) notification category slug. You can get this from Notification Categories page on SuprSend dashboard -> Settings page"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"message\": \"category 'category_slug' not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "145b9046-5526-4303-93ef-f90c447de10c",
+          "name": "Full Preference",
+          "request": {
+            "name": "Full Preference",
+            "description": {
+              "content": "API to fetch user preferences across all channels and categories.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "user",
+                ":distinct_id",
+                "preference",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "tenant_id",
+                  "value": "<string>",
+                  "description": "to fetch user preferences for a particular tenant"
+                },
+                {
+                  "disabled": false,
+                  "key": "show_opt_out_channels",
+                  "value": "false",
+                  "description": "set this flag to `true` if you want to fetch channel list for opt-out categories."
+                },
+                {
+                  "disabled": false,
+                  "key": "tags",
+                  "value": "<string>",
+                  "description": "Filter preference categories with tags assigned to them. Used to filter preference categories relevant to the user on UI based on their roles, department or teams.\nYou can apply single tag filter like `tags=tag1` or build nested conditions using logical operators - `and`, `or`, `not`, `exists`.\n\nExample:\n```\ntags=admin\ntags={\"or\":[{\"and\":[\"admin\",\"sales\"]},{\"and\":[\"admin\",\"manager\"]}]}\ntags={\"not\":\"admin\"}\ntags={\"exists\":true}\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "locale",
+                  "value": "<string>",
+                  "description": "Locale code (e.g., `es`, `fr`, `es-AR`) to fetch preference translations in user's locale. When provided, the API looks for category and section names and descriptions in the respective locale file.\nIf a translation is missing for the requested locale, the system automatically falls back in this order: `locale-region` (e.g., `es-AR`) → `locale` (e.g., `es`) → `en` (English - always available).\n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "distinct_id",
+                  "description": "(Required) distinct_id of the user whose preferences should be fetched"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "19b5bfcd-0e36-45f3-a76d-4b31c3e1b71c",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "user",
+                    ":distinct_id",
+                    "preference",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "show_opt_out_channels",
+                      "value": "false"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "es"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "distinct_id",
+                      "description": "(Required) distinct_id of the user whose preferences should be fetched"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sections\": [\n    {\n      \"subcategories\": [\n        {\n          \"name\": \"Newsletter\",\n          \"category\": \"newsletter\",\n          \"description\": \"Send me updates on new product updates\",\n          \"preference\": \"opt_in\",\n          \"is_editable\": true,\n          \"channels\": [\n            {\n              \"channel\": \"androidpush\",\n              \"preference\": \"opt_in\",\n              \"is_editable\": true\n            },\n            {\n              \"channel\": \"email\",\n              \"preference\": \"opt_in\",\n              \"is_editable\": true\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"channel_preferences\": [\n    {\n      \"channel\": \"email\",\n      \"is_restricted\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c179e606-a507-4119-9f1e-0f775cee0e4d",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "user",
+                    ":distinct_id",
+                    "preference",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "show_opt_out_channels",
+                      "value": "false"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "es"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "distinct_id",
+                      "description": "(Required) distinct_id of the user whose preferences should be fetched"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"message\": \"user [distinct_id: 'user1'] not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bd4ef844-83ef-4c9c-a37c-cf2660f71212",
+          "name": "Update User Full Preference",
+          "request": {
+            "name": "Update User Full Preference",
+            "description": {
+              "content": "API to update user preferences across all channels and categories with translated names and descriptions in the response.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "user",
+                ":distinct_id",
+                "preference",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "tenant_id",
+                  "value": "<string>",
+                  "description": "to update user preferences for a particular tenant"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "distinct_id",
+                  "description": "(Required) distinct_id of the user whose preferences should be updated"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"channel_preferences\": [\n    {\n      \"channel\": \"<string>\",\n      \"is_restricted\": \"<boolean>\"\n    },\n    {\n      \"channel\": \"<string>\",\n      \"is_restricted\": \"<boolean>\"\n    }\n  ],\n  \"categories\": [\n    {\n      \"category\": \"<string>\",\n      \"preference\": \"<string>\",\n      \"opt_out_channels\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"opt_in_channels\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"category\": \"<string>\",\n      \"preference\": \"<string>\",\n      \"opt_out_channels\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"opt_in_channels\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dc1c78b7-3389-41e1-ad0b-321475123641",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "user",
+                    ":distinct_id",
+                    "preference",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "distinct_id",
+                      "description": "(Required) distinct_id of the user whose preferences should be updated"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"channel_preferences\": [\n    {\n      \"channel\": \"email\",\n      \"is_restricted\": false\n    }\n  ],\n  \"categories\": [\n    {\n      \"category\": \"_category_slug_\",\n      \"preference\": \"opt_in\",\n      \"opt_out_channels\": [],\n      \"opt_in_channels\": []\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sections\": [\n    {\n      \"name\": null,\n      \"slug\": null,\n      \"subcategories\": [\n        {\n          \"name\": \"Promotion de remboursement\",\n          \"category\": \"refund-promotion\",\n          \"description\": \"mises à jour\",\n          \"original_preference\": null,\n          \"preference\": \"opt_in\",\n          \"is_editable\": false,\n          \"channels\": [\n            {\n              \"channel\": \"email\",\n              \"preference\": \"opt_in\",\n              \"is_editable\": false\n            },\n            {\n              \"channel\": \"inbox\",\n              \"preference\": \"opt_in\",\n              \"is_editable\": false\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"channel_preferences\": [\n    {\n      \"channel\": \"email\",\n      \"is_restricted\": false\n    },\n    {\n      \"channel\": \"inbox\",\n      \"is_restricted\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c6480ec8-2105-43cc-8b74-5cf473c43850",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "user",
+                    ":distinct_id",
+                    "preference",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "distinct_id",
+                      "description": "(Required) distinct_id of the user whose preferences should be updated"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"channel_preferences\": [\n    {\n      \"channel\": \"email\",\n      \"is_restricted\": false\n    }\n  ],\n  \"categories\": [\n    {\n      \"category\": \"_category_slug_\",\n      \"preference\": \"opt_in\",\n      \"opt_out_channels\": [],\n      \"opt_in_channels\": []\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"message\": \"user [distinct_id: 'user1'] not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c706dda8-032b-4822-af9a-549df1d6d36b",
+          "name": "Create / Update Users",
+          "request": {
+            "name": "Create / Update Users",
+            "description": {
+              "content": "API to upsert (create if not exists, update if exists) user profile using a `distinct_id`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "user",
+                ":distinct_id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "distinct_id",
+                  "description": "(Required) Unique identifier of the user in your system"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"$email\": [\n    \"<email>\",\n    \"<email>\"\n  ],\n  \"$sms\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"$whatsapp\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"$inbox\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"$androidpush\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"$iospush\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"$slack\": [\n    {\n      \"email\": \"<email>\",\n      \"access_token\": \"<string>\"\n    },\n    {\n      \"email\": \"<email>\",\n      \"access_token\": \"<string>\"\n    }\n  ],\n  \"$ms_teams\": [\n    {\n      \"tenant_id\": \"<string>\",\n      \"service_url\": \"<uri>\",\n      \"conversation_id\": \"<string>\"\n    },\n    {\n      \"tenant_id\": \"<string>\",\n      \"service_url\": \"<uri>\",\n      \"conversation_id\": \"<string>\"\n    }\n  ],\n  \"$timezone\": \"<string>\",\n  \"$locale\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "703d4d8e-5355-41df-b3fa-0cd39c3934d9",
+              "name": "201",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "user",
+                    ":distinct_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "distinct_id",
+                      "description": "(Required) Unique identifier of the user in your system"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"$email\": [\n    \"jsmith@example.com\"\n  ],\n  \"$sms\": [\n    \"+1234567890\"\n  ],\n  \"$whatsapp\": [\n    \"+1234567890\"\n  ],\n  \"$inbox\": [\n    \"4nlPk4XXLcDxxxHQ70xx2Cx24\"\n  ],\n  \"$webpush\": [\n    {\n      \"token\": \"webpush_token_abc123\",\n      \"endpoint\": \"https://fcm.googleapis.com/fcm/send/abc123\",\n      \"keys\": {\n        \"p256dh\": \"BNJxwH...\",\n        \"auth\": \"tBH...\"\n      }\n    }\n  ],\n  \"$androidpush\": [\n    \"android_push_token_xyz987\"\n  ],\n  \"$iospush\": [\n    \"ios_push_token_lmn456\"\n  ],\n  \"$slack\": [\n    {\n      \"user_id\": \"U01ABCDE2F3\",\n      \"team_id\": \"T1234567890\",\n      \"access_token\": \"xoxb-...\"\n    }\n  ],\n  \"$ms_teams\": [\n    {\n      \"user_id\": \"teams_user_id_12345\",\n      \"tenant_id\": \"tenant_12345\",\n      \"conversation_id\": \"conversation_12345\"\n    }\n  ],\n  \"$timezone\": \"America/New_York\",\n  \"$locale\": \"en_GB\",\n  \"custom_key\": \"custom_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"distinct_id\": \"_distinct_id_\",\n  \"properties\": {\n    \"$locale\": \"en_GB\",\n    \"$timezone\": \"America/New_York\"\n  },\n  \"created_at\": \"2025-04-04T21:37:36.712496+00:00\",\n  \"updated_at\": \"2025-04-04T21:37:36.743167+00:00\",\n  \"$email\": [\n    {\n      \"value\": \"john@example.com\",\n      \"status\": \"active\",\n      \"perma_status\": \"active\"\n    }\n  ],\n  \"$inbox\": [\n    {\n      \"value\": \"4nlPk4t4kurG5kChOELB8Q1LcDI9DHzHQ70st2E2C24\",\n      \"id_provider\": \"suprsend\",\n      \"status\": \"active\",\n      \"perma_status\": \"active\"\n    }\n  ],\n  \"$sms\": [\n    {\n      \"value\": \"+1234567890\",\n      \"status\": \"active\",\n      \"perma_status\": \"active\"\n    }\n  ],\n  \"$slack\": [\n    {\n      \"value\": {\n        \"email_id\": \"user@example.com\",\n        \"access_token\": \"xoxb-...\"\n      },\n      \"status\": \"active\",\n      \"perma_status\": \"active\"\n    }\n  ],\n  \"$ms_teams\": [\n    {\n      \"value\": {\n        \"user_id\": \"teams_user_id_12345\",\n        \"tenant_id\": \"tenant_12345\",\n        \"service_url\": \"https://smba.trafficmanager.net/amer\"\n      },\n      \"status\": \"active\",\n      \"perma_status\": \"active\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7e445059-1432-45a7-b204-4837df964741",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "user",
+                    ":distinct_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "distinct_id",
+                      "description": "(Required) Unique identifier of the user in your system"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"$email\": [\n    \"jsmith@example.com\"\n  ],\n  \"$sms\": [\n    \"+1234567890\"\n  ],\n  \"$whatsapp\": [\n    \"+1234567890\"\n  ],\n  \"$inbox\": [\n    \"4nlPk4XXLcDxxxHQ70xx2Cx24\"\n  ],\n  \"$webpush\": [\n    {\n      \"token\": \"webpush_token_abc123\",\n      \"endpoint\": \"https://fcm.googleapis.com/fcm/send/abc123\",\n      \"keys\": {\n        \"p256dh\": \"BNJxwH...\",\n        \"auth\": \"tBH...\"\n      }\n    }\n  ],\n  \"$androidpush\": [\n    \"android_push_token_xyz987\"\n  ],\n  \"$iospush\": [\n    \"ios_push_token_lmn456\"\n  ],\n  \"$slack\": [\n    {\n      \"user_id\": \"U01ABCDE2F3\",\n      \"team_id\": \"T1234567890\",\n      \"access_token\": \"xoxb-...\"\n    }\n  ],\n  \"$ms_teams\": [\n    {\n      \"user_id\": \"teams_user_id_12345\",\n      \"tenant_id\": \"tenant_12345\",\n      \"conversation_id\": \"conversation_12345\"\n    }\n  ],\n  \"$timezone\": \"America/New_York\",\n  \"$locale\": \"en_GB\",\n  \"custom_key\": \"custom_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 400,\n  \"message\": \"invalid_request_error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5db260bb-e4b2-4f6e-a8d2-a63dd38eedde",
+          "name": "Fetch User by id",
+          "request": {
+            "name": "Fetch User by id",
+            "description": {
+              "content": "API to fetch user object by passing it's unique `distinct_id`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "user",
+                ":distinct_id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "distinct_id",
+                  "description": "(Required) Unique identifier of the user in your system"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "96809902-8e33-43b2-8ced-28a1069b5a8c",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "user",
+                    ":distinct_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "distinct_id",
+                      "description": "(Required) Unique identifier of the user in your system"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"distinct_id\": \"_distinct_id_\",\n  \"properties\": {\n    \"$locale\": \"en_GB\",\n    \"$timezone\": \"America/New_York\"\n  },\n  \"created_at\": \"2025-04-04T21:37:36.712496+00:00\",\n  \"updated_at\": \"2025-04-04T21:37:36.743167+00:00\",\n  \"$email\": [\n    {\n      \"value\": \"john@example.com\",\n      \"status\": \"active\",\n      \"perma_status\": \"active\"\n    }\n  ],\n  \"$inbox\": [\n    {\n      \"value\": \"4nlPk4t4kurG5kChOELB8Q1LcDI9DHzHQ70st2E2C24\",\n      \"id_provider\": \"suprsend\",\n      \"status\": \"active\",\n      \"perma_status\": \"active\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6bacbc7f-fe16-4815-ac74-486dc9c032a2",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "user",
+                    ":distinct_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "distinct_id",
+                      "description": "(Required) Unique identifier of the user in your system"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 400,\n  \"message\": \"invalid_request_error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1c529532-809d-4a4d-a4ab-24ba0d8804aa",
+          "name": "Delete user",
+          "request": {
+            "name": "Delete user",
+            "description": {
+              "content": "API to permanently delete a user from SuprSend by passing `distinct_id`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "user",
+                ":distinct_id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "distinct_id",
+                  "description": "(Required) Unique identifier of the user in your system"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "541519ba-1d11-4c2a-89c1-ee1f6d829958",
+              "name": "204 - No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "user",
+                    ":distinct_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "distinct_id",
+                      "description": "(Required) Unique identifier of the user in your system"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ed0e6001-f23a-4f97-abdb-d5a1376ea526",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "user",
+                    ":distinct_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "distinct_id",
+                      "description": "(Required) Unique identifier of the user in your system"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"message\": \"user [distinct_id: 'user1'] not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "48112ef8-b5af-40e3-b380-02b9b9122933",
+          "name": "Edit User Profile",
+          "request": {
+            "name": "Edit User Profile",
+            "description": {
+              "content": "API to edit (add/remove) properties and communication-channels for a user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "user",
+                ":distinct_id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "distinct_id",
+                  "description": "(Required) unique identifier of the user"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"operations\": [\n    {\n      \"$set\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\",\n        \"key_3\": \"<string>\"\n      },\n      \"$unset\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$append\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"$remove\": {\n        \"key_0\": \"<string>\"\n      },\n      \"$set_once\": {\n        \"key_0\": \"<string>\"\n      },\n      \"$increment\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\"\n      }\n    },\n    {\n      \"$set\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\",\n        \"key_3\": \"<string>\"\n      },\n      \"$unset\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$append\": {\n        \"key_0\": \"<string>\"\n      },\n      \"$remove\": {\n        \"key_0\": \"<string>\"\n      },\n      \"$set_once\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\",\n        \"key_3\": \"<string>\",\n        \"key_4\": \"<string>\"\n      },\n      \"$increment\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cbd74c14-2ccc-4f91-8607-6ecaee701605",
+              "name": "202",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "user",
+                    ":distinct_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "distinct_id",
+                      "description": "(Required) unique identifier of the user"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"operations\": [\n    {\n      \"$set\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"$unset\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$append\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\"\n      },\n      \"$remove\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"$set_once\": {\n        \"key_0\": \"<string>\"\n      },\n      \"$increment\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\"\n      }\n    },\n    {\n      \"$set\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"$unset\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$append\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"$remove\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"$set_once\": {\n        \"key_0\": \"<string>\"\n      },\n      \"$increment\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"distinct_id\": \"_distinct_id_\",\n  \"properties\": {\n    \"name\": \"Marge Simpson\",\n    \"$locale\": \"en_GB\",\n    \"$timezone\": \"America/New_York\"\n  },\n  \"created_at\": \"2025-04-04T21:37:36.712496+00:00\",\n  \"updated_at\": \"2025-04-04T21:37:36.743167+00:00\",\n  \"$email\": [\n    {\n      \"value\": \"john@example.com\",\n      \"status\": \"active\",\n      \"perma_status\": \"active\"\n    }\n  ],\n  \"$inbox\": [\n    {\n      \"value\": \"4nlPk4t4kurG5kChOELB8Q1LcDI9DHzHQ70st2E2C24\",\n      \"id_provider\": \"suprsend\",\n      \"status\": \"active\",\n      \"perma_status\": \"active\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5251de99-e430-4b47-b527-1c1dd2d1a5ff",
+          "name": "List Users",
+          "request": {
+            "name": "List Users",
+            "description": {
+              "content": "API to list cursor-based paginated list of users in your workspace.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "user",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "507a9d7a-ceee-438b-aeb8-6a0ec1b5e6a7",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "user",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"count\": 1201709,\n    \"limit\": 10,\n    \"has_prev\": false,\n    \"before\": null,\n    \"has_next\": true,\n    \"after\": \"01JXXXX99APxxxxxx8Wxxxx1B\"\n  },\n  \"results\": [\n    {\n      \"distinct_id\": \"_distinct_id_\",\n      \"properties\": {\n        \"name\": \"Marge Simpson\"\n      },\n      \"created_at\": \"2025-04-04T21:37:36.712496+00:00\",\n      \"updated_at\": \"2025-04-04T21:37:36.743167+00:00\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9156a91c-1d8e-4cb1-a1aa-feaec34fedfe",
+          "name": "Merge User Profiles",
+          "request": {
+            "name": "Merge User Profiles",
+            "description": {
+              "content": "API to merge two user profiles to resolve duplicate user records.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "user",
+                ":distinct_id",
+                "merge",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "distinct_id",
+                  "description": "(Required) Unique identifier of primary user"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"from_user_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f6e41b39-fc78-415b-889d-a64cd578be75",
+              "name": "201 - Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "user",
+                    ":distinct_id",
+                    "merge",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "distinct_id",
+                      "description": "(Required) Unique identifier of primary user"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"from_user_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"distinct_id\": \"_distinct_id_\",\n  \"properties\": {},\n  \"created_at\": \"2025-04-04T21:37:36.712496+00:00\",\n  \"updated_at\": \"2025-04-04T21:37:36.743167+00:00\",\n  \"$inbox\": [\n    {\n      \"value\": \"4nlPk4t4kurG5kChOELB8Q1LcDI9DHzHQ70st2E2C24\",\n      \"id_provider\": \"suprsend\",\n      \"status\": \"active\",\n      \"perma_status\": \"active\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "349d7580-f087-44a2-9201-d2c0723dec35",
+              "name": "404 - Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "user",
+                    ":distinct_id",
+                    "merge",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "distinct_id",
+                      "description": "(Required) Unique identifier of primary user"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"from_user_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"message\": \"from_user_id: [distinct_id: 'secondary_user'] not found / user [distinct_id: 'primary_user'] not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4619f277-59fe-4ccf-836f-9f68313c6d41",
+          "name": "Fetch User object subscriptions",
+          "request": {
+            "name": "Fetch User object subscriptions",
+            "description": {
+              "content": "API to fetch all objects that a given user is subscribed to.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "user",
+                ":distinct_id",
+                "subscribed_to",
+                "object",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "number of results to be returned in API response"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "distinct_id",
+                  "description": "(Required) Unique identifier of the user in your system"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "30a960e1-746e-4b29-8ad4-66cdd61685a7",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "user",
+                    ":distinct_id",
+                    "subscribed_to",
+                    "object",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "distinct_id",
+                      "description": "(Required) Unique identifier of the user in your system"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"count\": 4,\n    \"limit\": 1,\n    \"has_prev\": false,\n    \"before\": null,\n    \"has_next\": false,\n    \"after\": null\n  },\n  \"results\": [\n    {\n      \"properties\": {\n        \"role\": \"manager\"\n      },\n      \"object\": {\n        \"id\": \"frontend\",\n        \"object_type\": \"department\",\n        \"properties\": {},\n        \"subscriptions_count\": 10,\n        \"updated_at\": \"2025-01-28T16:49:23.695448+00:00\"\n      },\n      \"created_at\": \"2025-01-23T16:34:56.093683+00:00\",\n      \"updated_at\": \"2025-01-23T16:34:56.093683+00:00\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "97af5e32-4e34-43a9-9781-7ff6e1313523",
+              "name": "404 - Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "user",
+                    ":distinct_id",
+                    "subscribed_to",
+                    "object",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "distinct_id",
+                      "description": "(Required) Unique identifier of the user in your system"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"message\": \"User [distinct_id: 'user1'] not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2089f554-d998-435a-9e08-912b8d7b212f",
+          "name": "Fetch User list subscriptions",
+          "request": {
+            "name": "Fetch User list subscriptions",
+            "description": {
+              "content": "API to retrieve all lists that a user is part of.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "user",
+                ":distinct_id",
+                "subscribed_to",
+                "list",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "number of results to be returned in API response"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "distinct_id",
+                  "description": "(Required) Unique identifier of the user in your system"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "138a7e78-e5c2-4f96-8bdf-ee9ed60f59be",
+              "name": "200 - OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "user",
+                    ":distinct_id",
+                    "subscribed_to",
+                    "list",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "distinct_id",
+                      "description": "(Required) Unique identifier of the user in your system"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"count\": 8,\n    \"limit\": 10,\n    \"has_prev\": false,\n    \"before\": null,\n    \"has_next\": false,\n    \"after\": \"01HPMFF5V2CFCF5882QX9FQXYB\"\n  },\n  \"results\": [\n    {\n      \"list\": {\n        \"list_description\": \"List of users to send newsletter to (Qualified leads + Product Users)\",\n        \"list_id\": \"product_update\",\n        \"list_name\": \"\",\n        \"list_type\": \"static_list\",\n        \"source\": \"csv_upload\",\n        \"subscribers_count\": 2,\n        \"updated_at\": \"2024-09-26T10:20:33.636698+00:00\"\n      },\n      \"created_at\": \"2024-08-04T13:16:12.825+00:00\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ac0df46d-0be3-4fa6-9531-ec330a22bd69",
+              "name": "404 - Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "user",
+                    ":distinct_id",
+                    "subscribed_to",
+                    "list",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "distinct_id",
+                      "description": "(Required) Unique identifier of the user in your system"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"message\": \"user [distinct_id: 'user1'] not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://hub.suprsend.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "62f0b409-40b3-4aa2-a2ed-5772bc04321a",
+    "name": "SuprSend Broadcast User API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs supported on suprsend platform",
+      "type": "text/plain"
+    }
+  }
+}

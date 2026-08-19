@@ -1,0 +1,1827 @@
+{
+  "item": [
+    {
+      "id": "de43798e-652b-4342-b330-f98f7d2c1e54",
+      "name": "Workflow",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5500f5b5-b4d4-4264-88f8-0aef085b203c",
+          "name": "List Workflows",
+          "request": {
+            "name": "List Workflows",
+            "description": {
+              "content": "Retrieve a list of workflows in a workspace.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "v1",
+                ":workspace",
+                "workflow",
+                ""
+              ],
+              "host": [
+                "management-api",
+                "suprsend",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "mode",
+                  "value": "draft",
+                  "description": "Mode to filter workflows (draft or live). By default, draft workflows are returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "slugs",
+                  "value": "<string>",
+                  "description": "Comma-separated list of workflow slugs to filter. This can be used to filter workflows by slug."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) Workspace slug (staging, production, etc.)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "ServiceToken <token>"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5503624e-ae9c-44b2-8ff7-eb49dc91d37d",
+              "name": "Successfully retrieved list of workflows",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "workflow",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "mode",
+                      "value": "draft"
+                    },
+                    {
+                      "key": "slugs",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (staging, production, etc.)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"count\": 92,\n    \"limit\": 10,\n    \"offset\": 0\n  },\n  \"results\": [\n    {\n      \"$schema\": \"https://schema.suprsend.com/workflow/v1/schema.json\",\n      \"slug\": \"survey-reminder\",\n      \"is_enabled\": true,\n      \"created_at\": \"2025-06-27T03:26:48.793551Z\",\n      \"last_executed_at\": \"2025-06-27T04:48:20.653366Z\",\n      \"name\": \"Survey Reminder\",\n      \"description\": null,\n      \"updated_at\": \"2025-06-27T03:36:05.623939Z\",\n      \"commit_message\": \"Survey completed\",\n      \"hash\": \"ed3e630c1526170564c962db00dbfcfef997e995f62f67c068a8c9c1d5efbc13\",\n      \"status\": \"active\",\n      \"category\": \"transactional\",\n      \"tags\": [\n        \"reminder\"\n      ],\n      \"ratelimit\": null,\n      \"conditions\": [],\n      \"trigger_type\": \"api\",\n      \"trigger_events\": [],\n      \"override_recipients_type\": null,\n      \"override_recipients_user_expr\": null,\n      \"override_recipients_single_object_fields_expr\": null,\n      \"override_actor_user_expr\": null,\n      \"override_tenant_expr\": null,\n      \"active_at\": \"2025-06-27T03:36:05.623845Z\",\n      \"updated_by\": {\n        \"name\": \"Jane Doe\",\n        \"email\": \"user@example.com\"\n      },\n      \"tree\": {\n        \"nodes\": [\n          {\n            \"name\": \"Multi-Channel\",\n            \"node_type\": \"send_multi_channel\",\n            \"properties\": {\n              \"template\": \"11-performance-review-session\",\n              \"channels\": [],\n              \"channels_expr\": null,\n              \"success\": \"seen\",\n              \"success_is_event\": false\n            },\n            \"description\": \"\",\n            \"schema_version\": \"1\"\n          }\n        ]\n      },\n      \"validation_result\": {\n        \"is_valid\": true\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d73f2eb5-bfde-4b9c-a985-03192f43bcd1",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "workflow",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "mode",
+                      "value": "draft"
+                    },
+                    {
+                      "key": "slugs",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (staging, production, etc.)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"error_code\": \"authentication_failed\",\n  \"type\": \"AuthenticationFailed\",\n  \"message\": \"Invalid service token.\",\n  \"detail\": \"Invalid service token.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c30fe6cb-bc93-4f5a-8237-8bcdd071da62",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "workflow",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "mode",
+                      "value": "draft"
+                    },
+                    {
+                      "key": "slugs",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (staging, production, etc.)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"error_code\": \"not_found\",\n  \"type\": \"NotFound\",\n  \"message\": \"workspace 'demo' not found\",\n  \"detail\": \"workspace 'demo' not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "808abf47-5297-4a04-998f-1ac08cde9d92",
+          "name": "Get Workflow Details",
+          "request": {
+            "name": "Get Workflow Details",
+            "description": {
+              "content": "Fetch workflow corresponding to the given slug in a workspace.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "v1",
+                ":workspace",
+                "workflow",
+                ":slug",
+                ""
+              ],
+              "host": [
+                "management-api",
+                "suprsend",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "mode",
+                  "value": "draft",
+                  "description": "Which workflow version to fetch (draft or live). By default, draft version is returned."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) Workspace slug (staging, production, etc.)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "slug",
+                  "description": "(Required) Unique identifier of the workflow. You can get it from workflow settings."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "ServiceToken <token>"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b2e3fe2b-3298-46cb-863d-ef4fa6ecf8a9",
+              "name": "Successfully retrieved workflow",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "workflow",
+                    ":slug",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "mode",
+                      "value": "draft"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (staging, production, etc.)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slug",
+                      "description": "(Required) Unique identifier of the workflow. You can get it from workflow settings."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$schema\": \"https://schema.suprsend.com/workflow/v1/schema.json\",\n  \"slug\": \"survey-reminder\",\n  \"is_enabled\": true,\n  \"created_at\": \"2025-06-27T03:26:48.793551Z\",\n  \"last_executed_at\": \"2025-06-27T04:48:20.653366Z\",\n  \"name\": \"Survey Reminder\",\n  \"description\": null,\n  \"updated_at\": \"2025-06-27T03:36:05.623939Z\",\n  \"commit_message\": \"Survey completed\",\n  \"hash\": \"ed3e630c1526170564c962db00dbfcfef997e995f62f67c068a8c9c1d5efbc13\",\n  \"status\": \"active\",\n  \"category\": \"transactional\",\n  \"tags\": [\n    \"reminder\"\n  ],\n  \"ratelimit\": null,\n  \"conditions\": [],\n  \"trigger_type\": \"api\",\n  \"trigger_events\": [],\n  \"override_recipients_type\": null,\n  \"override_recipients_user_expr\": null,\n  \"override_recipients_single_object_fields_expr\": null,\n  \"override_actor_user_expr\": null,\n  \"override_tenant_expr\": null,\n  \"active_at\": \"2025-06-27T03:36:05.623845Z\",\n  \"updated_by\": {\n    \"name\": \"Jane Doe\",\n    \"email\": \"user@example.com\"\n  },\n  \"tree\": {\n    \"nodes\": [\n      {\n        \"name\": \"Multi-Channel\",\n        \"node_type\": \"send_multi_channel\",\n        \"properties\": {\n          \"template\": \"11-performance-review-session\",\n          \"channels\": [],\n          \"channels_expr\": null,\n          \"success\": \"seen\",\n          \"success_is_event\": false\n        },\n        \"description\": \"\",\n        \"schema_version\": \"1\"\n      }\n    ]\n  },\n  \"validation_result\": {\n    \"is_valid\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "941dbee1-9d4e-4dd6-a8e1-2e6d70fa136b",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "workflow",
+                    ":slug",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "mode",
+                      "value": "draft"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (staging, production, etc.)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slug",
+                      "description": "(Required) Unique identifier of the workflow. You can get it from workflow settings."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"error_code\": \"authentication_failed\",\n  \"type\": \"AuthenticationFailed\",\n  \"message\": \"Invalid service token.\",\n  \"detail\": \"Invalid service token.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d25d8d1e-96bb-4790-a67d-c9068964d46e",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "workflow",
+                    ":slug",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "mode",
+                      "value": "draft"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (staging, production, etc.)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slug",
+                      "description": "(Required) Unique identifier of the workflow. You can get it from workflow settings."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"error_code\": \"not_found\",\n  \"type\": \"NotFound\",\n  \"message\": \"workspace 'demo' not found\",\n  \"detail\": \"workspace 'demo' not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6ae03fad-2f5e-4045-a35e-3696a5e7ec1a",
+          "name": "Create or Update Workflow",
+          "request": {
+            "name": "Create or Update Workflow",
+            "description": {
+              "content": "Create a new workflow or update the draft version of an existing one",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "v1",
+                ":workspace",
+                "workflow",
+                ":slug",
+                ""
+              ],
+              "host": [
+                "management-api",
+                "suprsend",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "commit",
+                  "value": "false",
+                  "description": "Whether to commit the workflow immediately. Workflow will be successfully committed only if validation_result.is_valid is true."
+                },
+                {
+                  "disabled": false,
+                  "key": "commit_message",
+                  "value": "<string>",
+                  "description": "Commit message describing the changes (required if commit=true)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) Workspace where the workflow should be created (staging, production, etc.)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "slug",
+                  "description": "(Required) Unique identifier of the workflow. You can get it from workflow settings for existing workflows."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "ServiceToken <token>"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"trigger_type\": \"<string>\",\n  \"category\": \"<string>\",\n  \"tree\": {\n    \"nodes\": [\n      {\n        \"node_type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"delay_type\": \"<string>\",\n        \"description\": \"<string>\",\n        \"duration\": \"<string>\",\n        \"relative_to\": {\n          \"pivot_expr\": \"<string>\",\n          \"offset_type\": \"<string>\",\n          \"offset_value_type\": \"<string>\",\n          \"offset_value\": \"<string>\"\n        }\n      },\n      {\n        \"node_type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"delay_type\": \"<string>\",\n        \"description\": \"<string>\",\n        \"duration\": \"<string>\",\n        \"relative_to\": {\n          \"pivot_expr\": \"<string>\",\n          \"offset_type\": \"<string>\",\n          \"offset_value_type\": \"<string>\",\n          \"offset_value\": \"<string>\"\n        }\n      }\n    ]\n  },\n  \"description\": \"<string>\",\n  \"is_enabled\": true,\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"payload_schema\": {\n    \"schema\": \"<string>\",\n    \"version_no\": \"<integer>\"\n  },\n  \"trigger_events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ratelimit\": {\n    \"count\": \"<integer>\",\n    \"sliding_window\": \"<string>\"\n  },\n  \"conditions\": [\n    {\n      \"type\": \"<string>\",\n      \"expression_v1\": {\n        \"op\": \"<string>\",\n        \"args\": [\n          {\n            \"op\": \"<string>\",\n            \"value\": \"<string>\",\n            \"variable\": \"<string>\",\n            \"variable_ns\": \"<string>\"\n          },\n          {\n            \"op\": \"<string>\",\n            \"value\": \"<string>\",\n            \"variable\": \"<string>\",\n            \"variable_ns\": \"<string>\"\n          }\n        ]\n      }\n    },\n    {\n      \"type\": \"<string>\",\n      \"expression_v1\": {\n        \"op\": \"<string>\",\n        \"args\": [\n          {\n            \"op\": \"<string>\",\n            \"value\": \"<string>\",\n            \"variable\": \"<string>\",\n            \"variable_ns\": \"<string>\"\n          },\n          {\n            \"op\": \"<string>\",\n            \"value\": \"<string>\",\n            \"variable\": \"<string>\",\n            \"variable_ns\": \"<string>\"\n          }\n        ]\n      }\n    }\n  ],\n  \"override_recipients_type\": \"<string>\",\n  \"override_recipients_user_expr\": \"<string>\",\n  \"override_recipients_single_object_fields_expr\": {\n    \"id\": \"<string>\",\n    \"object_type\": \"<string>\",\n    \"$object_subscriptions_query.depth\": \"<string>\"\n  },\n  \"override_actor_user_expr\": \"<string>\",\n  \"override_tenant_expr\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f721bfca-9634-4397-88e1-abaf493d2ab2",
+              "name": "The response includes the same workflow object as input along with a validation_result field that indicates whether the workflow configuration is valid.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "workflow",
+                    ":slug",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "commit",
+                      "value": "false"
+                    },
+                    {
+                      "key": "commit_message",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace where the workflow should be created (staging, production, etc.)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slug",
+                      "description": "(Required) Unique identifier of the workflow. You can get it from workflow settings for existing workflows."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Welcome Email\",\n  \"description\": \"Sends welcome email to new users\",\n  \"category\": \"transactional\",\n  \"tags\": [\n    \"welcome\",\n    \"onboarding\"\n  ],\n  \"tree\": {\n    \"nodes\": [\n      {\n        \"name\": \"Send Email\",\n        \"node_type\": \"send_email\",\n        \"properties\": {\n          \"template\": \"welcome-email-template\",\n          \"subject\": \"Welcome to our platform!\"\n        },\n        \"description\": \"Send welcome email to new users\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"Welcome Email\",\n  \"description\": \"Sends welcome email to new users\",\n  \"category\": \"transactional\",\n  \"tags\": [\n    \"welcome\",\n    \"onboarding\"\n  ],\n  \"tree\": {\n    \"nodes\": [\n      {\n        \"name\": \"Send Email\",\n        \"node_type\": \"send_email\",\n        \"properties\": {\n          \"template\": \"welcome-email-template\",\n          \"subject\": \"Welcome to our platform!\"\n        },\n        \"description\": \"Send welcome email to new users\"\n      }\n    ]\n  },\n  \"validation_result\": {\n    \"is_valid\": true,\n    \"errors\": []\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1e9a895d-70d7-4d3f-b982-02edac602fc5",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "workflow",
+                    ":slug",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "commit",
+                      "value": "false"
+                    },
+                    {
+                      "key": "commit_message",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace where the workflow should be created (staging, production, etc.)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slug",
+                      "description": "(Required) Unique identifier of the workflow. You can get it from workflow settings for existing workflows."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Welcome Email\",\n  \"description\": \"Sends welcome email to new users\",\n  \"category\": \"transactional\",\n  \"tags\": [\n    \"welcome\",\n    \"onboarding\"\n  ],\n  \"tree\": {\n    \"nodes\": [\n      {\n        \"name\": \"Send Email\",\n        \"node_type\": \"send_email\",\n        \"properties\": {\n          \"template\": \"welcome-email-template\",\n          \"subject\": \"Welcome to our platform!\"\n        },\n        \"description\": \"Send welcome email to new users\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"error_code\": \"authentication_failed\",\n  \"type\": \"AuthenticationFailed\",\n  \"message\": \"Invalid service token.\",\n  \"detail\": \"Invalid service token.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "71c74d7f-72c7-4a73-99b5-1c911ded6c93",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "workflow",
+                    ":slug",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "commit",
+                      "value": "false"
+                    },
+                    {
+                      "key": "commit_message",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace where the workflow should be created (staging, production, etc.)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slug",
+                      "description": "(Required) Unique identifier of the workflow. You can get it from workflow settings for existing workflows."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Welcome Email\",\n  \"description\": \"Sends welcome email to new users\",\n  \"category\": \"transactional\",\n  \"tags\": [\n    \"welcome\",\n    \"onboarding\"\n  ],\n  \"tree\": {\n    \"nodes\": [\n      {\n        \"name\": \"Send Email\",\n        \"node_type\": \"send_email\",\n        \"properties\": {\n          \"template\": \"welcome-email-template\",\n          \"subject\": \"Welcome to our platform!\"\n        },\n        \"description\": \"Send welcome email to new users\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"error_code\": \"not_found\",\n  \"type\": \"NotFound\",\n  \"message\": \"workspace 'demo' not found\",\n  \"detail\": \"workspace 'demo' not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "39ad8f6a-a606-4da8-aa93-592321f9933a",
+          "name": "Delete Workflow",
+          "request": {
+            "name": "Delete Workflow",
+            "description": {
+              "content": "Permanently deletes a workflow by providing it's slug.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "v1",
+                ":workspace",
+                "workflow",
+                ":slug",
+                ""
+              ],
+              "host": [
+                "management-api",
+                "suprsend",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) Which workspace workflow belongs to (staging, production, etc.)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "slug",
+                  "description": "(Required) Unique identifier of the workflow. You can get it from workflow settings."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "ServiceToken <token>"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a0b216ec-65ee-4056-9aa2-9da9be3d5975",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "workflow",
+                    ":slug",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Which workspace workflow belongs to (staging, production, etc.)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slug",
+                      "description": "(Required) Unique identifier of the workflow. You can get it from workflow settings."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6b882749-a211-4f0d-bad0-5b46a640e0e3",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "workflow",
+                    ":slug",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Which workspace workflow belongs to (staging, production, etc.)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slug",
+                      "description": "(Required) Unique identifier of the workflow. You can get it from workflow settings."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"error_code\": \"authentication_failed\",\n  \"type\": \"AuthenticationFailed\",\n  \"message\": \"Invalid service token.\",\n  \"detail\": \"Invalid service token.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "26f733fd-7f16-41c1-bac8-a18570e9cc45",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "workflow",
+                    ":slug",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Which workspace workflow belongs to (staging, production, etc.)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slug",
+                      "description": "(Required) Unique identifier of the workflow. You can get it from workflow settings."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"error_code\": \"not_found\",\n  \"type\": \"NotFound\",\n  \"message\": \"workspace 'demo' not found\",\n  \"detail\": \"workspace 'demo' not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8c61a746-9bcf-47de-9791-7c639d88bd49",
+          "name": "Commit Workflow",
+          "request": {
+            "name": "Commit Workflow",
+            "description": {
+              "content": "Commit a workflow to make the draft version live.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "v1",
+                ":workspace",
+                "workflow",
+                ":slug",
+                "commit",
+                ""
+              ],
+              "host": [
+                "management-api",
+                "suprsend",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "commit_message",
+                  "value": "<string>",
+                  "description": "Commit message describing the changes"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) Workspace to which the workflow belongs (staging, production, etc.)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "slug",
+                  "description": "(Required) Unique identifier of the workflow. You can get it from workflow settings."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "ServiceToken <token>"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f0b44a57-0a37-4e8e-ae01-abb9df18a21d",
+              "name": "Workflow committed successfully. The response will be the latest draft version after the commit.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "workflow",
+                    ":slug",
+                    "commit",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "commit_message",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace to which the workflow belongs (staging, production, etc.)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slug",
+                      "description": "(Required) Unique identifier of the workflow. You can get it from workflow settings."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$schema\": \"https://schema.suprsend.com/workflow/v1/schema.json\",\n  \"slug\": \"welcome-sequence\",\n  \"is_enabled\": true,\n  \"created_at\": \"1965-10-02T17:12:16.050Z\",\n  \"last_executed_at\": \"2022-12-17T16:00:20.282Z\",\n  \"name\": \"Welcome Sequence\",\n  \"description\": \"string\",\n  \"updated_at\": \"1987-11-16T21:56:14.221Z\",\n  \"commit_message\": \"string\",\n  \"hash\": \"string\",\n  \"status\": \"inactive\",\n  \"category\": \"transactional\",\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"ratelimit\": {},\n  \"trigger_type\": \"dynamic\",\n  \"trigger_events\": [\n    \"string\",\n    \"string\"\n  ],\n  \"override_recipients_type\": \"single_object_fields\",\n  \"override_recipients_user_expr\": \"string\",\n  \"override_recipients_single_object_fields_expr\": \"string\",\n  \"override_actor_user_expr\": \"string\",\n  \"override_tenant_expr\": \"string\",\n  \"active_at\": \"2009-04-28T02:19:39.822Z\",\n  \"updated_by\": {\n    \"name\": \"string\",\n    \"email\": \"obPNQ3Nqy@RqPYIggKwGJZqK.xjri\"\n  },\n  \"tree\": {},\n  \"validation_result\": {\n    \"is_valid\": false,\n    \"errors\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e8a0687c-141a-464a-a3f8-2d6011ab9b89",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "workflow",
+                    ":slug",
+                    "commit",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "commit_message",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace to which the workflow belongs (staging, production, etc.)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slug",
+                      "description": "(Required) Unique identifier of the workflow. You can get it from workflow settings."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"error_code\": \"authentication_failed\",\n  \"type\": \"AuthenticationFailed\",\n  \"message\": \"Invalid service token.\",\n  \"detail\": \"Invalid service token.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0ca353e5-444e-4f2e-986d-f9050e5914f3",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "workflow",
+                    ":slug",
+                    "commit",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "commit_message",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace to which the workflow belongs (staging, production, etc.)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slug",
+                      "description": "(Required) Unique identifier of the workflow. You can get it from workflow settings."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"error_code\": \"not_found\",\n  \"type\": \"NotFound\",\n  \"message\": \"workspace 'demo' not found\",\n  \"detail\": \"workspace 'demo' not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f8fcdf1b-7d55-4b40-882b-0c4123745ddc",
+          "name": "Enable/Disable Workflow",
+          "request": {
+            "name": "Enable/Disable Workflow",
+            "description": {
+              "content": "Enable or disable a workflow. Disabled workflows will not be executed when triggered. By default, workflows are enabled unless you explicitly disable them.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "v1",
+                ":workspace",
+                "workflow",
+                ":slug",
+                "enable",
+                ""
+              ],
+              "host": [
+                "management-api",
+                "suprsend",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) Workspace to which the workflow belongs (staging, production, etc.)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "slug",
+                  "description": "(Required) Unique identifier of the workflow. You can get it from workflow settings."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "ServiceToken <token>"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"is_enabled\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1176a2bb-c21b-472a-b78b-dbda4b6a314c",
+              "name": "Workflow status updated successfully",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "workflow",
+                    ":slug",
+                    "enable",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace to which the workflow belongs (staging, production, etc.)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slug",
+                      "description": "(Required) Unique identifier of the workflow. You can get it from workflow settings."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"is_enabled\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$schema\": \"https://schema.suprsend.com/workflow/v1/schema.json\",\n  \"slug\": \"welcome-sequence\",\n  \"is_enabled\": true,\n  \"created_at\": \"1965-10-02T17:12:16.050Z\",\n  \"last_executed_at\": \"2022-12-17T16:00:20.282Z\",\n  \"name\": \"Welcome Sequence\",\n  \"description\": \"string\",\n  \"updated_at\": \"1987-11-16T21:56:14.221Z\",\n  \"commit_message\": \"string\",\n  \"hash\": \"string\",\n  \"status\": \"inactive\",\n  \"category\": \"transactional\",\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"ratelimit\": {},\n  \"trigger_type\": \"dynamic\",\n  \"trigger_events\": [\n    \"string\",\n    \"string\"\n  ],\n  \"override_recipients_type\": \"single_object_fields\",\n  \"override_recipients_user_expr\": \"string\",\n  \"override_recipients_single_object_fields_expr\": \"string\",\n  \"override_actor_user_expr\": \"string\",\n  \"override_tenant_expr\": \"string\",\n  \"active_at\": \"2009-04-28T02:19:39.822Z\",\n  \"updated_by\": {\n    \"name\": \"string\",\n    \"email\": \"obPNQ3Nqy@RqPYIggKwGJZqK.xjri\"\n  },\n  \"tree\": {},\n  \"validation_result\": {\n    \"is_valid\": false,\n    \"errors\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "10aba97f-3cca-49c6-abfb-e099014c823c",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "workflow",
+                    ":slug",
+                    "enable",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace to which the workflow belongs (staging, production, etc.)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slug",
+                      "description": "(Required) Unique identifier of the workflow. You can get it from workflow settings."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"is_enabled\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"error_code\": \"authentication_failed\",\n  \"type\": \"AuthenticationFailed\",\n  \"message\": \"Invalid service token.\",\n  \"detail\": \"Invalid service token.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "98256cad-e916-46a7-b24a-f0c42779d339",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "workflow",
+                    ":slug",
+                    "enable",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace to which the workflow belongs (staging, production, etc.)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slug",
+                      "description": "(Required) Unique identifier of the workflow. You can get it from workflow settings."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"is_enabled\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"error_code\": \"not_found\",\n  \"type\": \"NotFound\",\n  \"message\": \"workspace 'demo' not found\",\n  \"detail\": \"workspace 'demo' not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://hub.suprsend.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b66ba671-ad95-414d-8330-d01706c6c0bc",
+    "name": "SuprSend Broadcast Workflow API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs supported on suprsend platform",
+      "type": "text/plain"
+    }
+  }
+}

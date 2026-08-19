@@ -1,0 +1,438 @@
+{
+  "item": [
+    {
+      "id": "0403dfa3-d189-4095-9650-4d7236d73fd0",
+      "name": "Workspace",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "873ccbe9-4d34-4a23-a2e3-07be1214e303",
+          "name": "List Workspaces",
+          "request": {
+            "name": "List Workspaces",
+            "description": {
+              "content": "List all workspaces available in your account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "v1",
+                "workspace",
+                ""
+              ],
+              "host": [
+                "management-api",
+                "suprsend",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "ServiceToken <token>"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "96e665c1-b205-42d2-8923-898519c5063a",
+              "name": "Successfully retrieved workspaces.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    "workspace",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"count\": 2,\n    \"limit\": 10,\n    \"offset\": 0\n  },\n  \"results\": [\n    {\n      \"uid\": \"wksp_exampleUid01\",\n      \"slug\": \"staging\",\n      \"data_center\": {},\n      \"is_expired\": false,\n      \"has_limit_reached\": false,\n      \"name\": \"Staging\",\n      \"description\": \"Development environment to test iterations internally\",\n      \"mode\": \"sandbox\"\n    },\n    {\n      \"uid\": \"wksp_exampleUid02\",\n      \"slug\": \"production\",\n      \"data_center\": {},\n      \"is_expired\": false,\n      \"has_limit_reached\": false,\n      \"name\": \"Production\",\n      \"description\": \"Final environment to send notifications to live users\",\n      \"mode\": \"production\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4baa5cb9-e24f-4011-8dee-22c7e0a5aa88",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    "workspace",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"error_code\": \"authentication_failed\",\n  \"type\": \"AuthenticationFailed\",\n  \"message\": \"Invalid service token.\",\n  \"detail\": \"Invalid service token.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "667cc2bf-337b-4061-9690-ce40eae06d40",
+          "name": "Create Workspace",
+          "request": {
+            "name": "Create Workspace",
+            "description": {
+              "content": "Create a new workspace in your account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "v1",
+                "workspace",
+                ""
+              ],
+              "host": [
+                "management-api",
+                "suprsend",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "ServiceToken <token>"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e591b831-6318-4893-b5df-9f272ff0fe25",
+              "name": "Workspace created. Response returns the updated paginated list of workspaces in the account.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    "workspace",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"my-workspace\",\n  \"description\": \"Testing workspace API\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"count\": 3,\n    \"limit\": 10,\n    \"offset\": 0\n  },\n  \"results\": [\n    {\n      \"uid\": \"wksp_exampleUid01\",\n      \"slug\": \"staging\",\n      \"data_center\": {},\n      \"is_expired\": false,\n      \"has_limit_reached\": false,\n      \"name\": \"Staging\",\n      \"description\": \"Development environment to test iterations internally\",\n      \"mode\": \"sandbox\"\n    },\n    {\n      \"uid\": \"wksp_exampleUid02\",\n      \"slug\": \"production\",\n      \"data_center\": {},\n      \"is_expired\": false,\n      \"has_limit_reached\": false,\n      \"name\": \"Production\",\n      \"description\": \"Final environment to send notifications to live users\",\n      \"mode\": \"production\"\n    },\n    {\n      \"uid\": \"wksp_exampleUid03\",\n      \"slug\": \"my-workspace\",\n      \"data_center\": {},\n      \"is_expired\": false,\n      \"has_limit_reached\": false,\n      \"name\": \"my-workspace\",\n      \"description\": \"Testing workspace API\",\n      \"mode\": \"sandbox\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f66a0992-9430-45a8-9cb7-8e1bd1d36b4d",
+              "name": "Validation error - data validation failed",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    "workspace",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"my-workspace\",\n  \"description\": \"Testing workspace API\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 593,\n  \"error_code\": \"string\",\n  \"type\": \"string\",\n  \"message\": \"string\",\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ef3d3450-8156-47c6-a14a-e579594e0f43",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    "workspace",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"my-workspace\",\n  \"description\": \"Testing workspace API\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"error_code\": \"authentication_failed\",\n  \"type\": \"AuthenticationFailed\",\n  \"message\": \"Invalid service token.\",\n  \"detail\": \"Invalid service token.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://hub.suprsend.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "87d499e1-2c29-4cc5-bc88-499e642e81c8",
+    "name": "SuprSend Broadcast Workspace API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs supported on suprsend platform",
+      "type": "text/plain"
+    }
+  }
+}

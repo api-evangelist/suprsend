@@ -1,0 +1,138 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SuprSend Broadcast Ws Signing Key API",
+    "version": "1.2.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Ws Signing Key",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Workspace Signing Keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hub.suprsend.com/v1/:workspace/ws_signing_key/",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "Workspace slug (e.g. `staging`, `production`)."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "ServiceToken <token>",
+              "value": "{{ServiceToken <token>}}",
+              "placement": "header"
+            }
+          },
+          "docs": "List signing keys for this workspace. Signing keys are used to verify signed payloads."
+        },
+        {
+          "info": {
+            "name": "Create Workspace Signing Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://hub.suprsend.com/v1/:workspace/ws_signing_key/",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "Workspace slug (e.g. `staging`, `production`)."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "ServiceToken <token>",
+              "value": "{{ServiceToken <token>}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a signing key for this workspace.\n\nThe `private_key_pem` and `private_key_base64` fields are returned **only once** at creation. Store them securely - they cannot be retrieved later.\n\nOnly **one active** signing key is allowed per workspace. To replace an existing active key, use the [Roll Workspace Signing Key](#operation/roll-workspace-signing-key) endpoint instead.\n"
+        },
+        {
+          "info": {
+            "name": "Delete Workspace Signing Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://hub.suprsend.com/v1/:workspace/ws_signing_key/:signing_key_uid/",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "Workspace slug (e.g. `staging`, `production`)."
+              },
+              {
+                "name": "signing_key_uid",
+                "value": "",
+                "type": "path",
+                "description": "Signing key `uid` (e.g. `signing_key_...`)."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "ServiceToken <token>",
+              "value": "{{ServiceToken <token>}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Delete a signing key by its `uid` (e.g. `signing_key_20260421T123746`)."
+        },
+        {
+          "info": {
+            "name": "Roll Workspace Signing Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://hub.suprsend.com/v1/:workspace/ws_signing_key/:signing_key_uid/roll/",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "Workspace slug (e.g. `staging`, `production`)."
+              },
+              {
+                "name": "signing_key_uid",
+                "value": "",
+                "type": "path",
+                "description": "Signing key `uid` to roll (e.g. `signing_key_...`)."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "ServiceToken <token>",
+              "value": "{{ServiceToken <token>}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Roll a signing key. Generates a new signing key that replaces the existing active key. The previous key is marked `rolled`.\n\nThe new `private_key_pem` and `private_key_base64` are returned **only once** in this response - store them securely.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

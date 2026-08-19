@@ -1,0 +1,1537 @@
+{
+  "item": [
+    {
+      "id": "216de1a3-ab3e-493f-9ed6-25526e5b9b2c",
+      "name": "Ws Public Key",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "11fb7d16-09ab-4434-b9df-94dae58e9b0f",
+          "name": "List Workspace Public Keys",
+          "request": {
+            "name": "List Workspace Public Keys",
+            "description": {
+              "content": "List public keys for this workspace. Public keys are used by client-side SDKs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "v1",
+                ":workspace",
+                "ws_public_key",
+                ""
+              ],
+              "host": [
+                "management-api",
+                "suprsend",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) Workspace slug (e.g. `staging`, `production`)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "ServiceToken <token>"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0d0b7dab-23e8-41d5-91f3-e5747c71cfb4",
+              "name": "Successfully retrieved public keys.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "ws_public_key",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (e.g. `staging`, `production`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"count\": 2,\n    \"limit\": 10,\n    \"offset\": 0\n  },\n  \"results\": [\n    {\n      \"id\": \"ws_pubk_exampleId01\",\n      \"api_key\": \"SS.PUBK.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\",\n      \"name\": \"web-app\",\n      \"allowed_domains\": null,\n      \"is_secure_mode_enabled\": false,\n      \"is_deleted\": false,\n      \"is_default\": false,\n      \"created_at\": \"2026-04-21T11:12:23.557360Z\",\n      \"created_by\": {\n        \"name\": \"System User\",\n        \"email\": \"org_XXXXXXXXXXXXXXXXXXXXXX@systemuser.suprsend.com\"\n      },\n      \"rotated_at\": null,\n      \"rotated_by\": null,\n      \"updated_at\": \"2026-04-21T11:12:23.557406Z\",\n      \"updated_by\": null\n    },\n    {\n      \"id\": \"ws_pubk_exampleId02\",\n      \"api_key\": \"SS.PUBK.yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy\",\n      \"name\": \"default\",\n      \"allowed_domains\": null,\n      \"is_secure_mode_enabled\": false,\n      \"is_deleted\": false,\n      \"is_default\": true,\n      \"created_at\": \"2024-08-27T10:54:03.512045Z\",\n      \"created_by\": null,\n      \"rotated_at\": \"2026-04-15T17:59:45.634355Z\",\n      \"rotated_by\": {\n        \"name\": \"System User\",\n        \"email\": \"org_XXXXXXXXXXXXXXXXXXXXXX@systemuser.suprsend.com\"\n      },\n      \"updated_at\": \"2026-04-15T17:59:45.634452Z\",\n      \"updated_by\": {\n        \"name\": \"System User\",\n        \"email\": \"org_XXXXXXXXXXXXXXXXXXXXXX@systemuser.suprsend.com\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4f584e1d-487a-4f37-88c0-1059b48aabde",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "ws_public_key",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (e.g. `staging`, `production`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"error_code\": \"authentication_failed\",\n  \"type\": \"AuthenticationFailed\",\n  \"message\": \"Invalid service token.\",\n  \"detail\": \"Invalid service token.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c234ea07-a587-4f3e-8534-95c4bca6cfcc",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "ws_public_key",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (e.g. `staging`, `production`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"error_code\": \"not_found\",\n  \"type\": \"NotFound\",\n  \"message\": \"workspace 'demo' not found\",\n  \"detail\": \"workspace 'demo' not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c591cf58-44dc-493b-b576-8df1572591dd",
+          "name": "Create Workspace Public Key",
+          "request": {
+            "name": "Create Workspace Public Key",
+            "description": {
+              "content": "Create a new public key for this workspace. Public keys can be safely distributed to client SDKs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "v1",
+                ":workspace",
+                "ws_public_key",
+                ""
+              ],
+              "host": [
+                "management-api",
+                "suprsend",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) Workspace slug (e.g. `staging`, `production`)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "ServiceToken <token>"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "50d81ebd-8705-45a9-8313-4d60946202cf",
+              "name": "Public key created.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "ws_public_key",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (e.g. `staging`, `production`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"web-app\",\n  \"description\": \"Browser integration\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"ws_pubk_exampleId01\",\n  \"api_key\": \"SS.PUBK.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\",\n  \"name\": \"web-app\",\n  \"allowed_domains\": null,\n  \"is_secure_mode_enabled\": false,\n  \"is_deleted\": false,\n  \"is_default\": false,\n  \"created_at\": \"2026-04-21T12:31:18.943398Z\",\n  \"created_by\": {\n    \"name\": \"System User\",\n    \"email\": \"org_XXXXXXXXXXXXXXXXXXXXXX@systemuser.suprsend.com\"\n  },\n  \"rotated_at\": null,\n  \"rotated_by\": null,\n  \"updated_at\": \"2026-04-21T12:31:18.943443Z\",\n  \"updated_by\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ff0a501c-c39b-476e-acce-ebdb01b02f06",
+              "name": "Validation error - data validation failed",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "ws_public_key",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (e.g. `staging`, `production`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"web-app\",\n  \"description\": \"Browser integration\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5945,\n  \"error_code\": \"string\",\n  \"type\": \"string\",\n  \"message\": \"string\",\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "75355851-d0bf-4ef2-8222-1422285cec19",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "ws_public_key",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (e.g. `staging`, `production`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"web-app\",\n  \"description\": \"Browser integration\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"error_code\": \"authentication_failed\",\n  \"type\": \"AuthenticationFailed\",\n  \"message\": \"Invalid service token.\",\n  \"detail\": \"Invalid service token.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "32d7fc08-648e-4eba-974c-2de1da848d52",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "ws_public_key",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (e.g. `staging`, `production`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"web-app\",\n  \"description\": \"Browser integration\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"error_code\": \"not_found\",\n  \"type\": \"NotFound\",\n  \"message\": \"workspace 'demo' not found\",\n  \"detail\": \"workspace 'demo' not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9f403e75-db5b-4731-a2b2-3f51e613d223",
+          "name": "Enable/Disable Secure Mode on Public Key",
+          "request": {
+            "name": "Enable/Disable Secure Mode on Public Key",
+            "description": {
+              "content": "Enable or disable secure mode on an existing public key (e.g. `ws_pubk_...`).",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "v1",
+                ":workspace",
+                "ws_public_key",
+                ":public_key_id",
+                ""
+              ],
+              "host": [
+                "management-api",
+                "suprsend",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) Workspace slug (e.g. `staging`, `production`)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "public_key_id",
+                  "description": "(Required) Public key identifier (e.g. `ws_pubk_...`)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "ServiceToken <token>"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"is_secure_mode_enabled\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "22cc18c3-3734-4e7a-a181-f24efd50363c",
+              "name": "Secure mode update accepted.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "ws_public_key",
+                    ":public_key_id",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (e.g. `staging`, `production`)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "public_key_id",
+                      "description": "(Required) Public key identifier (e.g. `ws_pubk_...`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"is_secure_mode_enabled\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"ws_pubk_exampleId01\",\n  \"api_key\": \"SS.PUBK.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\",\n  \"name\": \"web-app\",\n  \"allowed_domains\": null,\n  \"is_secure_mode_enabled\": true,\n  \"is_deleted\": false,\n  \"is_default\": false,\n  \"created_at\": \"2026-04-21T13:08:29.144658Z\",\n  \"created_by\": {\n    \"name\": \"Example User\",\n    \"email\": \"user@example.com\"\n  },\n  \"rotated_at\": \"2026-04-21T13:08:59.983999Z\",\n  \"rotated_by\": {\n    \"name\": \"System User\",\n    \"email\": \"org_XXXXXXXXXXXXXXXXXXXXXX@systemuser.suprsend.com\"\n  },\n  \"updated_at\": \"2026-04-21T13:08:59.984183Z\",\n  \"updated_by\": {\n    \"name\": \"System User\",\n    \"email\": \"org_XXXXXXXXXXXXXXXXXXXXXX@systemuser.suprsend.com\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e57e2060-7d95-4864-83b1-b4854644e92d",
+              "name": "Validation error - data validation failed",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "ws_public_key",
+                    ":public_key_id",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (e.g. `staging`, `production`)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "public_key_id",
+                      "description": "(Required) Public key identifier (e.g. `ws_pubk_...`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"is_secure_mode_enabled\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5945,\n  \"error_code\": \"string\",\n  \"type\": \"string\",\n  \"message\": \"string\",\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f2cbc907-3b3f-41db-a226-7f8995f1e804",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "ws_public_key",
+                    ":public_key_id",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (e.g. `staging`, `production`)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "public_key_id",
+                      "description": "(Required) Public key identifier (e.g. `ws_pubk_...`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"is_secure_mode_enabled\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"error_code\": \"authentication_failed\",\n  \"type\": \"AuthenticationFailed\",\n  \"message\": \"Invalid service token.\",\n  \"detail\": \"Invalid service token.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f81556fc-acd2-4bf6-9211-ac7794d2cdc9",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "ws_public_key",
+                    ":public_key_id",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (e.g. `staging`, `production`)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "public_key_id",
+                      "description": "(Required) Public key identifier (e.g. `ws_pubk_...`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"is_secure_mode_enabled\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"error_code\": \"not_found\",\n  \"type\": \"NotFound\",\n  \"message\": \"workspace 'demo' not found\",\n  \"detail\": \"workspace 'demo' not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9f7c3da2-b2b9-484a-8838-8fd8de561511",
+          "name": "Delete Workspace Public Key",
+          "request": {
+            "name": "Delete Workspace Public Key",
+            "description": {
+              "content": "Delete a public key by its `id`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "v1",
+                ":workspace",
+                "ws_public_key",
+                ":public_key_id",
+                ""
+              ],
+              "host": [
+                "management-api",
+                "suprsend",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) Workspace slug (e.g. `staging`, `production`)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "public_key_id",
+                  "description": "(Required) Public key identifier (e.g. `ws_pubk_...`)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "ServiceToken <token>"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "181566c0-f29d-47d7-98ff-235a469d81db",
+              "name": "Public key deleted - no response body.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "ws_public_key",
+                    ":public_key_id",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (e.g. `staging`, `production`)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "public_key_id",
+                      "description": "(Required) Public key identifier (e.g. `ws_pubk_...`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c6c582ff-22ed-409e-859d-95b91087f623",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "ws_public_key",
+                    ":public_key_id",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (e.g. `staging`, `production`)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "public_key_id",
+                      "description": "(Required) Public key identifier (e.g. `ws_pubk_...`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"error_code\": \"authentication_failed\",\n  \"type\": \"AuthenticationFailed\",\n  \"message\": \"Invalid service token.\",\n  \"detail\": \"Invalid service token.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "423e99a0-45de-4e52-a914-7a02b78bfe03",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "ws_public_key",
+                    ":public_key_id",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (e.g. `staging`, `production`)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "public_key_id",
+                      "description": "(Required) Public key identifier (e.g. `ws_pubk_...`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"error_code\": \"not_found\",\n  \"type\": \"NotFound\",\n  \"message\": \"workspace 'demo' not found\",\n  \"detail\": \"workspace 'demo' not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9895e7c8-62e9-475a-9702-d2c4778ab22a",
+          "name": "Rotate Workspace Public Key",
+          "request": {
+            "name": "Rotate Workspace Public Key",
+            "description": {
+              "content": "Rotate public key material while keeping the same logical key record. Clients using the old material must switch to the new value.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "v1",
+                ":workspace",
+                "ws_public_key",
+                ":public_key_id",
+                "rotate",
+                ""
+              ],
+              "host": [
+                "management-api",
+                "suprsend",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) Workspace slug (e.g. `staging`, `production`)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "public_key_id",
+                  "description": "(Required) Public key identifier (e.g. `ws_pubk_...`)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "ServiceToken <token>"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d66b1d9a-60f7-426b-8915-b49ce008fee5",
+              "name": "Public key rotation accepted.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "ws_public_key",
+                    ":public_key_id",
+                    "rotate",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (e.g. `staging`, `production`)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "public_key_id",
+                      "description": "(Required) Public key identifier (e.g. `ws_pubk_...`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"ws_pubk_exampleId01\",\n  \"api_key\": \"SS.PUBK.zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz\",\n  \"name\": \"web-app\",\n  \"allowed_domains\": null,\n  \"is_secure_mode_enabled\": false,\n  \"is_deleted\": false,\n  \"is_default\": false,\n  \"created_at\": \"2026-04-21T13:08:29.144658Z\",\n  \"created_by\": {\n    \"name\": \"Example User\",\n    \"email\": \"user@example.com\"\n  },\n  \"rotated_at\": \"2026-04-21T13:08:59.983999Z\",\n  \"rotated_by\": {\n    \"name\": \"System User\",\n    \"email\": \"org_XXXXXXXXXXXXXXXXXXXXXX@systemuser.suprsend.com\"\n  },\n  \"updated_at\": \"2026-04-21T13:08:59.984183Z\",\n  \"updated_by\": {\n    \"name\": \"System User\",\n    \"email\": \"org_XXXXXXXXXXXXXXXXXXXXXX@systemuser.suprsend.com\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eb2873c6-8572-490c-8f54-c12389a404e9",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "ws_public_key",
+                    ":public_key_id",
+                    "rotate",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (e.g. `staging`, `production`)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "public_key_id",
+                      "description": "(Required) Public key identifier (e.g. `ws_pubk_...`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"error_code\": \"authentication_failed\",\n  \"type\": \"AuthenticationFailed\",\n  \"message\": \"Invalid service token.\",\n  \"detail\": \"Invalid service token.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c92406c1-4d2c-452e-9d1e-0c30748e43bb",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "ws_public_key",
+                    ":public_key_id",
+                    "rotate",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (e.g. `staging`, `production`)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "public_key_id",
+                      "description": "(Required) Public key identifier (e.g. `ws_pubk_...`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"error_code\": \"not_found\",\n  \"type\": \"NotFound\",\n  \"message\": \"workspace 'demo' not found\",\n  \"detail\": \"workspace 'demo' not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://hub.suprsend.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a4b711c2-2b6a-4ad4-943a-03f5aa7998fd",
+    "name": "SuprSend Broadcast Ws Public Key API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs supported on suprsend platform",
+      "type": "text/plain"
+    }
+  }
+}

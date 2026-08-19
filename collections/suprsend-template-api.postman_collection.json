@@ -1,0 +1,4369 @@
+{
+  "item": [
+    {
+      "id": "c65a2442-4546-499c-9550-6c94dade66df",
+      "name": "Template",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "23910ce5-61e1-432e-b4b3-1118502536cb",
+          "name": "Fetch Template details",
+          "request": {
+            "name": "Fetch Template details",
+            "description": {
+              "content": "API to fetch content of a template group (active & draft versions) across all associated channels and languages.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "template",
+                ":template_slug",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "template_slug",
+                  "description": "(Required) Template group slug you want to fetch content details. You'll get the template slug by clicking on copy button next to template group name on SuprSend dashboard -> template details page."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "94fbfd0f-c632-4a14-92cf-ce9b2f44aefd",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "template",
+                    ":template_slug",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_slug",
+                      "description": "(Required) Template group slug you want to fetch content details. You'll get the template slug by clicking on copy button next to template group name on SuprSend dashboard -> template details page."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"166277\",\n  \"name\": \"Task Reminder\",\n  \"slug\": \"task-reminder\",\n  \"description\": \"Batched template for all pending tasks\",\n  \"is_active\": true,\n  \"default_language\": {\n    \"name\": \"English\",\n    \"slug\": \"en\"\n  },\n  \"created_at\": \"2023-01-25T04:53:39.237291Z\",\n  \"updated_at\": \"2023-08-28T05:06:22.461443Z\",\n  \"updated_by\": {\n    \"name\": \"team_member\",\n    \"email\": \"user@example.com\"\n  },\n  \"last_triggered_at\": \"2023-08-10T12:44:03.361158Z\",\n  \"is_auto_translate_enabled\": false,\n  \"enabled_languages\": [\n    \"en\",\n    \"fr\",\n    \"es\"\n  ],\n  \"channels\": [\n    {\n      \"id\": \"1244\",\n      \"channel\": {\n        \"name\": \"Email\",\n        \"slug\": \"email\",\n        \"is_template_approval_needed\": true\n      },\n      \"is_active\": true,\n      \"is_enabled\": true,\n      \"created_at\": \"2023-01-25T04:53:39.268299Z\",\n      \"updated_at\": \"2023-01-25T04:53:39.404273Z\",\n      \"disabled_languages\": [],\n      \"versions\": []\n    }\n  ],\n  \"tags\": [\n    {\n      \"id\": \"01H9HPT1C5ABN61S12D85J9DJ7\",\n      \"name\": \"tag\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "16d73c1c-6f3f-4e83-875d-06c3b15b1656",
+          "name": "Fetch Template content for a channel",
+          "request": {
+            "name": "Fetch Template content for a channel",
+            "description": {
+              "content": "API to fetch content of a particular channel in a template group (live & draft versions).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "template",
+                ":template_slug",
+                "channel",
+                ":channel_slug",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "template_slug",
+                  "description": "(Required) Template group slug you want to fetch content details. You'll get the template slug by clicking on copy button next to template group name on SuprSend dashboard -> template details page."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "channel_slug",
+                  "description": "(Required) add one of the template channels  - `email`, `sms`, `whatsapp`, `inbox`, `slack`, `androidpush`, `iospush`, `webpush`"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "83a6638d-81b7-4ca6-bae8-2efd8532a999",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "template",
+                    ":template_slug",
+                    "channel",
+                    ":channel_slug",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_slug",
+                      "description": "(Required) Template group slug you want to fetch content details. You'll get the template slug by clicking on copy button next to template group name on SuprSend dashboard -> template details page."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channel_slug",
+                      "description": "(Required) add one of the template channels  - `email`, `sms`, `whatsapp`, `inbox`, `slack`, `androidpush`, `iospush`, `webpush`"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1121,\n  \"channel\": {\n    \"name\": \"In-App Inbox\",\n    \"slug\": \"inbox\",\n    \"is_template_approval_needed\": false\n  },\n  \"is_active\": true,\n  \"is_enabled\": true,\n  \"created_at\": \"2022-06-18T04:53:58.690274Z\",\n  \"updated_at\": \"2025-01-21T11:49:23.247217Z\",\n  \"disabled_languages\": [],\n  \"versions\": [\n    {\n      \"id\": 69989,\n      \"templates\": [\n        {\n          \"id\": 74660,\n          \"language\": {\n            \"name\": \"English\",\n            \"slug\": \"en\"\n          },\n          \"is_enabled\": true,\n          \"approval_status\": \"auto_approved\",\n          \"content\": {\n            \"...\": null\n          },\n          \"created_at\": \"2024-09-15T04:33:22.727005Z\",\n          \"updated_at\": \"2024-09-15T04:36:56.103368Z\",\n          \"updated_by\": {\n            \"name\": \"Jane Doe\",\n            \"email\": \"user@example.com\"\n          },\n          \"approval_cycle\": null,\n          \"is_approval_needed\": false,\n          \"is_cloned_from_last_version\": false\n        }\n      ],\n      \"status\": \"active\",\n      \"version_tag\": \"17\",\n      \"created_at\": \"2024-09-15T04:33:22.714274Z\",\n      \"updated_at\": \"2024-09-15T04:36:58.752580Z\",\n      \"updated_by\": {\n        \"name\": \"Jane Doe\",\n        \"email\": \"user@example.com\"\n      },\n      \"version_tag_user\": \"v1\",\n      \"published_languages\": [\n        \"en\"\n      ],\n      \"apparent_published_languages\": [\n        \"en\"\n      ],\n      \"system_approval_info\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "55f85e54-cdaf-48ae-af16-da958d95dd6b",
+              "name": "404 - Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "template",
+                    ":template_slug",
+                    "channel",
+                    ":channel_slug",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_slug",
+                      "description": "(Required) Template group slug you want to fetch content details. You'll get the template slug by clicking on copy button next to template group name on SuprSend dashboard -> template details page."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channel_slug",
+                      "description": "(Required) add one of the template channels  - `email`, `sms`, `whatsapp`, `inbox`, `slack`, `androidpush`, `iospush`, `webpush`"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"type\": \"DoesNotExist\",\n  \"message\": \"TemplateGroup matching query does not exist.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ae26df70-d403-4680-910f-6c871ab71699",
+          "name": "Fetch Template List",
+          "request": {
+            "name": "Fetch Template List",
+            "description": {
+              "content": "API to fetch paginated list of all templates in a given workspace.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "template",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "has_tag_ids_any",
+                  "value": "<string>",
+                  "description": "comma separated string of tag ids attached to the template"
+                },
+                {
+                  "disabled": false,
+                  "key": "has_channels_any",
+                  "value": "<string>",
+                  "description": "comma separated string of channels. Returns templates which has any of the channels present from the channel string. Use these keys for channels - `email`, `sms`, `whatsapp`, `inbox`, `slack`, `androidpush`, `iospush`, `webpush`"
+                },
+                {
+                  "disabled": false,
+                  "key": "is_active",
+                  "value": "<boolean>",
+                  "description": "Set `true` for published templates, `false` for templates which are in draft. Do not pass this key to return all templates."
+                },
+                {
+                  "disabled": false,
+                  "key": "is_archived",
+                  "value": "<boolean>",
+                  "description": "Set `true` to get archived templates, default = `false`"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "798e285d-bd5d-4276-b7a1-212be57dcfda",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "template",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "has_tag_ids_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "has_channels_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_active",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "is_archived",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"count\": 1,\n    \"limit\": 10,\n    \"offset\": 0\n  },\n  \"results\": [\n    {\n      \"id\": \"166277\",\n      \"name\": \"Task Reminder\",\n      \"slug\": \"task-reminder\",\n      \"description\": \"Batched template for all pending tasks\",\n      \"is_active\": true,\n      \"default_language\": {\n        \"name\": \"English\",\n        \"slug\": \"en\"\n      },\n      \"created_at\": \"2023-01-25T04:53:39.237291Z\",\n      \"updated_at\": \"2023-08-28T05:06:22.461443Z\",\n      \"updated_by\": {\n        \"name\": \"team_member\",\n        \"email\": \"user@example.com\"\n      },\n      \"last_triggered_at\": \"2023-08-10T12:44:03.361158Z\",\n      \"is_auto_translate_enabled\": false,\n      \"enabled_languages\": [\n        \"en\",\n        \"fr\",\n        \"es\"\n      ],\n      \"channels\": [\n        {\n          \"id\": \"<integer>\",\n          \"channel\": {\n            \"name\": \"Email\",\n            \"slug\": \"email\",\n            \"is_template_approval_needed\": true\n          },\n          \"is_active\": true,\n          \"is_enabled\": true,\n          \"created_at\": \"2023-01-25T04:53:39.268299Z\",\n          \"updated_at\": \"2023-01-25T04:53:39.404273Z\",\n          \"disabled_languages\": [],\n          \"versions\": []\n        }\n      ],\n      \"tags\": [\n        {\n          \"id\": \"01H9HPT1C5ABN61S12D85J9DJ7\",\n          \"name\": \"tag\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3c928354-5850-4943-8b40-148d5b871ffe",
+          "name": "List Templates",
+          "request": {
+            "name": "List Templates",
+            "description": {
+              "content": "Retrieve a paginated list of templates in a workspace. Returns template metadata including name, slug, status, enabled channels, and linked workflows.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "v2",
+                ":workspace",
+                "template",
+                ""
+              ],
+              "host": [
+                "management-api",
+                "suprsend",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "mode",
+                  "value": "draft",
+                  "description": "Return draft or live version of templates."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Number of results per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Offset for pagination."
+                },
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "Search by template name or slug."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) Workspace slug (e.g., `staging`, `production`)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "ServiceToken <token>"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2a926c69-be54-4756-8ba8-54c73b4ced2f",
+              "name": "Successfully retrieved list of templates",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    ":workspace",
+                    "template",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "mode",
+                      "value": "draft"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (e.g., `staging`, `production`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"count\": 22,\n    \"limit\": 10,\n    \"offset\": 0\n  },\n  \"results\": [\n    {\n      \"$schema\": \"https://schema.suprsend.com/template/v2/schema.json\",\n      \"slug\": \"order-confirmation-email\",\n      \"created_at\": \"2026-04-07T10:39:28.502737Z\",\n      \"last_triggered_at\": \"2026-04-07T16:45:34.549989Z\",\n      \"name\": \"Order Confirmation Email\",\n      \"description\": \"Email template for order confirmation notifications\",\n      \"tags\": [],\n      \"enabled_channels\": [\n        \"email\"\n      ],\n      \"status\": \"active\",\n      \"version_no\": 4,\n      \"hash\": \"637edaabc624d09db3793829ea872a3516ed0362ce79ee3875607fc7317381b9\",\n      \"commit_message\": null,\n      \"active_at\": \"2026-04-07T16:42:13.821446Z\",\n      \"updated_at\": \"2026-04-07T16:42:13.827644Z\",\n      \"updated_by\": {\n        \"name\": \"Jane Smith\",\n        \"email\": \"jane.smith@example.com\"\n      },\n      \"channels\": [\n        {\n          \"channel\": \"email\",\n          \"is_active\": true,\n          \"variants_count\": 1\n        }\n      ]\n    },\n    {\n      \"$schema\": \"https://schema.suprsend.com/template/v2/schema.json\",\n      \"slug\": \"payment-confirmation\",\n      \"created_at\": \"2026-04-07T07:05:13.747248Z\",\n      \"last_triggered_at\": null,\n      \"name\": \"Payment Confirmation\",\n      \"description\": \"Payment confirmation notification with order details\",\n      \"tags\": [],\n      \"enabled_channels\": [\n        \"email\",\n        \"inbox\"\n      ],\n      \"status\": \"active\",\n      \"version_no\": 2,\n      \"hash\": \"ea6007ab4cffac8f110e15145eedbd40b5897fcc880717411416b9cdb64b170e\",\n      \"commit_message\": null,\n      \"active_at\": \"2026-04-07T07:27:53.708887Z\",\n      \"updated_at\": \"2026-04-07T07:27:53.715438Z\",\n      \"updated_by\": {\n        \"name\": \"Alex Johnson\",\n        \"email\": \"alex.johnson@example.com\"\n      },\n      \"channels\": [\n        {\n          \"channel\": \"email\",\n          \"is_active\": true,\n          \"variants_count\": 1\n        },\n        {\n          \"channel\": \"inbox\",\n          \"is_active\": true,\n          \"variants_count\": 1\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b1cdfe19-c77d-4755-9f98-aec8bf910cf7",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    ":workspace",
+                    "template",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "mode",
+                      "value": "draft"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (e.g., `staging`, `production`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"error_code\": \"authentication_failed\",\n  \"type\": \"AuthenticationFailed\",\n  \"message\": \"Invalid service token.\",\n  \"detail\": \"Invalid service token.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "76744cca-2bd2-4047-8a38-8969b758720f",
+          "name": "Get Template Detail",
+          "request": {
+            "name": "Get Template Detail",
+            "description": {
+              "content": "Retrieve detailed information about a specific template including its metadata, enabled channels, and version info.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "v2",
+                ":workspace",
+                "template",
+                ":template_slug",
+                ""
+              ],
+              "host": [
+                "management-api",
+                "suprsend",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "mode",
+                  "value": "draft",
+                  "description": "Return draft or live version."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) Workspace slug."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "template_slug",
+                  "description": "(Required) Unique template slug."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "ServiceToken <token>"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "af4406ce-9f46-4867-8d7d-577cc642e248",
+              "name": "Template details retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    ":workspace",
+                    "template",
+                    ":template_slug",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "mode",
+                      "value": "draft"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_slug",
+                      "description": "(Required) Unique template slug."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$schema\": \"https://schema.suprsend.com/template/v2/schema.json\",\n  \"slug\": \"order-confirmed\",\n  \"created_at\": \"2026-04-01T05:57:21.081312Z\",\n  \"last_triggered_at\": null,\n  \"name\": \"Order Confirmed\",\n  \"description\": null,\n  \"tags\": [],\n  \"enabled_channels\": [\n    \"email\"\n  ],\n  \"status\": \"active\",\n  \"version_no\": 1,\n  \"hash\": \"16abf987215a02b655d5ef6a8f7f8cc150ffb03fd83b6c235d6c4cc2070ec170\",\n  \"commit_message\": null,\n  \"active_at\": \"2026-04-01T09:22:02.382889Z\",\n  \"updated_at\": \"2026-04-01T09:22:02.386223Z\",\n  \"updated_by\": {\n    \"name\": \"Sam Wilson\",\n    \"email\": \"sam.wilson@example.com\"\n  },\n  \"channels\": [\n    {\n      \"channel\": \"email\",\n      \"is_active\": true,\n      \"variants_count\": 1\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c77a3abf-f163-4861-812f-1a137daccd0e",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    ":workspace",
+                    "template",
+                    ":template_slug",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "mode",
+                      "value": "draft"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_slug",
+                      "description": "(Required) Unique template slug."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"error_code\": \"authentication_failed\",\n  \"type\": \"AuthenticationFailed\",\n  \"message\": \"Invalid service token.\",\n  \"detail\": \"Invalid service token.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a1229135-8dfe-416c-8ec7-1c795839a0e8",
+              "name": "Template not found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    ":workspace",
+                    "template",
+                    ":template_slug",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "mode",
+                      "value": "draft"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_slug",
+                      "description": "(Required) Unique template slug."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"error_code\": \"not_found\",\n  \"type\": \"NotFound\",\n  \"message\": \"template (slug: 'order-confirmed') not found\",\n  \"detail\": \"template (slug: 'order-confirmed') not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "02afa54a-1c22-49ef-b8db-adbea065dff1",
+          "name": "Create or Update Template",
+          "request": {
+            "name": "Create or Update Template",
+            "description": {
+              "content": "Create a new template or update an existing one. If the template slug already exists, the template metadata is updated. Changes are saved to the draft version.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "v2",
+                ":workspace",
+                "template",
+                ":template_slug",
+                ""
+              ],
+              "host": [
+                "management-api",
+                "suprsend",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) Workspace slug."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "template_slug",
+                  "description": "(Required) Unique template slug. Used as the identifier for the template."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "ServiceToken <token>"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"enabled_channels\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "203436a9-11cd-477b-a7ac-5958aa753869",
+              "name": "Template created or updated successfully",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    ":workspace",
+                    "template",
+                    ":template_slug",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_slug",
+                      "description": "(Required) Unique template slug. Used as the identifier for the template."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Order Confirmed\",\n  \"description\": \"Sent when an order is placed\",\n  \"tags\": [\n    \"transactional\"\n  ],\n  \"enabled_channels\": [\n    \"email\",\n    \"sms\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$schema\": \"https://schema.suprsend.com/template/v2/schema.json\",\n  \"slug\": \"welcome-onboarding\",\n  \"created_at\": \"2026-04-01T05:57:21.081312Z\",\n  \"last_triggered_at\": null,\n  \"name\": \"Welcome Onboarding\",\n  \"description\": \"Welcome email for new users\",\n  \"tags\": [\n    \"onboarding\",\n    \"welcome\"\n  ],\n  \"enabled_channels\": [\n    \"email\",\n    \"slack\"\n  ],\n  \"status\": \"draft\",\n  \"version_no\": null,\n  \"hash\": \"74335de96f6ddc077b90310ff746a8f8cd64852acbbe260c626be54ff28bed0d\",\n  \"commit_message\": null,\n  \"active_at\": null,\n  \"updated_at\": \"2026-04-08T09:24:38.918548Z\",\n  \"updated_by\": {\n    \"name\": \"API Service\",\n    \"email\": \"service-token@api.example.com\"\n  },\n  \"channels\": [\n    {\n      \"channel\": \"email\",\n      \"is_active\": false,\n      \"variants_count\": 1\n    },\n    {\n      \"channel\": \"slack\",\n      \"is_active\": false,\n      \"variants_count\": 1\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "11ea1c5f-d5db-4087-8e63-88da66e09cb1",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    ":workspace",
+                    "template",
+                    ":template_slug",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_slug",
+                      "description": "(Required) Unique template slug. Used as the identifier for the template."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Order Confirmed\",\n  \"description\": \"Sent when an order is placed\",\n  \"tags\": [\n    \"transactional\"\n  ],\n  \"enabled_channels\": [\n    \"email\",\n    \"sms\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"error_code\": \"authentication_failed\",\n  \"type\": \"AuthenticationFailed\",\n  \"message\": \"Invalid service token.\",\n  \"detail\": \"Invalid service token.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2b614a97-4aa7-459c-a3f9-a7cb01b319f0",
+          "name": "List All Variants",
+          "request": {
+            "name": "List All Variants",
+            "description": {
+              "content": "Retrieve all variants across all channels for a template. Returns variant metadata, conditions, and content.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "v2",
+                ":workspace",
+                "template",
+                ":template_slug",
+                "variant",
+                ""
+              ],
+              "host": [
+                "management-api",
+                "suprsend",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) Workspace slug."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "template_slug",
+                  "description": "(Required) Template slug."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "ServiceToken <token>"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e8572204-da21-48d8-9d3c-edc20ecc7f24",
+              "name": "Successfully retrieved variants",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    ":workspace",
+                    "template",
+                    ":template_slug",
+                    "variant",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_slug",
+                      "description": "(Required) Template slug."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"count\": 4,\n    \"limit\": 10,\n    \"offset\": 0\n  },\n  \"results\": [\n    {\n      \"$schema\": \"https://schema.suprsend.com/template/v2/variant_schema.json\",\n      \"channel\": \"email\",\n      \"id\": \"default\",\n      \"tenant_id\": null,\n      \"locale\": \"en\",\n      \"conditions\": [],\n      \"hash\": \"dd176370a4b99c735e30f70bc98c61983671072c40db70750c3ada9e5edcabc1\",\n      \"needs_vendor_approval\": false,\n      \"sysgen_template_name\": null,\n      \"approval_status\": \"auto_approved\",\n      \"discard_comment\": null,\n      \"approval_at\": \"2026-04-07T10:39:28.502737Z\",\n      \"has_error\": false,\n      \"seq_no\": 1,\n      \"action\": null,\n      \"created_at\": \"2026-04-07T10:39:28.510000Z\"\n    },\n    {\n      \"$schema\": \"https://schema.suprsend.com/template/v2/variant_schema.json\",\n      \"channel\": \"email\",\n      \"id\": \"spanish\",\n      \"tenant_id\": null,\n      \"locale\": \"es\",\n      \"conditions\": [],\n      \"hash\": \"a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2\",\n      \"needs_vendor_approval\": false,\n      \"sysgen_template_name\": null,\n      \"approval_status\": \"auto_approved\",\n      \"discard_comment\": null,\n      \"approval_at\": \"2026-04-07T11:00:00.000000Z\",\n      \"has_error\": false,\n      \"seq_no\": 2,\n      \"action\": null,\n      \"created_at\": \"2026-04-07T11:00:00.000000Z\"\n    },\n    {\n      \"$schema\": \"https://schema.suprsend.com/template/v2/variant_schema.json\",\n      \"channel\": \"sms\",\n      \"id\": \"default\",\n      \"tenant_id\": null,\n      \"locale\": \"en\",\n      \"conditions\": [],\n      \"hash\": \"3d99f9fa848e1997f23ebf634cdf7db37ef36f05d3433b6c14727abf494c2c56\",\n      \"needs_vendor_approval\": true,\n      \"sysgen_template_name\": \"order_shipped_en_v1\",\n      \"approval_status\": \"approved\",\n      \"discard_comment\": null,\n      \"approval_at\": \"2026-04-07T12:00:00.000000Z\",\n      \"has_error\": false,\n      \"seq_no\": 1,\n      \"action\": null,\n      \"created_at\": \"2026-04-07T12:00:00.000000Z\"\n    },\n    {\n      \"$schema\": \"https://schema.suprsend.com/template/v2/variant_schema.json\",\n      \"channel\": \"inbox\",\n      \"id\": \"default\",\n      \"tenant_id\": null,\n      \"locale\": \"en\",\n      \"conditions\": [],\n      \"hash\": \"e71a233fa3af63e04beb3df6da90e7e506eef159b2599c3b42f3518b1a589c20\",\n      \"needs_vendor_approval\": false,\n      \"sysgen_template_name\": null,\n      \"approval_status\": \"auto_approved\",\n      \"discard_comment\": null,\n      \"approval_at\": \"2026-04-07T10:45:00.000000Z\",\n      \"has_error\": false,\n      \"seq_no\": 1,\n      \"action\": null,\n      \"created_at\": \"2026-04-07T10:45:00.000000Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "24a4dee7-755f-4c73-8929-e61099aeb2b0",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    ":workspace",
+                    "template",
+                    ":template_slug",
+                    "variant",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_slug",
+                      "description": "(Required) Template slug."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"error_code\": \"authentication_failed\",\n  \"type\": \"AuthenticationFailed\",\n  \"message\": \"Invalid service token.\",\n  \"detail\": \"Invalid service token.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c02bfce1-d4a6-4b07-954e-0848e6a4fe86",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    ":workspace",
+                    "template",
+                    ":template_slug",
+                    "variant",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_slug",
+                      "description": "(Required) Template slug."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"error_code\": \"not_found\",\n  \"type\": \"NotFound\",\n  \"message\": \"workspace 'demo' not found\",\n  \"detail\": \"workspace 'demo' not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4c64e44b-e32d-41f9-96e6-b01b362ba2ab",
+          "name": "List Channel Variants",
+          "request": {
+            "name": "List Channel Variants",
+            "description": {
+              "content": "Retrieve all variants for a specific channel within a template.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "v2",
+                ":workspace",
+                "template",
+                ":template_slug",
+                "channel",
+                ":channel",
+                "variant",
+                ""
+              ],
+              "host": [
+                "management-api",
+                "suprsend",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) Workspace slug."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "template_slug",
+                  "description": "(Required) Template slug."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "channel",
+                  "description": "(Required) Channel slug."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "ServiceToken <token>"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2889a6da-dd6d-4449-a1b3-d47c3b3c374c",
+              "name": "Successfully retrieved channel variants",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    ":workspace",
+                    "template",
+                    ":template_slug",
+                    "channel",
+                    ":channel",
+                    "variant",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_slug",
+                      "description": "(Required) Template slug."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channel",
+                      "description": "(Required) Channel slug."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"count\": 2,\n    \"limit\": 10,\n    \"offset\": 0\n  },\n  \"results\": [\n    {\n      \"$schema\": \"https://schema.suprsend.com/template/v2/variant_schema.json\",\n      \"channel\": \"email\",\n      \"id\": \"default\",\n      \"tenant_id\": null,\n      \"locale\": \"en\",\n      \"conditions\": [],\n      \"hash\": \"dd176370a4b99c735e30f70bc98c61983671072c40db70750c3ada9e5edcabc1\",\n      \"needs_vendor_approval\": false,\n      \"sysgen_template_name\": null,\n      \"approval_status\": \"auto_approved\",\n      \"discard_comment\": null,\n      \"approval_at\": \"2026-04-07T10:39:28.502737Z\",\n      \"has_error\": false,\n      \"seq_no\": 1,\n      \"action\": null,\n      \"created_at\": \"2026-04-07T10:39:28.510000Z\"\n    },\n    {\n      \"$schema\": \"https://schema.suprsend.com/template/v2/variant_schema.json\",\n      \"channel\": \"email\",\n      \"id\": \"spanish\",\n      \"tenant_id\": null,\n      \"locale\": \"es\",\n      \"conditions\": [],\n      \"hash\": \"a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2\",\n      \"needs_vendor_approval\": false,\n      \"sysgen_template_name\": null,\n      \"approval_status\": \"auto_approved\",\n      \"discard_comment\": null,\n      \"approval_at\": \"2026-04-07T11:00:00.000000Z\",\n      \"has_error\": false,\n      \"seq_no\": 2,\n      \"action\": null,\n      \"created_at\": \"2026-04-07T11:00:00.000000Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "01ae4ee3-683f-4d2c-be4e-fe6499e3ec36",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    ":workspace",
+                    "template",
+                    ":template_slug",
+                    "channel",
+                    ":channel",
+                    "variant",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_slug",
+                      "description": "(Required) Template slug."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channel",
+                      "description": "(Required) Channel slug."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"error_code\": \"authentication_failed\",\n  \"type\": \"AuthenticationFailed\",\n  \"message\": \"Invalid service token.\",\n  \"detail\": \"Invalid service token.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "feb397c1-4942-4e2e-b97d-1fdf4d970fab",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    ":workspace",
+                    "template",
+                    ":template_slug",
+                    "channel",
+                    ":channel",
+                    "variant",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_slug",
+                      "description": "(Required) Template slug."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channel",
+                      "description": "(Required) Channel slug."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"error_code\": \"not_found\",\n  \"type\": \"NotFound\",\n  \"message\": \"workspace 'demo' not found\",\n  \"detail\": \"workspace 'demo' not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5dc3b44d-9ff2-4219-ad7a-21fe8ec090aa",
+          "name": "Get Variant Detail",
+          "request": {
+            "name": "Get Variant Detail",
+            "description": {
+              "content": "Retrieve detailed information about a specific variant including its content, conditions, and vendor approval status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "v2",
+                ":workspace",
+                "template",
+                ":template_slug",
+                "channel",
+                ":channel",
+                "variant",
+                ":variant_id",
+                ""
+              ],
+              "host": [
+                "management-api",
+                "suprsend",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "template_slug",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "channel",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "variant_id",
+                  "description": "(Required) Variant identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "ServiceToken <token>"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5864b976-37c3-4524-8cbd-2d4598ff9e0b",
+              "name": "Variant details retrieved. Includes full `content` and `vendor_approvals` objects.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    ":workspace",
+                    "template",
+                    ":template_slug",
+                    "channel",
+                    ":channel",
+                    "variant",
+                    ":variant_id",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_slug",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channel",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "variant_id",
+                      "description": "(Required) Variant identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$schema\": \"https://schema.suprsend.com/template/v2/variant_schema.json\",\n  \"channel\": \"email\",\n  \"id\": \"default\",\n  \"tenant_id\": null,\n  \"locale\": \"en\",\n  \"conditions\": [],\n  \"hash\": \"dd176370a4b99c735e30f70bc98c61983671072c40db70750c3ada9e5edcabc1\",\n  \"needs_vendor_approval\": false,\n  \"sysgen_template_name\": null,\n  \"approval_status\": \"auto_approved\",\n  \"discard_comment\": null,\n  \"approval_at\": \"2026-04-07T10:39:28.502737Z\",\n  \"content\": {\n    \"$schema\": \"https://schema.suprsend.com/template/v2/channel/email_schema.json\",\n    \"templating_language\": \"handlebars\",\n    \"from_name\": \"Acme Store\",\n    \"from_address\": \"noreply@acme-store.com\",\n    \"extra_to\": \"\",\n    \"cc\": \"\",\n    \"bcc\": \"\",\n    \"reply_to\": \"\",\n    \"subject\": \"Order Confirmed - #{{order.number}}\",\n    \"body\": {\n      \"type\": \"raw\",\n      \"raw\": {\n        \"html\": \"<html><body><h1>Order Confirmed!</h1><p>Hi {{customer.name}}, your order #{{order.number}} has been confirmed.</p><p>Total: {{order.total}}</p></body></html>\",\n        \"text\": \"Hi {{customer.name}}, your order #{{order.number}} has been confirmed. Total: {{order.total}}\"\n      },\n      \"designer\": {\n        \"html\": \"...\",\n        \"text\": \"...\",\n        \"design_json\": {},\n        \"display_conditions\": []\n      },\n      \"preheader\": \"Your order #{{order.number}} is confirmed\",\n      \"plain_text\": null,\n      \"email_markup\": \"\"\n    }\n  },\n  \"errors\": {},\n  \"vendor_approvals\": [],\n  \"has_error\": false,\n  \"seq_no\": 1,\n  \"action\": null,\n  \"created_at\": \"2026-04-07T10:39:28.510000Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3b172e96-676a-4129-a893-c2b7bf1da71a",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    ":workspace",
+                    "template",
+                    ":template_slug",
+                    "channel",
+                    ":channel",
+                    "variant",
+                    ":variant_id",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_slug",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channel",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "variant_id",
+                      "description": "(Required) Variant identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"error_code\": \"authentication_failed\",\n  \"type\": \"AuthenticationFailed\",\n  \"message\": \"Invalid service token.\",\n  \"detail\": \"Invalid service token.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1b988a99-6bee-440d-aaa0-c2ea2fc03f68",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    ":workspace",
+                    "template",
+                    ":template_slug",
+                    "channel",
+                    ":channel",
+                    "variant",
+                    ":variant_id",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_slug",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channel",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "variant_id",
+                      "description": "(Required) Variant identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"error_code\": \"not_found\",\n  \"type\": \"NotFound\",\n  \"message\": \"workspace 'demo' not found\",\n  \"detail\": \"workspace 'demo' not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "70fd7328-ea2f-4866-a90c-942ff22798c9",
+          "name": "Create or Update Variant",
+          "request": {
+            "name": "Create or Update Variant",
+            "description": {
+              "content": "Create a new variant or update an existing one for a specific channel. Pass the variant content, conditions, locale, and optionally vendor approval details.\n\nThe `content` JSON structure is channel-specific. Refer to the [variant content schema](https://schema.suprsend.com/template/v2/variant_schema.json) for each channel's structure.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "v2",
+                ":workspace",
+                "template",
+                ":template_slug",
+                "channel",
+                ":channel",
+                "variant",
+                ":variant_id",
+                ""
+              ],
+              "host": [
+                "management-api",
+                "suprsend",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "template_slug",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "channel",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "variant_id",
+                  "description": "(Required) Variant identifier. If a variant with this ID doesn't exist, a new one is created."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "ServiceToken <token>"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"locale\": \"<string>\",\n  \"content\": \"<object>\",\n  \"tenant_id\": \"<string>\",\n  \"conditions\": [\n    {\n      \"type\": \"<string>\",\n      \"expression_v1\": {\n        \"op\": \"<string>\",\n        \"args\": [\n          {\n            \"op\": \"<string>\",\n            \"variable_ns\": \"<string>\",\n            \"variable\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"op\": \"<string>\",\n            \"variable_ns\": \"<string>\",\n            \"variable\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    },\n    {\n      \"type\": \"<string>\",\n      \"expression_v1\": {\n        \"op\": \"<string>\",\n        \"args\": [\n          {\n            \"op\": \"<string>\",\n            \"variable_ns\": \"<string>\",\n            \"variable\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"op\": \"<string>\",\n            \"variable_ns\": \"<string>\",\n            \"variable\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    }\n  ],\n  \"needs_vendor_approval\": \"<boolean>\",\n  \"seq_no\": \"<integer>\",\n  \"vendor_approvals\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0ae42422-4be8-438d-a54f-66abb06018ca",
+              "name": "Variant created or updated successfully. Returns the full variant including rendered content.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    ":workspace",
+                    "template",
+                    ":template_slug",
+                    "channel",
+                    ":channel",
+                    "variant",
+                    ":variant_id",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_slug",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channel",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "variant_id",
+                      "description": "(Required) Variant identifier. If a variant with this ID doesn't exist, a new one is created."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"locale\": \"en\",\n  \"content\": \"<object>\",\n  \"tenant_id\": \"<string>\",\n  \"conditions\": [\n    {\n      \"type\": \"<string>\",\n      \"expression_v1\": {\n        \"op\": \"<string>\",\n        \"args\": [\n          {\n            \"op\": \"<string>\",\n            \"variable_ns\": \"<string>\",\n            \"variable\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"op\": \"<string>\",\n            \"variable_ns\": \"<string>\",\n            \"variable\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    },\n    {\n      \"type\": \"<string>\",\n      \"expression_v1\": {\n        \"op\": \"<string>\",\n        \"args\": [\n          {\n            \"op\": \"<string>\",\n            \"variable_ns\": \"<string>\",\n            \"variable\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"op\": \"<string>\",\n            \"variable_ns\": \"<string>\",\n            \"variable\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    }\n  ],\n  \"needs_vendor_approval\": \"<boolean>\",\n  \"seq_no\": \"<integer>\",\n  \"vendor_approvals\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$schema\": \"https://schema.suprsend.com/template/v2/variant_schema.json\",\n  \"channel\": \"email\",\n  \"id\": \"default\",\n  \"tenant_id\": null,\n  \"locale\": \"en\",\n  \"conditions\": [],\n  \"hash\": \"97f031b56ba642d137758652ce21dda6962ecee81d544fcf245661898107bcb9\",\n  \"needs_vendor_approval\": false,\n  \"sysgen_template_name\": null,\n  \"approval_status\": \"auto_approved\",\n  \"discard_comment\": null,\n  \"approval_at\": \"2026-04-07T10:39:28.502737Z\",\n  \"content\": {\n    \"$schema\": \"https://schema.suprsend.com/template/v2/channel/email_schema.json\",\n    \"templating_language\": \"handlebars\",\n    \"from_name\": \"Acme Store\",\n    \"from_address\": \"noreply@acme-store.com\",\n    \"extra_to\": \"\",\n    \"cc\": \"\",\n    \"bcc\": \"\",\n    \"reply_to\": \"\",\n    \"subject\": \"Your order has been shipped - #{{order.number}}\",\n    \"body\": {\n      \"type\": \"raw\",\n      \"raw\": {\n        \"html\": \"<html><body><h1>Order Shipped!</h1><p>Hi {{customer.name}},</p><p>Your order <strong>#{{order.number}}</strong> has been shipped and is on its way.</p><p>Expected delivery: {{order.delivery_date}}</p><p><a href=\\\"{{{order.tracking_url}}}\\\">Track your order</a></p></body></html>\",\n        \"text\": \"Hi {{customer.name}}, Your order #{{order.number}} has been shipped. Expected delivery: {{order.delivery_date}}. Track: {{{order.tracking_url}}}\"\n      },\n      \"designer\": {\n        \"html\": \"...\",\n        \"text\": \"...\",\n        \"design_json\": {},\n        \"merge_tags\": [],\n        \"display_conditions\": []\n      },\n      \"preheader\": \"Your order #{{order.number}} is on its way\",\n      \"plain_text\": null,\n      \"email_markup\": \"\"\n    }\n  },\n  \"errors\": {},\n  \"vendor_approvals\": [],\n  \"has_error\": false,\n  \"seq_no\": 1,\n  \"action\": null,\n  \"created_at\": \"2026-04-07T10:39:28.510000Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "45c7ab62-0a8b-464a-b67e-117fc1688518",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    ":workspace",
+                    "template",
+                    ":template_slug",
+                    "channel",
+                    ":channel",
+                    "variant",
+                    ":variant_id",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_slug",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channel",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "variant_id",
+                      "description": "(Required) Variant identifier. If a variant with this ID doesn't exist, a new one is created."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"locale\": \"en\",\n  \"content\": \"<object>\",\n  \"tenant_id\": \"<string>\",\n  \"conditions\": [\n    {\n      \"type\": \"<string>\",\n      \"expression_v1\": {\n        \"op\": \"<string>\",\n        \"args\": [\n          {\n            \"op\": \"<string>\",\n            \"variable_ns\": \"<string>\",\n            \"variable\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"op\": \"<string>\",\n            \"variable_ns\": \"<string>\",\n            \"variable\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    },\n    {\n      \"type\": \"<string>\",\n      \"expression_v1\": {\n        \"op\": \"<string>\",\n        \"args\": [\n          {\n            \"op\": \"<string>\",\n            \"variable_ns\": \"<string>\",\n            \"variable\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"op\": \"<string>\",\n            \"variable_ns\": \"<string>\",\n            \"variable\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    }\n  ],\n  \"needs_vendor_approval\": \"<boolean>\",\n  \"seq_no\": \"<integer>\",\n  \"vendor_approvals\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"error_code\": \"authentication_failed\",\n  \"type\": \"AuthenticationFailed\",\n  \"message\": \"Invalid service token.\",\n  \"detail\": \"Invalid service token.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f28b6522-ee8b-4461-bdef-25f09a5c83ee",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    ":workspace",
+                    "template",
+                    ":template_slug",
+                    "channel",
+                    ":channel",
+                    "variant",
+                    ":variant_id",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_slug",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channel",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "variant_id",
+                      "description": "(Required) Variant identifier. If a variant with this ID doesn't exist, a new one is created."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"locale\": \"en\",\n  \"content\": \"<object>\",\n  \"tenant_id\": \"<string>\",\n  \"conditions\": [\n    {\n      \"type\": \"<string>\",\n      \"expression_v1\": {\n        \"op\": \"<string>\",\n        \"args\": [\n          {\n            \"op\": \"<string>\",\n            \"variable_ns\": \"<string>\",\n            \"variable\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"op\": \"<string>\",\n            \"variable_ns\": \"<string>\",\n            \"variable\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    },\n    {\n      \"type\": \"<string>\",\n      \"expression_v1\": {\n        \"op\": \"<string>\",\n        \"args\": [\n          {\n            \"op\": \"<string>\",\n            \"variable_ns\": \"<string>\",\n            \"variable\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"op\": \"<string>\",\n            \"variable_ns\": \"<string>\",\n            \"variable\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    }\n  ],\n  \"needs_vendor_approval\": \"<boolean>\",\n  \"seq_no\": \"<integer>\",\n  \"vendor_approvals\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"error_code\": \"not_found\",\n  \"type\": \"NotFound\",\n  \"message\": \"workspace 'demo' not found\",\n  \"detail\": \"workspace 'demo' not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9b0bff7b-e842-4d61-9f0e-e3dda417f52e",
+          "name": "Get Mock Data",
+          "request": {
+            "name": "Get Mock Data",
+            "description": {
+              "content": "Retrieve the mock data (input payload, recipient, tenant, actor settings) for a template. Used for previewing and testing.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "v2",
+                ":workspace",
+                "template",
+                ":template_slug",
+                "mock_data",
+                ""
+              ],
+              "host": [
+                "management-api",
+                "suprsend",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "mode",
+                  "value": "draft"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "template_slug",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "ServiceToken <token>"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "196b4815-e201-4276-a984-f2a58141e641",
+              "name": "Mock data retrieved. Returns both the raw `data` (what the user configured) and the `transformed_data` (resolved values including tenant, recipient, actor properties, and batched events).",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    ":workspace",
+                    "template",
+                    ":template_slug",
+                    "mock_data",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "mode",
+                      "value": "draft"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_slug",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"payload\": {\n      \"order_id\": \"ORD-8821\",\n      \"order_total\": \"$149.99\",\n      \"delivery_date\": \"2026-04-10\",\n      \"tracking_url\": \"https://yourapp.com/track/ORD-8821\"\n    },\n    \"tenant_id\": \"tenant_abc\",\n    \"is_batch\": false,\n    \"batch_count\": 2,\n    \"recipient_sub_type\": \"user\",\n    \"recipient_object\": null,\n    \"recipient_distinct_id\": \"user_12345\",\n    \"actor_sub_type\": \"user\",\n    \"actor_object\": null,\n    \"actor_distinct_id\": null\n  },\n  \"transformed_data\": {\n    \"order_id\": \"ORD-8821\",\n    \"order_total\": \"$149.99\",\n    \"delivery_date\": \"2026-04-10\",\n    \"tracking_url\": \"https://yourapp.com/track/ORD-8821\",\n    \"$batch_key\": \"evaluated batch_key\",\n    \"$batched_events\": [\n      {\n        \"order_id\": \"ORD-8821\",\n        \"order_total\": \"$149.99\"\n      },\n      {\n        \"order_id\": \"ORD-8821\",\n        \"order_total\": \"$149.99\"\n      }\n    ],\n    \"$batched_events_count\": 2,\n    \"$brand\": {\n      \"brand_id\": \"tenant_abc\",\n      \"brand_name\": \"Acme Inc.\",\n      \"logo\": \"https://cdn.acme.com/logo.png\",\n      \"primary_color\": \"#1a73e8\",\n      \"secondary_color\": \"#34a853\",\n      \"tertiary_color\": \"#ffffff\",\n      \"embedded_preference_url\": \"https://preferences.example.com/embed\",\n      \"hosted_preference_domain\": \"preferences.example.com\",\n      \"blocked_channels\": null,\n      \"social_links\": {\n        \"website\": \"https://www.example.com\",\n        \"linkedin\": \"https://linkedin.com/company/example\",\n        \"twitter\": \"\"\n      },\n      \"properties\": {},\n      \"timezone\": \"America/New_York\"\n    },\n    \"$user\": {\n      \"name\": \"Jamie Rivera\",\n      \"email\": \"jamie.rivera@example.com\"\n    },\n    \"$recipient\": {\n      \"name\": \"Jamie Rivera\",\n      \"email\": \"jamie.rivera@example.com\"\n    },\n    \"$actor\": {},\n    \"$embedded_preference_url\": \"https://preferences.example.com/embed\",\n    \"$hosted_preference_url\": \"https://preferences.example.com/?key=xxxxxxxxxxxxxxx\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b4b0fa49-b5bd-43ac-b8ee-a0c601a5eb32",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    ":workspace",
+                    "template",
+                    ":template_slug",
+                    "mock_data",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "mode",
+                      "value": "draft"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_slug",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"error_code\": \"authentication_failed\",\n  \"type\": \"AuthenticationFailed\",\n  \"message\": \"Invalid service token.\",\n  \"detail\": \"Invalid service token.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9c572dd7-321c-4748-9089-139970eb8afc",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    ":workspace",
+                    "template",
+                    ":template_slug",
+                    "mock_data",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "mode",
+                      "value": "draft"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_slug",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"error_code\": \"not_found\",\n  \"type\": \"NotFound\",\n  \"message\": \"workspace 'demo' not found\",\n  \"detail\": \"workspace 'demo' not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ad0179f6-4189-4874-870d-21ab3b7ec19c",
+          "name": "Update Mock Data",
+          "request": {
+            "name": "Update Mock Data",
+            "description": {
+              "content": "Update the mock data for a template. Sets the input payload, recipient, tenant, actor, and batching configuration used for previews and testing.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "v2",
+                ":workspace",
+                "template",
+                ":template_slug",
+                "mock_data",
+                ""
+              ],
+              "host": [
+                "management-api",
+                "suprsend",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "template_slug",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "ServiceToken <token>"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"payload\": \"<object>\",\n  \"tenant_id\": \"<string>\",\n  \"is_batch\": false,\n  \"batch_count\": \"<integer>\",\n  \"recipient_sub_type\": \"<string>\",\n  \"recipient_distinct_id\": \"<string>\",\n  \"recipient_object\": {\n    \"object_type\": \"<string>\",\n    \"id\": \"<string>\"\n  },\n  \"actor_sub_type\": \"<string>\",\n  \"actor_distinct_id\": \"<string>\",\n  \"actor_object\": {\n    \"object_type\": \"<string>\",\n    \"id\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9deaaa66-2fda-4474-9892-d7bbd1c51924",
+              "name": "Mock data updated successfully. Returns the same structure as Get Mock Data - both `data` (raw config) and `transformed_data` (resolved values).",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    ":workspace",
+                    "template",
+                    ":template_slug",
+                    "mock_data",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_slug",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"payload\": \"<object>\",\n  \"tenant_id\": \"default\",\n  \"is_batch\": false,\n  \"batch_count\": 2,\n  \"recipient_sub_type\": \"user\",\n  \"recipient_distinct_id\": \"user-123\",\n  \"recipient_object\": {\n    \"object_type\": \"<string>\",\n    \"id\": \"<string>\"\n  },\n  \"actor_sub_type\": \"<string>\",\n  \"actor_distinct_id\": \"<string>\",\n  \"actor_object\": {\n    \"object_type\": \"<string>\",\n    \"id\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"payload\": {\n      \"user\": {\n        \"name\": \"Pat Morgan\"\n      },\n      \"event\": {\n        \"status\": \"shipped\"\n      }\n    },\n    \"tenant_id\": \"default\",\n    \"is_batch\": false,\n    \"batch_count\": 2,\n    \"recipient_sub_type\": \"user\",\n    \"recipient_object\": null,\n    \"recipient_distinct_id\": \"user_12345\",\n    \"actor_sub_type\": \"user\",\n    \"actor_object\": null,\n    \"actor_distinct_id\": \"actor_67890\"\n  },\n  \"transformed_data\": {\n    \"user\": {\n      \"name\": \"Pat Morgan\"\n    },\n    \"event\": {\n      \"status\": \"shipped\"\n    },\n    \"$batch_key\": \"evaluated batch_key\",\n    \"$batched_events\": [\n      {\n        \"user\": {\n          \"name\": \"Pat Morgan\"\n        },\n        \"event\": {\n          \"status\": \"shipped\"\n        }\n      },\n      {\n        \"user\": {\n          \"name\": \"Pat Morgan\"\n        },\n        \"event\": {\n          \"status\": \"shipped\"\n        }\n      }\n    ],\n    \"$batched_events_count\": 2,\n    \"$brand\": {\n      \"brand_id\": \"default\",\n      \"brand_name\": \"My Company\",\n      \"logo\": \"https://cdn.example.com/logo.png\",\n      \"primary_color\": \"#2E70E8\",\n      \"secondary_color\": \"#63A3F7\",\n      \"tertiary_color\": \"#FFFFFF\",\n      \"embedded_preference_url\": \"https://preferences.example.com/embed\",\n      \"hosted_preference_domain\": \"preferences.example.com\",\n      \"blocked_channels\": null,\n      \"social_links\": {\n        \"website\": \"https://www.example.com\",\n        \"linkedin\": \"https://linkedin.com/company/example\"\n      },\n      \"properties\": {},\n      \"timezone\": null\n    },\n    \"$user\": {\n      \"name\": \"Jamie Rivera\",\n      \"email\": \"jamie.rivera@example.com\",\n      \"distinct_id\": \"user_12345\"\n    },\n    \"$recipient\": {\n      \"name\": \"Jamie Rivera\",\n      \"email\": \"jamie.rivera@example.com\",\n      \"distinct_id\": \"user_12345\"\n    },\n    \"$actor\": {\n      \"name\": \"Taylor Chen\",\n      \"email\": \"taylor.chen@example.com\",\n      \"distinct_id\": \"actor_67890\"\n    },\n    \"$embedded_preference_url\": \"https://preferences.example.com/embed\",\n    \"$hosted_preference_url\": \"https://preferences.example.com/?key=xxxxxxxxxxxxxxx\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d0cdc0d8-5f29-4cfc-9b4a-5aca47bf1a9f",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    ":workspace",
+                    "template",
+                    ":template_slug",
+                    "mock_data",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_slug",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"payload\": \"<object>\",\n  \"tenant_id\": \"default\",\n  \"is_batch\": false,\n  \"batch_count\": 2,\n  \"recipient_sub_type\": \"user\",\n  \"recipient_distinct_id\": \"user-123\",\n  \"recipient_object\": {\n    \"object_type\": \"<string>\",\n    \"id\": \"<string>\"\n  },\n  \"actor_sub_type\": \"<string>\",\n  \"actor_distinct_id\": \"<string>\",\n  \"actor_object\": {\n    \"object_type\": \"<string>\",\n    \"id\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"error_code\": \"authentication_failed\",\n  \"type\": \"AuthenticationFailed\",\n  \"message\": \"Invalid service token.\",\n  \"detail\": \"Invalid service token.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ae74d17d-0a5b-4824-8cc1-8591d3b04cdc",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    ":workspace",
+                    "template",
+                    ":template_slug",
+                    "mock_data",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_slug",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"payload\": \"<object>\",\n  \"tenant_id\": \"default\",\n  \"is_batch\": false,\n  \"batch_count\": 2,\n  \"recipient_sub_type\": \"user\",\n  \"recipient_distinct_id\": \"user-123\",\n  \"recipient_object\": {\n    \"object_type\": \"<string>\",\n    \"id\": \"<string>\"\n  },\n  \"actor_sub_type\": \"<string>\",\n  \"actor_distinct_id\": \"<string>\",\n  \"actor_object\": {\n    \"object_type\": \"<string>\",\n    \"id\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"error_code\": \"not_found\",\n  \"type\": \"NotFound\",\n  \"message\": \"workspace 'demo' not found\",\n  \"detail\": \"workspace 'demo' not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "de82213c-fb89-49d5-8092-88471b5dfac0",
+          "name": "Commit Template",
+          "request": {
+            "name": "Commit Template",
+            "description": {
+              "content": "Commit the current draft version, making it live. All draft changes across all channels and variants are published as a new version.\n\nFor WhatsApp and SMS (DLT) variants, committing moves them to **Approval Pending** state instead of going live immediately.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "v2",
+                ":workspace",
+                "template",
+                ":template_slug",
+                "commit",
+                ""
+              ],
+              "host": [
+                "management-api",
+                "suprsend",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "commit_message",
+                  "value": "<string>",
+                  "description": "Description of changes in this version."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "template_slug",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "ServiceToken <token>"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "10e37e55-6805-491c-80d4-c20de4078c59",
+              "name": "Template committed successfully. Returns the updated template detail.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    ":workspace",
+                    "template",
+                    ":template_slug",
+                    "commit",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "commit_message",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_slug",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$schema\": \"https://schema.suprsend.com/template/v2/schema.json\",\n  \"slug\": \"order-confirmed\",\n  \"created_at\": \"2026-04-07T10:39:28.502737Z\",\n  \"last_triggered_at\": null,\n  \"name\": \"Order Confirmed\",\n  \"description\": \"Sent when an order is placed\",\n  \"tags\": [\n    \"transactional\"\n  ],\n  \"enabled_channels\": [\n    \"email\",\n    \"sms\"\n  ],\n  \"status\": \"active\",\n  \"version_no\": 3,\n  \"hash\": \"637edaabc624d09db3793829ea872a3516ed0362ce79ee3875607fc7317381b9\",\n  \"commit_message\": \"Updated subject line for Q2 campaign\",\n  \"active_at\": \"2026-04-08T12:00:00.000000Z\",\n  \"updated_at\": \"2026-04-08T12:00:00.000000Z\",\n  \"updated_by\": {\n    \"name\": \"Dana Lee\",\n    \"email\": \"dana.lee@example.com\"\n  },\n  \"channels\": [\n    {\n      \"channel\": \"email\",\n      \"is_active\": true,\n      \"variants_count\": 2\n    },\n    {\n      \"channel\": \"sms\",\n      \"is_active\": true,\n      \"variants_count\": 1\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7d9e357f-a4fa-4bc2-9d21-353d5084a448",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    ":workspace",
+                    "template",
+                    ":template_slug",
+                    "commit",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "commit_message",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_slug",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"error_code\": \"authentication_failed\",\n  \"type\": \"AuthenticationFailed\",\n  \"message\": \"Invalid service token.\",\n  \"detail\": \"Invalid service token.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f4da1676-c91a-4334-a724-0ca732ba0a8f",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    ":workspace",
+                    "template",
+                    ":template_slug",
+                    "commit",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "commit_message",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_slug",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"error_code\": \"not_found\",\n  \"type\": \"NotFound\",\n  \"message\": \"workspace 'demo' not found\",\n  \"detail\": \"workspace 'demo' not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c16ead55-9cd8-4ed7-88c2-b90a2217e6c4",
+          "name": "Discard Variant",
+          "request": {
+            "name": "Discard Variant",
+            "description": {
+              "content": "Discard a variant that is in approval-pending state. Only applicable for WhatsApp and SMS channels that require vendor approval. The variant returns to draft state.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "v2",
+                ":workspace",
+                "template",
+                ":template_slug",
+                "channel",
+                ":channel",
+                "variant",
+                ":variant_id",
+                "discard",
+                ""
+              ],
+              "host": [
+                "management-api",
+                "suprsend",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "mode",
+                  "value": "live"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "template_slug",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "channel",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "variant_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "ServiceToken <token>"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"comment\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c069c06c-9a4b-4e40-9e5a-8c6b607700ba",
+              "name": "Variant discarded successfully",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    ":workspace",
+                    "template",
+                    ":template_slug",
+                    "channel",
+                    ":channel",
+                    "variant",
+                    ":variant_id",
+                    "discard",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "mode",
+                      "value": "live"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_slug",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channel",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "variant_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"comment\": \"Content needs revision before resubmission\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a66082f3-a23e-4714-8fb7-d60f0399e6ed",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    ":workspace",
+                    "template",
+                    ":template_slug",
+                    "channel",
+                    ":channel",
+                    "variant",
+                    ":variant_id",
+                    "discard",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "mode",
+                      "value": "live"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_slug",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channel",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "variant_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"comment\": \"Content needs revision before resubmission\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"error_code\": \"authentication_failed\",\n  \"type\": \"AuthenticationFailed\",\n  \"message\": \"Invalid service token.\",\n  \"detail\": \"Invalid service token.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "92993f9e-5120-4efc-8d72-958b922f5a6a",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    ":workspace",
+                    "template",
+                    ":template_slug",
+                    "channel",
+                    ":channel",
+                    "variant",
+                    ":variant_id",
+                    "discard",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "mode",
+                      "value": "live"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_slug",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channel",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "variant_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"comment\": \"Content needs revision before resubmission\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"error_code\": \"not_found\",\n  \"type\": \"NotFound\",\n  \"message\": \"workspace 'demo' not found\",\n  \"detail\": \"workspace 'demo' not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "edd86ed3-eb22-4898-bc98-8e0e46963e64",
+          "name": "Add or Update Vendor Approval",
+          "request": {
+            "name": "Add or Update Vendor Approval",
+            "description": {
+              "content": "Add or update a vendor approval entry for a WhatsApp or SMS variant. Use this to record approval status from the vendor portal, including the vendor template ID and name.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "v2",
+                ":workspace",
+                "template",
+                ":template_slug",
+                "channel",
+                ":channel",
+                "variant",
+                ":variant_id",
+                "vendor_approval",
+                ""
+              ],
+              "host": [
+                "management-api",
+                "suprsend",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "mode",
+                  "value": "live"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "template_slug",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "channel",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "variant_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "ServiceToken <token>"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"approval_status\": \"<string>\",\n  \"vendor_slug\": \"<string>\",\n  \"vendor_uid\": \"<string>\",\n  \"vendor_template_name\": \"<string>\",\n  \"vendor_template_id\": \"<string>\",\n  \"vendor_locale_code\": \"<string>\",\n  \"vendor_template_category\": \"<string>\",\n  \"provider_template_id\": \"<string>\",\n  \"comment\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a7b09301-2fe5-41f2-a2b8-6d39a6ce3375",
+              "name": "Vendor approval entry updated",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    ":workspace",
+                    "template",
+                    ":template_slug",
+                    "channel",
+                    ":channel",
+                    "variant",
+                    ":variant_id",
+                    "vendor_approval",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "mode",
+                      "value": "live"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_slug",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channel",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "variant_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"approval_status\": \"approved\",\n  \"vendor_slug\": \"twilio-whatsapp\",\n  \"vendor_uid\": \"waba_id-123221\",\n  \"vendor_template_name\": \"tpl_v12\",\n  \"vendor_template_id\": \"1232\",\n  \"vendor_locale_code\": \"en\",\n  \"vendor_template_category\": \"UTILITY\",\n  \"provider_template_id\": \"<string>\",\n  \"comment\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9838d23e-e055-4dcf-bdbc-7fe89dea6e9d",
+              "name": "Validation error - one or more variants have issues",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    ":workspace",
+                    "template",
+                    ":template_slug",
+                    "channel",
+                    ":channel",
+                    "variant",
+                    ":variant_id",
+                    "vendor_approval",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "mode",
+                      "value": "live"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_slug",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channel",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "variant_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"approval_status\": \"approved\",\n  \"vendor_slug\": \"twilio-whatsapp\",\n  \"vendor_uid\": \"waba_id-123221\",\n  \"vendor_template_name\": \"tpl_v12\",\n  \"vendor_template_id\": \"1232\",\n  \"vendor_locale_code\": \"en\",\n  \"vendor_template_category\": \"UTILITY\",\n  \"provider_template_id\": \"<string>\",\n  \"comment\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 400,\n  \"error_code\": \"error\",\n  \"type\": \"ValidationError\",\n  \"message\": \"[\\\"one of more variants about to be committed have issues.\\\\n[1] email:default errors: {'body.raw.html': ['missing']}\\\\n[2] slack:default errors: {'body_text': ['missing']}\\\"]\",\n  \"detail\": [\n    \"one of more variants about to be committed have issues.\\n[1] email:default errors: {'body.raw.html': ['missing']}\\n[2] slack:default errors: {'body_text': ['missing']}\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a236cb91-dbc5-401f-8543-a5b664c3d469",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    ":workspace",
+                    "template",
+                    ":template_slug",
+                    "channel",
+                    ":channel",
+                    "variant",
+                    ":variant_id",
+                    "vendor_approval",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "mode",
+                      "value": "live"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_slug",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channel",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "variant_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"approval_status\": \"approved\",\n  \"vendor_slug\": \"twilio-whatsapp\",\n  \"vendor_uid\": \"waba_id-123221\",\n  \"vendor_template_name\": \"tpl_v12\",\n  \"vendor_template_id\": \"1232\",\n  \"vendor_locale_code\": \"en\",\n  \"vendor_template_category\": \"UTILITY\",\n  \"provider_template_id\": \"<string>\",\n  \"comment\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"error_code\": \"authentication_failed\",\n  \"type\": \"AuthenticationFailed\",\n  \"message\": \"Invalid service token.\",\n  \"detail\": \"Invalid service token.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bf8c12ab-a575-4daf-80d2-a7f1e9cd3757",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    ":workspace",
+                    "template",
+                    ":template_slug",
+                    "channel",
+                    ":channel",
+                    "variant",
+                    ":variant_id",
+                    "vendor_approval",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "mode",
+                      "value": "live"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_slug",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channel",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "variant_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"approval_status\": \"approved\",\n  \"vendor_slug\": \"twilio-whatsapp\",\n  \"vendor_uid\": \"waba_id-123221\",\n  \"vendor_template_name\": \"tpl_v12\",\n  \"vendor_template_id\": \"1232\",\n  \"vendor_locale_code\": \"en\",\n  \"vendor_template_category\": \"UTILITY\",\n  \"provider_template_id\": \"<string>\",\n  \"comment\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"error_code\": \"not_found\",\n  \"type\": \"NotFound\",\n  \"message\": \"workspace 'demo' not found\",\n  \"detail\": \"workspace 'demo' not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://hub.suprsend.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "462fc231-6b47-4424-955e-1fc2894e7c28",
+    "name": "SuprSend Broadcast Template API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs supported on suprsend platform",
+      "type": "text/plain"
+    }
+  }
+}

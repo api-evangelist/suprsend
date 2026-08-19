@@ -1,0 +1,250 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SuprSend Broadcast Workflow API",
+    "version": "1.2.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Workflow",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Workflows",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hub.suprsend.com/v1/:workspace/workflow/",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "Workspace slug (staging, production, etc.)"
+              },
+              {
+                "name": "mode",
+                "value": "",
+                "type": "query",
+                "description": "Mode to filter workflows (draft or live). By default, draft workflows are returned."
+              },
+              {
+                "name": "slugs",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of workflow slugs to filter. This can be used to filter workflows by slug."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "ServiceToken <token>",
+              "value": "{{ServiceToken <token>}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve a list of workflows in a workspace."
+        },
+        {
+          "info": {
+            "name": "Get Workflow Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hub.suprsend.com/v1/:workspace/workflow/:slug/",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "Workspace slug (staging, production, etc.)"
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the workflow. You can get it from workflow settings."
+              },
+              {
+                "name": "mode",
+                "value": "",
+                "type": "query",
+                "description": "Which workflow version to fetch (draft or live). By default, draft version is returned."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "ServiceToken <token>",
+              "value": "{{ServiceToken <token>}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Fetch workflow corresponding to the given slug in a workspace."
+        },
+        {
+          "info": {
+            "name": "Create or Update Workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://hub.suprsend.com/v1/:workspace/workflow/:slug/",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "Workspace where the workflow should be created (staging, production, etc.)"
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the workflow. You can get it from workflow settings for existing workflows."
+              },
+              {
+                "name": "commit",
+                "value": "",
+                "type": "query",
+                "description": "Whether to commit the workflow immediately. Workflow will be successfully committed only if validation_result.is_valid is true."
+              },
+              {
+                "name": "commit_message",
+                "value": "",
+                "type": "query",
+                "description": "Commit message describing the changes (required if commit=true)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "ServiceToken <token>",
+              "value": "{{ServiceToken <token>}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a new workflow or update the draft version of an existing one"
+        },
+        {
+          "info": {
+            "name": "Delete Workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://hub.suprsend.com/v1/:workspace/workflow/:slug/",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "Which workspace workflow belongs to (staging, production, etc.)"
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the workflow. You can get it from workflow settings."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "ServiceToken <token>",
+              "value": "{{ServiceToken <token>}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Permanently deletes a workflow by providing it's slug."
+        },
+        {
+          "info": {
+            "name": "Commit Workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://hub.suprsend.com/v1/:workspace/workflow/:slug/commit/",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "Workspace to which the workflow belongs (staging, production, etc.)"
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the workflow. You can get it from workflow settings."
+              },
+              {
+                "name": "commit_message",
+                "value": "",
+                "type": "query",
+                "description": "Commit message describing the changes"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "ServiceToken <token>",
+              "value": "{{ServiceToken <token>}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Commit a workflow to make the draft version live."
+        },
+        {
+          "info": {
+            "name": "Enable/Disable Workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://hub.suprsend.com/v1/:workspace/workflow/:slug/enable/",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "Workspace to which the workflow belongs (staging, production, etc.)"
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the workflow. You can get it from workflow settings."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "ServiceToken <token>",
+              "value": "{{ServiceToken <token>}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Enable or disable a workflow. Disabled workflows will not be executed when triggered. By default, workflows are enabled unless you explicitly disable them."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

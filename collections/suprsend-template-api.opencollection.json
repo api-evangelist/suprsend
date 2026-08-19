@@ -1,0 +1,594 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SuprSend Broadcast Template API",
+    "version": "1.2.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Template",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fetch Template details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hub.suprsend.com/v1/template/:template_slug/",
+            "params": [
+              {
+                "name": "template_slug",
+                "value": "",
+                "type": "path",
+                "description": "Template group slug you want to fetch content details. You'll get the template slug by clicking on copy button next to template group name on SuprSend dashboard -> template details page."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to fetch content of a template group (active & draft versions) across all associated channels and languages."
+        },
+        {
+          "info": {
+            "name": "Fetch Template content for a channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hub.suprsend.com/v1/template/:template_slug/channel/:channel_slug/",
+            "params": [
+              {
+                "name": "template_slug",
+                "value": "",
+                "type": "path",
+                "description": "Template group slug you want to fetch content details. You'll get the template slug by clicking on copy button next to template group name on SuprSend dashboard -> template details page."
+              },
+              {
+                "name": "channel_slug",
+                "value": "",
+                "type": "path",
+                "description": "add one of the template channels  - `email`, `sms`, `whatsapp`, `inbox`, `slack`, `androidpush`, `iospush`, `webpush`"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to fetch content of a particular channel in a template group (live & draft versions)."
+        },
+        {
+          "info": {
+            "name": "Fetch Template List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hub.suprsend.com/v1/template/",
+            "params": [
+              {
+                "name": "has_tag_ids_any",
+                "value": "",
+                "type": "query",
+                "description": "comma separated string of tag ids attached to the template"
+              },
+              {
+                "name": "has_channels_any",
+                "value": "",
+                "type": "query",
+                "description": "comma separated string of channels. Returns templates which has any of the channels present from the channel string. Use these keys for channels - `email`, `sms`, `whatsapp`, `inbox`, `slack`, `androidpush`, `iospush`, `webpush`"
+              },
+              {
+                "name": "is_active",
+                "value": "",
+                "type": "query",
+                "description": "Set `true` for published templates, `false` for templates which are in draft. Do not pass this key to return all templates."
+              },
+              {
+                "name": "is_archived",
+                "value": "",
+                "type": "query",
+                "description": "Set `true` to get archived templates, default = `false`"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to fetch paginated list of all templates in a given workspace."
+        },
+        {
+          "info": {
+            "name": "List Templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hub.suprsend.com/v2/:workspace/template/",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "Workspace slug (e.g., `staging`, `production`)."
+              },
+              {
+                "name": "mode",
+                "value": "",
+                "type": "query",
+                "description": "Return draft or live version of templates."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination."
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search by template name or slug."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "ServiceToken <token>",
+              "value": "{{ServiceToken <token>}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve a paginated list of templates in a workspace. Returns template metadata including name, slug, status, enabled channels, and linked workflows."
+        },
+        {
+          "info": {
+            "name": "Get Template Detail",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hub.suprsend.com/v2/:workspace/template/:template_slug/",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "Workspace slug."
+              },
+              {
+                "name": "template_slug",
+                "value": "",
+                "type": "path",
+                "description": "Unique template slug."
+              },
+              {
+                "name": "mode",
+                "value": "",
+                "type": "query",
+                "description": "Return draft or live version."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "ServiceToken <token>",
+              "value": "{{ServiceToken <token>}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve detailed information about a specific template including its metadata, enabled channels, and version info."
+        },
+        {
+          "info": {
+            "name": "Create or Update Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://hub.suprsend.com/v2/:workspace/template/:template_slug/",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "Workspace slug."
+              },
+              {
+                "name": "template_slug",
+                "value": "",
+                "type": "path",
+                "description": "Unique template slug. Used as the identifier for the template."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "ServiceToken <token>",
+              "value": "{{ServiceToken <token>}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a new template or update an existing one. If the template slug already exists, the template metadata is updated. Changes are saved to the draft version.\n"
+        },
+        {
+          "info": {
+            "name": "List All Variants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hub.suprsend.com/v2/:workspace/template/:template_slug/variant/",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "Workspace slug."
+              },
+              {
+                "name": "template_slug",
+                "value": "",
+                "type": "path",
+                "description": "Template slug."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "ServiceToken <token>",
+              "value": "{{ServiceToken <token>}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve all variants across all channels for a template. Returns variant metadata, conditions, and content."
+        },
+        {
+          "info": {
+            "name": "List Channel Variants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hub.suprsend.com/v2/:workspace/template/:template_slug/channel/:channel/variant/",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "Workspace slug."
+              },
+              {
+                "name": "template_slug",
+                "value": "",
+                "type": "path",
+                "description": "Template slug."
+              },
+              {
+                "name": "channel",
+                "value": "",
+                "type": "path",
+                "description": "Channel slug."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "ServiceToken <token>",
+              "value": "{{ServiceToken <token>}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve all variants for a specific channel within a template."
+        },
+        {
+          "info": {
+            "name": "Get Variant Detail",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hub.suprsend.com/v2/:workspace/template/:template_slug/channel/:channel/variant/:variant_id/",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "template_slug",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "channel",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "variant_id",
+                "value": "",
+                "type": "path",
+                "description": "Variant identifier."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "ServiceToken <token>",
+              "value": "{{ServiceToken <token>}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve detailed information about a specific variant including its content, conditions, and vendor approval status."
+        },
+        {
+          "info": {
+            "name": "Create or Update Variant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://hub.suprsend.com/v2/:workspace/template/:template_slug/channel/:channel/variant/:variant_id/",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "template_slug",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "channel",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "variant_id",
+                "value": "",
+                "type": "path",
+                "description": "Variant identifier. If a variant with this ID doesn't exist, a new one is created."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "ServiceToken <token>",
+              "value": "{{ServiceToken <token>}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a new variant or update an existing one for a specific channel. Pass the variant content, conditions, locale, and optionally vendor approval details.\n\nThe `content` JSON structure is channel-specific. Refer to the [variant content schema](https://schema.suprsend.com/template/v2/variant_schema.json) for each channel's structure.\n"
+        },
+        {
+          "info": {
+            "name": "Get Mock Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hub.suprsend.com/v2/:workspace/template/:template_slug/mock_data/",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "template_slug",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "mode",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "ServiceToken <token>",
+              "value": "{{ServiceToken <token>}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve the mock data (input payload, recipient, tenant, actor settings) for a template. Used for previewing and testing."
+        },
+        {
+          "info": {
+            "name": "Update Mock Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://hub.suprsend.com/v2/:workspace/template/:template_slug/mock_data/",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "template_slug",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "ServiceToken <token>",
+              "value": "{{ServiceToken <token>}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update the mock data for a template. Sets the input payload, recipient, tenant, actor, and batching configuration used for previews and testing."
+        },
+        {
+          "info": {
+            "name": "Commit Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://hub.suprsend.com/v2/:workspace/template/:template_slug/commit/",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "template_slug",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "commit_message",
+                "value": "",
+                "type": "query",
+                "description": "Description of changes in this version."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "ServiceToken <token>",
+              "value": "{{ServiceToken <token>}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Commit the current draft version, making it live. All draft changes across all channels and variants are published as a new version.\n\nFor WhatsApp and SMS (DLT) variants, committing moves them to **Approval Pending** state instead of going live immediately.\n"
+        },
+        {
+          "info": {
+            "name": "Discard Variant",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://hub.suprsend.com/v2/:workspace/template/:template_slug/channel/:channel/variant/:variant_id/discard/",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "template_slug",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "channel",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "variant_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "mode",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "ServiceToken <token>",
+              "value": "{{ServiceToken <token>}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Discard a variant that is in approval-pending state. Only applicable for WhatsApp and SMS channels that require vendor approval. The variant returns to draft state.\n"
+        },
+        {
+          "info": {
+            "name": "Add or Update Vendor Approval",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://hub.suprsend.com/v2/:workspace/template/:template_slug/channel/:channel/variant/:variant_id/vendor_approval/",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "template_slug",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "channel",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "variant_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "mode",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "ServiceToken <token>",
+              "value": "{{ServiceToken <token>}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Add or update a vendor approval entry for a WhatsApp or SMS variant. Use this to record approval status from the vendor portal, including the vendor template ID and name.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

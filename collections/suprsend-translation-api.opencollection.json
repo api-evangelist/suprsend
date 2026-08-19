@@ -1,0 +1,262 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SuprSend Broadcast Translation API",
+    "version": "1.2.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Translation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Translations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hub.suprsend.com/v1/:workspace/translation/",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "Workspace slug (staging, production, etc.)"
+              },
+              {
+                "name": "mode",
+                "value": "",
+                "type": "query",
+                "description": "Mode to filter translations (draft or live). By default, draft translations are returned."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results per page"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to skip"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "ServiceToken <token>",
+              "value": "{{ServiceToken <token>}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve a list of translation files in a workspace. By default, returns draft translations. Use the mode query parameter to filter by draft or live translations."
+        },
+        {
+          "info": {
+            "name": "Get Translation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hub.suprsend.com/v1/:workspace/translation/content/:locale_file/",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "locale_file",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "mode",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "ServiceToken <token>",
+              "value": "{{ServiceToken <token>}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve the content of a translation file for a specific locale file."
+        },
+        {
+          "info": {
+            "name": "Add Translation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://hub.suprsend.com/v1/:workspace/translation/content/:locale_file/",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "Workspace slug (staging, production, etc.)"
+              },
+              {
+                "name": "locale_file",
+                "value": "",
+                "type": "path",
+                "description": "Locale file name (e.g., \"fr.json\", \"es-MX.json\", \"auth.en.json\")"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "ServiceToken <token>",
+              "value": "{{ServiceToken <token>}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Upload or create a new translation file. The file content should be valid JSON following the translation file structure."
+        },
+        {
+          "info": {
+            "name": "Delete Translation",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://hub.suprsend.com/v1/:workspace/translation/content/:locale_file/",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "Workspace slug (staging, production, etc.)"
+              },
+              {
+                "name": "locale_file",
+                "value": "fr.json",
+                "type": "path",
+                "description": "Locale file name (e.g., \"fr.json\", \"es-MX.json\", \"auth.en.json\")"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "ServiceToken <token>",
+              "value": "{{ServiceToken <token>}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Marks a file for deletion in the next commit. Actual deletion will happen when you commit the draft."
+        },
+        {
+          "info": {
+            "name": "Get Translation History",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hub.suprsend.com/v1/:workspace/translation/version/:version/",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "Workspace slug (staging, production, etc.)"
+              },
+              {
+                "name": "version",
+                "value": "1",
+                "type": "path",
+                "description": "Version number to retrieve"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "ServiceToken <token>",
+              "value": "{{ServiceToken <token>}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve version history information for translations, including all versions and their details."
+        },
+        {
+          "info": {
+            "name": "Rollback Translation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://hub.suprsend.com/v1/:workspace/translation/version/:version_no/rollback/",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "Workspace slug (staging, production, etc.)"
+              },
+              {
+                "name": "version_no",
+                "value": "1",
+                "type": "path",
+                "description": "Version number to rollback to"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "ServiceToken <token>",
+              "value": "{{ServiceToken <token>}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Rollback translations to a previous version. This will replace all files with what was available at the previous version."
+        },
+        {
+          "info": {
+            "name": "Commit Translation",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://hub.suprsend.com/v1/:workspace/translation/commit/",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "Workspace slug (staging, production, etc.)"
+              },
+              {
+                "name": "commit_message",
+                "value": "",
+                "type": "query",
+                "description": "Commit message describing the changes"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "ServiceToken <token>",
+              "value": "{{ServiceToken <token>}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Commit all files changes to make them live."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

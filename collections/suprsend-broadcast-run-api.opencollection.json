@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SuprSend Broadcast Broadcast Run API",
+    "version": "1.2.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Broadcast Run",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cancel Broadcast",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://hub.suprsend.com/v1/broadcast_run/cancel/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to cancel a running broadcast execution. You can cancel a broadcast by passing any combination of filters in the request body. When multiple parameters are provided, they are **ANDed** together to narrow down the matching broadcast runs.\n\nFor example, passing both `list_id` and `idempotency_key` will cancel only the broadcast runs that match both the given list and idempotency key.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

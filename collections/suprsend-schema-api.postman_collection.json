@@ -1,0 +1,1318 @@
+{
+  "item": [
+    {
+      "id": "44f39a55-f630-45dc-88ec-a7f14722816e",
+      "name": "Schema",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5481e6c1-7ad0-4395-af48-396494120b57",
+          "name": "List Schemas",
+          "request": {
+            "name": "List Schemas",
+            "description": {
+              "content": "Retrieve a list of schemas in a workspace.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "v1",
+                ":workspace",
+                "schema",
+                ""
+              ],
+              "host": [
+                "management-api",
+                "suprsend",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "mode",
+                  "value": "draft",
+                  "description": "Specify if you want to fetch draft or live schema."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) Workspace slug (staging, production, etc.)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "ServiceToken <token>"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "62c31430-0d47-434c-97f1-5acfacaacd72",
+              "name": "Successfully retrieved list of schemas",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "schema",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "mode",
+                      "value": "draft"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (staging, production, etc.)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"count\": 5,\n    \"limit\": 10,\n    \"offset\": 0\n  },\n  \"results\": [\n    {\n      \"slug\": \"new-order-placed\",\n      \"name\": \"Order Placed Event\",\n      \"description\": \"Schema for order placement action\",\n      \"status\": \"draft\",\n      \"hash\": \"382b707d4b1f8999a1xxxxxxxx\",\n      \"json_schema\": {\n        \"type\": \"object\",\n        \"$schema\": \"https://json-schema.org/draft/2020-12/schema\",\n        \"required\": [\n          \"order_id\",\n          \"amount\"\n        ],\n        \"properties\": {\n          \"order_id\": {\n            \"type\": \"string\"\n          },\n          \"amount\": {\n            \"type\": \"string\"\n          }\n        },\n        \"additionalProperties\": true\n      },\n      \"created_at\": \"2025-08-27T09:30:57.945326Z\",\n      \"updated_at\": \"2025-08-29T15:37:37.650177Z\",\n      \"committed_at\": null,\n      \"commit_message\": null\n    },\n    {\n      \"slug\": \"new-order-placed\",\n      \"name\": \"Order Placed Event\",\n      \"description\": \"Schema for order placement action\",\n      \"status\": \"draft\",\n      \"hash\": \"382b707d4b1f8999a1xxxxxxxx\",\n      \"json_schema\": {\n        \"type\": \"object\",\n        \"$schema\": \"https://json-schema.org/draft/2020-12/schema\",\n        \"required\": [\n          \"order_id\",\n          \"amount\"\n        ],\n        \"properties\": {\n          \"order_id\": {\n            \"type\": \"string\"\n          },\n          \"amount\": {\n            \"type\": \"string\"\n          }\n        },\n        \"additionalProperties\": true\n      },\n      \"created_at\": \"2025-08-27T09:30:57.945326Z\",\n      \"updated_at\": \"2025-08-29T15:37:37.650177Z\",\n      \"committed_at\": null,\n      \"commit_message\": null\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ba4a34d6-d7ba-4676-a734-2e9c95a3f5d1",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "schema",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "mode",
+                      "value": "draft"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (staging, production, etc.)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"error_code\": \"authentication_failed\",\n  \"type\": \"AuthenticationFailed\",\n  \"message\": \"Invalid service token.\",\n  \"detail\": \"Invalid service token.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "590d7873-713f-408f-b80a-6ff937c2ce1a",
+              "name": "Schema not found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "schema",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "mode",
+                      "value": "draft"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (staging, production, etc.)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"error_code\": \"not_found\",\n  \"type\": \"NotFound\",\n  \"message\": \"workspace 'demo' not found\",\n  \"detail\": \"workspace 'demo' not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "77ccece2-362b-4ffe-b38d-96b1056f22fa",
+          "name": "Get Schema",
+          "request": {
+            "name": "Get Schema",
+            "description": {
+              "content": "Fetch the JSON schema corresponding to a slug.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "v1",
+                ":workspace",
+                "schema",
+                ":schema_slug",
+                ""
+              ],
+              "host": [
+                "management-api",
+                "suprsend",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "mode",
+                  "value": "draft",
+                  "description": "Mode to fetch schema (draft or live). By default, draft schema is returned."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) Workspace slug (staging, production, etc.)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "schema_slug",
+                  "description": "(Required) Unique identifier of the schema"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "ServiceToken <token>"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d1c90788-c867-444f-9ffe-e2c93ed785d6",
+              "name": "Successfully retrieved schema object",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "schema",
+                    ":schema_slug",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "mode",
+                      "value": "draft"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (staging, production, etc.)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "schema_slug",
+                      "description": "(Required) Unique identifier of the schema"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"slug\": \"new-order-placed\",\n  \"name\": \"Order Placed Event\",\n  \"description\": \"Schema for order placement action\",\n  \"status\": \"draft\",\n  \"hash\": \"382b707d4b1f8999a1xxxxxxxx\",\n  \"json_schema\": {\n    \"type\": \"object\",\n    \"$schema\": \"https://json-schema.org/draft/2020-12/schema\",\n    \"required\": [\n      \"order_id\",\n      \"amount\"\n    ],\n    \"properties\": {\n      \"order_id\": {\n        \"type\": \"string\"\n      },\n      \"amount\": {\n        \"type\": \"string\"\n      }\n    },\n    \"additionalProperties\": true\n  },\n  \"created_at\": \"2025-08-27T09:30:57.945326Z\",\n  \"updated_at\": \"2025-08-29T15:37:37.650177Z\",\n  \"committed_at\": null,\n  \"commit_message\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3ab2f645-08f5-4aca-a65d-e35cc18ac25c",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "schema",
+                    ":schema_slug",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "mode",
+                      "value": "draft"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (staging, production, etc.)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "schema_slug",
+                      "description": "(Required) Unique identifier of the schema"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"error_code\": \"authentication_failed\",\n  \"type\": \"AuthenticationFailed\",\n  \"message\": \"Invalid service token.\",\n  \"detail\": \"Invalid service token.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5f90f255-3c56-4419-a5cf-5c56151c9a0a",
+              "name": "Schema not found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "schema",
+                    ":schema_slug",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "mode",
+                      "value": "draft"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (staging, production, etc.)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "schema_slug",
+                      "description": "(Required) Unique identifier of the schema"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"error_code\": \"not_found\",\n  \"type\": \"NotFound\",\n  \"message\": \"workspace 'staging4' not found\",\n  \"detail\": \"workspace 'staging4' not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ca49b496-2a85-4b59-9cd7-10932a082976",
+          "name": "Create/Update Schema",
+          "request": {
+            "name": "Create/Update Schema",
+            "description": {
+              "content": "Upset draft version of a JSON schema. Creates a new schema if it doesn't exist.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "v1",
+                ":workspace",
+                "schema",
+                ":schema_slug",
+                ""
+              ],
+              "host": [
+                "management-api",
+                "suprsend",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "commit",
+                  "value": "false",
+                  "description": "Set to true to commit the schema immediately after creation/update"
+                },
+                {
+                  "disabled": false,
+                  "key": "commit_message",
+                  "value": "<string>",
+                  "description": "Commit message describing the changes (required when commit=true)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) Workspace slug (staging, production, etc.)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "schema_slug",
+                  "description": "(Required) Unique identifier of the schema"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "ServiceToken <token>"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"json_schema\": \"<object>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9f3ebb96-d718-4fb7-8d13-590a9e598c3e",
+              "name": "Successfully retrieved schema object",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "schema",
+                    ":schema_slug",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "commit",
+                      "value": "false"
+                    },
+                    {
+                      "key": "commit_message",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (staging, production, etc.)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "schema_slug",
+                      "description": "(Required) Unique identifier of the schema"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Order Placed Event\",\n  \"description\": \"Schema for order placement action\",\n  \"json_schema\": {\n    \"type\": \"object\",\n    \"$schema\": \"https://json-schema.org/draft/2020-12/schema\",\n    \"required\": [\n      \"order_id\",\n      \"amount\"\n    ],\n    \"properties\": {\n      \"order_id\": {\n        \"type\": \"string\"\n      },\n      \"amount\": {\n        \"type\": \"string\"\n      }\n    },\n    \"additionalProperties\": true\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"slug\": \"new-order-placed\",\n  \"name\": \"Order Placed Event\",\n  \"description\": \"Schema for order placement action\",\n  \"status\": \"draft\",\n  \"hash\": \"382b707d4b1f8999a1xxxxxxxx\",\n  \"json_schema\": {\n    \"type\": \"object\",\n    \"$schema\": \"https://json-schema.org/draft/2020-12/schema\",\n    \"required\": [\n      \"order_id\",\n      \"amount\"\n    ],\n    \"properties\": {\n      \"order_id\": {\n        \"type\": \"string\"\n      },\n      \"amount\": {\n        \"type\": \"string\"\n      }\n    },\n    \"additionalProperties\": true\n  },\n  \"created_at\": \"2025-08-27T09:30:57.945326Z\",\n  \"updated_at\": \"2025-08-29T15:37:37.650177Z\",\n  \"commit_result\": {\n    \"is_committed\": false,\n    \"errors\": [\n      \"hash: no uncommitted changes found\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "38783b88-67eb-432f-9421-dfd2490069f9",
+              "name": "Invalid schema format",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "schema",
+                    ":schema_slug",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "commit",
+                      "value": "false"
+                    },
+                    {
+                      "key": "commit_message",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (staging, production, etc.)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "schema_slug",
+                      "description": "(Required) Unique identifier of the schema"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Order Placed Event\",\n  \"description\": \"Schema for order placement action\",\n  \"json_schema\": {\n    \"type\": \"object\",\n    \"$schema\": \"https://json-schema.org/draft/2020-12/schema\",\n    \"required\": [\n      \"order_id\",\n      \"amount\"\n    ],\n    \"properties\": {\n      \"order_id\": {\n        \"type\": \"string\"\n      },\n      \"amount\": {\n        \"type\": \"string\"\n      }\n    },\n    \"additionalProperties\": true\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 400,\n  \"error_code\": \"error\",\n  \"type\": \"ValidationError\",\n  \"message\": \"{\\\"json_schema\\\": [\\\"Schema looks like JSON data, not a JSON Schema. Include keywords like '$schema', 'type', 'properties', or '$defs'.\\\"]}\",\n  \"detail\": {\n    \"json_schema\": [\n      \"Schema looks like JSON data, not a JSON Schema. Include keywords like '$schema', 'type', 'properties', or '$defs'.\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4d55d083-72ee-4c1c-8528-ec978e013362",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "schema",
+                    ":schema_slug",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "commit",
+                      "value": "false"
+                    },
+                    {
+                      "key": "commit_message",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (staging, production, etc.)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "schema_slug",
+                      "description": "(Required) Unique identifier of the schema"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Order Placed Event\",\n  \"description\": \"Schema for order placement action\",\n  \"json_schema\": {\n    \"type\": \"object\",\n    \"$schema\": \"https://json-schema.org/draft/2020-12/schema\",\n    \"required\": [\n      \"order_id\",\n      \"amount\"\n    ],\n    \"properties\": {\n      \"order_id\": {\n        \"type\": \"string\"\n      },\n      \"amount\": {\n        \"type\": \"string\"\n      }\n    },\n    \"additionalProperties\": true\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"error_code\": \"authentication_failed\",\n  \"type\": \"AuthenticationFailed\",\n  \"message\": \"Invalid service token.\",\n  \"detail\": \"Invalid service token.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4e71c8f8-e0ca-4c8c-8944-a93d3658cb1d",
+              "name": "Schema not found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "schema",
+                    ":schema_slug",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "commit",
+                      "value": "false"
+                    },
+                    {
+                      "key": "commit_message",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (staging, production, etc.)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "schema_slug",
+                      "description": "(Required) Unique identifier of the schema"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Order Placed Event\",\n  \"description\": \"Schema for order placement action\",\n  \"json_schema\": {\n    \"type\": \"object\",\n    \"$schema\": \"https://json-schema.org/draft/2020-12/schema\",\n    \"required\": [\n      \"order_id\",\n      \"amount\"\n    ],\n    \"properties\": {\n      \"order_id\": {\n        \"type\": \"string\"\n      },\n      \"amount\": {\n        \"type\": \"string\"\n      }\n    },\n    \"additionalProperties\": true\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"error_code\": \"not_found\",\n  \"type\": \"NotFound\",\n  \"message\": \"workspace 'staging4' not found\",\n  \"detail\": \"workspace 'staging4' not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ec2d32bb-29ab-4d1e-b03c-cb5972b623fe",
+          "name": "Commit Schema",
+          "request": {
+            "name": "Commit Schema",
+            "description": {
+              "content": "Commit a draft schema to make it live. Changes will start to take effect as soon as it's live.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "v1",
+                ":workspace",
+                "schema",
+                ":schema_slug",
+                "commit",
+                ""
+              ],
+              "host": [
+                "management-api",
+                "suprsend",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "commit_message",
+                  "value": "<string>",
+                  "description": "Commit message describing the changes"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) Workspace slug (staging, production, etc.)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "schema_slug",
+                  "description": "(Required) Unique identifier of the schema"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "ServiceToken <token>"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "852e6316-5f59-4663-90f6-61d403a5d27e",
+              "name": "Successfully retrieved schema object",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "schema",
+                    ":schema_slug",
+                    "commit",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "commit_message",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (staging, production, etc.)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "schema_slug",
+                      "description": "(Required) Unique identifier of the schema"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"slug\": \"new-order-placed\",\n  \"name\": \"Order Placed Event\",\n  \"description\": \"Schema for order placement action\",\n  \"status\": \"live\",\n  \"hash\": \"382b707d4b1f8999a1xxxxxxxx\",\n  \"json_schema\": {\n    \"type\": \"object\",\n    \"$schema\": \"https://json-schema.org/draft/2020-12/schema\",\n    \"required\": [\n      \"order_id\",\n      \"amount\"\n    ],\n    \"properties\": {\n      \"order_id\": {\n        \"type\": \"string\"\n      },\n      \"amount\": {\n        \"type\": \"string\"\n      }\n    },\n    \"additionalProperties\": true\n  },\n  \"created_at\": \"2025-08-27T09:30:57.945326Z\",\n  \"updated_at\": \"2025-08-29T15:37:37.650177Z\",\n  \"committed_at\": \"2025-09-01T18:35:00.270698Z\",\n  \"commit_message\": \"required fields updated\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a8dfd373-e5df-408a-ba2d-da093bfe0e95",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "schema",
+                    ":schema_slug",
+                    "commit",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "commit_message",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (staging, production, etc.)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "schema_slug",
+                      "description": "(Required) Unique identifier of the schema"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"error_code\": \"authentication_failed\",\n  \"type\": \"AuthenticationFailed\",\n  \"message\": \"Invalid service token.\",\n  \"detail\": \"Invalid service token.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d1768225-605c-4907-a68e-505690676e0c",
+              "name": "Schema not found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    ":workspace",
+                    "schema",
+                    ":schema_slug",
+                    "commit",
+                    ""
+                  ],
+                  "host": [
+                    "management-api",
+                    "suprsend",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "commit_message",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace slug (staging, production, etc.)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "schema_slug",
+                      "description": "(Required) Unique identifier of the schema"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ServiceToken <token>",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"error_code\": \"not_found\",\n  \"type\": \"NotFound\",\n  \"message\": \"workspace 'staging4' not found\",\n  \"detail\": \"workspace 'staging4' not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://hub.suprsend.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b07e7748-8421-4e9f-a654-8edc6668785c",
+    "name": "SuprSend Broadcast Schema API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs supported on suprsend platform",
+      "type": "text/plain"
+    }
+  }
+}

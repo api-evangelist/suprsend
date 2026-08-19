@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SuprSend Broadcast Workflow Run API",
+    "version": "1.2.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Workflow Run",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cancel Workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://hub.suprsend.com/v1/workflow_run/cancel/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to cancel a running workflow execution. You can cancel a workflow by passing any combination of filters in the request body. When multiple parameters are provided, they are **ANDed** together to narrow down the matching workflow runs.\n\nFor example, passing both `workflow_slug` and `recipients` will cancel only the workflow runs that match both the given slug and recipients.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

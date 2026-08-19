@@ -1,0 +1,502 @@
+{
+  "item": [
+    {
+      "id": "eb67d826-2de3-4e24-a9ed-6fed449987a6",
+      "name": "Trigger",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a5836428-e80d-4e57-8b3e-2c154a34f1c6",
+          "name": "Dynamic Workflow Trigger",
+          "request": {
+            "name": "Dynamic Workflow Trigger",
+            "description": {
+              "content": "API to dynamically create and trigger a single step workflow.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":workspace_key",
+                "trigger",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace_key",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"_workflow_name_\",\n  \"template\": \"_template_slug_\",\n  \"notification_category\": \"transactional\",\n  \"users\": [\n    {\n      \"distinct_id\": \"_distinct_id_\",\n      \"$androidpush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$iospush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$slack\": [\n        {\n          \"email\": \"<email>\",\n          \"access_token\": \"<string>\"\n        },\n        {\n          \"email\": \"<email>\",\n          \"access_token\": \"<string>\"\n        }\n      ],\n      \"$ms_teams\": [\n        {\n          \"tenant_id\": \"<string>\",\n          \"service_url\": \"<uri>\",\n          \"conversation_id\": \"<string>\"\n        },\n        {\n          \"tenant_id\": \"<string>\",\n          \"service_url\": \"<uri>\",\n          \"conversation_id\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"distinct_id\": \"_distinct_id_\",\n      \"$androidpush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$iospush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$slack\": [\n        {\n          \"email\": \"<email>\",\n          \"access_token\": \"<string>\"\n        },\n        {\n          \"email\": \"<email>\",\n          \"access_token\": \"<string>\"\n        }\n      ],\n      \"$ms_teams\": [\n        {\n          \"tenant_id\": \"<string>\",\n          \"service_url\": \"<uri>\",\n          \"conversation_id\": \"<string>\"\n        },\n        {\n          \"tenant_id\": \"<string>\",\n          \"service_url\": \"<uri>\",\n          \"conversation_id\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"data\": {\n    \"$attachments\": [\n      {\n        \"url\": \"<uri>\",\n        \"filename\": \"<string>\",\n        \"ignore_if_error\": \"<boolean>\"\n      },\n      {\n        \"url\": \"<uri>\",\n        \"filename\": \"<string>\",\n        \"ignore_if_error\": \"<boolean>\"\n      }\n    ]\n  },\n  \"delivery\": {\n    \"smart\": false,\n    \"success\": \"seen\",\n    \"time_to_live\": \"<string>\",\n    \"mandatory_channels\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"delay\": \"<string>\",\n  \"trigger_at\": \"<date>\",\n  \"tenant_id\": \"<string>\",\n  \"$idempotency_key\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0794ca1c-8b16-4184-9eb1-f33b3b33fe7b",
+              "name": "202",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":workspace_key",
+                    "trigger",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace_key",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"_workflow_name_\",\n  \"template\": \"_template_slug_\",\n  \"notification_category\": \"transactional\",\n  \"users\": [\n    {\n      \"distinct_id\": \"_distinct_id_\",\n      \"$androidpush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$iospush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$slack\": [\n        {\n          \"email\": \"user@example.com\",\n          \"access_token\": \"xoxb-XXXXXXXX\"\n        },\n        {\n          \"email\": \"user@example.com\",\n          \"access_token\": \"xoxb-XXXXXXXX\"\n        }\n      ],\n      \"$ms_teams\": [\n        {\n          \"tenant_id\": \"c1981ab2-9aaf-xxxx-xxxx\",\n          \"service_url\": \"https://smba.trafficmanager.net/amer\",\n          \"conversation_id\": \"19:c1524d7c-a06f-456f-8abe-xxxx\"\n        },\n        {\n          \"tenant_id\": \"c1981ab2-9aaf-xxxx-xxxx\",\n          \"service_url\": \"https://smba.trafficmanager.net/amer\",\n          \"conversation_id\": \"19:c1524d7c-a06f-456f-8abe-xxxx\"\n        }\n      ]\n    },\n    {\n      \"distinct_id\": \"_distinct_id_\",\n      \"$androidpush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$iospush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$slack\": [\n        {\n          \"email\": \"user@example.com\",\n          \"access_token\": \"xoxb-XXXXXXXX\"\n        },\n        {\n          \"email\": \"user@example.com\",\n          \"access_token\": \"xoxb-XXXXXXXX\"\n        }\n      ],\n      \"$ms_teams\": [\n        {\n          \"tenant_id\": \"c1981ab2-9aaf-xxxx-xxxx\",\n          \"service_url\": \"https://smba.trafficmanager.net/amer\",\n          \"conversation_id\": \"19:c1524d7c-a06f-456f-8abe-xxxx\"\n        },\n        {\n          \"tenant_id\": \"c1981ab2-9aaf-xxxx-xxxx\",\n          \"service_url\": \"https://smba.trafficmanager.net/amer\",\n          \"conversation_id\": \"19:c1524d7c-a06f-456f-8abe-xxxx\"\n        }\n      ]\n    }\n  ],\n  \"data\": {\n    \"$attachments\": [\n      {\n        \"url\": \"https://bitcoincore.org/bitcoin.pdf\",\n        \"filename\": \"billing.pdf\",\n        \"ignore_if_error\": \"<boolean>\"\n      },\n      {\n        \"url\": \"https://bitcoincore.org/bitcoin.pdf\",\n        \"filename\": \"billing.pdf\",\n        \"ignore_if_error\": \"<boolean>\"\n      }\n    ],\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\",\n    \"key_3\": \"<string>\"\n  },\n  \"delivery\": {\n    \"smart\": false,\n    \"success\": \"seen\",\n    \"time_to_live\": \"<string>\",\n    \"mandatory_channels\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"delay\": \"<string>\",\n  \"trigger_at\": \"<date>\",\n  \"tenant_id\": \"<string>\",\n  \"$idempotency_key\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"Accepted - OK\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8325645b-6eca-45c2-aa5e-36169436d4b6",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":workspace_key",
+                    "trigger",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace_key",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"_workflow_name_\",\n  \"template\": \"_template_slug_\",\n  \"notification_category\": \"transactional\",\n  \"users\": [\n    {\n      \"distinct_id\": \"_distinct_id_\",\n      \"$androidpush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$iospush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$slack\": [\n        {\n          \"email\": \"user@example.com\",\n          \"access_token\": \"xoxb-XXXXXXXX\"\n        },\n        {\n          \"email\": \"user@example.com\",\n          \"access_token\": \"xoxb-XXXXXXXX\"\n        }\n      ],\n      \"$ms_teams\": [\n        {\n          \"tenant_id\": \"c1981ab2-9aaf-xxxx-xxxx\",\n          \"service_url\": \"https://smba.trafficmanager.net/amer\",\n          \"conversation_id\": \"19:c1524d7c-a06f-456f-8abe-xxxx\"\n        },\n        {\n          \"tenant_id\": \"c1981ab2-9aaf-xxxx-xxxx\",\n          \"service_url\": \"https://smba.trafficmanager.net/amer\",\n          \"conversation_id\": \"19:c1524d7c-a06f-456f-8abe-xxxx\"\n        }\n      ]\n    },\n    {\n      \"distinct_id\": \"_distinct_id_\",\n      \"$androidpush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$iospush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$slack\": [\n        {\n          \"email\": \"user@example.com\",\n          \"access_token\": \"xoxb-XXXXXXXX\"\n        },\n        {\n          \"email\": \"user@example.com\",\n          \"access_token\": \"xoxb-XXXXXXXX\"\n        }\n      ],\n      \"$ms_teams\": [\n        {\n          \"tenant_id\": \"c1981ab2-9aaf-xxxx-xxxx\",\n          \"service_url\": \"https://smba.trafficmanager.net/amer\",\n          \"conversation_id\": \"19:c1524d7c-a06f-456f-8abe-xxxx\"\n        },\n        {\n          \"tenant_id\": \"c1981ab2-9aaf-xxxx-xxxx\",\n          \"service_url\": \"https://smba.trafficmanager.net/amer\",\n          \"conversation_id\": \"19:c1524d7c-a06f-456f-8abe-xxxx\"\n        }\n      ]\n    }\n  ],\n  \"data\": {\n    \"$attachments\": [\n      {\n        \"url\": \"https://bitcoincore.org/bitcoin.pdf\",\n        \"filename\": \"billing.pdf\",\n        \"ignore_if_error\": \"<boolean>\"\n      },\n      {\n        \"url\": \"https://bitcoincore.org/bitcoin.pdf\",\n        \"filename\": \"billing.pdf\",\n        \"ignore_if_error\": \"<boolean>\"\n      }\n    ],\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\",\n    \"key_3\": \"<string>\"\n  },\n  \"delivery\": {\n    \"smart\": false,\n    \"success\": \"seen\",\n    \"time_to_live\": \"<string>\",\n    \"mandatory_channels\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"delay\": \"<string>\",\n  \"trigger_at\": \"<date>\",\n  \"tenant_id\": \"<string>\",\n  \"$idempotency_key\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"fail\",\n  \"message\": \"BAD REQUEST\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1b900cdd-102f-4550-bb0a-8bf87479bad9",
+          "name": "Trigger Workflow (single or bulk)",
+          "request": {
+            "name": "Trigger Workflow (single or bulk)",
+            "description": {
+              "content": "API to trigger multi-step workflow to one or more users/objects by passing workflow slug, via `POST /trigger/`.\n\nSend a single JSON **object** to trigger one workflow, or an array of objects to trigger multiple workflows in one call.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "trigger",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"workflow\": \"_workflow_slug_\",\n  \"recipients\": [\n    {\n      \"distinct_id\": \"id1\",\n      \"is_transient\": \"<boolean>\",\n      \"$channels\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$email\": [\n        \"<email>\",\n        \"<email>\"\n      ],\n      \"$sms\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$inbox\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$androidpush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$iospush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$slack\": [\n        {\n          \"email\": \"<email>\",\n          \"access_token\": \"<string>\"\n        },\n        {\n          \"email\": \"<email>\",\n          \"access_token\": \"<string>\"\n        }\n      ],\n      \"$ms_teams\": [\n        {\n          \"tenant_id\": \"<string>\",\n          \"service_url\": \"<uri>\",\n          \"conversation_id\": \"<string>\"\n        },\n        {\n          \"tenant_id\": \"<string>\",\n          \"service_url\": \"<uri>\",\n          \"conversation_id\": \"<string>\"\n        }\n      ],\n      \"$timezone\": \"<string>\",\n      \"$locale\": \"<string>\"\n    },\n    {\n      \"distinct_id\": \"id1\",\n      \"is_transient\": \"<boolean>\",\n      \"$channels\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$email\": [\n        \"<email>\",\n        \"<email>\"\n      ],\n      \"$sms\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$inbox\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$androidpush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$iospush\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"$slack\": [\n        {\n          \"email\": \"<email>\",\n          \"access_token\": \"<string>\"\n        },\n        {\n          \"email\": \"<email>\",\n          \"access_token\": \"<string>\"\n        }\n      ],\n      \"$ms_teams\": [\n        {\n          \"tenant_id\": \"<string>\",\n          \"service_url\": \"<uri>\",\n          \"conversation_id\": \"<string>\"\n        },\n        {\n          \"tenant_id\": \"<string>\",\n          \"service_url\": \"<uri>\",\n          \"conversation_id\": \"<string>\"\n        }\n      ],\n      \"$timezone\": \"<string>\",\n      \"$locale\": \"<string>\"\n    }\n  ],\n  \"actor\": {\n    \"is_transient\": \"<boolean>\",\n    \"distinct_id\": \"id1\"\n  },\n  \"data\": {\n    \"$attachments\": [\n      {\n        \"url\": \"<uri>\",\n        \"filename\": \"<string>\",\n        \"ignore_if_error\": \"<boolean>\"\n      },\n      {\n        \"url\": \"<uri>\",\n        \"filename\": \"<string>\",\n        \"ignore_if_error\": \"<boolean>\"\n      }\n    ],\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  },\n  \"tenant_id\": \"<string>\",\n  \"$idempotency_key\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "008e7d36-354f-4d22-a6e7-44e0e2fbec26",
+              "name": "202 - Accepted (returned for single workflow trigger requests).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trigger",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"workflow\": \"_workflow_slug_\",\n  \"recipients\": [\n    {\n      \"distinct_id\": \"id1\",\n      \"is_transient\": false,\n      \"$channels\": [\n        \"email\",\n        \"email\"\n      ],\n      \"$email\": [\n        \"john@example.com\",\n        \"john@example.com\"\n      ],\n      \"$sms\": [\n        \"+1234567890\",\n        \"+1234567890\"\n      ],\n      \"$inbox\": [\n        \"4nlPk4t4kurG5kChxxxx\",\n        \"4nlPk4t4kurG5kChxxxx\"\n      ],\n      \"$androidpush\": [\n        \"__android_push_token__\",\n        \"__android_push_token__\"\n      ],\n      \"$iospush\": [\n        \"__ios_push_token__\",\n        \"__ios_push_token__\"\n      ],\n      \"$slack\": [\n        {\n          \"email\": \"user@example.com\",\n          \"access_token\": \"xoxb-XXXXXXXX\"\n        },\n        {\n          \"email\": \"user@example.com\",\n          \"access_token\": \"xoxb-XXXXXXXX\"\n        }\n      ],\n      \"$ms_teams\": [\n        {\n          \"tenant_id\": \"c1981ab2-9aaf-xxxx-xxxx\",\n          \"service_url\": \"https://smba.trafficmanager.net/amer\",\n          \"conversation_id\": \"19:c1524d7c-a06f-456f-8abe-xxxx\"\n        },\n        {\n          \"tenant_id\": \"c1981ab2-9aaf-xxxx-xxxx\",\n          \"service_url\": \"https://smba.trafficmanager.net/amer\",\n          \"conversation_id\": \"19:c1524d7c-a06f-456f-8abe-xxxx\"\n        }\n      ],\n      \"$timezone\": \"America/New_York\",\n      \"$locale\": \"en_GB\"\n    },\n    {\n      \"distinct_id\": \"id1\",\n      \"is_transient\": true,\n      \"$channels\": [\n        \"email\",\n        \"email\"\n      ],\n      \"$email\": [\n        \"john@example.com\",\n        \"john@example.com\"\n      ],\n      \"$sms\": [\n        \"+1234567890\",\n        \"+1234567890\"\n      ],\n      \"$inbox\": [\n        \"4nlPk4t4kurG5kChxxxx\",\n        \"4nlPk4t4kurG5kChxxxx\"\n      ],\n      \"$androidpush\": [\n        \"__android_push_token__\",\n        \"__android_push_token__\"\n      ],\n      \"$iospush\": [\n        \"__ios_push_token__\",\n        \"__ios_push_token__\"\n      ],\n      \"$slack\": [\n        {\n          \"email\": \"user@example.com\",\n          \"access_token\": \"xoxb-XXXXXXXX\"\n        },\n        {\n          \"email\": \"user@example.com\",\n          \"access_token\": \"xoxb-XXXXXXXX\"\n        }\n      ],\n      \"$ms_teams\": [\n        {\n          \"tenant_id\": \"c1981ab2-9aaf-xxxx-xxxx\",\n          \"service_url\": \"https://smba.trafficmanager.net/amer\",\n          \"conversation_id\": \"19:c1524d7c-a06f-456f-8abe-xxxx\"\n        },\n        {\n          \"tenant_id\": \"c1981ab2-9aaf-xxxx-xxxx\",\n          \"service_url\": \"https://smba.trafficmanager.net/amer\",\n          \"conversation_id\": \"19:c1524d7c-a06f-456f-8abe-xxxx\"\n        }\n      ],\n      \"$timezone\": \"America/New_York\",\n      \"$locale\": \"en_GB\"\n    }\n  ],\n  \"actor\": {\n    \"is_transient\": true,\n    \"distinct_id\": \"id1\",\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"data\": {\n    \"$attachments\": [\n      {\n        \"url\": \"https://bitcoincore.org/bitcoin.pdf\",\n        \"filename\": \"billing.pdf\",\n        \"ignore_if_error\": true\n      },\n      {\n        \"url\": \"https://bitcoincore.org/bitcoin.pdf\",\n        \"filename\": \"billing.pdf\",\n        \"ignore_if_error\": true\n      }\n    ],\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"tenant_id\": \"string\",\n  \"$idempotency_key\": \"string\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message_id\": \"a1b2c3d4-e5f6-7890-abcd-ef0123456789\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a5a952e7-0f63-4393-912f-456c345f7e0b",
+              "name": "207 - Multi-Status (returned for bulk workflow trigger requests). Inspect each record's `status` and `error` for individual outcomes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trigger",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"workflow\": \"_workflow_slug_\",\n  \"recipients\": [\n    {\n      \"distinct_id\": \"id1\",\n      \"is_transient\": false,\n      \"$channels\": [\n        \"email\",\n        \"email\"\n      ],\n      \"$email\": [\n        \"john@example.com\",\n        \"john@example.com\"\n      ],\n      \"$sms\": [\n        \"+1234567890\",\n        \"+1234567890\"\n      ],\n      \"$inbox\": [\n        \"4nlPk4t4kurG5kChxxxx\",\n        \"4nlPk4t4kurG5kChxxxx\"\n      ],\n      \"$androidpush\": [\n        \"__android_push_token__\",\n        \"__android_push_token__\"\n      ],\n      \"$iospush\": [\n        \"__ios_push_token__\",\n        \"__ios_push_token__\"\n      ],\n      \"$slack\": [\n        {\n          \"email\": \"user@example.com\",\n          \"access_token\": \"xoxb-XXXXXXXX\"\n        },\n        {\n          \"email\": \"user@example.com\",\n          \"access_token\": \"xoxb-XXXXXXXX\"\n        }\n      ],\n      \"$ms_teams\": [\n        {\n          \"tenant_id\": \"c1981ab2-9aaf-xxxx-xxxx\",\n          \"service_url\": \"https://smba.trafficmanager.net/amer\",\n          \"conversation_id\": \"19:c1524d7c-a06f-456f-8abe-xxxx\"\n        },\n        {\n          \"tenant_id\": \"c1981ab2-9aaf-xxxx-xxxx\",\n          \"service_url\": \"https://smba.trafficmanager.net/amer\",\n          \"conversation_id\": \"19:c1524d7c-a06f-456f-8abe-xxxx\"\n        }\n      ],\n      \"$timezone\": \"America/New_York\",\n      \"$locale\": \"en_GB\"\n    },\n    {\n      \"distinct_id\": \"id1\",\n      \"is_transient\": true,\n      \"$channels\": [\n        \"email\",\n        \"email\"\n      ],\n      \"$email\": [\n        \"john@example.com\",\n        \"john@example.com\"\n      ],\n      \"$sms\": [\n        \"+1234567890\",\n        \"+1234567890\"\n      ],\n      \"$inbox\": [\n        \"4nlPk4t4kurG5kChxxxx\",\n        \"4nlPk4t4kurG5kChxxxx\"\n      ],\n      \"$androidpush\": [\n        \"__android_push_token__\",\n        \"__android_push_token__\"\n      ],\n      \"$iospush\": [\n        \"__ios_push_token__\",\n        \"__ios_push_token__\"\n      ],\n      \"$slack\": [\n        {\n          \"email\": \"user@example.com\",\n          \"access_token\": \"xoxb-XXXXXXXX\"\n        },\n        {\n          \"email\": \"user@example.com\",\n          \"access_token\": \"xoxb-XXXXXXXX\"\n        }\n      ],\n      \"$ms_teams\": [\n        {\n          \"tenant_id\": \"c1981ab2-9aaf-xxxx-xxxx\",\n          \"service_url\": \"https://smba.trafficmanager.net/amer\",\n          \"conversation_id\": \"19:c1524d7c-a06f-456f-8abe-xxxx\"\n        },\n        {\n          \"tenant_id\": \"c1981ab2-9aaf-xxxx-xxxx\",\n          \"service_url\": \"https://smba.trafficmanager.net/amer\",\n          \"conversation_id\": \"19:c1524d7c-a06f-456f-8abe-xxxx\"\n        }\n      ],\n      \"$timezone\": \"America/New_York\",\n      \"$locale\": \"en_GB\"\n    }\n  ],\n  \"actor\": {\n    \"is_transient\": true,\n    \"distinct_id\": \"id1\",\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"data\": {\n    \"$attachments\": [\n      {\n        \"url\": \"https://bitcoincore.org/bitcoin.pdf\",\n        \"filename\": \"billing.pdf\",\n        \"ignore_if_error\": true\n      },\n      {\n        \"url\": \"https://bitcoincore.org/bitcoin.pdf\",\n        \"filename\": \"billing.pdf\",\n        \"ignore_if_error\": true\n      }\n    ],\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"tenant_id\": \"string\",\n  \"$idempotency_key\": \"string\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Multi-Status (WebDAV) (RFC 4918)",
+              "code": 207,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"records\": [\n    {\n      \"status\": \"success\",\n      \"message_id\": \"a1b2c3d4-e5f6-7890-abcd-ef0123456789\",\n      \"status_code\": 202\n    },\n    {\n      \"status\": \"error\",\n      \"status_code\": 404,\n      \"error\": {\n        \"message\": \"workflow not found\",\n        \"type\": \"not_found\"\n      }\n    }\n  ],\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6efe767c-cf41-4ffc-8707-3a9b9354391d",
+              "name": "400 - Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trigger",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"workflow\": \"_workflow_slug_\",\n  \"recipients\": [\n    {\n      \"distinct_id\": \"id1\",\n      \"is_transient\": false,\n      \"$channels\": [\n        \"email\",\n        \"email\"\n      ],\n      \"$email\": [\n        \"john@example.com\",\n        \"john@example.com\"\n      ],\n      \"$sms\": [\n        \"+1234567890\",\n        \"+1234567890\"\n      ],\n      \"$inbox\": [\n        \"4nlPk4t4kurG5kChxxxx\",\n        \"4nlPk4t4kurG5kChxxxx\"\n      ],\n      \"$androidpush\": [\n        \"__android_push_token__\",\n        \"__android_push_token__\"\n      ],\n      \"$iospush\": [\n        \"__ios_push_token__\",\n        \"__ios_push_token__\"\n      ],\n      \"$slack\": [\n        {\n          \"email\": \"user@example.com\",\n          \"access_token\": \"xoxb-XXXXXXXX\"\n        },\n        {\n          \"email\": \"user@example.com\",\n          \"access_token\": \"xoxb-XXXXXXXX\"\n        }\n      ],\n      \"$ms_teams\": [\n        {\n          \"tenant_id\": \"c1981ab2-9aaf-xxxx-xxxx\",\n          \"service_url\": \"https://smba.trafficmanager.net/amer\",\n          \"conversation_id\": \"19:c1524d7c-a06f-456f-8abe-xxxx\"\n        },\n        {\n          \"tenant_id\": \"c1981ab2-9aaf-xxxx-xxxx\",\n          \"service_url\": \"https://smba.trafficmanager.net/amer\",\n          \"conversation_id\": \"19:c1524d7c-a06f-456f-8abe-xxxx\"\n        }\n      ],\n      \"$timezone\": \"America/New_York\",\n      \"$locale\": \"en_GB\"\n    },\n    {\n      \"distinct_id\": \"id1\",\n      \"is_transient\": true,\n      \"$channels\": [\n        \"email\",\n        \"email\"\n      ],\n      \"$email\": [\n        \"john@example.com\",\n        \"john@example.com\"\n      ],\n      \"$sms\": [\n        \"+1234567890\",\n        \"+1234567890\"\n      ],\n      \"$inbox\": [\n        \"4nlPk4t4kurG5kChxxxx\",\n        \"4nlPk4t4kurG5kChxxxx\"\n      ],\n      \"$androidpush\": [\n        \"__android_push_token__\",\n        \"__android_push_token__\"\n      ],\n      \"$iospush\": [\n        \"__ios_push_token__\",\n        \"__ios_push_token__\"\n      ],\n      \"$slack\": [\n        {\n          \"email\": \"user@example.com\",\n          \"access_token\": \"xoxb-XXXXXXXX\"\n        },\n        {\n          \"email\": \"user@example.com\",\n          \"access_token\": \"xoxb-XXXXXXXX\"\n        }\n      ],\n      \"$ms_teams\": [\n        {\n          \"tenant_id\": \"c1981ab2-9aaf-xxxx-xxxx\",\n          \"service_url\": \"https://smba.trafficmanager.net/amer\",\n          \"conversation_id\": \"19:c1524d7c-a06f-456f-8abe-xxxx\"\n        },\n        {\n          \"tenant_id\": \"c1981ab2-9aaf-xxxx-xxxx\",\n          \"service_url\": \"https://smba.trafficmanager.net/amer\",\n          \"conversation_id\": \"19:c1524d7c-a06f-456f-8abe-xxxx\"\n        }\n      ],\n      \"$timezone\": \"America/New_York\",\n      \"$locale\": \"en_GB\"\n    }\n  ],\n  \"actor\": {\n    \"is_transient\": true,\n    \"distinct_id\": \"id1\",\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"data\": {\n    \"$attachments\": [\n      {\n        \"url\": \"https://bitcoincore.org/bitcoin.pdf\",\n        \"filename\": \"billing.pdf\",\n        \"ignore_if_error\": true\n      },\n      {\n        \"url\": \"https://bitcoincore.org/bitcoin.pdf\",\n        \"filename\": \"billing.pdf\",\n        \"ignore_if_error\": true\n      }\n    ],\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"tenant_id\": \"string\",\n  \"$idempotency_key\": \"string\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"fail\",\n  \"message\": \"BAD REQUEST\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6d88c457-7b6d-4826-8ba1-afc3c26410c5",
+              "name": "404 - Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trigger",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"workflow\": \"_workflow_slug_\",\n  \"recipients\": [\n    {\n      \"distinct_id\": \"id1\",\n      \"is_transient\": false,\n      \"$channels\": [\n        \"email\",\n        \"email\"\n      ],\n      \"$email\": [\n        \"john@example.com\",\n        \"john@example.com\"\n      ],\n      \"$sms\": [\n        \"+1234567890\",\n        \"+1234567890\"\n      ],\n      \"$inbox\": [\n        \"4nlPk4t4kurG5kChxxxx\",\n        \"4nlPk4t4kurG5kChxxxx\"\n      ],\n      \"$androidpush\": [\n        \"__android_push_token__\",\n        \"__android_push_token__\"\n      ],\n      \"$iospush\": [\n        \"__ios_push_token__\",\n        \"__ios_push_token__\"\n      ],\n      \"$slack\": [\n        {\n          \"email\": \"user@example.com\",\n          \"access_token\": \"xoxb-XXXXXXXX\"\n        },\n        {\n          \"email\": \"user@example.com\",\n          \"access_token\": \"xoxb-XXXXXXXX\"\n        }\n      ],\n      \"$ms_teams\": [\n        {\n          \"tenant_id\": \"c1981ab2-9aaf-xxxx-xxxx\",\n          \"service_url\": \"https://smba.trafficmanager.net/amer\",\n          \"conversation_id\": \"19:c1524d7c-a06f-456f-8abe-xxxx\"\n        },\n        {\n          \"tenant_id\": \"c1981ab2-9aaf-xxxx-xxxx\",\n          \"service_url\": \"https://smba.trafficmanager.net/amer\",\n          \"conversation_id\": \"19:c1524d7c-a06f-456f-8abe-xxxx\"\n        }\n      ],\n      \"$timezone\": \"America/New_York\",\n      \"$locale\": \"en_GB\"\n    },\n    {\n      \"distinct_id\": \"id1\",\n      \"is_transient\": true,\n      \"$channels\": [\n        \"email\",\n        \"email\"\n      ],\n      \"$email\": [\n        \"john@example.com\",\n        \"john@example.com\"\n      ],\n      \"$sms\": [\n        \"+1234567890\",\n        \"+1234567890\"\n      ],\n      \"$inbox\": [\n        \"4nlPk4t4kurG5kChxxxx\",\n        \"4nlPk4t4kurG5kChxxxx\"\n      ],\n      \"$androidpush\": [\n        \"__android_push_token__\",\n        \"__android_push_token__\"\n      ],\n      \"$iospush\": [\n        \"__ios_push_token__\",\n        \"__ios_push_token__\"\n      ],\n      \"$slack\": [\n        {\n          \"email\": \"user@example.com\",\n          \"access_token\": \"xoxb-XXXXXXXX\"\n        },\n        {\n          \"email\": \"user@example.com\",\n          \"access_token\": \"xoxb-XXXXXXXX\"\n        }\n      ],\n      \"$ms_teams\": [\n        {\n          \"tenant_id\": \"c1981ab2-9aaf-xxxx-xxxx\",\n          \"service_url\": \"https://smba.trafficmanager.net/amer\",\n          \"conversation_id\": \"19:c1524d7c-a06f-456f-8abe-xxxx\"\n        },\n        {\n          \"tenant_id\": \"c1981ab2-9aaf-xxxx-xxxx\",\n          \"service_url\": \"https://smba.trafficmanager.net/amer\",\n          \"conversation_id\": \"19:c1524d7c-a06f-456f-8abe-xxxx\"\n        }\n      ],\n      \"$timezone\": \"America/New_York\",\n      \"$locale\": \"en_GB\"\n    }\n  ],\n  \"actor\": {\n    \"is_transient\": true,\n    \"distinct_id\": \"id1\",\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"data\": {\n    \"$attachments\": [\n      {\n        \"url\": \"https://bitcoincore.org/bitcoin.pdf\",\n        \"filename\": \"billing.pdf\",\n        \"ignore_if_error\": true\n      },\n      {\n        \"url\": \"https://bitcoincore.org/bitcoin.pdf\",\n        \"filename\": \"billing.pdf\",\n        \"ignore_if_error\": true\n      }\n    ],\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"tenant_id\": \"string\",\n  \"$idempotency_key\": \"string\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"fail\",\n  \"message\": \"workflow 'workflow_slug' not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://hub.suprsend.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c44c46a8-573e-4fcd-b5e6-d556f0b65f40",
+    "name": "SuprSend Broadcast Trigger API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs supported on suprsend platform",
+      "type": "text/plain"
+    }
+  }
+}

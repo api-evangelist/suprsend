@@ -1,0 +1,2320 @@
+{
+  "item": [
+    {
+      "id": "8b65c074-a217-4c57-8c1f-f8fb2253e3c6",
+      "name": "Subscriber List",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bc045ab4-bcd9-436c-8ff0-ec7d8a7222a2",
+          "name": "Remove Subscribers from List",
+          "request": {
+            "name": "Remove Subscribers from List",
+            "description": {
+              "content": "API to remove users from a list by passing their distinct_ids.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "subscriber_list",
+                ":list_id",
+                "subscriber",
+                "remove",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "_list_id_",
+                  "key": "list_id",
+                  "description": "(Required) Unique string identifier of the list to which user needs to be updated"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"distinct_ids\": [\n    \"_distinct_id1_\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "035cd745-7d80-485d-94b2-3fe780d8cf3b",
+              "name": "201",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "subscriber_list",
+                    ":list_id",
+                    "subscriber",
+                    "remove",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "_list_id_",
+                      "key": "list_id",
+                      "description": "(Required) Unique string identifier of the list to which user needs to be updated"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"distinct_ids\": [\n    \"_distinct_id1_\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"affected_count\": 0\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "10569ac8-48b5-4173-8728-1c8e62720b4a",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "subscriber_list",
+                    ":list_id",
+                    "subscriber",
+                    "remove",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "_list_id_",
+                      "key": "list_id",
+                      "description": "(Required) Unique string identifier of the list to which user needs to be updated"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"distinct_ids\": [\n    \"_distinct_id1_\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"error_code\": \"not_found\",\n  \"type\": \"NotFound\",\n  \"message\": \"list_id: _list_id_ not found\",\n  \"detail\": \"list_id: _list_id_ not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b49bb561-226d-4363-a0cd-d0c83c792a0d",
+          "name": "Get all Lists",
+          "request": {
+            "name": "Get all Lists",
+            "description": {
+              "content": "API to fetch a paginated list of all lists created in your workspace.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "subscriber_list",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "number of results to be returned in API response"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "starting position of tenant list"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7da45e5c-31bb-4304-bc67-4bfa54e8c2c5",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "subscriber_list",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"count\": 53,\n    \"limit\": 2,\n    \"offset\": 0\n  },\n  \"results\": [\n    {\n      \"drafts\": null,\n      \"source\": null,\n      \"status\": \"active\",\n      \"list_id\": \"list_01\",\n      \"list_name\": \"sample list 01\",\n      \"list_type\": \"static_list\",\n      \"created_at\": \"2025-04-04T07:33:06.943+00:00\",\n      \"updated_at\": \"2025-04-04T07:33:06.943+00:00\",\n      \"version_id\": null,\n      \"is_readonly\": false,\n      \"track_user_exit\": false,\n      \"list_description\": \"_some sample description_\",\n      \"track_user_entry\": false,\n      \"subscribers_count\": 0,\n      \"requested_for_delete\": false\n    },\n    {\n      \"drafts\": null,\n      \"source\": \"database_sync\",\n      \"status\": \"active\",\n      \"list_id\": \"list_02\",\n      \"list_name\": \"sample list 02\",\n      \"list_type\": \"static_list\",\n      \"created_at\": \"2024-12-20T12:09:28.727+00:00\",\n      \"updated_at\": \"2025-04-04T07:32:32.127275+00:00\",\n      \"version_id\": null,\n      \"is_readonly\": false,\n      \"track_user_exit\": true,\n      \"list_description\": \"_some sample description_\",\n      \"track_user_entry\": true,\n      \"subscribers_count\": 31,\n      \"requested_for_delete\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "899891da-9879-47c9-acf1-d5d7b4477cc2",
+              "name": "401",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "subscriber_list",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"Not Authenticated - could not find Workspace details\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f1d94181-50f3-45ef-b585-453470d0239c",
+          "name": "Create a List",
+          "request": {
+            "name": "Create a List",
+            "description": {
+              "content": "API to create / manage lists to send notification to a bulk list of users.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "subscriber_list",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"list_id\": \"_list_id_\",\n  \"list_name\": \"_list_name_\",\n  \"list_description\": \"_some sample description_\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bb19d6d4-24b7-4d9f-a854-6b237aee15a0",
+              "name": "201",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "subscriber_list",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"list_id\": \"_list_id_\",\n  \"list_name\": \"_list_name_\",\n  \"list_description\": \"_some sample description_\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"list_id\": \"product_updates\",\n  \"list_name\": \"Product Update\",\n  \"list_description\": \"Users subscribed to the newsletter\",\n  \"list_type\": \"static_list\",\n  \"subscribers_count\": 3,\n  \"source\": \"database_sync\",\n  \"is_readonly\": false,\n  \"status\": \"active\",\n  \"track_user_entry\": false,\n  \"track_user_exit\": false,\n  \"requested_for_delete\": false,\n  \"created_at\": \"2024-02-21T19:10:01.906000Z\",\n  \"updated_at\": \"2025-04-04T07:25:43.186475Z\",\n  \"drafts\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "69516cc2-d736-49c6-ae28-aa938e6594a9",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "subscriber_list",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"list_id\": \"_list_id_\",\n  \"list_name\": \"_list_name_\",\n  \"list_description\": \"_some sample description_\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 400,\n  \"error_code\": \"error\",\n  \"type\": \"ValidationError\",\n  \"message\": \"{\\\"list_id\\\": [\\\"This field may not be blank.\\\"]}\",\n  \"detail\": {\n    \"list_id\": [\n      \"This field may not be blank.\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e276654f-55df-4e9c-9902-9680a23ee07b",
+          "name": "Add Users to List",
+          "request": {
+            "name": "Add Users to List",
+            "description": {
+              "content": "API to add users to the list by passing their distinct_ids.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "subscriber_list",
+                ":list_id",
+                "subscriber",
+                "add",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "_list_id_",
+                  "key": "list_id",
+                  "description": "(Required) Unique string identifier of the list to which user needs to be updated"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"distinct_ids\": [\n    \"_distinct_id1_\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9181f9a2-4ea8-4696-88f5-4dc1910cdc3d",
+              "name": "201",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "subscriber_list",
+                    ":list_id",
+                    "subscriber",
+                    "add",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "_list_id_",
+                      "key": "list_id",
+                      "description": "(Required) Unique string identifier of the list to which user needs to be updated"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"distinct_ids\": [\n    \"_distinct_id1_\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"affected_count\": 0\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8d135fc3-adc4-402a-9956-ae2276b49671",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "subscriber_list",
+                    ":list_id",
+                    "subscriber",
+                    "add",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "_list_id_",
+                      "key": "list_id",
+                      "description": "(Required) Unique string identifier of the list to which user needs to be updated"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"distinct_ids\": [\n    \"_distinct_id1_\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"error_code\": \"not_found\",\n  \"type\": \"NotFound\",\n  \"message\": \"list_id: _list_id_ not found\",\n  \"detail\": \"list_id: _list_id_ not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5feafd3b-d491-4421-9d54-c2d3f79ce672",
+          "name": "Get List configuration",
+          "request": {
+            "name": "Get List configuration",
+            "description": {
+              "content": "API to fetch list metadata like list type, count, source, and status. Doesn't include users in the list.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "subscriber_list",
+                ":list_id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "_list_id_",
+                  "key": "list_id",
+                  "description": "(Required) Unique string identifier of the list."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4d32944f-8cff-4ee6-8ec7-d13f308d6e82",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "subscriber_list",
+                    ":list_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "_list_id_",
+                      "key": "list_id",
+                      "description": "(Required) Unique string identifier of the list."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"list_id\": \"product_updates\",\n  \"list_name\": \"Product Update\",\n  \"list_description\": \"Users subscribed to the newsletter\",\n  \"list_type\": \"static_list\",\n  \"subscribers_count\": 3,\n  \"source\": \"database_sync\",\n  \"is_readonly\": false,\n  \"status\": \"active\",\n  \"track_user_entry\": false,\n  \"track_user_exit\": false,\n  \"requested_for_delete\": false,\n  \"created_at\": \"2024-02-21T19:10:01.906000Z\",\n  \"updated_at\": \"2025-04-04T07:25:43.186475Z\",\n  \"drafts\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5c2ef3ed-0bea-4044-bbfa-6c4c0ada6d34",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "subscriber_list",
+                    ":list_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "_list_id_",
+                      "key": "list_id",
+                      "description": "(Required) Unique string identifier of the list."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"error_code\": \"not_found\",\n  \"type\": \"NotFound\",\n  \"message\": \"list_id: list_id_01 not found\",\n  \"detail\": \"list_id: list_id_01 not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "877f1e21-c292-4b50-ab86-97f9a5a4a2b6",
+          "name": "Delete List",
+          "request": {
+            "name": "Delete List",
+            "description": {
+              "content": "API to permanently delete a list.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "subscriber_list",
+                ":list_id",
+                "delete",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "list_id",
+                  "description": "(Required) Unique string identifier of the list which you want to delete"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8fc39d55-245d-4442-876d-ffeaa02a388f",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "subscriber_list",
+                    ":list_id",
+                    "delete",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "list_id",
+                      "description": "(Required) Unique string identifier of the list which you want to delete"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1f4e365c-d838-4918-a31f-ef946af6ac03",
+              "name": "404 - Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "subscriber_list",
+                    ":list_id",
+                    "delete",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "list_id",
+                      "description": "(Required) Unique string identifier of the list which you want to delete"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"error_code\": \"not_found\",\n  \"type\": \"NotFound\",\n  \"message\": \"list_id: <list_id> not found\",\n  \"detail\": \"list_id: <list_id> not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f8ea78f9-95d8-4ba5-900b-f0b602021a18",
+          "name": "Add Users to Draft List",
+          "request": {
+            "name": "Add Users to Draft List",
+            "description": {
+              "content": "API to add users in the draft list by passing its `version_id` returned in [Start Sync](/reference/start-sync) API response.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "subscriber_list",
+                ":list_id",
+                "version",
+                ":version_id",
+                "subscriber",
+                "add",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "_list_id_",
+                  "key": "list_id",
+                  "description": "(Required) Unique string identifier of the list to which user needs to be updated"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "__version_id__",
+                  "key": "version_id",
+                  "description": "(Required) Unique string identifier of the draft version of the list to which user needs to be updated"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"distinct_ids\": [\n    \"user1\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "66226ca9-9aa7-4ec9-8032-c6f4813e1b5b",
+              "name": "201",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "subscriber_list",
+                    ":list_id",
+                    "version",
+                    ":version_id",
+                    "subscriber",
+                    "add",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "_list_id_",
+                      "key": "list_id",
+                      "description": "(Required) Unique string identifier of the list to which user needs to be updated"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "__version_id__",
+                      "key": "version_id",
+                      "description": "(Required) Unique string identifier of the draft version of the list to which user needs to be updated"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"distinct_ids\": [\n    \"user1\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"affected_count\": 0\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "010021f6-14be-483c-ac00-bb21dc603f99",
+              "name": "404 - Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "subscriber_list",
+                    ":list_id",
+                    "version",
+                    ":version_id",
+                    "subscriber",
+                    "add",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "_list_id_",
+                      "key": "list_id",
+                      "description": "(Required) Unique string identifier of the list to which user needs to be updated"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "__version_id__",
+                      "key": "version_id",
+                      "description": "(Required) Unique string identifier of the draft version of the list to which user needs to be updated"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"distinct_ids\": [\n    \"user1\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"error_code\": \"not_found\",\n  \"type\": \"NotFound\",\n  \"message\": \"version_id 01JR6PCW8H9K3H40XZV4 not found for list_id 123\",\n  \"detail\": \"version_id 01JR6PCW8H9K3H40XZV4 not found for list_id 123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8e36365b-f7d1-4ed4-8d0a-23c5b13acf6c",
+          "name": "Delete Draft List",
+          "request": {
+            "name": "Delete Draft List",
+            "description": {
+              "content": "API to delete draft version of the list. Use this to discard test or interim versions before publishing the final list.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "subscriber_list",
+                ":list_id",
+                "version",
+                ":version_id",
+                "delete",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "list_id",
+                  "description": "(Required) Unique string identifier of the list which you want to delete"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "__version_id__",
+                  "key": "version_id",
+                  "description": "(Required) Unique identifier of the draft version of the list which needs to be deleted"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3b78b6f5-4134-4fd3-8c0f-f375028401e0",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "subscriber_list",
+                    ":list_id",
+                    "version",
+                    ":version_id",
+                    "delete",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "list_id",
+                      "description": "(Required) Unique string identifier of the list which you want to delete"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "__version_id__",
+                      "key": "version_id",
+                      "description": "(Required) Unique identifier of the draft version of the list which needs to be deleted"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "15e02460-bffc-4fbd-b17e-4fd3f6d19180",
+              "name": "404 - Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "subscriber_list",
+                    ":list_id",
+                    "version",
+                    ":version_id",
+                    "delete",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "list_id",
+                      "description": "(Required) Unique string identifier of the list which you want to delete"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "__version_id__",
+                      "key": "version_id",
+                      "description": "(Required) Unique identifier of the draft version of the list which needs to be deleted"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"error_code\": \"not_found\",\n  \"type\": \"NotFound\",\n  \"message\": \"version_id 01JR6PCW8H9K3H40XZV4A5R not found for list_id _list_id_\",\n  \"detail\": \"version_id 01JR6PCW8H9K3H40XZV4A5R not found for list_id _list_id_\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "006089b4-3225-49a7-8caa-6a4646785ba0",
+          "name": "Finish Sync",
+          "request": {
+            "name": "Finish Sync",
+            "description": {
+              "content": "API to finish sync and make the draft list version live.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "subscriber_list",
+                ":list_id",
+                "version",
+                ":version_id",
+                "finish_sync",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "_list_id_",
+                  "key": "list_id",
+                  "description": "(Required) Unique string identifier of the list"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "__version_id__",
+                  "key": "version_id",
+                  "description": "(Required) Unique string identifier of the draft version of the list which needs to be made active(live)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9b93a654-ace0-493d-8cd1-e4f68701d5dc",
+              "name": "201",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "subscriber_list",
+                    ":list_id",
+                    "version",
+                    ":version_id",
+                    "finish_sync",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "_list_id_",
+                      "key": "list_id",
+                      "description": "(Required) Unique string identifier of the list"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "__version_id__",
+                      "key": "version_id",
+                      "description": "(Required) Unique string identifier of the draft version of the list which needs to be made active(live)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"list_id\": \"_list_id_\",\n  \"list_name\": \"_list_name_\",\n  \"list_description\": \"a brief of what type of users are part of this list\",\n  \"list_type\": \"static_list\",\n  \"subscribers_count\": 0,\n  \"source\": null,\n  \"is_readonly\": false,\n  \"status\": \"draft\",\n  \"track_user_entry\": false,\n  \"track_user_exit\": false,\n  \"requested_for_delete\": false,\n  \"created_at\": \"2025-04-06T23:18:59.601000Z\",\n  \"updated_at\": \"2025-04-06T23:18:59.601000Z\",\n  \"version_id\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "51a252a7-ae02-49ae-9c4c-236af116c7b8",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "subscriber_list",
+                    ":list_id",
+                    "version",
+                    ":version_id",
+                    "finish_sync",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "_list_id_",
+                      "key": "list_id",
+                      "description": "(Required) Unique string identifier of the list"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "__version_id__",
+                      "key": "version_id",
+                      "description": "(Required) Unique string identifier of the draft version of the list which needs to be made active(live)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"error_code\": \"not_found\",\n  \"type\": \"NotFound\",\n  \"message\": \"version_id 01JR6PCW8H9K3H40XZV4A5R not found for list_id _list_id_\",\n  \"detail\": \"version_id 01JR6PCW8H9K3H40XZV4A5R not found for list_id _list_id_\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6d3052a8-2cb2-4b0c-a2f7-b9e6570f43a0",
+          "name": "Remove Subscribers from Draft List",
+          "request": {
+            "name": "Remove Subscribers from Draft List",
+            "description": {
+              "content": "API to remove users from the draft list by passing its `version_id` returned in [Start Sync](/reference/start-sync) API response.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "subscriber_list",
+                ":list_id",
+                "version",
+                ":version_id",
+                "subscriber",
+                "remove",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "_list_id_",
+                  "key": "list_id",
+                  "description": "(Required) Unique string identifier of the list to which user needs to be updated"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "__version_id__",
+                  "key": "version_id",
+                  "description": "(Required) Unique string identifier of the draft version of the list to which user needs to be updated"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"distinct_ids\": [\n    \"user1\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bc4a193b-3bc5-4d0e-9bdd-dec29c35ec3d",
+              "name": "201",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "subscriber_list",
+                    ":list_id",
+                    "version",
+                    ":version_id",
+                    "subscriber",
+                    "remove",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "_list_id_",
+                      "key": "list_id",
+                      "description": "(Required) Unique string identifier of the list to which user needs to be updated"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "__version_id__",
+                      "key": "version_id",
+                      "description": "(Required) Unique string identifier of the draft version of the list to which user needs to be updated"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"distinct_ids\": [\n    \"user1\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"affected_count\": 0\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0c2a950a-2dd4-4817-938b-d280f2bf7ba4",
+              "name": "404 - Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "subscriber_list",
+                    ":list_id",
+                    "version",
+                    ":version_id",
+                    "subscriber",
+                    "remove",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "_list_id_",
+                      "key": "list_id",
+                      "description": "(Required) Unique string identifier of the list to which user needs to be updated"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "__version_id__",
+                      "key": "version_id",
+                      "description": "(Required) Unique string identifier of the draft version of the list to which user needs to be updated"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"distinct_ids\": [\n    \"user1\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"error_code\": \"not_found\",\n  \"type\": \"NotFound\",\n  \"message\": \"version_id 01JR6PCW8H9K3H40XZV4 not found for list_id 123\",\n  \"detail\": \"version_id 01JR6PCW8H9K3H40XZV4 not found for list_id 123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2b168994-40c6-43b3-814f-80f02151fa1f",
+          "name": "Start Sync",
+          "request": {
+            "name": "Start Sync",
+            "description": {
+              "content": "Creates an empty draft version of the list where you can update users to be replaced without affecting the live version.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "subscriber_list",
+                ":list_id",
+                "start_sync",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "_list_id_",
+                  "key": "list_id",
+                  "description": "(Required) Unique identifier of the list on which the sync needs to start to create a draft version"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9054389e-2022-419a-a94b-7cec90ea470d",
+              "name": "201",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "subscriber_list",
+                    ":list_id",
+                    "start_sync",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "_list_id_",
+                      "key": "list_id",
+                      "description": "(Required) Unique identifier of the list on which the sync needs to start to create a draft version"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"list_id\": \"_list_id_\",\n  \"list_name\": \"_list_name_\",\n  \"list_description\": \"a brief of what type of users are part of this list\",\n  \"list_type\": \"static_list\",\n  \"subscribers_count\": 0,\n  \"source\": null,\n  \"is_readonly\": false,\n  \"status\": \"draft\",\n  \"track_user_entry\": false,\n  \"track_user_exit\": false,\n  \"requested_for_delete\": false,\n  \"created_at\": \"2025-04-06T23:18:59.601000Z\",\n  \"updated_at\": \"2025-04-06T23:18:59.601000Z\",\n  \"version_id\": \"01JR6PCW8H9K3H40XZV4A5R4KQ\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5aa449e3-4ada-45c3-8e9f-69440c44be50",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "subscriber_list",
+                    ":list_id",
+                    "start_sync",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "_list_id_",
+                      "key": "list_id",
+                      "description": "(Required) Unique identifier of the list on which the sync needs to start to create a draft version"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"error_code\": \"not_found\",\n  \"type\": \"NotFound\",\n  \"message\": \"list_id: ff not found\",\n  \"detail\": \"list_id: ff not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4464c924-702f-4c3f-945c-1593a9f3142e",
+          "name": "Get list subscribers",
+          "request": {
+            "name": "Get list subscribers",
+            "description": {
+              "content": "API to fetch a cursor-based paginated list of all users in the list.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "subscriber_list",
+                ":list_id",
+                "subscriber",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "disabled": false,
+                  "key": "before",
+                  "value": "<string>",
+                  "description": "the 'id' before which the results need to be fetched"
+                },
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>",
+                  "description": "the 'id' after which the results need to be fetched"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "-id",
+                  "description": "the sort order, ascending or descending, here it's decided by 'id': ascending and '-id': descending"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "list_id",
+                  "key": "list_id",
+                  "description": "(Required) The list_id of your subscriber list"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a0d492c8-6d19-43f5-a869-3765b1e2b104",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "subscriber_list",
+                    ":list_id",
+                    "subscriber",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "-id"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "list_id",
+                      "key": "list_id",
+                      "description": "(Required) The list_id of your subscriber list"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"limit\": 2,\n    \"count\": 10,\n    \"before\": \"01HAZ8CZ111111\",\n    \"after\": \"01H9S626C33222222\",\n    \"has_prev\": true,\n    \"has_next\": true\n  },\n  \"results\": [\n    {\n      \"id\": \"01HENBBNXXXXXXXXXX\",\n      \"distinct_id\": \"distinct_id_1\",\n      \"created_at\": \"2023-11-07T16:55:23.736016+00:00\"\n    },\n    {\n      \"id\": \"01HENBYYYYYYYYYY\",\n      \"distinct_id\": \"distinct_id2\",\n      \"created_at\": \"2023-11-07T16:55:23.751078+00:00\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "26457e46-f682-4609-9717-b168b5569658",
+              "name": "404 - Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "subscriber_list",
+                    ":list_id",
+                    "subscriber",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "-id"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "list_id",
+                      "key": "list_id",
+                      "description": "(Required) The list_id of your subscriber list"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"error_code\": \"not_found\",\n  \"type\": \"NotFound\",\n  \"message\": \"list_id: fffd not found\",\n  \"detail\": \"list_id: fffd not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://hub.suprsend.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3b6f869f-7a12-4770-9968-6c0b3a695089",
+    "name": "SuprSend Broadcast Subscriber List API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs supported on suprsend platform",
+      "type": "text/plain"
+    }
+  }
+}

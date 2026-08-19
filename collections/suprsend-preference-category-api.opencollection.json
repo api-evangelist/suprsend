@@ -1,0 +1,251 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SuprSend Broadcast Preference Category API",
+    "version": "1.2.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Preference Category",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Preference Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hub.suprsend.com/v1/:workspace/preference_category/",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "my-workspace",
+                "type": "path",
+                "description": "Workspace slug (staging, production, etc.)"
+              },
+              {
+                "name": "mode",
+                "value": "draft",
+                "type": "query",
+                "description": "Mode to retrieve categories. Use 'live' for active categories or 'draft' for current draft."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "ServiceToken <token>",
+              "value": "{{ServiceToken <token>}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve the current preference category for a workspace"
+        },
+        {
+          "info": {
+            "name": "Update Preference Categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://hub.suprsend.com/v1/:workspace/preference_category/",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "Workspace slug (staging, production, etc.)"
+              },
+              {
+                "name": "commit",
+                "value": "",
+                "type": "query",
+                "description": "Whether to commit changes immediately. Set to true to make changes live, false to save as draft."
+              },
+              {
+                "name": "commit_message",
+                "value": "",
+                "type": "query",
+                "description": "Optional commit message describing the changes made. Required when commit=true."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "ServiceToken <token>",
+              "value": "{{ServiceToken <token>}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this API to set preference categories to be used in workflow or to show on user preference page."
+        },
+        {
+          "info": {
+            "name": "Commit Preference Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://hub.suprsend.com/v1/:workspace/preference_category/commit/",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "Workspace slug (staging, production, etc.)"
+              },
+              {
+                "name": "commit_message",
+                "value": "",
+                "type": "query",
+                "description": "Commit message describing the changes being made live."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "ServiceToken <token>",
+              "value": "{{ServiceToken <token>}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Commit draft changes to the preference category to make them live"
+        },
+        {
+          "info": {
+            "name": "List Category Translations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hub.suprsend.com/v1/:workspace/preference_category/translation/locale/",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "my-workspace",
+                "type": "path",
+                "description": "Workspace slug (staging, production, etc.)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "ServiceToken <token>",
+              "value": "{{ServiceToken <token>}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns all the locales for which translation is uploaded for preference categories."
+        },
+        {
+          "info": {
+            "name": "Get Category Translation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hub.suprsend.com/v1/:workspace/preference_category/translation/content/:locale/",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "my-workspace",
+                "type": "path",
+                "description": "Workspace slug (staging, production, etc.)"
+              },
+              {
+                "name": "locale",
+                "value": "es",
+                "type": "path",
+                "description": "Locale code (e.g., es, fr, de, ja)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "ServiceToken <token>",
+              "value": "{{ServiceToken <token>}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Fetch translation content for a given locale for preference categories and sections."
+        },
+        {
+          "info": {
+            "name": "Add or Update Category Translation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://hub.suprsend.com/v1/:workspace/preference_category/translation/content/:locale/",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "my-workspace",
+                "type": "path",
+                "description": "Workspace slug (staging, production, etc.)"
+              },
+              {
+                "name": "locale",
+                "value": "es",
+                "type": "path",
+                "description": "Locale code (e.g., es, fr, de, ja)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "ServiceToken <token>",
+              "value": "{{ServiceToken <token>}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Add or update translation content for a given locale for preference categories and sections."
+        },
+        {
+          "info": {
+            "name": "Delete Category Translation",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://hub.suprsend.com/v1/:workspace/preference_category/translation/content/:locale/",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "my-workspace",
+                "type": "path",
+                "description": "Workspace slug (staging, production, etc.)"
+              },
+              {
+                "name": "locale",
+                "value": "es",
+                "type": "path",
+                "description": "Locale code (e.g., es, fr, de, ja)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "ServiceToken <token>",
+              "value": "{{ServiceToken <token>}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Delete translation content for a given locale for preference categories and sections."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

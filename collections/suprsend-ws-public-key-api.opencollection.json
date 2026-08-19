@@ -1,0 +1,177 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SuprSend Broadcast Ws Public Key API",
+    "version": "1.2.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Ws Public Key",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Workspace Public Keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hub.suprsend.com/v1/:workspace/ws_public_key/",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "Workspace slug (e.g. `staging`, `production`)."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "ServiceToken <token>",
+              "value": "{{ServiceToken <token>}}",
+              "placement": "header"
+            }
+          },
+          "docs": "List public keys for this workspace. Public keys are used by client-side SDKs."
+        },
+        {
+          "info": {
+            "name": "Create Workspace Public Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://hub.suprsend.com/v1/:workspace/ws_public_key/",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "Workspace slug (e.g. `staging`, `production`)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "ServiceToken <token>",
+              "value": "{{ServiceToken <token>}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a new public key for this workspace. Public keys can be safely distributed to client SDKs."
+        },
+        {
+          "info": {
+            "name": "Enable/Disable Secure Mode on Public Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://hub.suprsend.com/v1/:workspace/ws_public_key/:public_key_id/",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "Workspace slug (e.g. `staging`, `production`)."
+              },
+              {
+                "name": "public_key_id",
+                "value": "",
+                "type": "path",
+                "description": "Public key identifier (e.g. `ws_pubk_...`)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "ServiceToken <token>",
+              "value": "{{ServiceToken <token>}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Enable or disable secure mode on an existing public key (e.g. `ws_pubk_...`)."
+        },
+        {
+          "info": {
+            "name": "Delete Workspace Public Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://hub.suprsend.com/v1/:workspace/ws_public_key/:public_key_id/",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "Workspace slug (e.g. `staging`, `production`)."
+              },
+              {
+                "name": "public_key_id",
+                "value": "",
+                "type": "path",
+                "description": "Public key identifier (e.g. `ws_pubk_...`)."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "ServiceToken <token>",
+              "value": "{{ServiceToken <token>}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Delete a public key by its `id`."
+        },
+        {
+          "info": {
+            "name": "Rotate Workspace Public Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://hub.suprsend.com/v1/:workspace/ws_public_key/:public_key_id/rotate/",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "Workspace slug (e.g. `staging`, `production`)."
+              },
+              {
+                "name": "public_key_id",
+                "value": "",
+                "type": "path",
+                "description": "Public key identifier (e.g. `ws_pubk_...`)."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "ServiceToken <token>",
+              "value": "{{ServiceToken <token>}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Rotate public key material while keeping the same logical key record. Clients using the old material must switch to the new value."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

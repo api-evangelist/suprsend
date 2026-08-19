@@ -1,0 +1,237 @@
+{
+  "item": [
+    {
+      "id": "ad179da6-9a40-4f2e-a97d-d02494780a29",
+      "name": "Broadcast",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4867d4bc-f058-4614-b2a8-7575c33a55c0",
+          "name": "Trigger Broadcast",
+          "request": {
+            "name": "Trigger Broadcast",
+            "description": {
+              "content": "API to trigger broadcast notification to list users.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":workspace_key",
+                "broadcast",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace_key",
+                  "description": "(Required) unique identifier of your workspace"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"list_id\": \"_list_id_\",\n  \"template\": \"_template_slug_\",\n  \"notification_category\": \"transactional\",\n  \"channels\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"data\": {},\n  \"delay\": \"<string>\",\n  \"trigger_at\": \"<date>\",\n  \"tenant_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fe8608b7-2214-4988-95f0-9105686f8394",
+              "name": "202 - Accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":workspace_key",
+                    "broadcast",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace_key",
+                      "description": "(Required) unique identifier of your workspace"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"list_id\": \"_list_id_\",\n  \"template\": \"_template_slug_\",\n  \"notification_category\": \"transactional\",\n  \"channels\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"data\": {},\n  \"delay\": \"<string>\",\n  \"trigger_at\": \"<date>\",\n  \"tenant_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"Ok\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ce9d054e-6125-403d-88ed-781727165e83",
+              "name": "400 - Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":workspace_key",
+                    "broadcast",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace_key",
+                      "description": "(Required) unique identifier of your workspace"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"list_id\": \"_list_id_\",\n  \"template\": \"_template_slug_\",\n  \"notification_category\": \"transactional\",\n  \"channels\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"data\": {},\n  \"delay\": \"<string>\",\n  \"trigger_at\": \"<date>\",\n  \"tenant_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"BAD REQUEST\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://hub.suprsend.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ef72afd9-f812-4269-bed7-1bc8c16e3ded",
+    "name": "SuprSend Broadcast API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs supported on suprsend platform",
+      "type": "text/plain"
+    }
+  }
+}

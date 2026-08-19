@@ -1,0 +1,631 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SuprSend Broadcast Object API",
+    "version": "1.2.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Object",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fetch Object by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hub.suprsend.com/v1/object/:object_type/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the object in your system"
+              },
+              {
+                "name": "object_type",
+                "value": "",
+                "type": "path",
+                "description": "Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to fetch Object details by passing object type and ID."
+        },
+        {
+          "info": {
+            "name": "Create / Update Objects",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://hub.suprsend.com/v1/object/:object_type/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the object in your system"
+              },
+              {
+                "name": "object_type",
+                "value": "",
+                "type": "path",
+                "description": "Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to upsert (create if not exists, update if exists) object by providing a unique object ID and type."
+        },
+        {
+          "info": {
+            "name": "Edit Object Profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://hub.suprsend.com/v1/object/:object_type/:id/",
+            "params": [
+              {
+                "name": "object_type",
+                "value": "",
+                "type": "path",
+                "description": "Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the object in your system"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to edit (add/remove) properties and communication-channels for an object."
+        },
+        {
+          "info": {
+            "name": "Delete an Object",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://hub.suprsend.com/v1/object/:object_type/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the object in your system"
+              },
+              {
+                "name": "object_type",
+                "value": "",
+                "type": "path",
+                "description": "Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to permanently delete an object by passing `object_type` and `id`."
+        },
+        {
+          "info": {
+            "name": "List Object Subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hub.suprsend.com/v1/object/:object_type/:id/subscription/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the object in your system"
+              },
+              {
+                "name": "object_type",
+                "value": "",
+                "type": "path",
+                "description": "Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to fetch a paginated list of users or child objects subscribed to a given object."
+        },
+        {
+          "info": {
+            "name": "Add Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://hub.suprsend.com/v1/object/:object_type/:id/subscription/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the object in your system"
+              },
+              {
+                "name": "object_type",
+                "value": "",
+                "type": "path",
+                "description": "Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to add subscribers (users/child objects) to a given object, to notify subscribers when workflow is triggered on the parent object."
+        },
+        {
+          "info": {
+            "name": "Remove Object Subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://hub.suprsend.com/v1/object/:object_type/:id/subscription/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the object in your system"
+              },
+              {
+                "name": "object_type",
+                "value": "",
+                "type": "path",
+                "description": "Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+              },
+              {
+                "name": "recipients",
+                "value": "",
+                "type": "query",
+                "description": "List of recipients to be notified. Provide recipient IDs as a comma-separated list (e.g., `id1,id2,id3`)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to remove object subscribers (users or child objects)."
+        },
+        {
+          "info": {
+            "name": "List Objects by type",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hub.suprsend.com/v1/object/:object_type/",
+            "params": [
+              {
+                "name": "object_type",
+                "value": "",
+                "type": "path",
+                "description": "Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to fetch paginated list of objects that belong to the specified `object_type`."
+        },
+        {
+          "info": {
+            "name": "Single Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hub.suprsend.com/v1/object/:object_type/:id/preference/category/:category_slug/",
+            "params": [
+              {
+                "name": "object_type",
+                "value": "",
+                "type": "path",
+                "description": "Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+              },
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "to fetch object preferences for a particular tenant"
+              },
+              {
+                "name": "show_opt_out_channels",
+                "value": "",
+                "type": "query",
+                "description": "set this flag to `true` if you want to fetch channel list for opt-out categories."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the object in your system"
+              },
+              {
+                "name": "category_slug",
+                "value": "",
+                "type": "path",
+                "description": "notification category slug. You can get this from Notification Categories page on SuprSend dashboard -> Settings page"
+              },
+              {
+                "name": "locale",
+                "value": "es",
+                "type": "query",
+                "description": "Locale code (e.g., `es`, `fr`, `de`, `ja`, `es-AR`) to fetch preference translations in user's locale. When provided, the API looks for category and section names and descriptions in the respective locale file.\nIf a translation is missing for the requested locale, the system automatically falls back in this order: `locale-region` (e.g., `es-AR`) → `locale` (e.g., `es`) → `en` (English - always available).\n"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to fetch object preferences for a given category."
+        },
+        {
+          "info": {
+            "name": "Category and Channel within Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://hub.suprsend.com/v1/object/:object_type/:id/preference/category/:category_slug/",
+            "params": [
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "to fetch user preferences for a particular tenant"
+              },
+              {
+                "name": "object_type",
+                "value": "",
+                "type": "path",
+                "description": "Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the object in your system"
+              },
+              {
+                "name": "category_slug",
+                "value": "",
+                "type": "path",
+                "description": "notification category slug. You can get this from Notification Categories page on SuprSend dashboard -> Settings page"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to update object preferences for a specific notification category."
+        },
+        {
+          "info": {
+            "name": "All Channels",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hub.suprsend.com/v1/object/:object_type/:id/preference/channel_preference/",
+            "params": [
+              {
+                "name": "object_type",
+                "value": "",
+                "type": "path",
+                "description": "Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+              },
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "to fetch object preferences for a particular tenant"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the object in your system"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to retrieve all channel preferences for a given object."
+        },
+        {
+          "info": {
+            "name": "Overall Channel level",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://hub.suprsend.com/v1/object/:object_type/:id/preference/channel_preference/",
+            "params": [
+              {
+                "name": "object_type",
+                "value": "",
+                "type": "path",
+                "description": "Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+              },
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "to fetch user preferences for a particular tenant"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the object in your system"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to update object preferences across all channels."
+        },
+        {
+          "info": {
+            "name": "Full Preference",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hub.suprsend.com/v1/object/:object_type/:id/preference/",
+            "params": [
+              {
+                "name": "object_type",
+                "value": "",
+                "type": "path",
+                "description": "Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+              },
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "to fetch object preferences for a particular tenant"
+              },
+              {
+                "name": "show_opt_out_channels",
+                "value": "",
+                "type": "query",
+                "description": "set this flag to `true` if you want to fetch channel list for opt-out categories."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the object in your system"
+              },
+              {
+                "name": "tags",
+                "value": "",
+                "type": "query",
+                "description": "Filter preference categories with tags assigned to them. Used to filter preference categories relevant to the user on UI based on their roles, department or teams.\nYou can apply single tag filter like `tags=tag1` or build nested conditions using logical operators - `and`, `or`, `not`, `exists`.\n\nExample:\n```\ntags=admin\ntags={\"or\":[{\"and\":[\"admin\",\"sales\"]},{\"and\":[\"admin\",\"manager\"]}]}\ntags={\"not\":\"admin\"}\ntags={\"exists\":true}\n"
+              },
+              {
+                "name": "locale",
+                "value": "es",
+                "type": "query",
+                "description": "Locale code (e.g., `es`, `fr`, `de`, `ja`, `es-AR`) to fetch preference translations in user's locale. When provided, the API looks for category and section names and descriptions in the respective locale file.\nIf a translation is missing for the requested locale, the system automatically falls back in this order: `locale-region` (e.g., `es-AR`) → `locale` (e.g., `es`) → `en` (English - always available).\n"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to fetch object preferences across all channels and categories."
+        },
+        {
+          "info": {
+            "name": "Update Object Full Preference",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://hub.suprsend.com/v1/object/:object_type/:id/preference/",
+            "params": [
+              {
+                "name": "object_type",
+                "value": "",
+                "type": "path",
+                "description": "Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the object in your system"
+              },
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "to update object preferences for a particular tenant"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to update object preferences across all channels and categories with translated names and descriptions in the response."
+        },
+        {
+          "info": {
+            "name": "All Categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hub.suprsend.com/v1/object/:object_type/:id/preference/category/",
+            "params": [
+              {
+                "name": "object_type",
+                "value": "",
+                "type": "path",
+                "description": "Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+              },
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "to fetch object preferences for a particular tenant"
+              },
+              {
+                "name": "show_opt_out_channels",
+                "value": "",
+                "type": "query",
+                "description": "set this flag to `true` if you want to fetch channel list for opt-out categories."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the object in your system"
+              },
+              {
+                "name": "tags",
+                "value": "",
+                "type": "query",
+                "description": "Filter preference categories with tags assigned to them. Used to filter preference categories relevant to the user on UI based on their roles, department or teams.\nYou can apply single tag filter like `tags=tag1` or build nested conditions using logical operators - `and`, `or`, `not`, `exists`.\n\nExample:\n```\ntags=admin\ntags={\"or\":[{\"and\":[\"admin\",\"sales\"]},{\"and\":[\"admin\",\"manager\"]}]}\ntags={\"not\":\"admin\"}\ntags={\"exists\":true}\n"
+              },
+              {
+                "name": "locale",
+                "value": "es",
+                "type": "query",
+                "description": "Locale code (e.g., `es`, `fr`, `de`, `ja`, `es-AR`) to fetch preference translations in user's locale. When provided, the API looks for category and section names and descriptions in the respective locale file. \nIf a translation is missing for the requested locale, the system automatically falls back in this order: `locale-region` (e.g., `es-AR`) → `locale` (e.g., `es`) → `en` (English - always available).\n"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to fetch user preferences across all categories."
+        },
+        {
+          "info": {
+            "name": "Fetch Object subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hub.suprsend.com/v1/object/:object_type/:id/subscribed_to/object/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the object in your system"
+              },
+              {
+                "name": "object_type",
+                "value": "",
+                "type": "path",
+                "description": "Used to group similar objects together. Give plural namespace like teams, organizations, and roles."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "number of results to be returned in API response"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to fetch a paginated list of all parent objects that the given child object is subscribed to."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

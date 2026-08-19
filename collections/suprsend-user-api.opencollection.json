@@ -1,0 +1,507 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SuprSend Broadcast User API",
+    "version": "1.2.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "All Categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hub.suprsend.com/v1/user/:distinct_id/preference/category/",
+            "params": [
+              {
+                "name": "distinct_id",
+                "value": "",
+                "type": "path",
+                "description": "distinct_id of the user whose preferences should be fetched"
+              },
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "to fetch user preferences for a particular tenant"
+              },
+              {
+                "name": "show_opt_out_channels",
+                "value": "",
+                "type": "query",
+                "description": "set this flag to `true` if you want to fetch channel list for opt-out categories."
+              },
+              {
+                "name": "tags",
+                "value": "",
+                "type": "query",
+                "description": "Filter preference categories with tags assigned to them. Used to filter preference categories relevant to the user on UI based on their roles, department or teams.\nYou can apply single tag filter like `tags=tag1` or build nested conditions using logical operators - `and`, `or`, `not`, `exists`.\n\nExample:\n```\ntags=admin\ntags={\"or\":[{\"and\":[\"admin\",\"sales\"]},{\"and\":[\"admin\",\"manager\"]}]}\ntags={\"not\":\"admin\"}\ntags={\"exists\":true}\n"
+              },
+              {
+                "name": "locale",
+                "value": "es",
+                "type": "query",
+                "description": "Locale code (e.g., `es`, `fr`, `de`, `ja`, `es-AR`) to fetch preference translations in user's locale. When provided, the API looks for category and section names and descriptions in the respective locale file. \nIf a translation is missing for the requested locale, the system automatically falls back in this order: `locale-region` (e.g., `es-AR`) → `locale` (e.g., `es`) → `en` (English - always available).\n"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to fetch user preferences across all categories."
+        },
+        {
+          "info": {
+            "name": "All Channels",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hub.suprsend.com/v1/user/:distinct_id/preference/channel_preference/",
+            "params": [
+              {
+                "name": "distinct_id",
+                "value": "",
+                "type": "path",
+                "description": "distinct_id of the user whose preferences should be fetched"
+              },
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "to fetch user preferences for a particular tenant"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to retrieve user preferences for all channels."
+        },
+        {
+          "info": {
+            "name": "Overall Channel level",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://hub.suprsend.com/v1/user/:distinct_id/preference/channel_preference/",
+            "params": [
+              {
+                "name": "distinct_id",
+                "value": "",
+                "type": "path",
+                "description": "distinct_id of the user whose preferences should be fetched"
+              },
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "to fetch user preferences for a particular tenant"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to update user preferences across all channels."
+        },
+        {
+          "info": {
+            "name": "Single Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hub.suprsend.com/v1/user/:distinct_id/preference/category/:category_slug/",
+            "params": [
+              {
+                "name": "distinct_id",
+                "value": "",
+                "type": "path",
+                "description": "distinct_id of the user whose preferences should be fetched"
+              },
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "to fetch user preferences for a particular tenant"
+              },
+              {
+                "name": "category_slug",
+                "value": "",
+                "type": "path",
+                "description": "notification category slug. You can get this from Notification Categories page on SuprSend dashboard -> Settings page"
+              },
+              {
+                "name": "show_opt_out_channels",
+                "value": "",
+                "type": "query",
+                "description": "set this flag to `true` if you want to fetch channel list for opt-out categories."
+              },
+              {
+                "name": "locale",
+                "value": "es",
+                "type": "query",
+                "description": "Locale code (e.g., `es`, `fr`, `de`, `ja`, `es-AR`) to fetch preference translations in user's locale. When provided, the API looks for category and section names and descriptions in the respective locale file.\nIf a translation is missing for the requested locale, the system automatically falls back in this order: `locale-region` (e.g., `es-AR`) → `locale` (e.g., `es`) → `en` (English - always available).\n"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to fetch user preferences for a given category."
+        },
+        {
+          "info": {
+            "name": "Category and Channel within Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://hub.suprsend.com/v1/user/:distinct_id/preference/category/:category_slug/",
+            "params": [
+              {
+                "name": "distinct_id",
+                "value": "",
+                "type": "path",
+                "description": "distinct_id of the user whose preferences should be fetched"
+              },
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "to fetch user preferences for a particular tenant"
+              },
+              {
+                "name": "category_slug",
+                "value": "",
+                "type": "path",
+                "description": "notification category slug. You can get this from Notification Categories page on SuprSend dashboard -> Settings page"
+              },
+              {
+                "name": "locale",
+                "value": "es",
+                "type": "query",
+                "description": "Locale code (e.g., `es`, `fr`, `de`, `ja`, `es-AR`) to fetch translated category and section names and descriptions.  When provided, the API returns category and section names and descriptions in the specified language if translations are available.  If a translation is missing for the requested locale, the system automatically falls back in this order: `locale-region` (e.g., `es-AR`) → `locale` (e.g., `es`) → `en` (English - always available).\n"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to update user preferences for a specific notification category."
+        },
+        {
+          "info": {
+            "name": "Full Preference",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hub.suprsend.com/v1/user/:distinct_id/preference/",
+            "params": [
+              {
+                "name": "distinct_id",
+                "value": "",
+                "type": "path",
+                "description": "distinct_id of the user whose preferences should be fetched"
+              },
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "to fetch user preferences for a particular tenant"
+              },
+              {
+                "name": "show_opt_out_channels",
+                "value": "",
+                "type": "query",
+                "description": "set this flag to `true` if you want to fetch channel list for opt-out categories."
+              },
+              {
+                "name": "tags",
+                "value": "",
+                "type": "query",
+                "description": "Filter preference categories with tags assigned to them. Used to filter preference categories relevant to the user on UI based on their roles, department or teams.\nYou can apply single tag filter like `tags=tag1` or build nested conditions using logical operators - `and`, `or`, `not`, `exists`.\n\nExample:\n```\ntags=admin\ntags={\"or\":[{\"and\":[\"admin\",\"sales\"]},{\"and\":[\"admin\",\"manager\"]}]}\ntags={\"not\":\"admin\"}\ntags={\"exists\":true}\n"
+              },
+              {
+                "name": "locale",
+                "value": "es",
+                "type": "query",
+                "description": "Locale code (e.g., `es`, `fr`, `es-AR`) to fetch preference translations in user's locale. When provided, the API looks for category and section names and descriptions in the respective locale file.\nIf a translation is missing for the requested locale, the system automatically falls back in this order: `locale-region` (e.g., `es-AR`) → `locale` (e.g., `es`) → `en` (English - always available).\n"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to fetch user preferences across all channels and categories."
+        },
+        {
+          "info": {
+            "name": "Update User Full Preference",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://hub.suprsend.com/v1/user/:distinct_id/preference/",
+            "params": [
+              {
+                "name": "distinct_id",
+                "value": "",
+                "type": "path",
+                "description": "distinct_id of the user whose preferences should be updated"
+              },
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "to update user preferences for a particular tenant"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to update user preferences across all channels and categories with translated names and descriptions in the response."
+        },
+        {
+          "info": {
+            "name": "Fetch User by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hub.suprsend.com/v1/user/:distinct_id/",
+            "params": [
+              {
+                "name": "distinct_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the user in your system"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to fetch user object by passing it's unique `distinct_id`."
+        },
+        {
+          "info": {
+            "name": "Create / Update Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://hub.suprsend.com/v1/user/:distinct_id/",
+            "params": [
+              {
+                "name": "distinct_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the user in your system"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to upsert (create if not exists, update if exists) user profile using a `distinct_id`."
+        },
+        {
+          "info": {
+            "name": "Edit User Profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://hub.suprsend.com/v1/user/:distinct_id/",
+            "params": [
+              {
+                "name": "distinct_id",
+                "value": "",
+                "type": "path",
+                "description": "unique identifier of the user"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to edit (add/remove) properties and communication-channels for a user."
+        },
+        {
+          "info": {
+            "name": "Delete user",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://hub.suprsend.com/v1/user/:distinct_id/",
+            "params": [
+              {
+                "name": "distinct_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the user in your system"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to permanently delete a user from SuprSend by passing `distinct_id`."
+        },
+        {
+          "info": {
+            "name": "List Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hub.suprsend.com/v1/user/",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to list cursor-based paginated list of users in your workspace."
+        },
+        {
+          "info": {
+            "name": "Merge User Profiles",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://hub.suprsend.com/v1/user/:distinct_id/merge/",
+            "params": [
+              {
+                "name": "distinct_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of primary user"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to merge two user profiles to resolve duplicate user records."
+        },
+        {
+          "info": {
+            "name": "Fetch User object subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hub.suprsend.com/v1/user/:distinct_id/subscribed_to/object/",
+            "params": [
+              {
+                "name": "distinct_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the user in your system"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "number of results to be returned in API response"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to fetch all objects that a given user is subscribed to."
+        },
+        {
+          "info": {
+            "name": "Fetch User list subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hub.suprsend.com/v1/user/:distinct_id/subscribed_to/list/",
+            "params": [
+              {
+                "name": "distinct_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the user in your system"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "number of results to be returned in API response"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to retrieve all lists that a user is part of."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,71 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SuprSend Broadcast Trigger API",
+    "version": "1.2.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Trigger",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Dynamic Workflow Trigger",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://hub.suprsend.com/:workspace_key/trigger/",
+            "params": [
+              {
+                "name": "workspace_key",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to dynamically create and trigger a single step workflow."
+        },
+        {
+          "info": {
+            "name": "Trigger Workflow (single or bulk)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://hub.suprsend.com/trigger/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to trigger multi-step workflow to one or more users/objects by passing workflow slug, via `POST /trigger/`.\n\nSend a single JSON **object** to trigger one workflow, or an array of objects to trigger multiple workflows in one call.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

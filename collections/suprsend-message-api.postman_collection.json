@@ -1,0 +1,341 @@
+{
+  "item": [
+    {
+      "id": "730bd40c-21c9-422a-aeb3-898840c51ee7",
+      "name": "Message",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "505db02a-27fd-452b-b807-3d300a3ac67a",
+          "name": "List Messages",
+          "request": {
+            "name": "List Messages",
+            "description": {
+              "content": "Retrieve a paginated list of messages in a workspace order by created_at desc. Can be used to fetch and show message logs on the platform.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "message",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum number of messages to return per page. Defaults to `10`, maximum is `1000`."
+                },
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>",
+                  "description": "Cursor for forward pagination - pass the `meta.after` value from a previous response to fetch the next page of older messages. Treat this value as an opaque cursor - do not parse, validate, or assume any format for it. **Takes precedence over `before` when both are set** (`before` is silently ignored).\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "before",
+                  "value": "<string>",
+                  "description": "Cursor for backward pagination - pass the `meta.before` value from a previous response to fetch the previous page of newer messages. Treat this value as an opaque cursor - do not parse, validate, or assume any format for it. Ignored when `after` is also set.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "status[]",
+                  "value": "<string>",
+                  "description": "Filter by one or more derived statuses. Multiple values are OR-ed. Repeat the param for each value, e.g. `?status[]=delivered&status[]=seen`.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "status[]",
+                  "value": "<string>",
+                  "description": "Filter by one or more derived statuses. Multiple values are OR-ed. Repeat the param for each value, e.g. `?status[]=delivered&status[]=seen`.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "channel",
+                  "value": "<string>",
+                  "description": "Filter by delivery channel."
+                },
+                {
+                  "disabled": false,
+                  "key": "recipient_id[]",
+                  "value": "<string>",
+                  "description": "Filter by one or more recipient `distinct_id`s (OR-ed). Repeat the param for each value, e.g. `?recipient_id[]=user_123&recipient_id[]=user_456`."
+                },
+                {
+                  "disabled": false,
+                  "key": "recipient_id[]",
+                  "value": "<string>",
+                  "description": "Filter by one or more recipient `distinct_id`s (OR-ed). Repeat the param for each value, e.g. `?recipient_id[]=user_123&recipient_id[]=user_456`."
+                },
+                {
+                  "disabled": false,
+                  "key": "category[]",
+                  "value": "<string>",
+                  "description": "Filter by one or more notification categories (OR-ed). Repeat the param for each value, e.g. `?category[]=transactional&category[]=promotional`."
+                },
+                {
+                  "disabled": false,
+                  "key": "category[]",
+                  "value": "<string>",
+                  "description": "Filter by one or more notification categories (OR-ed). Repeat the param for each value, e.g. `?category[]=transactional&category[]=promotional`."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at_gte",
+                  "value": "<dateTime>",
+                  "description": "RFC3339 timestamp lower bound (inclusive). Compared against the `created_at` column which has **second precision** - sub-second components in the filter value are effectively truncated. Example: `2026-04-26T21:34:33Z`.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at_lte",
+                  "value": "<dateTime>",
+                  "description": "RFC3339 timestamp upper bound (inclusive). Same second-precision caveat as `created_at_gte`. Must be `>= created_at_gte` when both are set.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "workflow_slug",
+                  "value": "<string>",
+                  "description": "Filter messages triggered from a specific workflow."
+                },
+                {
+                  "disabled": false,
+                  "key": "execution_id",
+                  "value": "<string>",
+                  "description": "Matches `wf_exec_id` or `broadcast_id`."
+                },
+                {
+                  "disabled": false,
+                  "key": "idempotency_key",
+                  "value": "<string>",
+                  "description": "Filter by the idempotency key associated with the message at trigger time."
+                },
+                {
+                  "disabled": false,
+                  "key": "message_id",
+                  "value": "<string>",
+                  "description": "Exact match on message ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "tenant_id",
+                  "value": "<string>",
+                  "description": "Filter messages belonging to a specific tenant."
+                },
+                {
+                  "disabled": false,
+                  "key": "is_campaign",
+                  "value": "<boolean>",
+                  "description": "Set `true` to return only messages sent as part of a broadcast/campaign."
+                },
+                {
+                  "disabled": false,
+                  "key": "object_id",
+                  "value": "<string>",
+                  "description": "Must be provided together with `object_type` to filter messages sent to an object. Will filter all message logs which were sent to recipients after object fanout."
+                },
+                {
+                  "disabled": false,
+                  "key": "object_type",
+                  "value": "<string>",
+                  "description": "Must be provided together with `object_id` to filter messages sent to an object. Will filter all message logs which were sent to recipients after object fanout."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4416da19-3c39-44d0-96dd-ae401c26897c",
+              "name": "Returns the paginated list of messages order by created_at desc.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "message",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "channel",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "recipient_id[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "recipient_id[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "category[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "category[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at_gte",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "created_at_lte",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "workflow_slug",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "execution_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "idempotency_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "message_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tenant_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_campaign",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "object_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "object_type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"count\": 3506,\n    \"limit\": 10,\n    \"has_prev\": false,\n    \"before\": null,\n    \"has_next\": true,\n    \"after\": \"01HVXXXXXXXXXXXXXXXXXXXX10\"\n  },\n  \"results\": [\n    {\n      \"message_id\": \"01HVXXXXXXXXXXXXXXXXXXXX01\",\n      \"created_at\": \"2026-04-01T17:18:06.000Z\",\n      \"updated_at\": \"2026-04-01T17:20:11.000Z\",\n      \"triggered_at\": \"2026-04-01T17:18:06.000Z\",\n      \"delivered_at\": \"2026-04-01T17:18:08.000Z\",\n      \"seen_at\": \"2026-04-01T17:19:25.000Z\",\n      \"clicked_at\": null,\n      \"dismissed_at\": null,\n      \"read_at\": null,\n      \"unread_at\": null,\n      \"archived_at\": null,\n      \"unarchived_at\": null,\n      \"is_read\": false,\n      \"is_archived\": false,\n      \"status\": \"seen\",\n      \"channel\": \"inbox\",\n      \"idempotency_key\": \"order-5678\",\n      \"failure_reason\": null,\n      \"recipient\": {\n        \"$type\": \"user\",\n        \"distinct_id\": \"user_123\",\n        \"object_type\": null,\n        \"id\": null\n      },\n      \"parent_entity_id\": null,\n      \"parent_entity_type\": null,\n      \"vendor\": {\n        \"name\": \"suprsend_inbox\",\n        \"nickname\": \"Inbox\"\n      },\n      \"execution_id\": \"exec_01HV...\",\n      \"parent_execution_id\": null,\n      \"is_campaign\": false,\n      \"tenant_id\": \"acme\",\n      \"workflow\": {\n        \"slug\": \"order-confirmation\",\n        \"version_id\": \"wf_ver_01HV...\",\n        \"name\": \"Order Confirmation\",\n        \"node_ref\": \"send_inbox_1\"\n      },\n      \"template\": {\n        \"name\": \"Order Confirmation\",\n        \"slug\": \"order-confirmation\",\n        \"version_no\": 4\n      },\n      \"channel_identity\": {\n        \"inbox\": \"user_123\"\n      },\n      \"category\": \"transactional\"\n    },\n    {\n      \"message_id\": \"01HVXXXXXXXXXXXXXXXXXXXX02\",\n      \"created_at\": \"2026-04-01T17:30:01.000Z\",\n      \"updated_at\": \"2026-04-01T17:30:15.000Z\",\n      \"triggered_at\": \"2026-04-01T17:30:01.000Z\",\n      \"delivered_at\": null,\n      \"seen_at\": null,\n      \"clicked_at\": null,\n      \"dismissed_at\": null,\n      \"read_at\": null,\n      \"unread_at\": null,\n      \"archived_at\": null,\n      \"unarchived_at\": null,\n      \"is_read\": false,\n      \"is_archived\": false,\n      \"status\": \"delivery_failure\",\n      \"channel\": \"sms\",\n      \"idempotency_key\": null,\n      \"failure_reason\": \"invalid_recipient_number\",\n      \"recipient\": {\n        \"$type\": \"user\",\n        \"distinct_id\": \"user_456\",\n        \"object_type\": null,\n        \"id\": null\n      },\n      \"parent_entity_id\": null,\n      \"parent_entity_type\": null,\n      \"vendor\": {\n        \"name\": \"gupshup\",\n        \"nickname\": \"Gupshup WhatsApp\"\n      },\n      \"execution_id\": \"exec_01HV...\",\n      \"parent_execution_id\": null,\n      \"is_campaign\": false,\n      \"tenant_id\": \"acme\",\n      \"workflow\": {\n        \"slug\": \"password-reset\",\n        \"version_id\": \"wf_ver_01HV...\",\n        \"name\": \"Password Reset\",\n        \"node_ref\": \"multichannel_1\"\n      },\n      \"template\": {\n        \"name\": \"Password Reset\",\n        \"slug\": \"password-reset\",\n        \"version_no\": 2\n      },\n      \"channel_identity\": {\n        \"sms\": \"+15555550100\"\n      },\n      \"category\": \"transactional\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://hub.suprsend.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "39cf803a-0c15-4783-9bbc-320b7b911306",
+    "name": "SuprSend Broadcast Message API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs supported on suprsend platform",
+      "type": "text/plain"
+    }
+  }
+}

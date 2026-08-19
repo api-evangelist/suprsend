@@ -1,0 +1,367 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SuprSend Broadcast Subscriber List API",
+    "version": "1.2.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Subscriber List",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Remove Subscribers from List",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://hub.suprsend.com/v1/subscriber_list/:list_id/subscriber/remove/",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique string identifier of the list to which user needs to be updated"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to remove users from a list by passing their distinct_ids."
+        },
+        {
+          "info": {
+            "name": "Get all Lists",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hub.suprsend.com/v1/subscriber_list/",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "number of results to be returned in API response"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "starting position of tenant list"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to fetch a paginated list of all lists created in your workspace."
+        },
+        {
+          "info": {
+            "name": "Create a List",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://hub.suprsend.com/v1/subscriber_list/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to create / manage lists to send notification to a bulk list of users."
+        },
+        {
+          "info": {
+            "name": "Add Users to List",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://hub.suprsend.com/v1/subscriber_list/:list_id/subscriber/add/",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique string identifier of the list to which user needs to be updated"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to add users to the list by passing their distinct_ids."
+        },
+        {
+          "info": {
+            "name": "Get List configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hub.suprsend.com/v1/subscriber_list/:list_id/",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique string identifier of the list."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to fetch list metadata like list type, count, source, and status. Doesn't include users in the list."
+        },
+        {
+          "info": {
+            "name": "Delete List",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://hub.suprsend.com/v1/subscriber_list/:list_id/delete/",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique string identifier of the list which you want to delete"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to permanently delete a list."
+        },
+        {
+          "info": {
+            "name": "Add Users to Draft List",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://hub.suprsend.com/v1/subscriber_list/:list_id/version/:version_id/subscriber/add/",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique string identifier of the list to which user needs to be updated"
+              },
+              {
+                "name": "version_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique string identifier of the draft version of the list to which user needs to be updated"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to add users in the draft list by passing its `version_id` returned in [Start Sync](/reference/start-sync) API response."
+        },
+        {
+          "info": {
+            "name": "Delete Draft List",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://hub.suprsend.com/v1/subscriber_list/:list_id/version/:version_id/delete/",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique string identifier of the list which you want to delete"
+              },
+              {
+                "name": "version_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the draft version of the list which needs to be deleted"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to delete draft version of the list. Use this to discard test or interim versions before publishing the final list."
+        },
+        {
+          "info": {
+            "name": "Finish Sync",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://hub.suprsend.com/v1/subscriber_list/:list_id/version/:version_id/finish_sync/",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique string identifier of the list"
+              },
+              {
+                "name": "version_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique string identifier of the draft version of the list which needs to be made active(live)"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to finish sync and make the draft list version live."
+        },
+        {
+          "info": {
+            "name": "Remove Subscribers from Draft List",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://hub.suprsend.com/v1/subscriber_list/:list_id/version/:version_id/subscriber/remove/",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique string identifier of the list to which user needs to be updated"
+              },
+              {
+                "name": "version_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique string identifier of the draft version of the list to which user needs to be updated"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to remove users from the draft list by passing its `version_id` returned in [Start Sync](/reference/start-sync) API response."
+        },
+        {
+          "info": {
+            "name": "Start Sync",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://hub.suprsend.com/v1/subscriber_list/:list_id/start_sync/",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the list on which the sync needs to start to create a draft version"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Creates an empty draft version of the list where you can update users to be replaced without affecting the live version."
+        },
+        {
+          "info": {
+            "name": "Get list subscribers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hub.suprsend.com/v1/subscriber_list/:list_id/subscriber/",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "",
+                "type": "path",
+                "description": "The list_id of your subscriber list"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "the 'id' before which the results need to be fetched"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "the 'id' after which the results need to be fetched"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "the sort order, ascending or descending, here it's decided by 'id': ascending and '-id': descending"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to fetch a cursor-based paginated list of all users in the list."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

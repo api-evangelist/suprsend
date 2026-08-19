@@ -1,0 +1,145 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SuprSend Broadcast Message API",
+    "version": "1.2.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Message",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hub.suprsend.com/v1/message/",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of messages to return per page. Defaults to `10`, maximum is `1000`."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for forward pagination - pass the `meta.after` value from a previous response to fetch the next page of older messages. Treat this value as an opaque cursor - do not parse, validate, or assume any format for it. **Takes precedence over `before` when both are set** (`before` is silently ignored).\n"
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for backward pagination - pass the `meta.before` value from a previous response to fetch the previous page of newer messages. Treat this value as an opaque cursor - do not parse, validate, or assume any format for it. Ignored when `after` is also set.\n"
+              },
+              {
+                "name": "status[]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by one or more derived statuses. Multiple values are OR-ed. Repeat the param for each value, e.g. `?status[]=delivered&status[]=seen`.\n"
+              },
+              {
+                "name": "channel",
+                "value": "",
+                "type": "query",
+                "description": "Filter by delivery channel."
+              },
+              {
+                "name": "recipient_id[]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by one or more recipient `distinct_id`s (OR-ed). Repeat the param for each value, e.g. `?recipient_id[]=user_123&recipient_id[]=user_456`."
+              },
+              {
+                "name": "category[]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by one or more notification categories (OR-ed). Repeat the param for each value, e.g. `?category[]=transactional&category[]=promotional`."
+              },
+              {
+                "name": "created_at_gte",
+                "value": "",
+                "type": "query",
+                "description": "RFC3339 timestamp lower bound (inclusive). Compared against the `created_at` column which has **second precision** - sub-second components in the filter value are effectively truncated. Example: `2026-04-26T21:34:33Z`.\n"
+              },
+              {
+                "name": "created_at_lte",
+                "value": "",
+                "type": "query",
+                "description": "RFC3339 timestamp upper bound (inclusive). Same second-precision caveat as `created_at_gte`. Must be `>= created_at_gte` when both are set.\n"
+              },
+              {
+                "name": "workflow_slug",
+                "value": "",
+                "type": "query",
+                "description": "Filter messages triggered from a specific workflow."
+              },
+              {
+                "name": "execution_id",
+                "value": "",
+                "type": "query",
+                "description": "Matches `wf_exec_id` or `broadcast_id`."
+              },
+              {
+                "name": "idempotency_key",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the idempotency key associated with the message at trigger time."
+              },
+              {
+                "name": "message_id",
+                "value": "",
+                "type": "query",
+                "description": "Exact match on message ID."
+              },
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter messages belonging to a specific tenant."
+              },
+              {
+                "name": "is_campaign",
+                "value": "",
+                "type": "query",
+                "description": "Set `true` to return only messages sent as part of a broadcast/campaign."
+              },
+              {
+                "name": "object_id",
+                "value": "",
+                "type": "query",
+                "description": "Must be provided together with `object_type` to filter messages sent to an object. Will filter all message logs which were sent to recipients after object fanout."
+              },
+              {
+                "name": "object_type",
+                "value": "",
+                "type": "query",
+                "description": "Must be provided together with `object_id` to filter messages sent to an object. Will filter all message logs which were sent to recipients after object fanout."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve a paginated list of messages in a workspace order by created_at desc. Can be used to fetch and show message logs on the platform.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

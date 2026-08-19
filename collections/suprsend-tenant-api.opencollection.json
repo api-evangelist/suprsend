@@ -1,0 +1,328 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SuprSend Broadcast Tenant API",
+    "version": "1.2.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tenant",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Tenant data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hub.suprsend.com/v1/tenant/:tenant_id/",
+            "params": [
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "path",
+                "description": "unique identifier of the tenant you want to get the details for"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to fetch tenant settings (logo, colors, links, preference) corresponding to a tenant_id. To create or update tenant data, use the [Create/Update Tenant](#create-update-tenants) endpoint. To create or update tenant data, use the [Create/Update Tenant](#create-update-tenants) endpoint. To create or update tenant data, use the [Create/Update Tenant](#operation/create-tenants) endpoint."
+        },
+        {
+          "info": {
+            "name": "Create / Update Tenants",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://hub.suprsend.com/v1/tenant/:tenant_id/",
+            "params": [
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "path",
+                "description": "unique identifier of the tenant that you want to create / update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to create a new Tenant OR update an existing Tenant"
+        },
+        {
+          "info": {
+            "name": "Delete Tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://hub.suprsend.com/v1/tenant/:tenant_id/",
+            "params": [
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "path",
+                "description": "unique identifier of the tenant you want to get the details for"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to permanently delete tenant and it's associated settings."
+        },
+        {
+          "info": {
+            "name": "Get Tenant List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hub.suprsend.com/v1/tenant/",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "number of results to be returned in API response"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "starting position of tenant list"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to fetch a paginated list of tenants available in your workspace."
+        },
+        {
+          "info": {
+            "name": "Update Tenant Default Preference",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://hub.suprsend.com/v1/tenant/:tenant_id/category/:category_slug/",
+            "params": [
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "path",
+                "description": "unique identifier of the brand/tenant you want to update default preferences for"
+              },
+              {
+                "name": "category_slug",
+                "value": "",
+                "type": "path",
+                "description": "notification category slug. You can get this from Notification Categories page on SuprSend dashboard -> Settings page"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to update tenant default preferences for a specific notification category."
+        },
+        {
+          "info": {
+            "name": "Get Tenant Full Preference",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hub.suprsend.com/v1/tenant/:tenant_id/preference/",
+            "params": [
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "path",
+                "description": "unique identifier of the tenant you want to get preferences for"
+              },
+              {
+                "name": "locale",
+                "value": "es",
+                "type": "query",
+                "description": "Locale code (e.g., `es`, `fr`, `de`, `ja`, `es-AR`) to fetch preference translations in user's locale. When provided, the API looks for category and section names and descriptions in the respective locale file. \nIf a translation is missing for the requested locale, the system automatically falls back in this order: `locale-region` (e.g., `es-AR`) → `locale` (e.g., `es`) → `en` (English - always available).\n"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to fetch tenant preferences across all categories with translated names and descriptions."
+        },
+        {
+          "info": {
+            "name": "Get Tenant Preference All Categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hub.suprsend.com/v1/tenant/:tenant_id/preference/category/",
+            "params": [
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "path",
+                "description": "unique identifier of the tenant you want to get preferences for"
+              },
+              {
+                "name": "locale",
+                "value": "es",
+                "type": "query",
+                "description": "Locale code (e.g., `es`, `fr`, `de`, `ja`, `es-AR`) to fetch preference translations in user's locale. When provided, the API looks for category and section names and descriptions in the respective locale file. \nIf a translation is missing for the requested locale, the system automatically falls back in this order: `locale-region` (e.g., `es-AR`) → `locale` (e.g., `es`) → `en` (English - always available).\n"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to skip"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to get tenant preferences for all categories with translated names and descriptions."
+        },
+        {
+          "info": {
+            "name": "Get Tenant Preference Single Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hub.suprsend.com/v1/tenant/:tenant_id/preference/category/:category/",
+            "params": [
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "path",
+                "description": "unique identifier of the tenant you want to get preferences for"
+              },
+              {
+                "name": "category",
+                "value": "",
+                "type": "path",
+                "description": "notification category slug. You can get this from Notification Categories page on SuprSend dashboard -> Settings page"
+              },
+              {
+                "name": "locale",
+                "value": "es",
+                "type": "query",
+                "description": "Locale code (e.g., `es`, `fr`, `de`, `ja`, `es-AR`) to fetch preference translations in user's locale. When provided, the API looks for category and section names and descriptions in the respective locale file. \nIf a translation is missing for the requested locale, the system automatically falls back in this order: `locale-region` (e.g., `es-AR`) → `locale` (e.g., `es`) → `en` (English - always available).\n"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to get tenant preference for a specific category."
+        },
+        {
+          "info": {
+            "name": "Update Tenant Preference Single Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://hub.suprsend.com/v1/tenant/:tenant_id/preference/category/:category/",
+            "params": [
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "path",
+                "description": "unique identifier of the tenant you want to update preferences for"
+              },
+              {
+                "name": "category",
+                "value": "",
+                "type": "path",
+                "description": "notification category slug. You can get this from Notification Categories page on SuprSend dashboard -> Settings page"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to update tenant preference for a specific category."
+        },
+        {
+          "info": {
+            "name": "Get Tenant Default Preference",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hub.suprsend.com/v1/tenant/:tenant_id/category/",
+            "params": [
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "path",
+                "description": "unique identifier of the tenant you want to get default preferences for"
+              },
+              {
+                "name": "locale",
+                "value": "es",
+                "type": "query",
+                "description": "Locale code (e.g., `es`, `fr`, `de`, `ja`, `es-AR`) to fetch preference translations in user's locale. When provided, the API looks for category and section names and descriptions in the respective locale file. \nIf a translation is missing for the requested locale, the system automatically falls back in this order: `locale-region` (e.g., `es-AR`) → `locale` (e.g., `es`) → `en` (English - always available).\n"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "API to get default tenant preference for all categories."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
