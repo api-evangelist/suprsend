@@ -26,6 +26,18 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/suprsend.png
 tags:
+  - Notification
+  - Multi-Channel
+  - Email
+  - SMS
+  - Push Notifications
+  - In-App Inbox
+  - WhatsApp
+  - Slack
+  - Notification Infrastructure
+  - Workflow-Automation
+  - Template Management
+tags_raw:
   - Notifications
   - Multi-Channel
   - Email
@@ -260,6 +272,8 @@ apis:
   humanURL: https://docs.suprsend.com/reference/overview
   baseURL: https://hub.suprsend.com
   tags:
+  - Workflows
+  tags_raw:
   - Workflow
   properties:
   - type: OpenAPI
