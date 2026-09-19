@@ -215,6 +215,8 @@ apis:
   humanURL: https://docs.suprsend.com/reference/overview
   baseURL: https://hub.suprsend.com
   tags:
+  - Templates
+  tags_raw:
   - Template
   properties:
   - type: OpenAPI
@@ -229,6 +231,8 @@ apis:
   humanURL: https://docs.suprsend.com/reference/overview
   baseURL: https://hub.suprsend.com
   tags:
+  - Tenants
+  tags_raw:
   - Tenant
   properties:
   - type: OpenAPI
