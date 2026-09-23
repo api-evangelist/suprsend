@@ -1,6 +1,6 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
-  title: SuprSend Broadcast Template API
+  title: SuprSend Template API
   description: APIs supported on suprsend platform
   version: 1.2.2
 servers:
@@ -880,9 +880,7 @@ paths:
       - Template
     post:
       summary: Create or Update Template
-      description: 'Create a new template or update an existing one. If the template slug already exists, the template metadata is updated. Changes are saved to the draft version.
-
-        '
+      description: Create a new template or update an existing one. If the template slug already exists, the template metadata is updated. Changes are saved to the draft version.
       operationId: upsert-template-v2
       servers:
       - url: https://management-api.suprsend.com
@@ -1322,9 +1320,7 @@ paths:
       description: 'Create a new variant or update an existing one for a specific channel. Pass the variant content, conditions, locale, and optionally vendor approval details.
 
 
-        The `content` JSON structure is channel-specific. Refer to the [variant content schema](https://schema.suprsend.com/template/v2/variant_schema.json) for each channel''s structure.
-
-        '
+        The `content` JSON structure is channel-specific. Refer to the variant content schema for each channel''s structure.'
       operationId: upsert-variant-v2
       servers:
       - url: https://management-api.suprsend.com
@@ -1784,9 +1780,7 @@ paths:
       description: 'Commit the current draft version, making it live. All draft changes across all channels and variants are published as a new version.
 
 
-        For WhatsApp and SMS (DLT) variants, committing moves them to **Approval Pending** state instead of going live immediately.
-
-        '
+        For WhatsApp and SMS (DLT) variants, committing moves them to **Approval Pending** state instead of going live immediately.'
       operationId: commit-template-v2
       servers:
       - url: https://management-api.suprsend.com
@@ -1861,9 +1855,7 @@ paths:
   /v2/{workspace}/template/{template_slug}/channel/{channel}/variant/{variant_id}/discard/:
     patch:
       summary: Discard Variant
-      description: 'Discard a variant that is in approval-pending state. Only applicable for WhatsApp and SMS channels that require vendor approval. The variant returns to draft state.
-
-        '
+      description: Discard a variant that is in approval-pending state. Only applicable for WhatsApp and SMS channels that require vendor approval. The variant returns to draft state.
       operationId: discard-variant-v2
       servers:
       - url: https://management-api.suprsend.com
@@ -1933,9 +1925,7 @@ paths:
   /v2/{workspace}/template/{template_slug}/channel/{channel}/variant/{variant_id}/vendor_approval/:
     patch:
       summary: Add or Update Vendor Approval
-      description: 'Add or update a vendor approval entry for a WhatsApp or SMS variant. Use this to record approval status from the vendor portal, including the vendor template ID and name.
-
-        '
+      description: Add or update a vendor approval entry for a WhatsApp or SMS variant. Use this to record approval status from the vendor portal, including the vendor template ID and name.
       operationId: vendor-approval-v2
       servers:
       - url: https://management-api.suprsend.com

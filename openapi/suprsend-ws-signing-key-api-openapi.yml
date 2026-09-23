@@ -1,6 +1,6 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
-  title: SuprSend Broadcast Ws Signing Key API
+  title: SuprSend Ws Signing Key API
   description: APIs supported on suprsend platform
   version: 1.2.2
 servers:
@@ -86,9 +86,7 @@ paths:
         The `private_key_pem` and `private_key_base64` fields are returned **only once** at creation. Store them securely - they cannot be retrieved later.
 
 
-        Only **one active** signing key is allowed per workspace. To replace an existing active key, use the [Roll Workspace Signing Key](#operation/roll-workspace-signing-key) endpoint instead.
-
-        '
+        Only **one active** signing key is allowed per workspace. To replace an existing active key, use the Roll Workspace Signing Key endpoint instead.'
       operationId: create-workspace-signing-key
       servers:
       - url: https://management-api.suprsend.com
@@ -194,9 +192,7 @@ paths:
       description: 'Roll a signing key. Generates a new signing key that replaces the existing active key. The previous key is marked `rolled`.
 
 
-        The new `private_key_pem` and `private_key_base64` are returned **only once** in this response - store them securely.
-
-        '
+        The new `private_key_pem` and `private_key_base64` are returned **only once** in this response - store them securely.'
       operationId: roll-workspace-signing-key
       servers:
       - url: https://management-api.suprsend.com
@@ -256,6 +252,61 @@ paths:
       - Ws Signing Key
 components:
   schemas:
+    ManagementActor:
+      type: object
+      description: Identity that performed an action (created, updated, rolled, deleted, rotated).
+      nullable: true
+      properties:
+        name:
+          type: string
+          description: Display name of the actor.
+          example: System User
+        email:
+          type: string
+          description: Email address of the actor.
+          example: user@example.com
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: HTTP status code
+        error_code:
+          type: string
+          description: Specific error code identifier
+        type:
+          type: string
+          description: Error type classification
+        message:
+          type: string
+          description: Human-readable error message
+        detail:
+          type: string
+          description: Additional error details
+    ManagementWorkspaceSigningKeyListResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/ManagementListMeta'
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ManagementWorkspaceSigningKey'
+    ManagementListMeta:
+      type: object
+      description: Pagination metadata (when applicable)
+      properties:
+        count:
+          type: integer
+          description: Total items matching the query
+        limit:
+          type: integer
+          nullable: true
+          description: Maximum number of results returned per page.
+        offset:
+          type: integer
+          nullable: true
+          description: Starting position of the returned results.
     ManagementWorkspaceSigningKeyCreateResponse:
       allOf:
       - $ref: '#/components/schemas/ManagementWorkspaceSigningKey'
@@ -275,28 +326,6 @@ components:
             type: string
             description: Base64-encoded private key. Returned only at creation and on roll.
             example: LS0tLS1CRUdJTi...redacted...
-    ManagementWorkspaceSigningKeyListResponse:
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/ManagementListMeta'
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/ManagementWorkspaceSigningKey'
-    ManagementActor:
-      type: object
-      description: Identity that performed an action (created, updated, rolled, deleted, rotated).
-      nullable: true
-      properties:
-        name:
-          type: string
-          description: Display name of the actor.
-          example: System User
-        email:
-          type: string
-          description: Email address of the actor.
-          example: user@example.com
     ManagementWorkspaceSigningKey:
       type: object
       description: Signing key used to verify signed payloads.
@@ -346,39 +375,6 @@ components:
           description: Timestamp when the signing key was deleted.
         deleted_by:
           $ref: '#/components/schemas/ManagementActor'
-    ErrorResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: HTTP status code
-        error_code:
-          type: string
-          description: Specific error code identifier
-        type:
-          type: string
-          description: Error type classification
-        message:
-          type: string
-          description: Human-readable error message
-        detail:
-          type: string
-          description: Additional error details
-    ManagementListMeta:
-      type: object
-      description: Pagination metadata (when applicable)
-      properties:
-        count:
-          type: integer
-          description: Total items matching the query
-        limit:
-          type: integer
-          nullable: true
-          description: Maximum number of results returned per page.
-        offset:
-          type: integer
-          nullable: true
-          description: Starting position of the returned results.
   responses:
     NotFoundError:
       description: Resource not found

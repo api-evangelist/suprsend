@@ -1,6 +1,6 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
-  title: SuprSend Broadcast Ws Public Key API
+  title: SuprSend Ws Public Key API
   description: APIs supported on suprsend platform
   version: 1.2.2
 servers:
@@ -305,15 +305,6 @@ paths:
       - Ws Public Key
 components:
   schemas:
-    ManagementWorkspacePublicKeyListResponse:
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/ManagementListMeta'
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/ManagementWorkspacePublicKey'
     ManagementActor:
       type: object
       description: Identity that performed an action (created, updated, rolled, deleted, rotated).
@@ -327,6 +318,54 @@ components:
           type: string
           description: Email address of the actor.
           example: user@example.com
+    ManagementWorkspacePublicKeyListResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/ManagementListMeta'
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ManagementWorkspacePublicKey'
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: HTTP status code
+        error_code:
+          type: string
+          description: Specific error code identifier
+        type:
+          type: string
+          description: Error type classification
+        message:
+          type: string
+          description: Human-readable error message
+        detail:
+          type: string
+          description: Additional error details
+    WorkspacePublicKeyPatchRequest:
+      type: object
+      required:
+      - is_secure_mode_enabled
+      properties:
+        is_secure_mode_enabled:
+          type: boolean
+          description: Enable or disable secure mode for this public key.
+    WorkspacePublicKeyCreateRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Label for the public key.
+          example: web-app
+        description:
+          type: string
+          nullable: true
+          description: Optional notes.
     ManagementWorkspacePublicKey:
       type: object
       description: Workspace public key used by client SDKs.
@@ -377,45 +416,6 @@ components:
           description: Timestamp when the public key was last updated.
         updated_by:
           $ref: '#/components/schemas/ManagementActor'
-    ErrorResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: HTTP status code
-        error_code:
-          type: string
-          description: Specific error code identifier
-        type:
-          type: string
-          description: Error type classification
-        message:
-          type: string
-          description: Human-readable error message
-        detail:
-          type: string
-          description: Additional error details
-    WorkspacePublicKeyCreateRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Label for the public key.
-          example: web-app
-        description:
-          type: string
-          nullable: true
-          description: Optional notes.
-    WorkspacePublicKeyPatchRequest:
-      type: object
-      required:
-      - is_secure_mode_enabled
-      properties:
-        is_secure_mode_enabled:
-          type: boolean
-          description: Enable or disable secure mode for this public key.
     ManagementListMeta:
       type: object
       description: Pagination metadata (when applicable)

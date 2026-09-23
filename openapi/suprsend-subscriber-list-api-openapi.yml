@@ -1,6 +1,6 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
-  title: SuprSend Broadcast Subscriber List API
+  title: SuprSend Subscriber List API
   description: APIs supported on suprsend platform
   version: 1.2.2
 servers:
@@ -605,7 +605,7 @@ paths:
       summary: Add Users to Draft List
       security:
       - BearerAuth: []
-      description: API to add users in the draft list by passing its `version_id` returned in [Start Sync](/reference/start-sync) API response.
+      description: API to add users in the draft list by passing its `version_id` returned in Start Sync API response.
       operationId: add-subscribers-to-draft-list
       parameters:
       - name: list_id
@@ -797,7 +797,7 @@ paths:
       summary: Remove Subscribers from Draft List
       security:
       - BearerAuth: []
-      description: API to remove users from the draft list by passing its `version_id` returned in [Start Sync](/reference/start-sync) API response.
+      description: API to remove users from the draft list by passing its `version_id` returned in Start Sync API response.
       operationId: remove-subscribers-from-draft-list
       parameters:
       - name: list_id

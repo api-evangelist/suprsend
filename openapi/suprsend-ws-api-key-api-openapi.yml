@@ -1,6 +1,6 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
-  title: SuprSend Broadcast Ws Api Key API
+  title: SuprSend Ws Api Key API
   description: APIs supported on suprsend platform
   version: 1.2.2
 servers:
@@ -66,9 +66,7 @@ paths:
       description: 'Create a new API key scoped to this workspace.
 
 
-        The full `api_key` secret is returned **only once** in the create response. Store it securely - it cannot be retrieved later.
-
-        '
+        The full `api_key` secret is returned **only once** in the create response. Store it securely - it cannot be retrieved later.'
       operationId: create-workspace-api-key
       servers:
       - url: https://management-api.suprsend.com
@@ -158,37 +156,6 @@ paths:
       tags:
       - Ws Api Key
 components:
-  responses:
-    ValidationError:
-      description: Validation error - data validation failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFoundError:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-          example:
-            code: 404
-            error_code: not_found
-            type: NotFound
-            message: workspace 'demo' not found
-            detail: workspace 'demo' not found
-    AuthenticationError:
-      description: Authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-          example:
-            code: 401
-            error_code: authentication_failed
-            type: AuthenticationFailed
-            message: Invalid service token.
-            detail: Invalid service token.
   schemas:
     ManagementWorkspaceApiKey:
       type: object
@@ -227,6 +194,15 @@ components:
           description: Timestamp when the API key was deleted, if applicable.
         deleted_by:
           $ref: '#/components/schemas/ManagementActor'
+    ManagementWorkspaceApiKeyCreateResponse:
+      allOf:
+      - $ref: '#/components/schemas/ManagementWorkspaceApiKey'
+      - type: object
+        properties:
+          api_key:
+            type: string
+            description: Full secret API key. Returned only once at creation - store it securely and never commit to source control.
+            example: SS.XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
     ManagementActor:
       type: object
       description: Identity that performed an action (created, updated, rolled, deleted, rotated).
@@ -240,37 +216,6 @@ components:
           type: string
           description: Email address of the actor.
           example: user@example.com
-    ManagementWorkspaceApiKeyListResponse:
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/ManagementListMeta'
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/ManagementWorkspaceApiKey'
-    WorkspaceApiKeyCreateRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Label for the API key.
-          example: backend-prod
-        description:
-          type: string
-          nullable: true
-          description: Optional notes for operators.
-    ManagementWorkspaceApiKeyCreateResponse:
-      allOf:
-      - $ref: '#/components/schemas/ManagementWorkspaceApiKey'
-      - type: object
-        properties:
-          api_key:
-            type: string
-            description: Full secret API key. Returned only once at creation - store it securely and never commit to source control.
-            example: SS.XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
     ErrorResponse:
       type: object
       properties:
@@ -304,6 +249,59 @@ components:
           type: integer
           nullable: true
           description: Starting position of the returned results.
+    WorkspaceApiKeyCreateRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Label for the API key.
+          example: backend-prod
+        description:
+          type: string
+          nullable: true
+          description: Optional notes for operators.
+    ManagementWorkspaceApiKeyListResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/ManagementListMeta'
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ManagementWorkspaceApiKey'
+  responses:
+    ValidationError:
+      description: Validation error - data validation failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFoundError:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            code: 404
+            error_code: not_found
+            type: NotFound
+            message: workspace 'demo' not found
+            detail: workspace 'demo' not found
+    AuthenticationError:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            code: 401
+            error_code: authentication_failed
+            type: AuthenticationFailed
+            message: Invalid service token.
+            detail: Invalid service token.
   securitySchemes:
     BearerAuth:
       type: http

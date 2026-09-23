@@ -1,6 +1,6 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
-  title: SuprSend Broadcast Trigger API
+  title: SuprSend Trigger API
   description: APIs supported on suprsend platform
   version: 1.2.2
 servers:
@@ -343,9 +343,7 @@ paths:
       description: 'API to trigger multi-step workflow to one or more users/objects by passing workflow slug, via `POST /trigger/`.
 
 
-        Send a single JSON **object** to trigger one workflow, or an array of objects to trigger multiple workflows in one call.
-
-        '
+        Send a single JSON **object** to trigger one workflow, or an array of objects to trigger multiple workflows in one call.'
       operationId: trigger-workflow-api
       x-codeSamples:
       - lang: cURL

@@ -1,6 +1,6 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
-  title: SuprSend Broadcast Message API
+  title: SuprSend Message API
   description: APIs supported on suprsend platform
   version: 1.2.2
 servers:
@@ -14,9 +14,7 @@ paths:
   /v1/message/:
     get:
       summary: List Messages
-      description: 'Retrieve a paginated list of messages in a workspace order by created_at desc. Can be used to fetch and show message logs on the platform.
-
-        '
+      description: Retrieve a paginated list of messages in a workspace order by created_at desc. Can be used to fetch and show message logs on the platform.
       operationId: list-messages
       security:
       - BearerAuth: []

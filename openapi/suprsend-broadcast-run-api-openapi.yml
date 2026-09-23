@@ -1,6 +1,6 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
-  title: SuprSend Broadcast Broadcast Run API
+  title: SuprSend Broadcast Run API
   description: APIs supported on suprsend platform
   version: 1.2.2
 servers:
@@ -19,9 +19,7 @@ paths:
       description: 'API to cancel a running broadcast execution. You can cancel a broadcast by passing any combination of filters in the request body. When multiple parameters are provided, they are **ANDed** together to narrow down the matching broadcast runs.
 
 
-        For example, passing both `list_id` and `idempotency_key` will cancel only the broadcast runs that match both the given list and idempotency key.
-
-        '
+        For example, passing both `list_id` and `idempotency_key` will cancel only the broadcast runs that match both the given list and idempotency key.'
       operationId: cancel-broadcast
       x-codeSamples:
       - lang: cURL

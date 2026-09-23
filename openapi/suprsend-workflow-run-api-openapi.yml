@@ -1,6 +1,6 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
-  title: SuprSend Broadcast Workflow Run API
+  title: SuprSend Workflow Run API
   description: APIs supported on suprsend platform
   version: 1.2.2
 servers:
@@ -19,9 +19,7 @@ paths:
       description: 'API to cancel a running workflow execution. You can cancel a workflow by passing any combination of filters in the request body. When multiple parameters are provided, they are **ANDed** together to narrow down the matching workflow runs.
 
 
-        For example, passing both `workflow_slug` and `recipients` will cancel only the workflow runs that match both the given slug and recipients.
-
-        '
+        For example, passing both `workflow_slug` and `recipients` will cancel only the workflow runs that match both the given slug and recipients.'
       operationId: cancel-workflow
       x-codeSamples:
       - lang: cURL
