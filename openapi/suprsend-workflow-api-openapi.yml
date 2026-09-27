@@ -555,6 +555,37 @@ components:
           type: string
           description: Fixed IANA timezone for calculating datetime in recurrence rule.
           example: America/New_York
+    UserUpdateNode:
+      type: object
+      description: '[**Update User Profile**](https://docs.suprsend.com/docs/update-user-profile): Updates user profile properties for either the actor or recipient using JSONNET expression.'
+      required:
+      - node_type
+      - name
+      - user_selection
+      - properties
+      properties:
+        name:
+          type: string
+          description: Human-readable name of the node
+          example: Update user profile
+        node_type:
+          type: string
+          const: userupdate
+        description:
+          type: string
+          nullable: true
+          description: Description of what this node does
+        user_selection:
+          type: string
+          enum:
+          - actor
+          - recipient
+          description: Select which user to update - actor who triggered the workflow or the recipient of the workflow.
+        properties:
+          type: string
+          description: JSONNET script that evaluates at runtime to a map/dictionary of user properties to update.
+          minLength: 1
+          example: '{"name": "John Doe", "email": "john.doe@example.com"}'
     InvokeWorkflowNode:
       type: object
       description: '[**Invoke Workflow**](https://docs.suprsend.com/docs/invoke-workflow): Triggers another workflow using data from the current workflow run. Generally used when you have to notify different recipients at different stages of the workflow.'
@@ -656,826 +687,97 @@ components:
           type: integer
           minimum: 1
           description: Digest will be sent if number of triggers in the batch are greater than or equal to this count, else skipped.
-    SendSmsNode:
+    ObjectOperationAddSubscriptionNode:
       type: object
-      description: '[**SMS**](https://docs.suprsend.com/docs/delivery-single-channel)): Sends SMS text message notifications using a specified template.'
+      description: '[**Subscribe to Object**](https://docs.suprsend.com/docs/subscribe-to-object): Adds users (actor or recipient) as subscribers to an object. Can create the object if it doesn''t exist.'
       required:
       - node_type
       - name
-      - template
-      properties:
-        name:
-          type: string
-          description: Human-readable name of the node
-          example: Send OTP SMS
-        node_type:
-          type: string
-          const: send_sms
-        description:
-          type: string
-          nullable: true
-          description: Description of what this node does
-        template:
-          type: string
-          description: Slug of the template used for SMS notification content.
-          minLength: 1
-          maxLength: 120
-          pattern: ^[a-z0-9-_]+$
-    SendMultiChannelNode:
-      type: object
-      description: '[**Multi-Channel**](https://docs.suprsend.com/docs/delivery-multi-channel): Sends notifications across multiple channels simultaneously using a specified template.'
-      required:
-      - node_type
-      - name
-      - template
-      properties:
-        name:
-          type: string
-          description: Human-readable name of the node
-          example: Send multi-channel notification
-        node_type:
-          type: string
-          const: send_multi_channel
-        description:
-          type: string
-          nullable: true
-          description: Description of what this node does
-        template:
-          type: string
-          description: Slug of the template used for notification content across all channels.
-          minLength: 1
-          maxLength: 120
-          pattern: ^[a-z0-9-_]+$
-        channels:
-          type: array
-          description: Specific channels to use when sending multi-channel notification. If not provided, all channels will be used.
-          required: true
-          items:
-            type: string
-            enum:
-            - sms
-            - email
-            - androidpush
-            - iospush
-            - webpush
-            - inbox
-            - whatsapp
-            - slack
-            - ms_teams
-        channels_expr:
-          type: string
-          description: jq-expression for preparing channel list dynamically at runtime.
-          minLength: 2
-    Workflow:
-      type: object
-      properties:
-        $schema:
-          type: string
-          format: uri
-          description: Schema URL for workflow validation
-          example: https://schema.suprsend.com/workflow/v1/schema.json
-        slug:
-          type: string
-          description: Unique identifier for the workflow
-          minLength: 1
-          maxLength: 255
-          pattern: ^[a-z0-9-_]+$
-          example: welcome-sequence
-        is_enabled:
-          type: boolean
-          description: Whether the workflow is enabled
-          example: true
-        created_at:
-          type: string
-          format: date-time
-          description: When the workflow was created
-        last_executed_at:
-          type: string
-          format: date-time
-          description: When the workflow was last executed
-          nullable: true
-        name:
-          type: string
-          description: Human-readable name of the workflow
-          example: Welcome Sequence
-        description:
-          type: string
-          nullable: true
-          description: Description explaining the usecase of the workflow
-        updated_at:
-          type: string
-          format: date-time
-          description: When the workflow was last updated
-        commit_message:
-          type: string
-          nullable: true
-          description: Last commit message
-        hash:
-          type: string
-          nullable: true
-          description: Git-like hash for version tracking
-        status:
-          type: string
-          enum:
-          - active
-          - inactive
-          - draft
-          description: Current status of the workflow
-        category:
-          type: string
-          description: Notification category of the workflow. Used to apply category-specific settings and preferences.
-          example: transactional
-        tags:
-          type: array
-          items:
-            type: string
-          description: Tags for organizing and filtering workflows in API.
-        ratelimit:
-          type: object
-          nullable: true
-          description: Workflow [throttle](https://docs.suprsend.com/docs/throttle) settings. This is used to limit the number of times a workflow can be executed per user in a given time period.
-        conditions:
-          type: array
-          items:
-            type: object
-          description: Trigger Conditions for workflow execution. Workflow will only be executed if trigger conditions evaluate to true.
-        trigger_type:
-          type: string
-          enum:
-          - event
-          - dynamic
-          - api
-          description: How the workflow is triggered. You can refer to all trigger types [here](https://docs.suprsend.com/reference/trigger-workflows#trigger-types).
-        trigger_events:
-          type: array
-          items:
-            type: string
-          description: Events that trigger this workflow. This will be set for trigger_type = `event`.
-        override_recipients_type:
-          type: string
-          nullable: true
-          description: Type of recipient override. Define whether to override and run this workflow for user, list of users or a single object.
-          enum:
-          - user
-          - single_object_fields
-        override_recipients_user_expr:
-          type: string
-          nullable: true
-          description: Expression for overriding recipients when override_recipients_type = `user`.
-        override_recipients_single_object_fields_expr:
-          type: string
-          nullable: true
-          description: Expression for overriding recipients when override_recipients_type = `single_object_fields`.
-        override_actor_user_expr:
-          type: string
-          nullable: true
-          description: Expression for overriding actor
-        override_tenant_expr:
-          type: string
-          nullable: true
-          description: Expression for overriding tenant
-        active_at:
-          type: string
-          format: date-time
-          description: When the workflow's live version became active. Will be `null` for draft version.
-        updated_by:
-          type: object
-          nullable: true
-          properties:
-            name:
-              type: string
-              description: Name of the user who last updated the workflow
-            email:
-              type: string
-              format: email
-              description: Email of the user who last updated the workflow
-          description: User who last updated the workflow
-        tree:
-          type: object
-          description: Node tree structure of the workflow. Shows the list of all nodes used in the workflow along with their configuration.
-        validation_result:
-          type: object
-          properties:
-            is_valid:
-              type: boolean
-              description: true if the workflow tree is valid to be published.
-            errors:
-              type: array
-              items:
-                type: string
-              description: List of errors if the workflow tree is not valid.
-          description: Validation status of the workflow
-    BranchNode:
-      type: object
-      description: '[**Branch**](https://docs.suprsend.com/docs/branch): Divides the workflow in different branches and executes the first branch that matches the branch condition.'
-      required:
-      - node_type
-      - name
-      - branches
-      properties:
-        name:
-          type: string
-          description: Human-readable name of the node
-          example: Check user type
-        node_type:
-          type: string
-          const: branch
-        description:
-          type: string
-          nullable: true
-          description: Description of what this node does
-        branches:
-          type: array
-          description: Array of branches with conditions to evaluate. Minimum 2 branches required.
-          minItems: 2
-          maxItems: 10
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-                description: Name of the branch for identification.
-              description:
-                type: string
-                description: Description of what this branch does.
-              is_default:
-                type: boolean
-                description: Whether this is the default branch. Default branch is executed if no other branch conditions are met.
-              conditions:
-                type: array
-                description: Array of conditions to evaluate for this branch.
-                items:
-                  type: object
-                  properties:
-                    type:
-                      type: string
-                      const: expression_v1
-                      description: Type of condition to evaluate. Only expression_v1 is supported for regular branch nodes.
-                    expression_v1:
-                      type: object
-                      description: Boolean expression evaluation structure.
-                      properties:
-                        op:
-                          type: string
-                          enum:
-                          - AND
-                          - OR
-                          description: Logical operator for combining conditions.
-                        args:
-                          type: array
-                          description: Array of individual condition expressions or nested logical expressions.
-                          items:
-                            type: object
-                            properties:
-                              variable_ns:
-                                type: string
-                                description: 'Namespace for the variable on left-hand side of expression. Allowed values: "" (Default namespace - payload data), "$brand" (tenant/brand properties), "$actor" (user properties of the actor), "$recipient" (user properties of the recipient), "$future_event" (Future event properties), "$workflow" (Workflow properties).'
-                                required: false
-                                enum:
-                                - ''
-                                - $brand
-                                - $actor
-                                - $recipient
-                                - $future_event
-                                - $workflow
-                              variable:
-                                type: string
-                                description: Variable name on left-hand side of expression.
-                              op:
-                                type: string
-                                enum:
-                                - ==
-                                - '!='
-                                - '>'
-                                - '>='
-                                - <
-                                - <=
-                                - EMPTY
-                                - NON_EMPTY
-                                - CONTAINS
-                                - NOT_CONTAINS
-                                - DATETIME_EQUALS
-                                - DATETIME_LT
-                                - DATETIME_GT
-                                description: Comparison operator for the expression.
-                              value:
-                                type: string
-                                description: Right-hand side operand.
-                              args:
-                                type: array
-                                description: Array of conditions for nested logical expressions.
-              nodes:
-                type: array
-                description: Array of nodes to execute when this branch condition is met.
-    SendMobilePushNode:
-      type: object
-      description: '[**Mobile Push**](https://docs.suprsend.com/docs/delivery-single-channel): Sends push notifications to mobile devices (Android and iOS) using a specified template.'
-      required:
-      - node_type
-      - name
-      - template
-      properties:
-        name:
-          type: string
-          description: Human-readable name of the node
-          example: Send mobile push notification
-        node_type:
-          type: string
-          const: send_mobile_push
-        description:
-          type: string
-          nullable: true
-          description: Description of what this node does
-        template:
-          type: string
-          description: Slug of the template used for mobile push notification content.
-          minLength: 1
-          maxLength: 120
-          pattern: ^[a-z0-9-_]+$
-    Schedule:
-      type: object
-      description: Static schedule configuration for digest notifications.
-      properties:
-        frequency:
-          type: string
-          enum:
-          - minutely
-          - hourly
-          - daily
-          - weekly_mo2fr
-          - weekly
-          - monthly
-          description: Frequency of the digest schedule.
-        interval:
-          type: integer
-          minimum: 1
-          description: Multiplier for recurrence schedule. Eg. 2 for every 2 hours, 3 for every 3 days, etc.
-        weekdays:
-          type: array
-          items:
-            type: string
-            enum:
-            - su
-            - mo
-            - tu
-            - we
-            - th
-            - fr
-            - sa
-          description: Which days to include when frequency is 'weekly'.
-        monthdays:
-          type: array
-          items:
-            type: object
-            properties:
-              pos:
-                type: integer
-                minimum: -31
-                maximum: 31
-              day:
-                type: string
-                enum:
-                - null
-                - su
-                - mo
-                - tu
-                - we
-                - th
-                - fr
-                - sa
-          description: Which days to include when frequency is 'monthly'.
-        time:
-          type: string
-          description: Time of day to send digest in HH:MM format (24-hour).
-          examples:
-          - 09:00
-          - '18:30'
-        dtstart:
-          type: string
-          description: When to start schedule calculation from in ISO datetime format.
-        tz_selection:
-          type: string
-          enum:
-          - fixed
-          - recipient
-          description: "timezone of the recurring schedule. \n\n**fixed**: Fixed timezone. \n\n**recipient**: Recipient's timezone picked from user properties."
-        tz_fixed:
-          type: string
-          description: Fixed IANA timezone.
-          pattern: ^[A-Za-z_/]+$
-          examples:
-            new_york:
-              summary: New York timezone
-              value: America/New_York
-            london:
-              summary: London timezone
-              value: Europe/London
-    SendWhatsappNode:
-      type: object
-      description: '[**WhatsApp**](https://docs.suprsend.com/docs/delivery-single-channel): Sends WhatsApp message notifications using a specified template.'
-      required:
-      - node_type
-      - name
-      - template
-      properties:
-        name:
-          type: string
-          description: Human-readable name of the node
-          example: Send WhatsApp order confirmation
-        node_type:
-          type: string
-          const: send_whatsapp
-        description:
-          type: string
-          nullable: true
-          description: Description of what this node does
-        template:
-          type: string
-          description: Slug of the template used for WhatsApp notification content.
-          minLength: 1
-          maxLength: 120
-          pattern: ^[a-z0-9-_]+$
-    SubscriberListOperationAddUserNode:
-      type: object
-      description: '[**Add User to List**](https://docs.suprsend.com/docs/add-user-to-list): Adds users (actor or recipient) to a subscriber list. Can create the list if it doesn''t exist.'
-      required:
-      - node_type
-      - name
-      - list_id
+      - object_type
+      - object_id
       - user_selection
       properties:
         name:
           type: string
           description: Human-readable name of the node
-          example: Add to newsletter list
+          example: Add use to team object
         node_type:
           type: string
-          const: subscriberlistoperation_adduser
+          const: objectoperation_addsubscription
         description:
           type: string
           nullable: true
           description: Description of what this node does
-        is_list_id_dynamic:
+        is_object_id_dynamic:
           type: boolean
           default: false
-          description: Whether list_id is a static literal string or a handlebars expression.
-        list_id:
+          description: Whether object_type and object_id are static literal strings or handlebars expressions.
+        object_type:
           type: string
-          description: List identifier. Can be a static literal string or a handlebars expression added as {{list_id}}.
+          description: Type/collection name of the object.
           minLength: 1
-        create_list_if_missing:
+        object_id:
+          type: string
+          description: Unique identifier of the object within the object_type.
+          minLength: 1
+        create_object_if_missing:
           type: boolean
-          default: false
-          description: Whether to create the list if it doesn't exist.
-        list_name:
-          type: string
-          description: Name for the list when creating it. Pass when `create_list_if_missing` is true.
-          minLength: 1
+          description: Whether to create the object if it doesn't exist.
         user_selection:
           type: array
-          description: Which users to add to the list. Can select actor, recipient, or both.
+          description: Which users to add as subscribers to the object. Can select actor, recipient, or both.
           minItems: 1
           items:
             type: string
             enum:
             - actor
             - recipient
-    UserUpdateNode:
+        subscription_properties:
+          type: string
+          description: Additional subscription properties which defines the relationship between object and user. Eg. role, designation, etc. Pass as JSONNET expression.
+          example: '{"role": "admin"}'
+    ObjectOperationRemoveSubscriptionNode:
       type: object
-      description: '[**Update User Profile**](https://docs.suprsend.com/docs/update-user-profile): Updates user profile properties for either the actor or recipient using JSONNET expression.'
+      description: '[**Unsubscribe from Object**](https://docs.suprsend.com/docs/unsubscribe-from-object): Removes users (actor or recipient) as subscribers from an object. Object must exist for the operation to succeed.'
       required:
       - node_type
       - name
-      - user_selection
-      - properties
-      properties:
-        name:
-          type: string
-          description: Human-readable name of the node
-          example: Update user profile
-        node_type:
-          type: string
-          const: userupdate
-        description:
-          type: string
-          nullable: true
-          description: Description of what this node does
-        user_selection:
-          type: string
-          enum:
-          - actor
-          - recipient
-          description: Select which user to update - actor who triggered the workflow or the recipient of the workflow.
-        properties:
-          type: string
-          description: JSONNET script that evaluates at runtime to a map/dictionary of user properties to update.
-          minLength: 1
-          example: '{"name": "John Doe", "email": "john.doe@example.com"}'
-    BranchWaitUntilNode:
-      type: object
-      description: '[**Wait Until**](https://docs.suprsend.com/docs/wait-until): Waits until a condition is met or the maximum time is reached. Uses branch structure with conditions.'
-      required:
-      - node_type
-      - name
-      - branches
-      properties:
-        name:
-          type: string
-          description: Human-readable name of the node
-          example: Wait for approval
-        node_type:
-          type: string
-          const: branch_waituntil
-        description:
-          type: string
-          nullable: true
-          description: Description of what this node does
-        branches:
-          type: array
-          description: Array of branches with conditions to evaluate. Minimum 2 branches required.
-          minItems: 2
-          maxItems: 2
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-                description: Name of the branch for identification.
-              description:
-                type: string
-                description: Description of what this branch does.
-              is_default:
-                type: boolean
-                description: Whether this is the default branch. In case of wait until, branch with condition->type as 'delay' (max time) should always be the default branch.
-              conditions:
-                type: array
-                description: Array of conditions to evaluate for this branch.
-                items:
-                  type: object
-                  properties:
-                    type:
-                      type: string
-                      enum:
-                      - future_event
-                      - delay
-                      description: Type of condition to evaluate.
-                    event_name:
-                      type: string
-                      description: Name of the future event to wait for. Eg. `"request_approved"`
-                      maxLength: 255
-                    event_conditions:
-                      type: array
-                      description: Additional conditions to evaluate when the future event occurs.
-                      items:
-                        type: object
-                        properties:
-                          variable_ns:
-                            type: string
-                            description: Namespace for the variable on left-hand side of expression.
-                            allowed_values:
-                            - ? ''
-                              : Default namespace (payload data)
-                            - $brand: tenant/brand properties
-                            - $actor: user properties of the actor
-                            - $recipient: user properties of the recipient
-                            - $future_event: Future event properties
-                            required: false
-                          variable:
-                            type: string
-                            description: Variable name on left-hand side of expression.
-                            required: true
-                            example: status
-                          op:
-                            type: string
-                            description: Comparison operator for the expression.
-                            allowed_values:
-                            - ==: Equal to
-                            - '!=': Not equal to
-                            - '>': Greater than
-                            - <: Less than
-                            - '>=': Greater than or equal to
-                            - <=: Less than or equal to
-                            - EMPTY: Empty
-                            - NON_EMPTY: Not empty
-                            - CONTAINS: Contains
-                            - NOT_CONTAINS: Does not contain
-                            - DATETIME_EQUALS: Date time equals
-                            - DATETIME_LT: Date time less than
-                            - DATETIME_GT: Date time greater than
-                          value:
-                            type: string
-                            description: Right-hand side operand.
-                            example: approved
-                    delay_properties:
-                      type: object
-                      description: Timeout value after which the branch will be executed. Required when condition->type is 'delay'.
-                      properties:
-                        delay_type:
-                          type: string
-                          enum:
-                          - fixed
-                          - dynamic
-                          - relative_to
-                          description: "Type of delay calculation. \n\n**fixed**: Static duration added as XXdXXhXXmXXs. \n\n**dynamic**: duration is passed as variable in your trigger payload in jq format. Eg. `.delay_duration`, `$recipient.delay_duration`, `$actor.delay_duration`, `$tenant.delay_duration`. \n\n**relative_to**: delay is relative to a future timestamp passed in your trigger payload. Eg. `.start_time` before 15m."
-                        value:
-                          type: string
-                          description: Delay value. Required for 'fixed' and 'dynamic' delay types.
-                          examples:
-                            fixed_duration:
-                              summary: Fixed duration example
-                              value: 30s
-                            dynamic_duration:
-                              summary: Dynamic duration from trigger payload
-                              value: .delay_duration
-                            recipient_duration:
-                              summary: Dynamic duration from recipient properties
-                              value: $recipient.delay_duration
-                        relative_to:
-                          type: object
-                          description: Relative delay configuration. Required when delay_type is 'relative_to'.
-                          example:
-                            pivot_expr: .start_time
-                            offset_type: before
-                            offset_value_type: fixed
-                            offset_value: 15m
-                          properties:
-                            pivot_expr:
-                              type: string
-                              description: (jq-expression) variable defining the future timestamp from trigger payload relative to which delay is calculated.
-                            offset_type:
-                              type: string
-                              enum:
-                              - before
-                              - after
-                              description: Whether to add or subtract offset from pivot.
-                            offset_value_type:
-                              type: string
-                              enum:
-                              - fixed
-                              - dynamic
-                              description: "How to determine offset value. \n\n**fixed**: Static duration added as XXdXXhXXmXXs. Eg. 15m before meeting_start_time. \n\n**dynamic**: offset is passed as variable in your trigger payload or recipient, tenant properties in jq format. Eg. `$recipient.reminder_offset` before meeting_start_time."
-                            offset_value:
-                              type: string
-                              description: Offset value. Required for 'fixed' and 'dynamic' offset_value_types.
-                              examples:
-                                fixed_offset:
-                                  summary: Fixed duration offset
-                                  value: 15m
-                                dynamic_offset:
-                                  summary: Dynamic offset from recipient properties
-                                  value: $recipient.reminder_offset
-              nodes:
-                type: array
-                description: Array of nodes to execute when this branch condition is met. Minimum 1 node required.
-    SubscriberListOperationRemoveUserNode:
-      type: object
-      description: '[**Remove User from List**](https://docs.suprsend.com/docs/remove-user-from-list): Removes users (actor or recipient) from the list. List must exist for the operation to succeed.'
-      required:
-      - node_type
-      - name
-      - list_id
+      - object_type
+      - object_id
       - user_selection
       properties:
         name:
           type: string
           description: Human-readable name of the node
-          example: Remove from newsletter list
+          example: Unsubscribe from project
         node_type:
           type: string
-          const: subscriberlistoperation_removeuser
+          const: objectoperation_removesubscription
         description:
           type: string
           nullable: true
           description: Description of what this node does
-        is_list_id_dynamic:
+        is_object_id_dynamic:
           type: boolean
           default: false
-          description: Whether list_id is a static literal string or a handlebars expression.
-        list_id:
+          description: Whether object_type and object_id are static literal strings or handlebars expressions.
+        object_type:
           type: string
-          description: List identifier. Can be a static literal string or a handlebars expression (to compute the list id at runtime. Eg. {{list_id}}).
+          description: Type/collection name of the object.
+          minLength: 1
+        object_id:
+          type: string
+          description: Unique identifier of the object within the object_type.
           minLength: 1
         user_selection:
           type: array
-          description: Which users to remove from the list. Can select actor, recipient, or both.
+          description: Which users to remove as subscribers from the object. Can select actor, recipient, or both.
           minItems: 1
           items:
             type: string
             enum:
             - actor
             - recipient
-    SendInboxNode:
-      type: object
-      description: '[**Inbox**](https://docs.suprsend.com/docs/delivery-single-channel): Sends in-app inbox notifications using a specified template.'
-      required:
-      - node_type
-      - name
-      - template
-      properties:
-        name:
-          type: string
-          description: Human-readable name of the node
-          example: Send in-app notification
-        node_type:
-          type: string
-          const: send_inbox
-        description:
-          type: string
-          nullable: true
-          description: Description of what this node does
-        template:
-          type: string
-          description: Slug of the template used for in-app inbox notification content.
-          minLength: 1
-          maxLength: 120
-          pattern: ^[a-z0-9-_]+$
-    SendSmartChannelRoutingNode:
-      type: object
-      description: '[**Smart Channel Routing**](https://docs.suprsend.com/docs/smart-delivery): Sends notification subsequently at each consecutive channel with a delay (computed using time-to-live) between each channel.'
-      required:
-      - node_type
-      - name
-      - template
-      properties:
-        name:
-          type: string
-          description: Human-readable name of the node
-          example: Send smart channel notification
-        node_type:
-          type: string
-          const: send_smart_channel_routing
-        description:
-          type: string
-          nullable: true
-          description: Description of what this node does
-        template:
-          type: string
-          description: Slug of the template used for smart channel routing notification content.
-          minLength: 1
-          maxLength: 120
-          pattern: ^[a-z0-9-_]+$
-        channels:
-          type: array
-          description: Available channels for smart routing algorithm to choose from.
-          items:
-            type: string
-            enum:
-            - sms
-            - email
-            - androidpush
-            - iospush
-            - webpush
-            - inbox
-            - whatsapp
-            - slack
-            - ms_teams
-        channels_expr:
-          type: string
-          description: jq-expression for preparing available channel list dynamically at runtime.
-          minLength: 2
-        success:
-          type: string
-          description: Success metric to track for smart channel routing.
-          examples:
-            delivered:
-              summary: Notification delivered
-              value: delivered
-            seen:
-              summary: Notification seen
-              value: seen
-            interacted:
-              summary: User clicked the notification
-              value: interacted
-            custom_event:
-              summary: Custom event name
-              value: <custom_event_name>
-        success_is_event:
-          type: boolean
-          description: Whether the success metric is a custom event. If not, notification status will be used to determine success.
-        ttl_value:
-          type: string
-          description: Time-to-live value for the smart channel routing notification in static duration format.
-          example: 1h
-        mandatory_channels:
-          type: array
-          description: Channels that will be sent immediately regardless of smart routing logic.
-          items:
-            type: string
-            enum:
-            - sms
-            - email
-            - androidpush
-            - iospush
-            - webpush
-            - inbox
-            - whatsapp
-            - slack
-            - ms_teams
-        routing_basis:
-          type: string
-          enum:
-          - cost_low_to_high
-          description: Basis for smart channel routing. Determines the order in which channels are tried. Right now only `cost_low_to_high` is supported. We'll be adding more routing rules like in the order of engagement in future.
     WorkflowCreateUpdate:
       type: object
       required:
@@ -1684,9 +986,9 @@ components:
                 - $ref: '#/components/schemas/SendSmartChannelRoutingNode'
               description: Array of nodes in the workflow tree structure.
           description: Node tree structure of the workflow. Contains the nodes array with all workflow nodes and their configuration.
-    SendSlackNode:
+    SendMobilePushNode:
       type: object
-      description: '[**Slack**](https://docs.suprsend.com/docs/delivery-single-channel): Sends Slack message notifications using a specified template.'
+      description: '[**Mobile Push**](https://docs.suprsend.com/docs/delivery-single-channel): Sends push notifications to mobile devices (Android and iOS) using a specified template.'
       required:
       - node_type
       - name
@@ -1695,17 +997,17 @@ components:
         name:
           type: string
           description: Human-readable name of the node
-          example: Send Slack notification
+          example: Send mobile push notification
         node_type:
           type: string
-          const: send_slack
+          const: send_mobile_push
         description:
           type: string
           nullable: true
           description: Description of what this node does
         template:
           type: string
-          description: Slug of the template used for Slack notification content.
+          description: Slug of the template used for mobile push notification content.
           minLength: 1
           maxLength: 120
           pattern: ^[a-z0-9-_]+$
@@ -1734,9 +1036,9 @@ components:
           minLength: 1
           maxLength: 120
           pattern: ^[a-z0-9-_]+$
-    SendWebpushNode:
+    SendSmartChannelRoutingNode:
       type: object
-      description: '[**Web Push**](https://docs.suprsend.com/docs/delivery-single-channel): Sends web push notifications using a specified template.'
+      description: '[**Smart Channel Routing**](https://docs.suprsend.com/docs/smart-delivery): Sends notification subsequently at each consecutive channel with a delay (computed using time-to-live) between each channel.'
       required:
       - node_type
       - name
@@ -1745,17 +1047,338 @@ components:
         name:
           type: string
           description: Human-readable name of the node
-          example: Send web push notification
+          example: Send smart channel notification
         node_type:
           type: string
-          const: send_webpush
+          const: send_smart_channel_routing
         description:
           type: string
           nullable: true
           description: Description of what this node does
         template:
           type: string
-          description: Slug of the template used for web push notification content.
+          description: Slug of the template used for smart channel routing notification content.
+          minLength: 1
+          maxLength: 120
+          pattern: ^[a-z0-9-_]+$
+        channels:
+          type: array
+          description: Available channels for smart routing algorithm to choose from.
+          items:
+            type: string
+            enum:
+            - sms
+            - email
+            - androidpush
+            - iospush
+            - webpush
+            - inbox
+            - whatsapp
+            - slack
+            - ms_teams
+        channels_expr:
+          type: string
+          description: jq-expression for preparing available channel list dynamically at runtime.
+          minLength: 2
+        success:
+          type: string
+          description: Success metric to track for smart channel routing.
+          examples:
+            delivered:
+              summary: Notification delivered
+              value: delivered
+            seen:
+              summary: Notification seen
+              value: seen
+            interacted:
+              summary: User clicked the notification
+              value: interacted
+            custom_event:
+              summary: Custom event name
+              value: <custom_event_name>
+        success_is_event:
+          type: boolean
+          description: Whether the success metric is a custom event. If not, notification status will be used to determine success.
+        ttl_value:
+          type: string
+          description: Time-to-live value for the smart channel routing notification in static duration format.
+          example: 1h
+        mandatory_channels:
+          type: array
+          description: Channels that will be sent immediately regardless of smart routing logic.
+          items:
+            type: string
+            enum:
+            - sms
+            - email
+            - androidpush
+            - iospush
+            - webpush
+            - inbox
+            - whatsapp
+            - slack
+            - ms_teams
+        routing_basis:
+          type: string
+          enum:
+          - cost_low_to_high
+          description: Basis for smart channel routing. Determines the order in which channels are tried. Right now only `cost_low_to_high` is supported. We'll be adding more routing rules like in the order of engagement in future.
+    BranchWaitUntilNode:
+      type: object
+      description: '[**Wait Until**](https://docs.suprsend.com/docs/wait-until): Waits until a condition is met or the maximum time is reached. Uses branch structure with conditions.'
+      required:
+      - node_type
+      - name
+      - branches
+      properties:
+        name:
+          type: string
+          description: Human-readable name of the node
+          example: Wait for approval
+        node_type:
+          type: string
+          const: branch_waituntil
+        description:
+          type: string
+          nullable: true
+          description: Description of what this node does
+        branches:
+          type: array
+          description: Array of branches with conditions to evaluate. Minimum 2 branches required.
+          minItems: 2
+          maxItems: 2
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Name of the branch for identification.
+              description:
+                type: string
+                description: Description of what this branch does.
+              is_default:
+                type: boolean
+                description: Whether this is the default branch. In case of wait until, branch with condition->type as 'delay' (max time) should always be the default branch.
+              conditions:
+                type: array
+                description: Array of conditions to evaluate for this branch.
+                items:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      enum:
+                      - future_event
+                      - delay
+                      description: Type of condition to evaluate.
+                    event_name:
+                      type: string
+                      description: Name of the future event to wait for. Eg. `"request_approved"`
+                      maxLength: 255
+                    event_conditions:
+                      type: array
+                      description: Additional conditions to evaluate when the future event occurs.
+                      items:
+                        type: object
+                        properties:
+                          variable_ns:
+                            type: string
+                            description: Namespace for the variable on left-hand side of expression.
+                            allowed_values:
+                            - ? ''
+                              : Default namespace (payload data)
+                            - $brand: tenant/brand properties
+                            - $actor: user properties of the actor
+                            - $recipient: user properties of the recipient
+                            - $future_event: Future event properties
+                            required: false
+                          variable:
+                            type: string
+                            description: Variable name on left-hand side of expression.
+                            required: true
+                            example: status
+                          op:
+                            type: string
+                            description: Comparison operator for the expression.
+                            allowed_values:
+                            - ==: Equal to
+                            - '!=': Not equal to
+                            - '>': Greater than
+                            - <: Less than
+                            - '>=': Greater than or equal to
+                            - <=: Less than or equal to
+                            - EMPTY: Empty
+                            - NON_EMPTY: Not empty
+                            - CONTAINS: Contains
+                            - NOT_CONTAINS: Does not contain
+                            - DATETIME_EQUALS: Date time equals
+                            - DATETIME_LT: Date time less than
+                            - DATETIME_GT: Date time greater than
+                          value:
+                            type: string
+                            description: Right-hand side operand.
+                            example: approved
+                    delay_properties:
+                      type: object
+                      description: Timeout value after which the branch will be executed. Required when condition->type is 'delay'.
+                      properties:
+                        delay_type:
+                          type: string
+                          enum:
+                          - fixed
+                          - dynamic
+                          - relative_to
+                          description: "Type of delay calculation. \n\n**fixed**: Static duration added as XXdXXhXXmXXs. \n\n**dynamic**: duration is passed as variable in your trigger payload in jq format. Eg. `.delay_duration`, `$recipient.delay_duration`, `$actor.delay_duration`, `$tenant.delay_duration`. \n\n**relative_to**: delay is relative to a future timestamp passed in your trigger payload. Eg. `.start_time` before 15m."
+                        value:
+                          type: string
+                          description: Delay value. Required for 'fixed' and 'dynamic' delay types.
+                          examples:
+                            fixed_duration:
+                              summary: Fixed duration example
+                              value: 30s
+                            dynamic_duration:
+                              summary: Dynamic duration from trigger payload
+                              value: .delay_duration
+                            recipient_duration:
+                              summary: Dynamic duration from recipient properties
+                              value: $recipient.delay_duration
+                        relative_to:
+                          type: object
+                          description: Relative delay configuration. Required when delay_type is 'relative_to'.
+                          example:
+                            pivot_expr: .start_time
+                            offset_type: before
+                            offset_value_type: fixed
+                            offset_value: 15m
+                          properties:
+                            pivot_expr:
+                              type: string
+                              description: (jq-expression) variable defining the future timestamp from trigger payload relative to which delay is calculated.
+                            offset_type:
+                              type: string
+                              enum:
+                              - before
+                              - after
+                              description: Whether to add or subtract offset from pivot.
+                            offset_value_type:
+                              type: string
+                              enum:
+                              - fixed
+                              - dynamic
+                              description: "How to determine offset value. \n\n**fixed**: Static duration added as XXdXXhXXmXXs. Eg. 15m before meeting_start_time. \n\n**dynamic**: offset is passed as variable in your trigger payload or recipient, tenant properties in jq format. Eg. `$recipient.reminder_offset` before meeting_start_time."
+                            offset_value:
+                              type: string
+                              description: Offset value. Required for 'fixed' and 'dynamic' offset_value_types.
+                              examples:
+                                fixed_offset:
+                                  summary: Fixed duration offset
+                                  value: 15m
+                                dynamic_offset:
+                                  summary: Dynamic offset from recipient properties
+                                  value: $recipient.reminder_offset
+              nodes:
+                type: array
+                description: Array of nodes to execute when this branch condition is met. Minimum 1 node required.
+    Schedule:
+      type: object
+      description: Static schedule configuration for digest notifications.
+      properties:
+        frequency:
+          type: string
+          enum:
+          - minutely
+          - hourly
+          - daily
+          - weekly_mo2fr
+          - weekly
+          - monthly
+          description: Frequency of the digest schedule.
+        interval:
+          type: integer
+          minimum: 1
+          description: Multiplier for recurrence schedule. Eg. 2 for every 2 hours, 3 for every 3 days, etc.
+        weekdays:
+          type: array
+          items:
+            type: string
+            enum:
+            - su
+            - mo
+            - tu
+            - we
+            - th
+            - fr
+            - sa
+          description: Which days to include when frequency is 'weekly'.
+        monthdays:
+          type: array
+          items:
+            type: object
+            properties:
+              pos:
+                type: integer
+                minimum: -31
+                maximum: 31
+              day:
+                type: string
+                enum:
+                - null
+                - su
+                - mo
+                - tu
+                - we
+                - th
+                - fr
+                - sa
+          description: Which days to include when frequency is 'monthly'.
+        time:
+          type: string
+          description: Time of day to send digest in HH:MM format (24-hour).
+          examples:
+          - 09:00
+          - '18:30'
+        dtstart:
+          type: string
+          description: When to start schedule calculation from in ISO datetime format.
+        tz_selection:
+          type: string
+          enum:
+          - fixed
+          - recipient
+          description: "timezone of the recurring schedule. \n\n**fixed**: Fixed timezone. \n\n**recipient**: Recipient's timezone picked from user properties."
+        tz_fixed:
+          type: string
+          description: Fixed IANA timezone.
+          pattern: ^[A-Za-z_/]+$
+          examples:
+            new_york:
+              summary: New York timezone
+              value: America/New_York
+            london:
+              summary: London timezone
+              value: Europe/London
+    SendMsTeamsNode:
+      type: object
+      description: '[**Microsoft Teams**](https://docs.suprsend.com/docs/delivery-single-channel): Sends Microsoft Teams chat notifications using a specified template.'
+      required:
+      - node_type
+      - name
+      - template
+      properties:
+        name:
+          type: string
+          description: Human-readable name of the node
+          example: Send Teams notification
+        node_type:
+          type: string
+          const: send_ms_teams
+        description:
+          type: string
+          nullable: true
+          description: Description of what this node does
+        template:
+          type: string
+          description: Slug of the template used for Microsoft Teams notification content.
           minLength: 1
           maxLength: 120
           pattern: ^[a-z0-9-_]+$
@@ -1799,6 +1422,396 @@ components:
                 type: string
                 description: Script in the selected language to derive the value of the variable at runtime.
                 minLength: 1
+    HttpApiWebhookNode:
+      type: object
+      description: '[**Webhook**](https://docs.suprsend.com/docs/webhook): Makes an HTTP API request to an endpoint.'
+      required:
+      - node_type
+      - name
+      - http_method
+      - url
+      properties:
+        name:
+          type: string
+          description: Human-readable name of the node
+          example: Notify internal CRM
+        node_type:
+          type: string
+          const: httpapi_webhook
+        description:
+          type: string
+          nullable: true
+          description: Description of what this node does
+        http_method:
+          type: string
+          enum:
+          - GET
+          - PUT
+          - POST
+          - PATCH
+          - DELETE
+          description: HTTP method of the API call.
+        url:
+          type: string
+          format: uri
+          description: Endpoint URL of the API call. You can add variables in JSONNET format. Eg. `"https://api.example.com/webhook?id="+data["$recipient"].id`
+          example: https://api.example.com/webhook
+        headers:
+          type: array
+          description: List of headers as key-value pairs. You can add variables in JSONNET format. Eg. `"Bearer"+data["$tenant"].api_key`
+          items:
+            type: object
+            properties:
+              key:
+                type: string
+                description: header key
+                example:
+                - '"Authorization"'
+                - '"Content-Type"'
+              value:
+                type: string
+                description: header value
+                example:
+                - '"Bearer "+data["$tenant"].api_key'
+                - '"application/json"'
+        body_content_type:
+          type: string
+          default: application/json
+          description: Content type for the body.
+        body:
+          type: string
+          description: JSONNET script to evaluate request body.
+        query_params:
+          type: array
+          description: List of query parameters as key-value pairs. You can add variables in JSONNET format. Eg. `data["$recipient"].id`
+          items:
+            type: object
+            properties:
+              key:
+                type: string
+                description: Query Parameter Key
+              value:
+                type: string
+                description: Query Parameter Value
+        output_key:
+          type: string
+          description: Optional key to store the response body of API call. If not provided, the response will be appended at the root of the workflow payload. It's recommended to provide a unique key here to avoid overwriting existing data.
+    SendWhatsappNode:
+      type: object
+      description: '[**WhatsApp**](https://docs.suprsend.com/docs/delivery-single-channel): Sends WhatsApp message notifications using a specified template.'
+      required:
+      - node_type
+      - name
+      - template
+      properties:
+        name:
+          type: string
+          description: Human-readable name of the node
+          example: Send WhatsApp order confirmation
+        node_type:
+          type: string
+          const: send_whatsapp
+        description:
+          type: string
+          nullable: true
+          description: Description of what this node does
+        template:
+          type: string
+          description: Slug of the template used for WhatsApp notification content.
+          minLength: 1
+          maxLength: 120
+          pattern: ^[a-z0-9-_]+$
+    SendMultiChannelNode:
+      type: object
+      description: '[**Multi-Channel**](https://docs.suprsend.com/docs/delivery-multi-channel): Sends notifications across multiple channels simultaneously using a specified template.'
+      required:
+      - node_type
+      - name
+      - template
+      properties:
+        name:
+          type: string
+          description: Human-readable name of the node
+          example: Send multi-channel notification
+        node_type:
+          type: string
+          const: send_multi_channel
+        description:
+          type: string
+          nullable: true
+          description: Description of what this node does
+        template:
+          type: string
+          description: Slug of the template used for notification content across all channels.
+          minLength: 1
+          maxLength: 120
+          pattern: ^[a-z0-9-_]+$
+        channels:
+          type: array
+          description: Specific channels to use when sending multi-channel notification. If not provided, all channels will be used.
+          required: true
+          items:
+            type: string
+            enum:
+            - sms
+            - email
+            - androidpush
+            - iospush
+            - webpush
+            - inbox
+            - whatsapp
+            - slack
+            - ms_teams
+        channels_expr:
+          type: string
+          description: jq-expression for preparing channel list dynamically at runtime.
+          minLength: 2
+    SendSlackNode:
+      type: object
+      description: '[**Slack**](https://docs.suprsend.com/docs/delivery-single-channel): Sends Slack message notifications using a specified template.'
+      required:
+      - node_type
+      - name
+      - template
+      properties:
+        name:
+          type: string
+          description: Human-readable name of the node
+          example: Send Slack notification
+        node_type:
+          type: string
+          const: send_slack
+        description:
+          type: string
+          nullable: true
+          description: Description of what this node does
+        template:
+          type: string
+          description: Slug of the template used for Slack notification content.
+          minLength: 1
+          maxLength: 120
+          pattern: ^[a-z0-9-_]+$
+    DelayNode:
+      type: object
+      description: '[**Delay**](https://docs.suprsend.com/docs/delay): Pauses workflow execution for a specified duration.'
+      required:
+      - node_type
+      - name
+      - delay_type
+      properties:
+        name:
+          type: string
+          description: Human-readable name of the node
+          example: Wait 30 minutes
+        description:
+          type: string
+          nullable: true
+          description: Description of what this node does
+        node_type:
+          type: string
+          const: delay
+        delay_type:
+          type: string
+          enum:
+          - fixed
+          - dynamic
+          - relative_to
+          description: "Type of delay. Determines how the duration is calculated. \n\n**Fixed**: Static duration added as XXdXXhXXmXXs.\n\n **Dynamic**: duration is passed as variable in your trigger payload in jq format. Eg. `.delay_duration`, `$recipient.delay_duration`, `$actor.delay_duration`, `$tenant.delay_duration`.\n\n **Relative to**: delay is relative to a future timestamp passed in your trigger payload. Eg. `.start_time` before 15m."
+        duration:
+          type: string
+          description: Duration value. Required for 'fixed' and 'dynamic' delay types.
+          examples:
+            fixed_duration:
+              summary: Fixed duration example
+              value: 30s
+            dynamic_duration:
+              summary: Dynamic duration from trigger payload
+              value: .delay_duration
+            recipient_duration:
+              summary: Dynamic duration from recipient properties
+              value: $recipient.delay_duration
+        relative_to:
+          type: object
+          description: Relative delay configuration. Required when delay_type is 'relative_to'.
+          properties:
+            pivot_expr:
+              type: string
+              description: (jq-expression) variable defining the future timestamp from trigger payload relative to which delay is calculated.
+              example: .start_time
+            offset_type:
+              type: string
+              enum:
+              - before
+              - after
+              description: Whether offset is to be added or subtracted from pivot_expr.
+            offset_value_type:
+              type: string
+              enum:
+              - fixed
+              - dynamic
+              description: "Defines if the offset value is fixed or dynamic. \n\n**Fixed**: Static duration added as XXdXXhXXmXXs. Eg. 15m before meeting_start_time. \n\n**Dynamic**: offset is passed as variable in your trigger payload or recipient, tenant properties in jq format. Eg. `$recipient.reminder_offset` before meeting_start_time."
+            offset_value:
+              type: string
+              description: Offset value
+              examples:
+                fixed_offset:
+                  summary: Fixed duration offset
+                  value: 15m
+                dynamic_offset:
+                  summary: Dynamic offset from recipient properties
+                  value: $recipient.reminder_offset
+    SendSmsNode:
+      type: object
+      description: '[**SMS**](https://docs.suprsend.com/docs/delivery-single-channel)): Sends SMS text message notifications using a specified template.'
+      required:
+      - node_type
+      - name
+      - template
+      properties:
+        name:
+          type: string
+          description: Human-readable name of the node
+          example: Send OTP SMS
+        node_type:
+          type: string
+          const: send_sms
+        description:
+          type: string
+          nullable: true
+          description: Description of what this node does
+        template:
+          type: string
+          description: Slug of the template used for SMS notification content.
+          minLength: 1
+          maxLength: 120
+          pattern: ^[a-z0-9-_]+$
+    SendInboxNode:
+      type: object
+      description: '[**Inbox**](https://docs.suprsend.com/docs/delivery-single-channel): Sends in-app inbox notifications using a specified template.'
+      required:
+      - node_type
+      - name
+      - template
+      properties:
+        name:
+          type: string
+          description: Human-readable name of the node
+          example: Send in-app notification
+        node_type:
+          type: string
+          const: send_inbox
+        description:
+          type: string
+          nullable: true
+          description: Description of what this node does
+        template:
+          type: string
+          description: Slug of the template used for in-app inbox notification content.
+          minLength: 1
+          maxLength: 120
+          pattern: ^[a-z0-9-_]+$
+    BranchNode:
+      type: object
+      description: '[**Branch**](https://docs.suprsend.com/docs/branch): Divides the workflow in different branches and executes the first branch that matches the branch condition.'
+      required:
+      - node_type
+      - name
+      - branches
+      properties:
+        name:
+          type: string
+          description: Human-readable name of the node
+          example: Check user type
+        node_type:
+          type: string
+          const: branch
+        description:
+          type: string
+          nullable: true
+          description: Description of what this node does
+        branches:
+          type: array
+          description: Array of branches with conditions to evaluate. Minimum 2 branches required.
+          minItems: 2
+          maxItems: 10
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Name of the branch for identification.
+              description:
+                type: string
+                description: Description of what this branch does.
+              is_default:
+                type: boolean
+                description: Whether this is the default branch. Default branch is executed if no other branch conditions are met.
+              conditions:
+                type: array
+                description: Array of conditions to evaluate for this branch.
+                items:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      const: expression_v1
+                      description: Type of condition to evaluate. Only expression_v1 is supported for regular branch nodes.
+                    expression_v1:
+                      type: object
+                      description: Boolean expression evaluation structure.
+                      properties:
+                        op:
+                          type: string
+                          enum:
+                          - AND
+                          - OR
+                          description: Logical operator for combining conditions.
+                        args:
+                          type: array
+                          description: Array of individual condition expressions or nested logical expressions.
+                          items:
+                            type: object
+                            properties:
+                              variable_ns:
+                                type: string
+                                description: 'Namespace for the variable on left-hand side of expression. Allowed values: "" (Default namespace - payload data), "$brand" (tenant/brand properties), "$actor" (user properties of the actor), "$recipient" (user properties of the recipient), "$future_event" (Future event properties), "$workflow" (Workflow properties).'
+                                required: false
+                                enum:
+                                - ''
+                                - $brand
+                                - $actor
+                                - $recipient
+                                - $future_event
+                                - $workflow
+                              variable:
+                                type: string
+                                description: Variable name on left-hand side of expression.
+                              op:
+                                type: string
+                                enum:
+                                - ==
+                                - '!='
+                                - '>'
+                                - '>='
+                                - <
+                                - <=
+                                - EMPTY
+                                - NON_EMPTY
+                                - CONTAINS
+                                - NOT_CONTAINS
+                                - DATETIME_EQUALS
+                                - DATETIME_LT
+                                - DATETIME_GT
+                                description: Comparison operator for the expression.
+                              value:
+                                type: string
+                                description: Right-hand side operand.
+                              args:
+                                type: array
+                                description: Array of conditions for nested logical expressions.
+              nodes:
+                type: array
+                description: Array of nodes to execute when this branch condition is met.
     BatchNode:
       type: object
       description: '[**Batch**](https://docs.suprsend.com/docs/batch): Batches incoming workflow triggers/events for a duration to send consolidated notifications.'
@@ -1903,55 +1916,227 @@ components:
           type: string
           description: jq-expression used to group events into separate batches. For example, when sending batched notifications for comments on different documents, use `.document_id` as the batch key to ensure comments from different documents are not combined into the same batch.
           example: .document_id
-    ObjectOperationAddSubscriptionNode:
+    SubscriberListOperationAddUserNode:
       type: object
-      description: '[**Subscribe to Object**](https://docs.suprsend.com/docs/subscribe-to-object): Adds users (actor or recipient) as subscribers to an object. Can create the object if it doesn''t exist.'
+      description: '[**Add User to List**](https://docs.suprsend.com/docs/add-user-to-list): Adds users (actor or recipient) to a subscriber list. Can create the list if it doesn''t exist.'
       required:
       - node_type
       - name
-      - object_type
-      - object_id
+      - list_id
       - user_selection
       properties:
         name:
           type: string
           description: Human-readable name of the node
-          example: Add use to team object
+          example: Add to newsletter list
         node_type:
           type: string
-          const: objectoperation_addsubscription
+          const: subscriberlistoperation_adduser
         description:
           type: string
           nullable: true
           description: Description of what this node does
-        is_object_id_dynamic:
+        is_list_id_dynamic:
           type: boolean
           default: false
-          description: Whether object_type and object_id are static literal strings or handlebars expressions.
-        object_type:
+          description: Whether list_id is a static literal string or a handlebars expression.
+        list_id:
           type: string
-          description: Type/collection name of the object.
+          description: List identifier. Can be a static literal string or a handlebars expression added as {{list_id}}.
           minLength: 1
-        object_id:
-          type: string
-          description: Unique identifier of the object within the object_type.
-          minLength: 1
-        create_object_if_missing:
+        create_list_if_missing:
           type: boolean
-          description: Whether to create the object if it doesn't exist.
+          default: false
+          description: Whether to create the list if it doesn't exist.
+        list_name:
+          type: string
+          description: Name for the list when creating it. Pass when `create_list_if_missing` is true.
+          minLength: 1
         user_selection:
           type: array
-          description: Which users to add as subscribers to the object. Can select actor, recipient, or both.
+          description: Which users to add to the list. Can select actor, recipient, or both.
           minItems: 1
           items:
             type: string
             enum:
             - actor
             - recipient
-        subscription_properties:
+    Workflow:
+      type: object
+      properties:
+        $schema:
           type: string
-          description: Additional subscription properties which defines the relationship between object and user. Eg. role, designation, etc. Pass as JSONNET expression.
-          example: '{"role": "admin"}'
+          format: uri
+          description: Schema URL for workflow validation
+          example: https://schema.suprsend.com/workflow/v1/schema.json
+        slug:
+          type: string
+          description: Unique identifier for the workflow
+          minLength: 1
+          maxLength: 255
+          pattern: ^[a-z0-9-_]+$
+          example: welcome-sequence
+        is_enabled:
+          type: boolean
+          description: Whether the workflow is enabled
+          example: true
+        created_at:
+          type: string
+          format: date-time
+          description: When the workflow was created
+        last_executed_at:
+          type: string
+          format: date-time
+          description: When the workflow was last executed
+          nullable: true
+        name:
+          type: string
+          description: Human-readable name of the workflow
+          example: Welcome Sequence
+        description:
+          type: string
+          nullable: true
+          description: Description explaining the usecase of the workflow
+        updated_at:
+          type: string
+          format: date-time
+          description: When the workflow was last updated
+        commit_message:
+          type: string
+          nullable: true
+          description: Last commit message
+        hash:
+          type: string
+          nullable: true
+          description: Git-like hash for version tracking
+        status:
+          type: string
+          enum:
+          - active
+          - inactive
+          - draft
+          description: Current status of the workflow
+        category:
+          type: string
+          description: Notification category of the workflow. Used to apply category-specific settings and preferences.
+          example: transactional
+        tags:
+          type: array
+          items:
+            type: string
+          description: Tags for organizing and filtering workflows in API.
+        ratelimit:
+          type: object
+          nullable: true
+          description: Workflow [throttle](https://docs.suprsend.com/docs/throttle) settings. This is used to limit the number of times a workflow can be executed per user in a given time period.
+        conditions:
+          type: array
+          items:
+            type: object
+          description: Trigger Conditions for workflow execution. Workflow will only be executed if trigger conditions evaluate to true.
+        trigger_type:
+          type: string
+          enum:
+          - event
+          - dynamic
+          - api
+          description: How the workflow is triggered. You can refer to all trigger types [here](https://docs.suprsend.com/reference/trigger-workflows#trigger-types).
+        trigger_events:
+          type: array
+          items:
+            type: string
+          description: Events that trigger this workflow. This will be set for trigger_type = `event`.
+        override_recipients_type:
+          type: string
+          nullable: true
+          description: Type of recipient override. Define whether to override and run this workflow for user, list of users or a single object.
+          enum:
+          - user
+          - single_object_fields
+        override_recipients_user_expr:
+          type: string
+          nullable: true
+          description: Expression for overriding recipients when override_recipients_type = `user`.
+        override_recipients_single_object_fields_expr:
+          type: string
+          nullable: true
+          description: Expression for overriding recipients when override_recipients_type = `single_object_fields`.
+        override_actor_user_expr:
+          type: string
+          nullable: true
+          description: Expression for overriding actor
+        override_tenant_expr:
+          type: string
+          nullable: true
+          description: Expression for overriding tenant
+        active_at:
+          type: string
+          format: date-time
+          description: When the workflow's live version became active. Will be `null` for draft version.
+        updated_by:
+          type: object
+          nullable: true
+          properties:
+            name:
+              type: string
+              description: Name of the user who last updated the workflow
+            email:
+              type: string
+              format: email
+              description: Email of the user who last updated the workflow
+          description: User who last updated the workflow
+        tree:
+          type: object
+          description: Node tree structure of the workflow. Shows the list of all nodes used in the workflow along with their configuration.
+        validation_result:
+          type: object
+          properties:
+            is_valid:
+              type: boolean
+              description: true if the workflow tree is valid to be published.
+            errors:
+              type: array
+              items:
+                type: string
+              description: List of errors if the workflow tree is not valid.
+          description: Validation status of the workflow
+    SubscriberListOperationRemoveUserNode:
+      type: object
+      description: '[**Remove User from List**](https://docs.suprsend.com/docs/remove-user-from-list): Removes users (actor or recipient) from the list. List must exist for the operation to succeed.'
+      required:
+      - node_type
+      - name
+      - list_id
+      - user_selection
+      properties:
+        name:
+          type: string
+          description: Human-readable name of the node
+          example: Remove from newsletter list
+        node_type:
+          type: string
+          const: subscriberlistoperation_removeuser
+        description:
+          type: string
+          nullable: true
+          description: Description of what this node does
+        is_list_id_dynamic:
+          type: boolean
+          default: false
+          description: Whether list_id is a static literal string or a handlebars expression.
+        list_id:
+          type: string
+          description: List identifier. Can be a static literal string or a handlebars expression (to compute the list id at runtime. Eg. {{list_id}}).
+          minLength: 1
+        user_selection:
+          type: array
+          description: Which users to remove from the list. Can select actor, recipient, or both.
+          minItems: 1
+          items:
+            type: string
+            enum:
+            - actor
+            - recipient
     ErrorResponse:
       type: object
       properties:
@@ -2049,194 +2234,9 @@ components:
         output_key:
           type: string
           description: Optional key to store the response of API call. If not provided, the response will be appended at the root of the workflow payload. It's recommended to provide a unique key here to avoid overwriting existing data.
-    HttpApiWebhookNode:
+    SendWebpushNode:
       type: object
-      description: '[**Webhook**](https://docs.suprsend.com/docs/webhook): Makes an HTTP API request to an endpoint.'
-      required:
-      - node_type
-      - name
-      - http_method
-      - url
-      properties:
-        name:
-          type: string
-          description: Human-readable name of the node
-          example: Notify internal CRM
-        node_type:
-          type: string
-          const: httpapi_webhook
-        description:
-          type: string
-          nullable: true
-          description: Description of what this node does
-        http_method:
-          type: string
-          enum:
-          - GET
-          - PUT
-          - POST
-          - PATCH
-          - DELETE
-          description: HTTP method of the API call.
-        url:
-          type: string
-          format: uri
-          description: Endpoint URL of the API call. You can add variables in JSONNET format. Eg. `"https://api.example.com/webhook?id="+data["$recipient"].id`
-          example: https://api.example.com/webhook
-        headers:
-          type: array
-          description: List of headers as key-value pairs. You can add variables in JSONNET format. Eg. `"Bearer"+data["$tenant"].api_key`
-          items:
-            type: object
-            properties:
-              key:
-                type: string
-                description: header key
-                example:
-                - '"Authorization"'
-                - '"Content-Type"'
-              value:
-                type: string
-                description: header value
-                example:
-                - '"Bearer "+data["$tenant"].api_key'
-                - '"application/json"'
-        body_content_type:
-          type: string
-          default: application/json
-          description: Content type for the body.
-        body:
-          type: string
-          description: JSONNET script to evaluate request body.
-        query_params:
-          type: array
-          description: List of query parameters as key-value pairs. You can add variables in JSONNET format. Eg. `data["$recipient"].id`
-          items:
-            type: object
-            properties:
-              key:
-                type: string
-                description: Query Parameter Key
-              value:
-                type: string
-                description: Query Parameter Value
-        output_key:
-          type: string
-          description: Optional key to store the response body of API call. If not provided, the response will be appended at the root of the workflow payload. It's recommended to provide a unique key here to avoid overwriting existing data.
-    DelayNode:
-      type: object
-      description: '[**Delay**](https://docs.suprsend.com/docs/delay): Pauses workflow execution for a specified duration.'
-      required:
-      - node_type
-      - name
-      - delay_type
-      properties:
-        name:
-          type: string
-          description: Human-readable name of the node
-          example: Wait 30 minutes
-        description:
-          type: string
-          nullable: true
-          description: Description of what this node does
-        node_type:
-          type: string
-          const: delay
-        delay_type:
-          type: string
-          enum:
-          - fixed
-          - dynamic
-          - relative_to
-          description: "Type of delay. Determines how the duration is calculated. \n\n**Fixed**: Static duration added as XXdXXhXXmXXs.\n\n **Dynamic**: duration is passed as variable in your trigger payload in jq format. Eg. `.delay_duration`, `$recipient.delay_duration`, `$actor.delay_duration`, `$tenant.delay_duration`.\n\n **Relative to**: delay is relative to a future timestamp passed in your trigger payload. Eg. `.start_time` before 15m."
-        duration:
-          type: string
-          description: Duration value. Required for 'fixed' and 'dynamic' delay types.
-          examples:
-            fixed_duration:
-              summary: Fixed duration example
-              value: 30s
-            dynamic_duration:
-              summary: Dynamic duration from trigger payload
-              value: .delay_duration
-            recipient_duration:
-              summary: Dynamic duration from recipient properties
-              value: $recipient.delay_duration
-        relative_to:
-          type: object
-          description: Relative delay configuration. Required when delay_type is 'relative_to'.
-          properties:
-            pivot_expr:
-              type: string
-              description: (jq-expression) variable defining the future timestamp from trigger payload relative to which delay is calculated.
-              example: .start_time
-            offset_type:
-              type: string
-              enum:
-              - before
-              - after
-              description: Whether offset is to be added or subtracted from pivot_expr.
-            offset_value_type:
-              type: string
-              enum:
-              - fixed
-              - dynamic
-              description: "Defines if the offset value is fixed or dynamic. \n\n**Fixed**: Static duration added as XXdXXhXXmXXs. Eg. 15m before meeting_start_time. \n\n**Dynamic**: offset is passed as variable in your trigger payload or recipient, tenant properties in jq format. Eg. `$recipient.reminder_offset` before meeting_start_time."
-            offset_value:
-              type: string
-              description: Offset value
-              examples:
-                fixed_offset:
-                  summary: Fixed duration offset
-                  value: 15m
-                dynamic_offset:
-                  summary: Dynamic offset from recipient properties
-                  value: $recipient.reminder_offset
-    ObjectOperationRemoveSubscriptionNode:
-      type: object
-      description: '[**Unsubscribe from Object**](https://docs.suprsend.com/docs/unsubscribe-from-object): Removes users (actor or recipient) as subscribers from an object. Object must exist for the operation to succeed.'
-      required:
-      - node_type
-      - name
-      - object_type
-      - object_id
-      - user_selection
-      properties:
-        name:
-          type: string
-          description: Human-readable name of the node
-          example: Unsubscribe from project
-        node_type:
-          type: string
-          const: objectoperation_removesubscription
-        description:
-          type: string
-          nullable: true
-          description: Description of what this node does
-        is_object_id_dynamic:
-          type: boolean
-          default: false
-          description: Whether object_type and object_id are static literal strings or handlebars expressions.
-        object_type:
-          type: string
-          description: Type/collection name of the object.
-          minLength: 1
-        object_id:
-          type: string
-          description: Unique identifier of the object within the object_type.
-          minLength: 1
-        user_selection:
-          type: array
-          description: Which users to remove as subscribers from the object. Can select actor, recipient, or both.
-          minItems: 1
-          items:
-            type: string
-            enum:
-            - actor
-            - recipient
-    SendMsTeamsNode:
-      type: object
-      description: '[**Microsoft Teams**](https://docs.suprsend.com/docs/delivery-single-channel): Sends Microsoft Teams chat notifications using a specified template.'
+      description: '[**Web Push**](https://docs.suprsend.com/docs/delivery-single-channel): Sends web push notifications using a specified template.'
       required:
       - node_type
       - name
@@ -2245,17 +2245,17 @@ components:
         name:
           type: string
           description: Human-readable name of the node
-          example: Send Teams notification
+          example: Send web push notification
         node_type:
           type: string
-          const: send_ms_teams
+          const: send_webpush
         description:
           type: string
           nullable: true
           description: Description of what this node does
         template:
           type: string
-          description: Slug of the template used for Microsoft Teams notification content.
+          description: Slug of the template used for web push notification content.
           minLength: 1
           maxLength: 120
           pattern: ^[a-z0-9-_]+$

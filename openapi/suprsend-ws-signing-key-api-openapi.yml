@@ -252,19 +252,15 @@ paths:
       - Ws Signing Key
 components:
   schemas:
-    ManagementActor:
+    ManagementWorkspaceSigningKeyListResponse:
       type: object
-      description: Identity that performed an action (created, updated, rolled, deleted, rotated).
-      nullable: true
       properties:
-        name:
-          type: string
-          description: Display name of the actor.
-          example: System User
-        email:
-          type: string
-          description: Email address of the actor.
-          example: user@example.com
+        meta:
+          $ref: '#/components/schemas/ManagementListMeta'
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ManagementWorkspaceSigningKey'
     ErrorResponse:
       type: object
       properties:
@@ -283,49 +279,6 @@ components:
         detail:
           type: string
           description: Additional error details
-    ManagementWorkspaceSigningKeyListResponse:
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/ManagementListMeta'
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/ManagementWorkspaceSigningKey'
-    ManagementListMeta:
-      type: object
-      description: Pagination metadata (when applicable)
-      properties:
-        count:
-          type: integer
-          description: Total items matching the query
-        limit:
-          type: integer
-          nullable: true
-          description: Maximum number of results returned per page.
-        offset:
-          type: integer
-          nullable: true
-          description: Starting position of the returned results.
-    ManagementWorkspaceSigningKeyCreateResponse:
-      allOf:
-      - $ref: '#/components/schemas/ManagementWorkspaceSigningKey'
-      - type: object
-        properties:
-          private_key_pem:
-            type: string
-            description: PEM-encoded private key. Returned only at creation and on roll - store it securely and never commit to source control.
-            example: '-----BEGIN PRIVATE KEY-----
-
-              ...redacted...
-
-              -----END PRIVATE KEY-----
-
-              '
-          private_key_base64:
-            type: string
-            description: Base64-encoded private key. Returned only at creation and on roll.
-            example: LS0tLS1CRUdJTi...redacted...
     ManagementWorkspaceSigningKey:
       type: object
       description: Signing key used to verify signed payloads.
@@ -375,19 +328,54 @@ components:
           description: Timestamp when the signing key was deleted.
         deleted_by:
           $ref: '#/components/schemas/ManagementActor'
+    ManagementListMeta:
+      type: object
+      description: Pagination metadata (when applicable)
+      properties:
+        count:
+          type: integer
+          description: Total items matching the query
+        limit:
+          type: integer
+          nullable: true
+          description: Maximum number of results returned per page.
+        offset:
+          type: integer
+          nullable: true
+          description: Starting position of the returned results.
+    ManagementWorkspaceSigningKeyCreateResponse:
+      allOf:
+      - $ref: '#/components/schemas/ManagementWorkspaceSigningKey'
+      - type: object
+        properties:
+          private_key_pem:
+            type: string
+            description: PEM-encoded private key. Returned only at creation and on roll - store it securely and never commit to source control.
+            example: '-----BEGIN PRIVATE KEY-----
+
+              ...redacted...
+
+              -----END PRIVATE KEY-----
+
+              '
+          private_key_base64:
+            type: string
+            description: Base64-encoded private key. Returned only at creation and on roll.
+            example: LS0tLS1CRUdJTi...redacted...
+    ManagementActor:
+      type: object
+      description: Identity that performed an action (created, updated, rolled, deleted, rotated).
+      nullable: true
+      properties:
+        name:
+          type: string
+          description: Display name of the actor.
+          example: System User
+        email:
+          type: string
+          description: Email address of the actor.
+          example: user@example.com
   responses:
-    NotFoundError:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-          example:
-            code: 404
-            error_code: not_found
-            type: NotFound
-            message: workspace 'demo' not found
-            detail: workspace 'demo' not found
     AuthenticationError:
       description: Authentication failed
       content:
@@ -400,6 +388,18 @@ components:
             type: AuthenticationFailed
             message: Invalid service token.
             detail: Invalid service token.
+    NotFoundError:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            code: 404
+            error_code: not_found
+            type: NotFound
+            message: workspace 'demo' not found
+            detail: workspace 'demo' not found
   securitySchemes:
     BearerAuth:
       type: http

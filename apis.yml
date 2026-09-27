@@ -48,7 +48,7 @@ tags:
   - WhatsApp
   - Slack
   - Notification Infrastructure
-  - Workflow-Automation
+  - Workflow Automation
   - Template Management
 tags_raw:
   - Notifications
@@ -62,6 +62,7 @@ tags_raw:
   - Notification Infrastructure
   - Workflow Automation
   - Template Management
+  - Workflow-Automation
 url: https://raw.githubusercontent.com/api-evangelist/suprsend/refs/heads/main/apis.yml
 created: '2026-06-12'
 modified: '2026-06-12'
