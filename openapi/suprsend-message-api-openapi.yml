@@ -266,6 +266,29 @@ paths:
       - Message
 components:
   schemas:
+    CursorPagination:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: Total matching records (ignores cursor position).
+        limit:
+          type: integer
+          description: Maximum number of results returned per page.
+        has_prev:
+          type: boolean
+          description: True when the previous page (newer logs) exists.
+        before:
+          type: string
+          nullable: true
+          description: Cursor to pass as `before=` to retrieve the previous page (newer logs). Null on the first page or when `has_prev` is false.
+        has_next:
+          type: boolean
+          description: True when an next page (older logs) exist.
+        after:
+          type: string
+          nullable: true
+          description: Cursor to pass as `after=` to retrieve the next page (older logs). Null when `has_next` is false.
     MessageResponse:
       type: object
       description: A single notification delivery attempt produced by a workflow trigger or broadcast.
@@ -479,29 +502,6 @@ components:
         category:
           type: string
           description: Notification category slug associated with this message.
-    CursorPagination:
-      type: object
-      properties:
-        count:
-          type: integer
-          description: Total matching records (ignores cursor position).
-        limit:
-          type: integer
-          description: Maximum number of results returned per page.
-        has_prev:
-          type: boolean
-          description: True when the previous page (newer logs) exists.
-        before:
-          type: string
-          nullable: true
-          description: Cursor to pass as `before=` to retrieve the previous page (newer logs). Null on the first page or when `has_prev` is false.
-        has_next:
-          type: boolean
-          description: True when an next page (older logs) exist.
-        after:
-          type: string
-          nullable: true
-          description: Cursor to pass as `after=` to retrieve the next page (older logs). Null when `has_next` is false.
   securitySchemes:
     BearerAuth:
       type: http

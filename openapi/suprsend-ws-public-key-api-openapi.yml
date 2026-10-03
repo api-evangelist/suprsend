@@ -305,6 +305,18 @@ paths:
       - Ws Public Key
 components:
   responses:
+    NotFoundError:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            code: 404
+            error_code: not_found
+            type: NotFound
+            message: workspace 'demo' not found
+            detail: workspace 'demo' not found
     ValidationError:
       description: Validation error - data validation failed
       content:
@@ -323,46 +335,7 @@ components:
             type: AuthenticationFailed
             message: Invalid service token.
             detail: Invalid service token.
-    NotFoundError:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-          example:
-            code: 404
-            error_code: not_found
-            type: NotFound
-            message: workspace 'demo' not found
-            detail: workspace 'demo' not found
   schemas:
-    ErrorResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: HTTP status code
-        error_code:
-          type: string
-          description: Specific error code identifier
-        type:
-          type: string
-          description: Error type classification
-        message:
-          type: string
-          description: Human-readable error message
-        detail:
-          type: string
-          description: Additional error details
-    ManagementWorkspacePublicKeyListResponse:
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/ManagementListMeta'
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/ManagementWorkspacePublicKey'
     ManagementWorkspacePublicKey:
       type: object
       description: Workspace public key used by client SDKs.
@@ -441,6 +414,41 @@ components:
           type: string
           nullable: true
           description: Optional notes.
+    WorkspacePublicKeyPatchRequest:
+      type: object
+      required:
+      - is_secure_mode_enabled
+      properties:
+        is_secure_mode_enabled:
+          type: boolean
+          description: Enable or disable secure mode for this public key.
+    ManagementWorkspacePublicKeyListResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/ManagementListMeta'
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ManagementWorkspacePublicKey'
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: HTTP status code
+        error_code:
+          type: string
+          description: Specific error code identifier
+        type:
+          type: string
+          description: Error type classification
+        message:
+          type: string
+          description: Human-readable error message
+        detail:
+          type: string
+          description: Additional error details
     ManagementActor:
       type: object
       description: Identity that performed an action (created, updated, rolled, deleted, rotated).
@@ -454,14 +462,6 @@ components:
           type: string
           description: Email address of the actor.
           example: user@example.com
-    WorkspacePublicKeyPatchRequest:
-      type: object
-      required:
-      - is_secure_mode_enabled
-      properties:
-        is_secure_mode_enabled:
-          type: boolean
-          description: Enable or disable secure mode for this public key.
   securitySchemes:
     BearerAuth:
       type: http

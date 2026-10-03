@@ -251,34 +251,47 @@ paths:
       tags:
       - Ws Signing Key
 components:
+  responses:
+    NotFoundError:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            code: 404
+            error_code: not_found
+            type: NotFound
+            message: workspace 'demo' not found
+            detail: workspace 'demo' not found
+    AuthenticationError:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            code: 401
+            error_code: authentication_failed
+            type: AuthenticationFailed
+            message: Invalid service token.
+            detail: Invalid service token.
   schemas:
-    ManagementWorkspaceSigningKeyListResponse:
+    ManagementListMeta:
       type: object
+      description: Pagination metadata (when applicable)
       properties:
-        meta:
-          $ref: '#/components/schemas/ManagementListMeta'
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/ManagementWorkspaceSigningKey'
-    ErrorResponse:
-      type: object
-      properties:
-        code:
+        count:
           type: integer
-          description: HTTP status code
-        error_code:
-          type: string
-          description: Specific error code identifier
-        type:
-          type: string
-          description: Error type classification
-        message:
-          type: string
-          description: Human-readable error message
-        detail:
-          type: string
-          description: Additional error details
+          description: Total items matching the query
+        limit:
+          type: integer
+          nullable: true
+          description: Maximum number of results returned per page.
+        offset:
+          type: integer
+          nullable: true
+          description: Starting position of the returned results.
     ManagementWorkspaceSigningKey:
       type: object
       description: Signing key used to verify signed payloads.
@@ -328,21 +341,15 @@ components:
           description: Timestamp when the signing key was deleted.
         deleted_by:
           $ref: '#/components/schemas/ManagementActor'
-    ManagementListMeta:
+    ManagementWorkspaceSigningKeyListResponse:
       type: object
-      description: Pagination metadata (when applicable)
       properties:
-        count:
-          type: integer
-          description: Total items matching the query
-        limit:
-          type: integer
-          nullable: true
-          description: Maximum number of results returned per page.
-        offset:
-          type: integer
-          nullable: true
-          description: Starting position of the returned results.
+        meta:
+          $ref: '#/components/schemas/ManagementListMeta'
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ManagementWorkspaceSigningKey'
     ManagementWorkspaceSigningKeyCreateResponse:
       allOf:
       - $ref: '#/components/schemas/ManagementWorkspaceSigningKey'
@@ -362,6 +369,24 @@ components:
             type: string
             description: Base64-encoded private key. Returned only at creation and on roll.
             example: LS0tLS1CRUdJTi...redacted...
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: HTTP status code
+        error_code:
+          type: string
+          description: Specific error code identifier
+        type:
+          type: string
+          description: Error type classification
+        message:
+          type: string
+          description: Human-readable error message
+        detail:
+          type: string
+          description: Additional error details
     ManagementActor:
       type: object
       description: Identity that performed an action (created, updated, rolled, deleted, rotated).
@@ -375,31 +400,6 @@ components:
           type: string
           description: Email address of the actor.
           example: user@example.com
-  responses:
-    AuthenticationError:
-      description: Authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-          example:
-            code: 401
-            error_code: authentication_failed
-            type: AuthenticationFailed
-            message: Invalid service token.
-            detail: Invalid service token.
-    NotFoundError:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-          example:
-            code: 404
-            error_code: not_found
-            type: NotFound
-            message: workspace 'demo' not found
-            detail: workspace 'demo' not found
   securitySchemes:
     BearerAuth:
       type: http

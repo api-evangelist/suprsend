@@ -724,25 +724,6 @@ paths:
       tags:
       - Translation
 components:
-  schemas:
-    ErrorResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: HTTP status code
-        error_code:
-          type: string
-          description: Specific error code identifier
-        type:
-          type: string
-          description: Error type classification
-        message:
-          type: string
-          description: Human-readable error message
-        detail:
-          type: string
-          description: Additional error details
   responses:
     AuthenticationError:
       description: Authentication failed
@@ -768,6 +749,25 @@ components:
             type: NotFound
             message: workspace 'demo' not found
             detail: workspace 'demo' not found
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: HTTP status code
+        error_code:
+          type: string
+          description: Specific error code identifier
+        type:
+          type: string
+          description: Error type classification
+        message:
+          type: string
+          description: Human-readable error message
+        detail:
+          type: string
+          description: Additional error details
   securitySchemes:
     BearerAuth:
       type: http

@@ -122,44 +122,7 @@ paths:
       tags:
       - Workspace
 components:
-  responses:
-    ValidationError:
-      description: Validation error - data validation failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    AuthenticationError:
-      description: Authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-          example:
-            code: 401
-            error_code: authentication_failed
-            type: AuthenticationFailed
-            message: Invalid service token.
-            detail: Invalid service token.
   schemas:
-    ErrorResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: HTTP status code
-        error_code:
-          type: string
-          description: Specific error code identifier
-        type:
-          type: string
-          description: Error type classification
-        message:
-          type: string
-          description: Human-readable error message
-        detail:
-          type: string
-          description: Additional error details
     ManagementWorkspace:
       type: object
       description: Workspace record returned by the Management API.
@@ -225,6 +188,24 @@ components:
           nullable: true
           description: Optional workspace description.
           example: Testing workspace API
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: HTTP status code
+        error_code:
+          type: string
+          description: Specific error code identifier
+        type:
+          type: string
+          description: Error type classification
+        message:
+          type: string
+          description: Human-readable error message
+        detail:
+          type: string
+          description: Additional error details
     ManagementWorkspaceListResponse:
       type: object
       properties:
@@ -234,6 +215,25 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ManagementWorkspace'
+  responses:
+    ValidationError:
+      description: Validation error - data validation failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    AuthenticationError:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            code: 401
+            error_code: authentication_failed
+            type: AuthenticationFailed
+            message: Invalid service token.
+            detail: Invalid service token.
   securitySchemes:
     BearerAuth:
       type: http
