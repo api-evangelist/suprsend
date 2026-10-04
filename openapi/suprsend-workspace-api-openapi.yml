@@ -174,20 +174,6 @@ components:
           type: integer
           nullable: true
           description: Starting position of the returned results.
-    WorkspaceCreateRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Workspace name.
-          example: my-workspace
-        description:
-          type: string
-          nullable: true
-          description: Optional workspace description.
-          example: Testing workspace API
     ErrorResponse:
       type: object
       properties:
@@ -215,13 +201,21 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ManagementWorkspace'
+    WorkspaceCreateRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Workspace name.
+          example: my-workspace
+        description:
+          type: string
+          nullable: true
+          description: Optional workspace description.
+          example: Testing workspace API
   responses:
-    ValidationError:
-      description: Validation error - data validation failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     AuthenticationError:
       description: Authentication failed
       content:
@@ -234,6 +228,12 @@ components:
             type: AuthenticationFailed
             message: Invalid service token.
             detail: Invalid service token.
+    ValidationError:
+      description: Validation error - data validation failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     BearerAuth:
       type: http

@@ -2162,18 +2162,6 @@ components:
           type: string
           description: Additional error details
   responses:
-    NotFoundError:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-          example:
-            code: 404
-            error_code: not_found
-            type: NotFound
-            message: workspace 'demo' not found
-            detail: workspace 'demo' not found
     AuthenticationError:
       description: Authentication failed
       content:
@@ -2186,6 +2174,18 @@ components:
             type: AuthenticationFailed
             message: Invalid service token.
             detail: Invalid service token.
+    NotFoundError:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            code: 404
+            error_code: not_found
+            type: NotFound
+            message: workspace 'demo' not found
+            detail: workspace 'demo' not found
   securitySchemes:
     BearerAuth:
       type: http
