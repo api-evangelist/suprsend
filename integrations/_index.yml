@@ -19,6 +19,6 @@
     registered_name: com.suprsend/mcp
     register_id: com.suprsend/mcp
     detected_by: sweep-agent-tools.py
-    detected: '2026-10-14'
+    detected: '2026-10-15'
   status: not-a-workflow
   arazzo: null
