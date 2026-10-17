@@ -156,84 +156,38 @@ paths:
       tags:
       - Ws Api Key
 components:
+  responses:
+    AuthenticationError:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            code: 401
+            error_code: authentication_failed
+            type: AuthenticationFailed
+            message: Invalid service token.
+            detail: Invalid service token.
+    NotFoundError:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            code: 404
+            error_code: not_found
+            type: NotFound
+            message: workspace 'demo' not found
+            detail: workspace 'demo' not found
+    ValidationError:
+      description: Validation error - data validation failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    ManagementListMeta:
-      type: object
-      description: Pagination metadata (when applicable)
-      properties:
-        count:
-          type: integer
-          description: Total items matching the query
-        limit:
-          type: integer
-          nullable: true
-          description: Maximum number of results returned per page.
-        offset:
-          type: integer
-          nullable: true
-          description: Starting position of the returned results.
-    ManagementActor:
-      type: object
-      description: Identity that performed an action (created, updated, rolled, deleted, rotated).
-      nullable: true
-      properties:
-        name:
-          type: string
-          description: Display name of the actor.
-          example: System User
-        email:
-          type: string
-          description: Email address of the actor.
-          example: user@example.com
-    ErrorResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: HTTP status code
-        error_code:
-          type: string
-          description: Specific error code identifier
-        type:
-          type: string
-          description: Error type classification
-        message:
-          type: string
-          description: Human-readable error message
-        detail:
-          type: string
-          description: Additional error details
-    ManagementWorkspaceApiKeyListResponse:
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/ManagementListMeta'
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/ManagementWorkspaceApiKey'
-    ManagementWorkspaceApiKeyCreateResponse:
-      allOf:
-      - $ref: '#/components/schemas/ManagementWorkspaceApiKey'
-      - type: object
-        properties:
-          api_key:
-            type: string
-            description: Full secret API key. Returned only once at creation - store it securely and never commit to source control.
-            example: SS.XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-    WorkspaceApiKeyCreateRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Label for the API key.
-          example: backend-prod
-        description:
-          type: string
-          nullable: true
-          description: Optional notes for operators.
     ManagementWorkspaceApiKey:
       type: object
       description: Workspace-scoped REST API key (server-side secret).
@@ -271,37 +225,83 @@ components:
           description: Timestamp when the API key was deleted, if applicable.
         deleted_by:
           $ref: '#/components/schemas/ManagementActor'
-  responses:
-    NotFoundError:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-          example:
-            code: 404
-            error_code: not_found
-            type: NotFound
-            message: workspace 'demo' not found
-            detail: workspace 'demo' not found
-    AuthenticationError:
-      description: Authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-          example:
-            code: 401
-            error_code: authentication_failed
-            type: AuthenticationFailed
-            message: Invalid service token.
-            detail: Invalid service token.
-    ValidationError:
-      description: Validation error - data validation failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
+    ManagementWorkspaceApiKeyCreateResponse:
+      allOf:
+      - $ref: '#/components/schemas/ManagementWorkspaceApiKey'
+      - type: object
+        properties:
+          api_key:
+            type: string
+            description: Full secret API key. Returned only once at creation - store it securely and never commit to source control.
+            example: SS.XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: HTTP status code
+        error_code:
+          type: string
+          description: Specific error code identifier
+        type:
+          type: string
+          description: Error type classification
+        message:
+          type: string
+          description: Human-readable error message
+        detail:
+          type: string
+          description: Additional error details
+    ManagementListMeta:
+      type: object
+      description: Pagination metadata (when applicable)
+      properties:
+        count:
+          type: integer
+          description: Total items matching the query
+        limit:
+          type: integer
+          nullable: true
+          description: Maximum number of results returned per page.
+        offset:
+          type: integer
+          nullable: true
+          description: Starting position of the returned results.
+    WorkspaceApiKeyCreateRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Label for the API key.
+          example: backend-prod
+        description:
+          type: string
+          nullable: true
+          description: Optional notes for operators.
+    ManagementActor:
+      type: object
+      description: Identity that performed an action (created, updated, rolled, deleted, rotated).
+      nullable: true
+      properties:
+        name:
+          type: string
+          description: Display name of the actor.
+          example: System User
+        email:
+          type: string
+          description: Email address of the actor.
+          example: user@example.com
+    ManagementWorkspaceApiKeyListResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/ManagementListMeta'
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ManagementWorkspaceApiKey'
   securitySchemes:
     BearerAuth:
       type: http

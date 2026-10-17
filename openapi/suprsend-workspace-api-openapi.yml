@@ -123,6 +123,38 @@ paths:
       - Workspace
 components:
   schemas:
+    WorkspaceCreateRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Workspace name.
+          example: my-workspace
+        description:
+          type: string
+          nullable: true
+          description: Optional workspace description.
+          example: Testing workspace API
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: HTTP status code
+        error_code:
+          type: string
+          description: Specific error code identifier
+        type:
+          type: string
+          description: Error type classification
+        message:
+          type: string
+          description: Human-readable error message
+        detail:
+          type: string
+          description: Additional error details
     ManagementWorkspace:
       type: object
       description: Workspace record returned by the Management API.
@@ -174,24 +206,6 @@ components:
           type: integer
           nullable: true
           description: Starting position of the returned results.
-    ErrorResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: HTTP status code
-        error_code:
-          type: string
-          description: Specific error code identifier
-        type:
-          type: string
-          description: Error type classification
-        message:
-          type: string
-          description: Human-readable error message
-        detail:
-          type: string
-          description: Additional error details
     ManagementWorkspaceListResponse:
       type: object
       properties:
@@ -201,20 +215,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ManagementWorkspace'
-    WorkspaceCreateRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Workspace name.
-          example: my-workspace
-        description:
-          type: string
-          nullable: true
-          description: Optional workspace description.
-          example: Testing workspace API
   responses:
     AuthenticationError:
       description: Authentication failed

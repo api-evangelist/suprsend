@@ -732,19 +732,6 @@ paths:
       tags:
       - Schema
 components:
-  responses:
-    AuthenticationError:
-      description: Authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-          example:
-            code: 401
-            error_code: authentication_failed
-            type: AuthenticationFailed
-            message: Invalid service token.
-            detail: Invalid service token.
   schemas:
     ErrorResponse:
       type: object
@@ -764,6 +751,19 @@ components:
         detail:
           type: string
           description: Additional error details
+  responses:
+    AuthenticationError:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            code: 401
+            error_code: authentication_failed
+            type: AuthenticationFailed
+            message: Invalid service token.
+            detail: Invalid service token.
   securitySchemes:
     BearerAuth:
       type: http
