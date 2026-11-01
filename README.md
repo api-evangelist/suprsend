@@ -1,4 +1,4 @@
-# SuprSend (suprsend)
+# SuprSend
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,73 +64,192 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-SuprSend is a notification infrastructure platform that enables engineering teams to build, manage, and scale multi-channel notifications through a single unified API. It supports delivery across email, SMS, push notifications, in-app inbox, WhatsApp, Slack, and Microsoft Teams without requiring separate integrations for each channel. The platform provides workflow orchestration, template management, user preference management, smart channel routing with vendor fallback, and real-time delivery logs.
+SuprSend is a notification infrastructure platform that enables engineering teams to build, manage, and scale multi-channel notifications through a single unified API. It supports delivery across email, SMS, push notifications, in-app inbox, WhatsApp, Slack, and Microsoft Teams without requiring separate integrations for each channel. The platform provides workflow orchestration, template management, user preference management, smart channel routing with vendor fallback, and real-time delivery logs. SuprSend also offers a Management API for programmatic control of workflows and templates, a CLI for asset synchronization, and an MCP server enabling AI agents to interact with notification infrastructure through tool calling.
 
-APIs.json: https://raw.githubusercontent.com/api-evangelist/suprsend/refs/heads/main/apis.yml
+**Areas:** Notification · Multi-Channel · Email · SMS · Push Notifications · In-App Inbox · WhatsApp · Slack · Notification Infrastructure · Workflow Automation · Template Management
 
-Naftiko: https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=suprsend-api-evangelist&utm_content=repo
+## SuprSend on APIs.io
 
-## Tags
+Everything profiled for SuprSend is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/suprsend/](https://apis.io/providers/suprsend/)** — or go straight to one of the APIs or properties below.
 
-- Notifications
-- Multi-Channel
-- Email
-- SMS
-- Push Notifications
-- In-App Inbox
-- WhatsApp
-- Slack
-- Notification Infrastructure
-- Workflow Automation
-- Template Management
+### APIs (21)
 
-## APIs
+- [SuprSend Management API](https://apis.io/apis/suprsend/management-api/) — The SuprSend Management API provides programmatic control over workspace assets including workflows, templates, and other SuprSend configuration resources.…
+- [SuprSend Broadcast API](https://apis.io/apis/suprsend/suprsend-broadcast-api/) — The Broadcast API from SuprSend — 1 operation(s) for broadcast.
+- [SuprSend Broadcast Run API](https://apis.io/apis/suprsend/suprsend-broadcast-run-api/) — The Broadcast Run API from SuprSend — 1 operation(s) for broadcast run.
+- [SuprSend Bulk API](https://apis.io/apis/suprsend/suprsend-bulk-api/) — The Bulk API from SuprSend — 3 operation(s) for bulk.
+- [SuprSend Event API](https://apis.io/apis/suprsend/suprsend-event-api/) — The Event API from SuprSend — 5 operation(s) for event.
+- [SuprSend Message API](https://apis.io/apis/suprsend/suprsend-message-api/) — The Message API from SuprSend — 1 operation(s) for message.
+- [SuprSend Object API](https://apis.io/apis/suprsend/suprsend-object-api/) — The Object API from SuprSend — 8 operation(s) for object.
+- [SuprSend Preference Category API](https://apis.io/apis/suprsend/suprsend-preference-category-api/) — The Preference Category API from SuprSend — 4 operation(s) for preference category.
+- [SuprSend Schema API](https://apis.io/apis/suprsend/suprsend-schema-api/) — The Schema API from SuprSend — 3 operation(s) for schema.
+- [SuprSend Subscriber List API](https://apis.io/apis/suprsend/suprsend-subscriber-list-api/) — The Subscriber List API from SuprSend — 11 operation(s) for subscriber list.
+- [SuprSend Template API](https://apis.io/apis/suprsend/suprsend-template-api/) — The Template API from SuprSend — 12 operation(s) for template.
+- [SuprSend Tenant API](https://apis.io/apis/suprsend/suprsend-tenant-api/) — The Tenant API from SuprSend — 7 operation(s) for tenant.
+- [SuprSend Translation API](https://apis.io/apis/suprsend/suprsend-translation-api/) — The Translation API from SuprSend — 5 operation(s) for translation.
+- [SuprSend Trigger API](https://apis.io/apis/suprsend/suprsend-trigger-api/) — The Trigger API from SuprSend — 2 operation(s) for trigger.
+- [SuprSend User API](https://apis.io/apis/suprsend/suprsend-user-api/) — The User API from SuprSend — 9 operation(s) for user.
+- [SuprSend Workflow API](https://apis.io/apis/suprsend/suprsend-workflow-api/) — The Workflow API from SuprSend — 4 operation(s) for workflow.
+- [SuprSend Workflow Run API](https://apis.io/apis/suprsend/suprsend-workflow-run-api/) — The Workflow Run API from SuprSend — 1 operation(s) for workflow run.
+- [SuprSend Workspace API](https://apis.io/apis/suprsend/suprsend-workspace-api/) — The Workspace API from SuprSend — 1 operation(s) for workspace.
+- [SuprSend Ws Api Key API](https://apis.io/apis/suprsend/suprsend-ws-api-key-api/) — The Ws Api Key API from SuprSend — 2 operation(s) for ws api key.
+- [SuprSend Ws Public Key API](https://apis.io/apis/suprsend/suprsend-ws-public-key-api/) — The Ws Public Key API from SuprSend — 3 operation(s) for ws public key.
+- [SuprSend Ws Signing Key API](https://apis.io/apis/suprsend/suprsend-ws-signing-key-api/) — The Ws Signing Key API from SuprSend — 3 operation(s) for ws signing key.
 
-### SuprSend REST API
+### Published properties
 
-The SuprSend REST API allows developers to programmatically trigger notification workflows, manage users and subscribers, send broadcast notifications, and access delivery logs. Authentication uses workspace key and secret credentials.
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-- **Human URL:** https://docs.suprsend.com/reference/overview
-- **Base URL:** https://hub.suprsend.com
+#### Agentic access (1)
 
-### SuprSend Management API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-The SuprSend Management API provides programmatic control over workspace assets including workflows, templates, and other SuprSend configuration resources. It uses service tokens for authentication.
+- [Suprsend Agentic Access](https://apis.io/agentic-access/suprsend/suprsend-agentic-access/)
 
-- **Human URL:** https://docs.suprsend.com/docs/developer/overview
-- **Base URL:** https://hub.suprsend.com
+#### JSON Schema (1)
 
-## Plans, Rate Limits, and FinOps
+The data models the API reads and writes.
 
-| Resource | File |
+- [SuprSend API Schemas](https://apis.io/schemas/suprsend/suprsend/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Suprsend Context](https://apis.io/jsonld/suprsend/suprsend-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Suprsend Vocabulary](https://apis.io/vocabularies/suprsend/suprsend-vocabulary/)
+
+#### Collections (40)
+
+Postman and Open Collection request collections.
+
+- [SuprSend Broadcast API](https://apis.io/collections/suprsend/open-suprsend-broadcast-api/)
+- [SuprSend Broadcast Broadcast Run API](https://apis.io/collections/suprsend/open-suprsend-broadcast-run-api/)
+- [SuprSend Broadcast Bulk API](https://apis.io/collections/suprsend/open-suprsend-bulk-api/)
+- [SuprSend Broadcast Event API](https://apis.io/collections/suprsend/open-suprsend-event-api/)
+- [SuprSend Broadcast Message API](https://apis.io/collections/suprsend/open-suprsend-message-api/)
+- [SuprSend Broadcast Object API](https://apis.io/collections/suprsend/open-suprsend-object-api/)
+- [SuprSend Broadcast Preference Category API](https://apis.io/collections/suprsend/open-suprsend-preference-category-api/)
+- [SuprSend Broadcast Schema API](https://apis.io/collections/suprsend/open-suprsend-schema-api/)
+- [SuprSend Broadcast Subscriber List API](https://apis.io/collections/suprsend/open-suprsend-subscriber-list-api/)
+- [SuprSend Broadcast Template API](https://apis.io/collections/suprsend/open-suprsend-template-api/)
+- [SuprSend Broadcast Tenant API](https://apis.io/collections/suprsend/open-suprsend-tenant-api/)
+- [SuprSend Broadcast Translation API](https://apis.io/collections/suprsend/open-suprsend-translation-api/)
+- [SuprSend Broadcast Trigger API](https://apis.io/collections/suprsend/open-suprsend-trigger-api/)
+- [SuprSend Broadcast User API](https://apis.io/collections/suprsend/open-suprsend-user-api/)
+- [SuprSend Broadcast Workflow API](https://apis.io/collections/suprsend/open-suprsend-workflow-api/)
+- [SuprSend Broadcast Workflow Run API](https://apis.io/collections/suprsend/open-suprsend-workflow-run-api/)
+- [SuprSend Broadcast Workspace API](https://apis.io/collections/suprsend/open-suprsend-workspace-api/)
+- [SuprSend Broadcast Ws Api Key API](https://apis.io/collections/suprsend/open-suprsend-ws-api-key-api/)
+- [SuprSend Broadcast Ws Public Key API](https://apis.io/collections/suprsend/open-suprsend-ws-public-key-api/)
+- [SuprSend Broadcast Ws Signing Key API](https://apis.io/collections/suprsend/open-suprsend-ws-signing-key-api/)
+- [SuprSend Broadcast API](https://apis.io/collections/suprsend/postman-suprsend-broadcast-api/)
+- [SuprSend Broadcast Broadcast Run API](https://apis.io/collections/suprsend/postman-suprsend-broadcast-run-api/)
+- [SuprSend Broadcast Bulk API](https://apis.io/collections/suprsend/postman-suprsend-bulk-api/)
+- [SuprSend Broadcast Event API](https://apis.io/collections/suprsend/postman-suprsend-event-api/)
+- [SuprSend Broadcast Message API](https://apis.io/collections/suprsend/postman-suprsend-message-api/)
+- …and 15 more published on APIs.io
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [SuprSend — jsonschema rules](https://apis.io/rules/suprsend/suprsend-jsonschema-spectral-rules/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Suprsend Authentication](https://apis.io/security/suprsend/suprsend-authentication/)
+- [Suprsend Domain Security](https://apis.io/security/suprsend/suprsend-domain-security/)
+- [Suprsend Trust Center](https://apis.io/security/suprsend/suprsend-trust-center/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Suprsend Plans Pricing](https://apis.io/plans/suprsend/suprsend-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Suprsend Rate Limits](https://apis.io/rate-limits/suprsend/suprsend-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Suprsend Finops](https://apis.io/finops/suprsend/suprsend-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.suprsend.com/)
+- [Documentation](https://docs.suprsend.com/docs)
+- [Pricing](https://www.suprsend.com/pricing)
+- [Changelog](https://docs.suprsend.com/changelog)
+- [Blog](https://www.suprsend.com/blog)
+- [GitHub](https://github.com/suprsend)
+- [Status](https://status.suprsend.com/)
+
+## API Evangelist rating
+
+**Kin Score 45.4** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
 |---|---|
-| Plans & Pricing | [plans/suprsend-plans-pricing.yml](plans/suprsend-plans-pricing.yml) |
-| Rate Limits | [rate-limits/suprsend-rate-limits.yml](rate-limits/suprsend-rate-limits.yml) |
-| FinOps | [finops/suprsend-finops.yml](finops/suprsend-finops.yml) |
+| Discoverability | 66.1 |
+| Contract quality | 61.8 |
+| Contract governance | 23.5 |
+| Operational transparency | 34.2 |
+| Developer ergonomics | 28.6 |
+| Access clarity | 26.3 |
 
-**Pricing Summary:** Freemium model. Free plan includes 10,000 notifications/month. Essentials at $110/month (50K notifications, $2/1K overage). Business at $275/month (50K notifications, $5/1K overage). Enterprise custom pricing available.
+**Agent readiness 31.5** — agent-ready
 
-**Rate Limits:** No hard numeric rate limit is publicly documented. Maximum 100 recipients per single workflow trigger call. Fair-use policy enforced with proactive outreach for anomalous traffic.
-
-## Timestamps
-
-- **Created:** 2026-06-12
-- **Modified:** 2026-06-12
-
-## Common Properties
-
-| Type | URL |
+| Agent-readiness dimension | Result |
 |---|---|
-| Website | https://www.suprsend.com/ |
-| Documentation | https://docs.suprsend.com/docs |
-| GitHub Organization | https://github.com/suprsend |
-| LinkedIn | https://www.linkedin.com/company/suprsend/ |
-| X (Twitter) | https://x.com/suprsend |
-| Blog | https://www.suprsend.com/blog |
-| Changelog | https://docs.suprsend.com/changelog |
-| Pricing | https://www.suprsend.com/pricing |
-| Status Page | https://status.suprsend.com/ |
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | verified |
+| Error Semantics | — |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
 
-## Maintainers
+**Regulatory alignment 18.3** — Telecommunications
 
-- **Kin Lane** - kin@apievangelist.com
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/suprsend/](https://apis.io/providers/suprsend/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for SuprSend: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/suprsend/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
